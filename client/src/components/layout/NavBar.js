@@ -17,13 +17,13 @@ class NavBar extends Component {
     const authLinks = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
-          <Link className="nav-link text-info" to="/create-client">
+          <Link className="nav-link text-primary" to="/create-client">
             Create Client
           </Link>
         </li>
         <li className="nav-item active">
           <a href="" onClick={this.onLogoutClick.bind(this)} className="nav-link">
-            <i className="fa fa-hand-peace" style={{ fontSize: '1.2rem', color: '#18a2b9' }} />
+            <i className="fa fa-hand-peace text-primary" style={{ fontSize: '1.2rem' }} />
             Bye {user.name}
           </a>
         </li>

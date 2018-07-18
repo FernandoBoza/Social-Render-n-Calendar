@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Spinner from '../common/Spinner';
 import { getAllClients } from '../../actions/clientActions';
 import ClientItem from './ClientItem';
+// import { Link } from 'react-router-dom';
 
 export class ClientsComponent extends Component {
   componentDidMount = e => {
@@ -17,9 +18,7 @@ export class ClientsComponent extends Component {
       clientItems = <Spinner />;
     } else {
       if (clients.length > 0) {
-        clientItems = clients.map(client => (
-          <ClientItem key={client._id} clients={client} />
-        ));
+        clientItems = clients.map(client => <ClientItem key={client._id} clients={client} />);
       } else {
         clientItems = <h4>No Clients Found</h4>;
       }
@@ -29,8 +28,11 @@ export class ClientsComponent extends Component {
         <section className="container">
           <div className="row">
             <div className="col-md-12">
-              <h1 className="display-4 text-center">Client Profiles</h1>
-              <p className="lead text-center">Browser Clients</p>
+              <h1 className="display-4 text-">Client Profiles</h1>
+              <p className="lead text-">Browser Clients</p>
+              {/* <Link to={'/'} className="btn btn-primary mb-5">
+                Dashboard <i className="fa fa-tachometer" />
+              </Link> */}
               {clientItems}
             </div>
           </div>

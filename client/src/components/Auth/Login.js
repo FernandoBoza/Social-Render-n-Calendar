@@ -54,27 +54,10 @@ class Login extends Component {
             <div className="text-center">
               <h1 className="mt-5 mb-3 display-4">Login</h1>
               <form className="form-signin" onSubmit={this.handleSubmit}>
-                <TextFieldGroup
-                  placeholder="Email Address"
-                  name="email"
-                  type="email"
-                  value={this.state.email}
-                  onChange={this.handleChange}
-                  error={errors.email}
-                />
+                <TextFieldGroup placeholder="Email Address" name="email" type="email" value={this.state.email} onChange={this.handleChange} error={errors.email} />
 
-                <TextFieldGroup
-                  placeholder="Password"
-                  name="password"
-                  type="password"
-                  value={this.state.password}
-                  onChange={this.handleChange}
-                  error={errors.password}
-                />
-                <button
-                  className="btn btn-lg btn-primary btn-block mt-4"
-                  type="submit"
-                >
+                <TextFieldGroup placeholder="Password" name="password" type="password" value={this.state.password} onChange={this.handleChange} error={errors.password} />
+                <button className="btn btn-lg btn-primary btn-block mt-4" type="submit">
                   Log In
                 </button>
               </form>

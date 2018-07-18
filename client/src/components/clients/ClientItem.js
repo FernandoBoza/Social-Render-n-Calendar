@@ -13,12 +13,8 @@ export default class ClientItem extends Component {
             <p>
               {clients.name} Last Updated By {clients.lastUpdatedBy}
             </p>
-            <Link to={`/clients/${clients.handle}`} className="btn btn-info mr-3">
+            <Link to={`/clients/${clients.handle}`} className="btn btn-primary">
               View Client <i className="fa fa-user" />
-            </Link>
-
-            <Link to={'/'} className="btn btn-primary">
-              Dashboard <i className="fa fa-tachometer" />
             </Link>
           </div>
         </div>

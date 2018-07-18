@@ -161,8 +161,8 @@ export class EditClient extends Component {
     } else {
       clientContent = (
         <div>
-          <Link to="/clients" className="btn btn-primary mb-3 fload-left">
-            Back To Clients
+          <Link to={`/clients/${this.props.match.params.handle}`} className="btn btn-primary mb-3 fload-left">
+            Back To {clients.name}
           </Link>
           <form onSubmit={this.handleSubmit}>
             <div className="col-md-12 m-auto">

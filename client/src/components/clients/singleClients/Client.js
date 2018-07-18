@@ -25,16 +25,30 @@ export class Client extends Component {
 
   render() {
     const { clients, loading } = this.props.clients;
+    const { isAuthenticated } = this.props.auth;
     let clientContent;
+
+    const authLinks = (
+      <Link to={`${this.props.match.params.handle}/edit-client`} className="btn btn-primary mb-3 fload-left">
+        Edit Client
+      </Link>
+    );
+
+    const guestLinks = (
+      <Link to={'/clients/'} className="btn btn-primary mb-3 fload-left">
+        Back To Clients
+      </Link>
+    );
 
     if (clients === null || loading) {
       clientContent = <Spinner />;
     } else {
       clientContent = (
         <div>
-          <Link to="/clients" className="btn btn-primary mb-3 fload-left">
+          {/* <Link to="/" className="btn btn-primary mb-3 fload-left">
             Back To Clients
-          </Link>
+          </Link> */}
+          {isAuthenticated ? authLinks : guestLinks}
 
           <div className="col-md-12 m-auto">
             <h1 className="display-4 text-center">{clients.name}</h1>
@@ -258,11 +272,13 @@ export class Client extends Component {
 
 Client.propTypes = {
   clients: PropTypes.object.isRequired,
-  getAClient: PropTypes.func.isRequired
+  getAClient: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  clients: state.clients
+  clients: state.clients,
+  auth: state.auth // Comes from the root reducer
 });
 
 export default connect(

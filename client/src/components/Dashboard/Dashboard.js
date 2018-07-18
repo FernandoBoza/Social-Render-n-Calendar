@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Spinner from '../common/Spinner';
 import { getAllClients } from '../../actions/clientActions'; // Fed the client model
-// import ClientActions from './ClientActions';
+import Clients from '../clients/Clients';
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -16,7 +16,7 @@ class Dashboard extends Component {
     for (let i = 0; i <= clients.length; i++) {
       return (
         <li key={clients[1].handle}>
-          <Link to={`/clients/${clients[1].handle}`}>{clients[1].name}</Link> last updated by {user.name}
+          <Link to={`/clients/${clients[i].handle}`}>{clients[i].name}</Link> last updated by {clients[i].lastUpdatedBy}
         </li>
       );
     }
@@ -34,14 +34,10 @@ class Dashboard extends Component {
       if (Object.keys(clients).length > 0) {
         dashboardContent = (
           <div>
-            <p className="lead text-muted">{this.buildClientList(clients, user)}</p>
+            {/* <p className="lead text-muted">{this.buildClientList(clients, user)}</p> */}
 
             <Link to="/create-client" className="btn btn-lg btn-info mr-3">
-              Create Client <i className="fa fa-user" style={{ fontSize: '1.2rem' }} />
-            </Link>
-
-            <Link to="/clients" className="btn btn-lg btn-primary">
-              All Clients <i className="fa fa-users" style={{ fontSize: '1.2rem' }} />
+              Create Client <i className="fa fa-user-plus" style={{ fontSize: '1.2rem' }} />
             </Link>
           </div>
         );
@@ -62,11 +58,13 @@ class Dashboard extends Component {
       <div className="dashboard">
         <div className="container">
           <div className="row">
-            <div className="col-md-12">
+            <div className="col-md-6">
               <h1 className="display-4">Dashboard</h1>
               <p className="lead text-muted">Welcome {user.name}</p>
-              <ul>{dashboardContent}</ul>
-              {/* <ClientActions /> */}
+              {dashboardContent}
+            </div>
+            <div className="col-md-6">
+              <Clients />
             </div>
           </div>
         </div>
