@@ -54,20 +54,15 @@ export const getAClient = handle => dispatch => {
 };
 
 // UPDATE Single Client Profile
-export const updateAClient = (handle, clientData) => dispatch => {
+export const updateAClient = (handle, clientData, history) => dispatch => {
   dispatch(setProfileLoading());
   axios
-    .post(`/clients/${handle}/edit-client`, clientData)
-    .then(res =>
-      dispatch({
-        type: GET_CLIENT_PROFILE,
-        payload: res.data
-      })
-    )
+    .put(`/api/clients/handle/${handle}`, clientData)
+    .then(res => history.push(`/clients/${handle}`))
     .catch(err =>
       dispatch({
-        type: GET_CLIENT_PROFILE,
-        payload: {}
+        type: GET_ERRORS,
+        payload: err.response.data
       })
     );
 };

@@ -66,6 +66,7 @@ export class EditClient extends Component {
       const clients = nextProps.clients.clients;
 
       this.setState({
+        name: isEmpty(clients.name && clients.name) ? '' : clients.name,
         pgf_fb_x: isEmpty(clients.pageFollowers && clients.pageFollowers.fb_x) ? '' : clients.pageFollowers.fb_x,
         pgf_fb_y: isEmpty(clients.pageFollowers && clients.pageFollowers.fb_y) ? '' : clients.pageFollowers.fb_y,
         pgf_ig_x: isEmpty(clients.pageFollowers && clients.pageFollowers.ig_x) ? '' : clients.pageFollowers.ig_x,
@@ -111,6 +112,7 @@ export class EditClient extends Component {
     e.preventDefault();
 
     const clientData = {
+      name: this.state.name,
       pgf_fb_x: this.state.pgf_fb_x,
       pgf_fb_y: this.state.pgf_fb_y,
       pgf_ig_x: this.state.pgf_ig_x,
@@ -144,7 +146,7 @@ export class EditClient extends Component {
       web_x: this.state.web_x,
       web_y: this.state.web_y
     };
-    this.props.updateAClient(this.props.match.params.handle, clientData);
+    this.props.updateAClient(this.props.match.params.handle, clientData, this.props.history);
     console.log(clientData);
   };
 

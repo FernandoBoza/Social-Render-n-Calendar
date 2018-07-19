@@ -296,7 +296,7 @@ export class CreateClientProfile extends Component {
                   </div>
                 </div>
                 {/* End of Site Traffic*/}
-                <button className="btn btn-lg btn-outline-primary btn-block mt-3" type="submit">
+                <button className="btn btn-lg btn-outline-primary btn-block mt-5 w-50 mx-auto" type="submit">
                   Create Client
                 </button>
               </form>
