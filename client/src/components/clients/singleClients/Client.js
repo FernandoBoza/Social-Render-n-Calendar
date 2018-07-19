@@ -137,30 +137,55 @@ export class Client extends Component {
                   <div className="range-slider">
                     <i
                       className={this.state.pgf_fb ? 'fa fa-facebook' : 'hide'}
+                      data-trigger="hover"
+                      data-container="body"
+                      data-toggle="popover"
+                      data-placement="top"
+                      data-content={`Progress ${isEmpty(clients.pageFollowers && clients.pageFollowers.fb_x) ? '0' : Math.round((clients.pageFollowers.fb_x / clients.pageFollowers.fb_y) * 100)}%`}
                       style={{
                         left: (isEmpty(clients.pageFollowers && clients.pageFollowers.fb_x) ? '' : clients.pageFollowers.fb_x.toString() / clients.pageFollowers.fb_y) * 100 + '%'
                       }}
                     />
                     <i
                       className={this.state.pgf_tw ? 'fa fa-twitter' : 'hide'}
+                      data-trigger="hover"
+                      data-container="body"
+                      data-toggle="popover"
+                      data-placement="top"
+                      data-content={`Progress ${isEmpty(clients.pageFollowers && clients.pageFollowers.tw_x) ? '0' : Math.round((clients.pageFollowers.tw_x / clients.pageFollowers.tw_y) * 100)}%`}
                       style={{
                         left: (isEmpty(clients.pageFollowers && clients.pageFollowers.tw_x) ? '' : clients.pageFollowers.tw_x.toString() / clients.pageFollowers.tw_y) * 100 + '%'
                       }}
                     />
                     <i
                       className={this.state.pgf_ln ? 'fa fa-linkedin' : 'hide'}
+                      data-trigger="hover"
+                      data-container="body"
+                      data-toggle="popover"
+                      data-placement="top"
+                      data-content={`Progress ${isEmpty(clients.pageFollowers && clients.pageFollowers.ln_x) ? '0' : Math.round((clients.pageFollowers.ln_x / clients.pageFollowers.ln_y) * 100)}%`}
                       style={{
                         left: (isEmpty(clients.pageFollowers && clients.pageFollowers.ln_x) ? '' : clients.pageFollowers.ln_x.toString() / clients.pageFollowers.ln_y) * 100 + '%'
                       }}
                     />
                     <i
                       className={this.state.pgf_pt ? 'fa fa-pinterest' : 'hide'}
+                      data-trigger="hover"
+                      data-container="body"
+                      data-toggle="popover"
+                      data-placement="top"
+                      data-content={`Progress ${isEmpty(clients.pageFollowers && clients.pageFollowers.pt_x) ? '0' : Math.round((clients.pageFollowers.pt_x / clients.pageFollowers.pt_y) * 100)}%`}
                       style={{
                         left: (isEmpty(clients.pageFollowers && clients.pageFollowers.pt_x) ? '' : clients.pageFollowers.pt_x.toString() / clients.pageFollowers.pt_y) * 100 + '%'
                       }}
                     />
                     <i
                       className={this.state.pgf_ig ? 'fa fa-instagram' : 'hide'}
+                      data-trigger="hover"
+                      data-container="body"
+                      data-toggle="popover"
+                      data-placement="top"
+                      data-content={`Progress ${isEmpty(clients.pageFollowers && clients.pageFollowers.ig_x) ? '0' : Math.round((clients.pageFollowers.ig_x / clients.pageFollowers.ig_y) * 100)}%`}
                       style={{
                         left: (isEmpty(clients.pageFollowers && clients.pageFollowers.ig_x) ? '' : clients.pageFollowers.ig_x.toString() / clients.pageFollowers.ig_y) * 100 + '%'
                       }}
@@ -182,7 +207,7 @@ export class Client extends Component {
               <h4 className="font-weight-light m-0">Engagement</h4>
             </button>
 
-            <div className="collapse  my-3" id="engagement">
+            <div className="collapse show  my-3" id="engagement">
               <div className="row">
                 <div className="col-sm-12 d-flex justify-content-around mb-4 hide-btn-col">
                   <div className="form-check">
@@ -233,30 +258,55 @@ export class Client extends Component {
                   <div className="range-slider">
                     <i
                       className={this.state.eng_fb ? 'fa fa-facebook' : 'hide'}
+                      data-trigger="hover"
+                      data-container="body"
+                      data-toggle="popover"
+                      data-placement="top"
+                      data-content={`Progress ${isEmpty(clients.engagement && clients.engagement.fb_x) ? '0' : Math.round((clients.engagement.fb_x / clients.engagement.fb_y) * 100)}%`}
                       style={{
                         left: (isEmpty(clients.engagement && clients.engagement.fb_x) ? '' : clients.engagement.fb_x.toString() / clients.engagement.fb_y) * 100 + '%'
                       }}
                     />
                     <i
                       className={this.state.eng_tw ? 'fa fa-twitter' : 'hide'}
+                      data-trigger="hover"
+                      data-container="body"
+                      data-toggle="popover"
+                      data-placement="top"
+                      data-content={`Progress ${isEmpty(clients.engagement && clients.engagement.fb_x) ? '0' : Math.round((clients.engagement.fb_x / clients.engagement.fb_y) * 100)}%`}
                       style={{
                         left: (isEmpty(clients.engagement && clients.engagement.tw_x) ? '' : clients.engagement.tw_x.toString() / clients.engagement.tw_y) * 100 + '%'
                       }}
                     />
                     <i
                       className={this.state.eng_ln ? 'fa fa-linkedin' : 'hide'}
+                      data-trigger="hover"
+                      data-container="body"
+                      data-toggle="popover"
+                      data-placement="top"
+                      data-content={`Progress ${isEmpty(clients.engagement && clients.engagement.fb_x) ? '0' : Math.round((clients.engagement.fb_x / clients.engagement.fb_y) * 100)}%`}
                       style={{
                         left: (isEmpty(clients.engagement && clients.engagement.ln_x) ? '' : clients.engagement.ln_x.toString() / clients.engagement.ln_y) * 100 + '%'
                       }}
                     />
                     <i
                       className={this.state.eng_pt ? 'fa fa-pinterest' : 'hide'}
+                      data-trigger="hover"
+                      data-container="body"
+                      data-toggle="popover"
+                      data-placement="top"
+                      data-content={`Progress ${isEmpty(clients.engagement && clients.engagement.fb_x) ? '0' : Math.round((clients.engagement.fb_x / clients.engagement.fb_y) * 100)}%`}
                       style={{
                         left: (isEmpty(clients.engagement && clients.engagement.pt_x) ? '' : clients.engagement.pt_x.toString() / clients.engagement.pt_y) * 100 + '%'
                       }}
                     />
                     <i
                       className={this.state.eng_ig ? 'fa fa-instagram' : 'hide'}
+                      data-trigger="hover"
+                      data-container="body"
+                      data-toggle="popover"
+                      data-placement="top"
+                      data-content={`Progress ${isEmpty(clients.engagement && clients.engagement.fb_x) ? '0' : Math.round((clients.engagement.fb_x / clients.engagement.fb_y) * 100)}%`}
                       style={{
                         left: (isEmpty(clients.engagement && clients.engagement.ig_x) ? '' : clients.engagement.ig_x.toString() / clients.engagement.ig_y) * 100 + '%'
                       }}
@@ -278,7 +328,7 @@ export class Client extends Component {
               <h4 className="font-weight-light m-0">Impressions</h4>
             </button>
 
-            <div className="collapse my-3" id="impressions">
+            <div className="collapse show my-3" id="impressions">
               <div className="row">
                 <div className="col-sm-12 d-flex justify-content-around mb-4 hide-btn-col">
                   <div className="form-check">
@@ -329,30 +379,55 @@ export class Client extends Component {
                   <div className="range-slider">
                     <i
                       className={this.state.imp_fb ? 'fa fa-facebook' : 'hide'}
+                      data-trigger="hover"
+                      data-container="body"
+                      data-toggle="popover"
+                      data-placement="top"
+                      data-content={`Progress ${isEmpty(clients.impressions && clients.impressions.fb_x) ? '0' : Math.round((clients.impressions.fb_x / clients.impressions.fb_y) * 100)}%`}
                       style={{
                         left: (isEmpty(clients.impressions && clients.impressions.fb_x) ? '' : clients.impressions.fb_x.toString() / clients.impressions.fb_y) * 100 + '%'
                       }}
                     />
                     <i
                       className={this.state.imp_tw ? 'fa fa-twitter' : 'hide'}
+                      data-trigger="hover"
+                      data-container="body"
+                      data-toggle="popover"
+                      data-placement="top"
+                      data-content={`Progress ${isEmpty(clients.impressions && clients.impressions.fb_x) ? '0' : Math.round((clients.impressions.fb_x / clients.impressions.fb_y) * 100)}%`}
                       style={{
                         left: (isEmpty(clients.impressions && clients.impressions.tw_x) ? '' : clients.impressions.tw_x.toString() / clients.impressions.tw_y) * 100 + '%'
                       }}
                     />
                     <i
                       className={this.state.imp_ln ? 'fa fa-linkedin' : 'hide'}
+                      data-trigger="hover"
+                      data-container="body"
+                      data-toggle="popover"
+                      data-placement="top"
+                      data-content={`Progress ${isEmpty(clients.impressions && clients.impressions.fb_x) ? '0' : Math.round((clients.impressions.fb_x / clients.impressions.fb_y) * 100)}%`}
                       style={{
                         left: (isEmpty(clients.impressions && clients.impressions.ln_x) ? '' : clients.impressions.ln_x.toString() / clients.impressions.ln_y) * 100 + '%'
                       }}
                     />
                     <i
                       className={this.state.imp_pt ? 'fa fa-pinterest' : 'hide'}
+                      data-trigger="hover"
+                      data-container="body"
+                      data-toggle="popover"
+                      data-placement="top"
+                      data-content={`Progress ${isEmpty(clients.impressions && clients.impressions.fb_x) ? '0' : Math.round((clients.impressions.fb_x / clients.impressions.fb_y) * 100)}%`}
                       style={{
                         left: (isEmpty(clients.impressions && clients.impressions.pt_x) ? '' : clients.impressions.pt_x.toString() / clients.impressions.pt_y) * 100 + '%'
                       }}
                     />
                     <i
                       className={this.state.imp_ig ? 'fa fa-instagram' : 'hide'}
+                      data-trigger="hover"
+                      data-container="body"
+                      data-toggle="popover"
+                      data-placement="top"
+                      data-content={`Progress ${isEmpty(clients.impressions && clients.impressions.fb_x) ? '0' : Math.round((clients.impressions.fb_x / clients.impressions.fb_y) * 100)}%`}
                       style={{
                         left: (isEmpty(clients.impressions && clients.impressions.ig_x) ? '' : clients.impressions.ig_x.toString() / clients.impressions.ig_y) * 100 + '%'
                       }}
@@ -374,7 +449,7 @@ export class Client extends Component {
               <h4 className="font-weight-light m-0">Site Traffic</h4>
             </button>
 
-            <div className="collapse my-3" id="site_traffic">
+            <div className="collapse show my-3" id="site_traffic">
               <div className="row">
                 <div className="col-sm-3 current">
                   <TextInputField icon="laptop" name="web_x" classname="web" placeholder="Current Web Traffic" value={isEmpty(clients.siteTraffic && clients.siteTraffic.x) ? '' : clients.siteTraffic.x.toString()} onChange={this.handleChange} />
