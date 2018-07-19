@@ -165,3 +165,10 @@ i.fa.fa-code {
   opacity: 0;
   display: none;
 }
+
+i.fa.fa-spinner.fa-pulse.fa-3x.fa-fw {
+  border-radius: 50rem;
+  font-size: 7.7rem;
+  height: auto;
+  width: auto;
+}

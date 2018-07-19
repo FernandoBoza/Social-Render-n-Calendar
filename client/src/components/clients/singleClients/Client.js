@@ -148,6 +148,7 @@ export class Client extends Component {
                     />
                     <i
                       className={this.state.pgf_tw ? 'fa fa-twitter' : 'hide'}
+                      tabIndex="0"
                       data-trigger="hover"
                       data-container="body"
                       data-toggle="popover"
@@ -207,7 +208,7 @@ export class Client extends Component {
               <h4 className="font-weight-light m-0">Engagement</h4>
             </button>
 
-            <div className="collapse show  my-3" id="engagement">
+            <div className="collapse  my-3" id="engagement">
               <div className="row">
                 <div className="col-sm-12 d-flex justify-content-around mb-4 hide-btn-col">
                   <div className="form-check">
@@ -328,7 +329,7 @@ export class Client extends Component {
               <h4 className="font-weight-light m-0">Impressions</h4>
             </button>
 
-            <div className="collapse show my-3" id="impressions">
+            <div className="collapse my-3" id="impressions">
               <div className="row">
                 <div className="col-sm-12 d-flex justify-content-around mb-4 hide-btn-col">
                   <div className="form-check">
@@ -449,7 +450,7 @@ export class Client extends Component {
               <h4 className="font-weight-light m-0">Site Traffic</h4>
             </button>
 
-            <div className="collapse show my-3" id="site_traffic">
+            <div className="collapse my-3" id="site_traffic">
               <div className="row">
                 <div className="col-sm-3 current">
                   <TextInputField icon="laptop" name="web_x" classname="web" placeholder="Current Web Traffic" value={isEmpty(clients.siteTraffic && clients.siteTraffic.x) ? '' : clients.siteTraffic.x.toString()} onChange={this.handleChange} />
