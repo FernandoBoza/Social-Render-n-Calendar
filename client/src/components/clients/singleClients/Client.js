@@ -8,6 +8,31 @@ import TextInputField from '../../common/TextInputField';
 import isEmpty from '../../../validation/is-empty';
 
 export class Client extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      pgf_fb: true,
+      pgf_ig: true,
+      pgf_tw: true,
+      pgf_ln: true,
+      pgf_pt: true,
+      eng_fb: true,
+      eng_ig: true,
+      eng_tw: true,
+      eng_ln: true,
+      eng_pt: true,
+      imp_fb: true,
+      imp_ig: true,
+      imp_tw: true,
+      imp_ln: true,
+      imp_pt: true,
+      web: true
+    };
+
+    this.toggleShowBtn = this.toggleShowBtn.bind(this);
+  }
+
   componentDidMount = () => {
     if (this.props.match.params.handle) {
       this.props.getAClient(this.props.match.params.handle);
@@ -21,8 +46,12 @@ export class Client extends Component {
     e.preventDefault();
   };
 
-  sortThroughObj = clients => {
-    return clients.pageFollowers;
+  toggleShowBtn = e => {
+    const target = e.target;
+    const name = target.name;
+
+    this.setState({ [name]: target.checked });
+    console.log(e.target.name + ' : ' + e.target.checked);
   };
 
   render() {
@@ -47,9 +76,6 @@ export class Client extends Component {
     } else {
       clientContent = (
         <div>
-          {/* <Link to="/" className="btn btn-primary mb-3 fload-left">
-            Back To Clients
-          </Link> */}
           {isAuthenticated ? authLinks : guestLinks}
 
           <div className="col-md-12 m-auto">
@@ -62,41 +88,79 @@ export class Client extends Component {
 
             <div className="collapse show my-3" id="pageFollowers">
               <div className="row">
+                <div className="col-sm-12 d-flex justify-content-around mb-4 hide-btn-col">
+                  <div className="form-check">
+                    <input name="pgf_fb" checked={this.state.pgf_fb} onChange={this.toggleShowBtn} type="checkbox" className="form-check-input" id="btnCheck1" />
+                    <label className="form-check-label" htmlFor="btnCheck1">
+                      <i className="fa fa-facebook" />
+                    </label>
+                  </div>
+
+                  <div className="form-check">
+                    <input name="pgf_tw" checked={this.state.pgf_tw} onChange={this.toggleShowBtn} type="checkbox" className="form-check-input" id="btnCheck2" />
+                    <label className="form-check-label" htmlFor="btnCheck2">
+                      <i className="fa fa-twitter" />
+                    </label>
+                  </div>
+
+                  <div className="form-check">
+                    <input name="pgf_ig" checked={this.state.pgf_ig} onChange={this.toggleShowBtn} type="checkbox" className="form-check-input" id="btnCheck3" />
+                    <label className="form-check-label" htmlFor="btnCheck3">
+                      <i className="fa fa-instagram" />
+                    </label>
+                  </div>
+
+                  <div className="form-check">
+                    <input name="pgf_ln" checked={this.state.pgf_ln} onChange={this.toggleShowBtn} type="checkbox" className="form-check-input" id="btnCheck4" />
+                    <label className="form-check-label" htmlFor="btnCheck4">
+                      <i className="fa fa-linkedin" />
+                    </label>
+                  </div>
+
+                  <div className="form-check">
+                    <input name="pgf_pt" checked={this.state.pgf_pt} onChange={this.toggleShowBtn} type="checkbox" className="form-check-input" id="btnCheck5" />
+                    <label className="form-check-label" htmlFor="btnCheck5">
+                      <i className="fa fa-pinterest" />
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div className="row">
                 <div className="col-sm-3 current">
-                  <TextInputField icon="facebook" name="pgf_fb_x" classname="pgf fb" placeholder="Current Facebook Followers" value={isEmpty(clients.pageFollowers && clients.pageFollowers.fb_x) ? '' : clients.pageFollowers.fb_x.toString()} onChange={this.handleChange} />
-                  <TextInputField icon="twitter" name="pgf_tw_x" classname="pgf tw" placeholder="Current Twitter Followers" value={isEmpty(clients.pageFollowers && clients.pageFollowers.tw_x) ? '' : clients.pageFollowers.tw_x.toString()} onChange={this.handleChange} />
-                  <TextInputField icon="instagram" name="pgf_ig_x" classname="pgf ig" placeholder="Current Instagram Followers" value={isEmpty(clients.pageFollowers && clients.pageFollowers.ig_x) ? '' : clients.pageFollowers.ig_x.toString()} onChange={this.handleChange} />
-                  <TextInputField icon="linkedin" name="pgf_ln_x" classname="pgf ln" placeholder="Current LinkedIn Followers" value={isEmpty(clients.pageFollowers && clients.pageFollowers.ln_x) ? '' : clients.pageFollowers.ln_x.toString()} onChange={this.handleChange} />
-                  <TextInputField icon="pinterest" name="pgf_pt_x" classname="pgf pn" placeholder="Current Pinterest Followers" value={isEmpty(clients.pageFollowers && clients.pageFollowers.pt_x) ? '' : clients.pageFollowers.pt_x.toString()} onChange={this.handleChange} />
+                  <TextInputField icon="facebook" divClassName={this.state.pgf_fb ? '' : 'hide'} classname="pgf fb" placeholder="Current Facebook Followers" value={isEmpty(clients.pageFollowers && clients.pageFollowers.fb_x) ? '' : clients.pageFollowers.fb_x.toString()} onChange={this.handleChange} />
+                  <TextInputField icon="twitter" divClassName={this.state.pgf_tw ? '' : 'hide'} classname="pgf tw" placeholder="Current Twitter Followers" value={isEmpty(clients.pageFollowers && clients.pageFollowers.tw_x) ? '' : clients.pageFollowers.tw_x.toString()} onChange={this.handleChange} />
+                  <TextInputField icon="instagram" divClassName={this.state.pgf_ig ? '' : 'hide'} classname="pgf ig" placeholder="Current Instagram Followers" value={isEmpty(clients.pageFollowers && clients.pageFollowers.ig_x) ? '' : clients.pageFollowers.ig_x.toString()} onChange={this.handleChange} />
+                  <TextInputField icon="linkedin" divClassName={this.state.pgf_ln ? '' : 'hide'} classname="pgf ln" placeholder="Current LinkedIn Followers" value={isEmpty(clients.pageFollowers && clients.pageFollowers.ln_x) ? '' : clients.pageFollowers.ln_x.toString()} onChange={this.handleChange} />
+                  <TextInputField icon="pinterest" divClassName={this.state.pgf_pt ? '' : 'hide'} classname="pgf pn" placeholder="Current Pinterest Followers" value={isEmpty(clients.pageFollowers && clients.pageFollowers.pt_x) ? '' : clients.pageFollowers.pt_x.toString()} onChange={this.handleChange} />
                 </div>
                 <div className="col-sm-6 rangeSlider">
                   <div className="range-slider">
                     <i
-                      className="fa fa-facebook"
+                      className={this.state.pgf_fb ? 'fa fa-facebook' : 'hide'}
                       style={{
                         left: (isEmpty(clients.pageFollowers && clients.pageFollowers.fb_x) ? '' : clients.pageFollowers.fb_x.toString() / clients.pageFollowers.fb_y) * 100 + '%'
                       }}
                     />
                     <i
-                      className="fa fa-twitter"
+                      className={this.state.pgf_tw ? 'fa fa-twitter' : 'hide'}
                       style={{
                         left: (isEmpty(clients.pageFollowers && clients.pageFollowers.tw_x) ? '' : clients.pageFollowers.tw_x.toString() / clients.pageFollowers.tw_y) * 100 + '%'
                       }}
                     />
                     <i
-                      className="fa fa-linkedin"
+                      className={this.state.pgf_ln ? 'fa fa-linkedin' : 'hide'}
                       style={{
                         left: (isEmpty(clients.pageFollowers && clients.pageFollowers.ln_x) ? '' : clients.pageFollowers.ln_x.toString() / clients.pageFollowers.ln_y) * 100 + '%'
                       }}
                     />
                     <i
-                      className="fa fa-pinterest"
+                      className={this.state.pgf_pt ? 'fa fa-pinterest' : 'hide'}
                       style={{
                         left: (isEmpty(clients.pageFollowers && clients.pageFollowers.pt_x) ? '' : clients.pageFollowers.pt_x.toString() / clients.pageFollowers.pt_y) * 100 + '%'
                       }}
                     />
                     <i
-                      className="fa fa-instagram"
+                      className={this.state.pgf_ig ? 'fa fa-instagram' : 'hide'}
                       style={{
                         left: (isEmpty(clients.pageFollowers && clients.pageFollowers.ig_x) ? '' : clients.pageFollowers.ig_x.toString() / clients.pageFollowers.ig_y) * 100 + '%'
                       }}
@@ -104,11 +168,11 @@ export class Client extends Component {
                   </div>
                 </div>
                 <div className="col-sm-3 goal">
-                  <TextInputField icon="facebook" name="pgf_fb_y" classname="pgf fb" placeholder="Goal Facebook Followers" value={isEmpty(clients.pageFollowers && clients.pageFollowers.fb_y) ? '' : clients.pageFollowers.fb_y.toString()} onChange={this.handleChange} />
-                  <TextInputField icon="twitter" name="pgf_tw_y" classname="pgf tw" placeholder="Goal Twitter Followers" value={isEmpty(clients.pageFollowers && clients.pageFollowers.tw_y) ? '' : clients.pageFollowers.tw_y.toString()} onChange={this.handleChange} />
-                  <TextInputField icon="instagram" name="pgf_ig_y" classname="pgf ig" placeholder="Goal Instagram Followers" value={isEmpty(clients.pageFollowers && clients.pageFollowers.ig_y) ? '' : clients.pageFollowers.ig_y.toString()} onChange={this.handleChange} />
-                  <TextInputField icon="linkedin" name="pgf_ln_y" classname="pgf ln" placeholder="Goal LinkedIn Followers" value={isEmpty(clients.pageFollowers && clients.pageFollowers.ln_y) ? '' : clients.pageFollowers.ln_y.toString()} onChange={this.handleChange} />
-                  <TextInputField icon="pinterest" name="pgf_pt_y" classname="pgf pn" placeholder="Goal Pinterest Followers" value={isEmpty(clients.pageFollowers && clients.pageFollowers.pt_y) ? '' : clients.pageFollowers.pt_y.toString()} onChange={this.handleChange} />
+                  <TextInputField icon="facebook" divClassName={this.state.pgf_fb ? '' : 'hide'} classname="pgf fb" placeholder="Goal Facebook Followers" value={isEmpty(clients.pageFollowers && clients.pageFollowers.fb_y) ? '' : clients.pageFollowers.fb_y.toString()} onChange={this.handleChange} />
+                  <TextInputField icon="twitter" divClassName={this.state.pgf_tw ? '' : 'hide'} classname="pgf tw" placeholder="Goal Twitter Followers" value={isEmpty(clients.pageFollowers && clients.pageFollowers.tw_y) ? '' : clients.pageFollowers.tw_y.toString()} onChange={this.handleChange} />
+                  <TextInputField icon="instagram" divClassName={this.state.pgf_ig ? '' : 'hide'} classname="pgf ig" placeholder="Goal Instagram Followers" value={isEmpty(clients.pageFollowers && clients.pageFollowers.ig_y) ? '' : clients.pageFollowers.ig_y.toString()} onChange={this.handleChange} />
+                  <TextInputField icon="linkedin" divClassName={this.state.pgf_ln ? '' : 'hide'} classname="pgf ln" placeholder="Goal LinkedIn Followers" value={isEmpty(clients.pageFollowers && clients.pageFollowers.ln_y) ? '' : clients.pageFollowers.ln_y.toString()} onChange={this.handleChange} />
+                  <TextInputField icon="pinterest" divClassName={this.state.pgf_pt ? '' : 'hide'} classname="pgf pn" placeholder="Goal Pinterest Followers" value={isEmpty(clients.pageFollowers && clients.pageFollowers.pt_y) ? '' : clients.pageFollowers.pt_y.toString()} onChange={this.handleChange} />
                 </div>
               </div>
               {/* End of Page Followers*/}
@@ -120,41 +184,79 @@ export class Client extends Component {
 
             <div className="collapse  my-3" id="engagement">
               <div className="row">
+                <div className="col-sm-12 d-flex justify-content-around mb-4 hide-btn-col">
+                  <div className="form-check">
+                    <input name="eng_fb" checked={this.state.eng_fb} onChange={this.toggleShowBtn} type="checkbox" className="form-check-input" id="btnCheckEngFb" />
+                    <label className="form-check-label" htmlFor="btnCheckEngFb">
+                      <i className="fa fa-facebook" />
+                    </label>
+                  </div>
+
+                  <div className="form-check">
+                    <input name="eng_tw" checked={this.state.eng_tw} onChange={this.toggleShowBtn} type="checkbox" className="form-check-input" id="btnCheckEngTw" />
+                    <label className="form-check-label" htmlFor="btnCheckEngTw">
+                      <i className="fa fa-twitter" />
+                    </label>
+                  </div>
+
+                  <div className="form-check">
+                    <input name="eng_ig" checked={this.state.eng_ig} onChange={this.toggleShowBtn} type="checkbox" className="form-check-input" id="btnCheckEngIg" />
+                    <label className="form-check-label" htmlFor="btnCheckEngIg">
+                      <i className="fa fa-instagram" />
+                    </label>
+                  </div>
+
+                  <div className="form-check">
+                    <input name="eng_ln" checked={this.state.eng_ln} onChange={this.toggleShowBtn} type="checkbox" className="form-check-input" id="btnCheckEngLn" />
+                    <label className="form-check-label" htmlFor="btnCheckEngLn">
+                      <i className="fa fa-linkedin" />
+                    </label>
+                  </div>
+
+                  <div className="form-check">
+                    <input name="eng_pt" checked={this.state.eng_pt} onChange={this.toggleShowBtn} type="checkbox" className="form-check-input" id="btnCheckEngPt" />
+                    <label className="form-check-label" htmlFor="btnCheckEngPt">
+                      <i className="fa fa-pinterest" />
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div className="row">
                 <div className="col-sm-3 current">
-                  <TextInputField icon="facebook" name="eng_fb_x" classname="eng fb" placeholder="Current Facebook Engagement" value={isEmpty(clients.engagement && clients.engagement.fb_x) ? '' : clients.engagement.fb_x.toString()} onChange={this.handleChange} />
-                  <TextInputField icon="twitter" name="eng_tw_x" classname="eng tw" placeholder="Current Twitter Engagement" value={isEmpty(clients.engagement && clients.engagement.tw_x) ? '' : clients.engagement.tw_x.toString()} onChange={this.handleChange} />
-                  <TextInputField icon="instagram" name="eng_ig_x" classname="eng ig" placeholder="Current Instagram Engagement" value={isEmpty(clients.engagement && clients.engagement.ig_x) ? '' : clients.engagement.ig_x.toString()} onChange={this.handleChange} />
-                  <TextInputField icon="linkedin" name="eng_ln_x" classname="eng ln" placeholder="Current LinkedIn Engagement" value={isEmpty(clients.engagement && clients.engagement.ln_x) ? '' : clients.engagement.ln_x.toString()} onChange={this.handleChange} />
-                  <TextInputField icon="pinterest" name="eng_pt_x" classname="eng pn" placeholder="Current Pinterest Engagement" value={isEmpty(clients.engagement && clients.engagement.pt_x) ? '' : clients.engagement.pt_x.toString()} onChange={this.handleChange} />
+                  <TextInputField icon="facebook" divClassName={this.state.eng_fb ? '' : 'hide'} classname="eng fb" placeholder="Current Facebook Engagement" value={isEmpty(clients.engagement && clients.engagement.fb_x) ? '' : clients.engagement.fb_x.toString()} onChange={this.handleChange} />
+                  <TextInputField icon="twitter" divClassName={this.state.eng_tw ? '' : 'hide'} classname="eng tw" placeholder="Current Twitter Engagement" value={isEmpty(clients.engagement && clients.engagement.tw_x) ? '' : clients.engagement.tw_x.toString()} onChange={this.handleChange} />
+                  <TextInputField icon="instagram" divClassName={this.state.eng_ig ? '' : 'hide'} classname="eng ig" placeholder="Current Instagram Engagement" value={isEmpty(clients.engagement && clients.engagement.ig_x) ? '' : clients.engagement.ig_x.toString()} onChange={this.handleChange} />
+                  <TextInputField icon="linkedin" divClassName={this.state.eng_ln ? '' : 'hide'} classname="eng ln" placeholder="Current LinkedIn Engagement" value={isEmpty(clients.engagement && clients.engagement.ln_x) ? '' : clients.engagement.ln_x.toString()} onChange={this.handleChange} />
+                  <TextInputField icon="pinterest" divClassName={this.state.eng_pt ? '' : 'hide'} classname="eng pn" placeholder="Current Pinterest Engagement" value={isEmpty(clients.engagement && clients.engagement.pt_x) ? '' : clients.engagement.pt_x.toString()} onChange={this.handleChange} />
                 </div>
                 <div className="col-sm-6 rangeSlider">
                   <div className="range-slider">
                     <i
-                      className="fa fa-facebook"
+                      className={this.state.eng_fb ? 'fa fa-facebook' : 'hide'}
                       style={{
                         left: (isEmpty(clients.engagement && clients.engagement.fb_x) ? '' : clients.engagement.fb_x.toString() / clients.engagement.fb_y) * 100 + '%'
                       }}
                     />
                     <i
-                      className="fa fa-twitter"
+                      className={this.state.eng_tw ? 'fa fa-twitter' : 'hide'}
                       style={{
                         left: (isEmpty(clients.engagement && clients.engagement.tw_x) ? '' : clients.engagement.tw_x.toString() / clients.engagement.tw_y) * 100 + '%'
                       }}
                     />
                     <i
-                      className="fa fa-linkedin"
+                      className={this.state.eng_ln ? 'fa fa-linkedin' : 'hide'}
                       style={{
                         left: (isEmpty(clients.engagement && clients.engagement.ln_x) ? '' : clients.engagement.ln_x.toString() / clients.engagement.ln_y) * 100 + '%'
                       }}
                     />
                     <i
-                      className="fa fa-pinterest"
+                      className={this.state.eng_pt ? 'fa fa-pinterest' : 'hide'}
                       style={{
                         left: (isEmpty(clients.engagement && clients.engagement.pt_x) ? '' : clients.engagement.pt_x.toString() / clients.engagement.pt_y) * 100 + '%'
                       }}
                     />
                     <i
-                      className="fa fa-instagram"
+                      className={this.state.eng_ig ? 'fa fa-instagram' : 'hide'}
                       style={{
                         left: (isEmpty(clients.engagement && clients.engagement.ig_x) ? '' : clients.engagement.ig_x.toString() / clients.engagement.ig_y) * 100 + '%'
                       }}
@@ -162,11 +264,11 @@ export class Client extends Component {
                   </div>
                 </div>
                 <div className="col-sm-3 goal">
-                  <TextInputField icon="facebook" name="eng_fb_y" classname="eng fb" placeholder="Goal Facebook Engagement" value={isEmpty(clients.engagement && clients.engagement.fb_y) ? '' : clients.engagement.fb_y.toString()} onChange={this.handleChange} />
-                  <TextInputField icon="twitter" name="eng_tw_y" classname="eng tw" placeholder="Goal Twitter Engagement" value={isEmpty(clients.engagement && clients.engagement.tw_y) ? '' : clients.engagement.tw_y.toString()} onChange={this.handleChange} />
-                  <TextInputField icon="instagram" name="eng_ig_y" classname="eng ig" placeholder="Goal Instagram Engagement" value={isEmpty(clients.engagement && clients.engagement.ig_y) ? '' : clients.engagement.ig_y.toString()} onChange={this.handleChange} />
-                  <TextInputField icon="linkedin" name="eng_ln_y" classname="eng ln" placeholder="Goal LinkedIn Engagement" value={isEmpty(clients.engagement && clients.engagement.ln_y) ? '' : clients.engagement.ln_y.toString()} onChange={this.handleChange} />
-                  <TextInputField icon="pinterest" name="eng_pt_y" classname="eng pn" placeholder="Goal Pinterest Engagement" value={isEmpty(clients.engagement && clients.engagement.pt_y) ? '' : clients.engagement.pt_y.toString()} onChange={this.handleChange} />
+                  <TextInputField icon="facebook" divClassName={this.state.eng_fb ? '' : 'hide'} classname="eng fb" placeholder="Goal Facebook Engagement" value={isEmpty(clients.engagement && clients.engagement.fb_y) ? '' : clients.engagement.fb_y.toString()} onChange={this.handleChange} />
+                  <TextInputField icon="twitter" divClassName={this.state.eng_tw ? '' : 'hide'} classname="eng tw" placeholder="Goal Twitter Engagement" value={isEmpty(clients.engagement && clients.engagement.tw_y) ? '' : clients.engagement.tw_y.toString()} onChange={this.handleChange} />
+                  <TextInputField icon="instagram" divClassName={this.state.eng_ig ? '' : 'hide'} classname="eng ig" placeholder="Goal Instagram Engagement" value={isEmpty(clients.engagement && clients.engagement.ig_y) ? '' : clients.engagement.ig_y.toString()} onChange={this.handleChange} />
+                  <TextInputField icon="linkedin" divClassName={this.state.eng_ln ? '' : 'hide'} classname="eng ln" placeholder="Goal LinkedIn Engagement" value={isEmpty(clients.engagement && clients.engagement.ln_y) ? '' : clients.engagement.ln_y.toString()} onChange={this.handleChange} />
+                  <TextInputField icon="pinterest" divClassName={this.state.eng_pt ? '' : 'hide'} classname="eng pn" placeholder="Goal Pinterest Engagement" value={isEmpty(clients.engagement && clients.engagement.pt_y) ? '' : clients.engagement.pt_y.toString()} onChange={this.handleChange} />
                 </div>
               </div>
             </div>
@@ -178,41 +280,79 @@ export class Client extends Component {
 
             <div className="collapse my-3" id="impressions">
               <div className="row">
+                <div className="col-sm-12 d-flex justify-content-around mb-4 hide-btn-col">
+                  <div className="form-check">
+                    <input name="imp_fb" checked={this.state.imp_fb} onChange={this.toggleShowBtn} type="checkbox" className="form-check-input" id="btnCheckImpFb" />
+                    <label className="form-check-label" htmlFor="btnCheckImpFb">
+                      <i className="fa fa-facebook" />
+                    </label>
+                  </div>
+
+                  <div className="form-check">
+                    <input name="imp_tw" checked={this.state.imp_tw} onChange={this.toggleShowBtn} type="checkbox" className="form-check-input" id="btnCheckImp2" />
+                    <label className="form-check-label" htmlFor="btnCheckImp2">
+                      <i className="fa fa-twitter" />
+                    </label>
+                  </div>
+
+                  <div className="form-check">
+                    <input name="imp_ig" checked={this.state.imp_ig} onChange={this.toggleShowBtn} type="checkbox" className="form-check-input" id="btnCheckImp3" />
+                    <label className="form-check-label" htmlFor="btnCheckImp3">
+                      <i className="fa fa-instagram" />
+                    </label>
+                  </div>
+
+                  <div className="form-check">
+                    <input name="imp_ln" checked={this.state.imp_ln} onChange={this.toggleShowBtn} type="checkbox" className="form-check-input" id="btnCheckImp4" />
+                    <label className="form-check-label" htmlFor="btnCheckImp4">
+                      <i className="fa fa-linkedin" />
+                    </label>
+                  </div>
+
+                  <div className="form-check">
+                    <input name="imp_pt" checked={this.state.imp_pt} onChange={this.toggleShowBtn} type="checkbox" className="form-check-input" id="btnCheckImp5" />
+                    <label className="form-check-label" htmlFor="btnCheckImp5">
+                      <i className="fa fa-pinterest" />
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div className="row">
                 <div className="col-sm-3 current">
-                  <TextInputField icon="facebook" name="imp_fb_x" classname="imp fb" placeholder="Current Facebook Impressions" value={isEmpty(clients.impressions && clients.impressions.fb_x) ? '' : clients.impressions.fb_x.toString()} onChange={this.handleChange} />
-                  <TextInputField icon="twitter" name="imp_tw_x" classname="imp tw" placeholder="Current Twitter Impressions" value={isEmpty(clients.impressions && clients.impressions.tw_x) ? '' : clients.impressions.tw_x.toString()} onChange={this.handleChange} />
-                  <TextInputField icon="instagram" name="imp_ig_x" classname="imp ig" placeholder="Current Instagram Impressions" value={isEmpty(clients.impressions && clients.impressions.ig_x) ? '' : clients.impressions.ig_x.toString()} onChange={this.handleChange} />
-                  <TextInputField icon="linkedin" name="imp_ln_x" classname="imp ln" placeholder="Current LinkedIn Impressions" value={isEmpty(clients.impressions && clients.impressions.ln_x) ? '' : clients.impressions.ln_x.toString()} onChange={this.handleChange} />
-                  <TextInputField icon="pinterest" name="imp_pt_x" classname="imp pn" placeholder="Current Pinterest Impressions" value={isEmpty(clients.impressions && clients.impressions.pt_x) ? '' : clients.impressions.pt_x.toString()} onChange={this.handleChange} />
+                  <TextInputField icon="facebook" divClassName={this.state.imp_fb ? '' : 'hide'} classname="imp fb" placeholder="Current Facebook Impressions" value={isEmpty(clients.impressions && clients.impressions.fb_x) ? '' : clients.impressions.fb_x.toString()} onChange={this.handleChange} />
+                  <TextInputField icon="twitter" divClassName={this.state.imp_tw ? '' : 'hide'} classname="imp tw" placeholder="Current Twitter Impressions" value={isEmpty(clients.impressions && clients.impressions.tw_x) ? '' : clients.impressions.tw_x.toString()} onChange={this.handleChange} />
+                  <TextInputField icon="instagram" divClassName={this.state.imp_ig ? '' : 'hide'} classname="imp ig" placeholder="Current Instagram Impressions" value={isEmpty(clients.impressions && clients.impressions.ig_x) ? '' : clients.impressions.ig_x.toString()} onChange={this.handleChange} />
+                  <TextInputField icon="linkedin" divClassName={this.state.imp_ln ? '' : 'hide'} classname="imp ln" placeholder="Current LinkedIn Impressions" value={isEmpty(clients.impressions && clients.impressions.ln_x) ? '' : clients.impressions.ln_x.toString()} onChange={this.handleChange} />
+                  <TextInputField icon="pinterest" divClassName={this.state.imp_pt ? '' : 'hide'} classname="imp pn" placeholder="Current Pinterest Impressions" value={isEmpty(clients.impressions && clients.impressions.pt_x) ? '' : clients.impressions.pt_x.toString()} onChange={this.handleChange} />
                 </div>
                 <div className="col-sm-6 rangeSlider">
                   <div className="range-slider">
                     <i
-                      className="fa fa-facebook"
+                      className={this.state.imp_fb ? 'fa fa-facebook' : 'hide'}
                       style={{
                         left: (isEmpty(clients.impressions && clients.impressions.fb_x) ? '' : clients.impressions.fb_x.toString() / clients.impressions.fb_y) * 100 + '%'
                       }}
                     />
                     <i
-                      className="fa fa-twitter"
+                      className={this.state.imp_tw ? 'fa fa-twitter' : 'hide'}
                       style={{
                         left: (isEmpty(clients.impressions && clients.impressions.tw_x) ? '' : clients.impressions.tw_x.toString() / clients.impressions.tw_y) * 100 + '%'
                       }}
                     />
                     <i
-                      className="fa fa-linkedin"
+                      className={this.state.imp_ln ? 'fa fa-linkedin' : 'hide'}
                       style={{
                         left: (isEmpty(clients.impressions && clients.impressions.ln_x) ? '' : clients.impressions.ln_x.toString() / clients.impressions.ln_y) * 100 + '%'
                       }}
                     />
                     <i
-                      className="fa fa-pinterest"
+                      className={this.state.imp_pt ? 'fa fa-pinterest' : 'hide'}
                       style={{
                         left: (isEmpty(clients.impressions && clients.impressions.pt_x) ? '' : clients.impressions.pt_x.toString() / clients.impressions.pt_y) * 100 + '%'
                       }}
                     />
                     <i
-                      className="fa fa-instagram"
+                      className={this.state.imp_ig ? 'fa fa-instagram' : 'hide'}
                       style={{
                         left: (isEmpty(clients.impressions && clients.impressions.ig_x) ? '' : clients.impressions.ig_x.toString() / clients.impressions.ig_y) * 100 + '%'
                       }}
@@ -220,11 +360,11 @@ export class Client extends Component {
                   </div>
                 </div>
                 <div className="col-sm-3 goal">
-                  <TextInputField icon="facebook" name="imp_fb_y" classname="imp fb" placeholder="Goal Facebook Impressions" value={isEmpty(clients.impressions && clients.impressions.fb_y) ? '' : clients.impressions.fb_y.toString()} onChange={this.handleChange} />
-                  <TextInputField icon="twitter" name="imp_tw_y" classname="imp tw" placeholder="Goal Twitter Impressions" value={isEmpty(clients.impressions && clients.impressions.tw_y) ? '' : clients.impressions.tw_y.toString()} onChange={this.handleChange} />
-                  <TextInputField icon="instagram" name="imp_ig_y" classname="imp ig" placeholder="Goal Instagram Impressions" value={isEmpty(clients.impressions && clients.impressions.ig_y) ? '' : clients.impressions.ig_y.toString()} onChange={this.handleChange} />
-                  <TextInputField icon="linkedin" name="imp_ln_y" classname="imp ln" placeholder="Goal LinkedIn Impressions" value={isEmpty(clients.impressions && clients.impressions.ln_y) ? '' : clients.impressions.ln_y.toString()} onChange={this.handleChange} />
-                  <TextInputField icon="pinterest" name="imp_pt_y" classname="imp pn" placeholder="Goal Pinterest Impressions" value={isEmpty(clients.impressions && clients.impressions.pt_y) ? '' : clients.impressions.pt_y.toString()} onChange={this.handleChange} />
+                  <TextInputField icon="facebook" divClassName={this.state.imp_fb ? '' : 'hide'} classname="imp fb" placeholder="Goal Facebook Impressions" value={isEmpty(clients.impressions && clients.impressions.fb_y) ? '' : clients.impressions.fb_y.toString()} onChange={this.handleChange} />
+                  <TextInputField icon="twitter" divClassName={this.state.imp_tw ? '' : 'hide'} classname="imp tw" placeholder="Goal Twitter Impressions" value={isEmpty(clients.impressions && clients.impressions.tw_y) ? '' : clients.impressions.tw_y.toString()} onChange={this.handleChange} />
+                  <TextInputField icon="instagram" divClassName={this.state.imp_ig ? '' : 'hide'} classname="imp ig" placeholder="Goal Instagram Impressions" value={isEmpty(clients.impressions && clients.impressions.ig_y) ? '' : clients.impressions.ig_y.toString()} onChange={this.handleChange} />
+                  <TextInputField icon="linkedin" divClassName={this.state.imp_ln ? '' : 'hide'} classname="imp ln" placeholder="Goal LinkedIn Impressions" value={isEmpty(clients.impressions && clients.impressions.ln_y) ? '' : clients.impressions.ln_y.toString()} onChange={this.handleChange} />
+                  <TextInputField icon="pinterest" divClassName={this.state.imp_pt ? '' : 'hide'} classname="imp pn" placeholder="Goal Pinterest Impressions" value={isEmpty(clients.impressions && clients.impressions.pt_y) ? '' : clients.impressions.pt_y.toString()} onChange={this.handleChange} />
                 </div>
               </div>
               {/* End of Impressions*/}

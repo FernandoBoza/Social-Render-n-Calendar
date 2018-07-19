@@ -21,7 +21,7 @@ class NavBar extends Component {
             Create Client
           </Link>
         </li>
-        <li className="nav-item active">
+        <li className="nav-item active mx-5">
           <a href="" onClick={this.onLogoutClick.bind(this)} className="nav-link">
             <i className="fa fa-hand-peace text-primary" style={{ fontSize: '1.2rem' }} />
             Bye {user.name}
@@ -45,8 +45,8 @@ class NavBar extends Component {
       </ul>
     );
     return (
-      <div className="container-fluid mb-5">
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <div className="container-fluid mb-5 p-0">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light px-5">
           <Link className="navbar-brand" to="/">
             Social Goal Tracker
           </Link>

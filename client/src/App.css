@@ -108,7 +108,7 @@ span#basic-addon1 .fa-instagram {
   width: 100%;
   border-radius: 10rem;
   position: relative;
-  top: 122px;
+  top: 46%;
 }
 
 .create-profile .site-traffic .range-slider,
@@ -151,4 +151,17 @@ i.fa.fa-code {
 .card-body .fa-user {
   font-size: 1.3rem;
   margin-left: 0.5rem;
+}
+
+.hide-btn-col {
+  max-width: 50%;
+}
+
+.form-check *:hover {
+  cursor: pointer;
+}
+
+.hide {
+  opacity: 0;
+  display: none;
 }

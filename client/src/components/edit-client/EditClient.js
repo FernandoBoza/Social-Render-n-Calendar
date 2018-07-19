@@ -150,10 +150,6 @@ export class EditClient extends Component {
     console.log(clientData);
   };
 
-  sortThroughObj = clients => {
-    return clients.pageFollowers;
-  };
-
   render() {
     const { clients, loading } = this.props.clients;
     let clientContent;
@@ -173,14 +169,14 @@ export class EditClient extends Component {
               <button className="btn btn-info d-block w-100 mb-5" type="button" data-toggle="collapse" data-target="#pageFollowers" aria-expanded="true" aria-controls="collapseExample">
                 <h4 className="font-weight-light m-0">Page Followers</h4>
               </button>
-              <div className="collapse show my-3" id="pageFollowers">
+              <div className="collapse show my-3" id="pageFollow">
                 <div className="row">
                   <div className="col-sm-3 current">
-                    <TextInputField icon="facebook" name="pgf_fb_x" classname="pgf fb" placeholder="Current Facebook Followers" value={this.state.pgf_fb_x.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="twitter" name="pgf_tw_x" classname="pgf tw" placeholder="Current Twitter Followers" value={this.state.pgf_tw_x.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="instagram" name="pgf_ig_x" classname="pgf ig" placeholder="Current Instagram Followers" value={this.state.pgf_ig_x.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="linkedin" name="pgf_ln_x" classname="pgf ln" placeholder="Current LinkedIn Followers" value={this.state.pgf_ln_x.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="pinterest" name="pgf_pt_x" classname="pgf pn" placeholder="Current Pinterest Followers" value={this.state.pgf_pt_x.toString()} onChange={this.handleChange} />
+                    <TextInputField icon="facebook" name="pgf_fb_x" classname=" pgf fb" placeholder="Current Facebook Followers" value={this.state.pgf_fb_x.toString()} onChange={this.handleChange} />
+                    <TextInputField icon="twitter" name="pgf_tw_x" classname=" pgf tw" placeholder="Current Twitter Followers" value={this.state.pgf_tw_x.toString()} onChange={this.handleChange} />
+                    <TextInputField icon="instagram" name="pgf_ig_x" classname=" pgf ig" placeholder="Current Instagram Followers" value={this.state.pgf_ig_x.toString()} onChange={this.handleChange} />
+                    <TextInputField icon="linkedin" name="pgf_ln_x" classname=" pgf ln" placeholder="Current LinkedIn Followers" value={this.state.pgf_ln_x.toString()} onChange={this.handleChange} />
+                    <TextInputField icon="pinterest" name="pgf_pt_x" classname=" pgf pn" placeholder="Current Pinterest Followers" value={this.state.pgf_pt_x.toString()} onChange={this.handleChange} />
                   </div>
                   <div className="col-sm-6 rangeSlider">
                     <div className="range-slider">
@@ -362,10 +358,10 @@ export class EditClient extends Component {
                 </div>
                 {/* End of Site Traffic*/}
               </div>
+              <button className="btn btn-lg btn-outline-primary btn-block mt-3 w-50 mx-auto" type="submit">
+                Update {clients.name}
+              </button>
             </div>
-            <button className="btn btn-lg btn-outline-primary btn-block mt-3" type="submit">
-              Update {clients.name}
-            </button>
           </form>
         </div>
       );
