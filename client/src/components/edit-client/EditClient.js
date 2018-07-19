@@ -255,19 +255,19 @@ export class EditClient extends Component {
                       <i
                         className="fa fa-linkedin"
                         style={{
-                          left: (this.state.eng_ig_x / this.state.eng_ln_y) * 100 + '%'
+                          left: (this.state.eng_ig_x / this.state.eng_ig_y) * 100 + '%'
                         }}
                       />
                       <i
                         className="fa fa-pinterest"
                         style={{
-                          left: (this.state.eng_ln_x / this.state.eng_pt_y) * 100 + '%'
+                          left: (this.state.eng_ln_x / this.state.eng_ln_y) * 100 + '%'
                         }}
                       />
                       <i
                         className="fa fa-instagram"
                         style={{
-                          left: (this.state.eng_pt_x / this.state.eng_ig_y) * 100 + '%'
+                          left: (this.state.eng_pt_x / this.state.eng_pt_y) * 100 + '%'
                         }}
                       />
                     </div>
@@ -288,52 +288,52 @@ export class EditClient extends Component {
               <div className="collapse my-3" id="impressions">
                 <div className="row">
                   <div className="col-sm-3 current">
-                    <TextInputField icon="facebook" name="imp_fb_x" classname="imp fb" placeholder="Current Facebook Impressions" value={isEmpty(clients.impressions && clients.impressions.fb_x) ? '' : clients.impressions.fb_x.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="twitter" name="imp_tw_x" classname="imp tw" placeholder="Current Twitter Impressions" value={isEmpty(clients.impressions && clients.impressions.tw_x) ? '' : clients.impressions.tw_x.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="instagram" name="imp_ig_x" classname="imp ig" placeholder="Current Instagram Impressions" value={isEmpty(clients.impressions && clients.impressions.ig_x) ? '' : clients.impressions.ig_x.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="linkedin" name="imp_ln_x" classname="imp ln" placeholder="Current LinkedIn Impressions" value={isEmpty(clients.impressions && clients.impressions.ln_x) ? '' : clients.impressions.ln_x.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="pinterest" name="imp_pt_x" classname="imp pn" placeholder="Current Pinterest Impressions" value={isEmpty(clients.impressions && clients.impressions.pt_x) ? '' : clients.impressions.pt_x.toString()} onChange={this.handleChange} />
+                    <TextInputField icon="facebook" name="imp_fb_x" classname="imp fb" placeholder="Current Facebook Impressions" value={this.state.imp_fb_x.toString()} onChange={this.handleChange} />
+                    <TextInputField icon="twitter" name="imp_tw_x" classname="imp tw" placeholder="Current Twitter Impressions" value={this.state.imp_tw_x.toString()} onChange={this.handleChange} />
+                    <TextInputField icon="instagram" name="imp_ig_x" classname="imp ig" placeholder="Current Instagram Impressions" value={this.state.imp_ig_x.toString()} onChange={this.handleChange} />
+                    <TextInputField icon="linkedin" name="imp_ln_x" classname="imp ln" placeholder="Current LinkedIn Impressions" value={this.state.imp_ln_x.toString()} onChange={this.handleChange} />
+                    <TextInputField icon="pinterest" name="imp_pt_x" classname="imp pn" placeholder="Current Pinterest Impressions" value={this.state.imp_pt_x.toString()} onChange={this.handleChange} />
                   </div>
                   <div className="col-sm-6 rangeSlider">
                     <div className="range-slider">
                       <i
                         className="fa fa-facebook"
                         style={{
-                          left: (isEmpty(clients.impressions && clients.impressions.fb_x) ? '' : clients.impressions.fb_x.toString() / clients.impressions.fb_y) * 100 + '%'
+                          left: (this.state.imp_fb_x / this.state.imp_fb_y) * 100 + '%'
                         }}
                       />
                       <i
                         className="fa fa-twitter"
                         style={{
-                          left: (isEmpty(clients.impressions && clients.impressions.tw_x) ? '' : clients.impressions.tw_x.toString() / clients.impressions.tw_y) * 100 + '%'
+                          left: (this.state.imp_tw_x / this.state.imp_tw_y) * 100 + '%'
                         }}
                       />
                       <i
                         className="fa fa-linkedin"
                         style={{
-                          left: (isEmpty(clients.impressions && clients.impressions.ln_x) ? '' : clients.impressions.ln_x.toString() / clients.impressions.ln_y) * 100 + '%'
+                          left: (this.state.imp_ig_x / this.state.imp_ig_y) * 100 + '%'
                         }}
                       />
                       <i
                         className="fa fa-pinterest"
                         style={{
-                          left: (isEmpty(clients.impressions && clients.impressions.pt_x) ? '' : clients.impressions.pt_x.toString() / clients.impressions.pt_y) * 100 + '%'
+                          left: (this.state.imp_ln_x / this.state.imp_ln_y) * 100 + '%'
                         }}
                       />
                       <i
                         className="fa fa-instagram"
                         style={{
-                          left: (isEmpty(clients.impressions && clients.impressions.ig_x) ? '' : clients.impressions.ig_x.toString() / clients.impressions.ig_y) * 100 + '%'
+                          left: (this.state.imp_pt_x / this.state.imp_pt_y) * 100 + '%'
                         }}
                       />
                     </div>
                   </div>
                   <div className="col-sm-3 goal">
-                    <TextInputField icon="facebook" name="imp_fb_y" classname="imp fb" placeholder="Goal Facebook Impressions" value={isEmpty(clients.impressions && clients.impressions.fb_y) ? '' : clients.impressions.fb_y.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="twitter" name="imp_tw_y" classname="imp tw" placeholder="Goal Twitter Impressions" value={isEmpty(clients.impressions && clients.impressions.tw_y) ? '' : clients.impressions.tw_y.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="instagram" name="imp_ig_y" classname="imp ig" placeholder="Goal Instagram Impressions" value={isEmpty(clients.impressions && clients.impressions.ig_y) ? '' : clients.impressions.ig_y.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="linkedin" name="imp_ln_y" classname="imp ln" placeholder="Goal LinkedIn Impressions" value={isEmpty(clients.impressions && clients.impressions.ln_y) ? '' : clients.impressions.ln_y.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="pinterest" name="imp_pt_y" classname="imp pn" placeholder="Goal Pinterest Impressions" value={isEmpty(clients.impressions && clients.impressions.pt_y) ? '' : clients.impressions.pt_y.toString()} onChange={this.handleChange} />
+                    <TextInputField icon="facebook" name="imp_fb_y" classname="imp fb" placeholder="Goal Facebook Impressions" value={this.state.imp_fb_y.toString()} onChange={this.handleChange} />
+                    <TextInputField icon="twitter" name="imp_tw_y" classname="imp tw" placeholder="Goal Twitter Impressions" value={this.state.imp_tw_y.toString()} onChange={this.handleChange} />
+                    <TextInputField icon="instagram" name="imp_ig_y" classname="imp ig" placeholder="Goal Instagram Impressions" value={this.state.imp_ig_y.toString()} onChange={this.handleChange} />
+                    <TextInputField icon="linkedin" name="imp_ln_y" classname="imp ln" placeholder="Goal LinkedIn Impressions" value={this.state.imp_ln_y.toString()} onChange={this.handleChange} />
+                    <TextInputField icon="pinterest" name="imp_pt_y" classname="imp pn" placeholder="Goal Pinterest Impressions" value={this.state.imp_pt_y.toString()} onChange={this.handleChange} />
                   </div>
                 </div>
                 {/* End of Impressions*/}
@@ -344,20 +344,20 @@ export class EditClient extends Component {
               <div className="collapse my-3" id="site_traffic">
                 <div className="row">
                   <div className="col-sm-3 current">
-                    <TextInputField icon="laptop" name="web_x" classname="web" placeholder="Current Web Traffic" value={isEmpty(clients.siteTraffic && clients.siteTraffic.x) ? '' : clients.siteTraffic.x.toString()} onChange={this.handleChange} />
+                    <TextInputField icon="laptop" name="web_x" classname="web" placeholder="Current Web Traffic" value={this.state.web_x} onChange={this.handleChange} />
                   </div>
                   <div className="col-sm-6 rangeSlider">
                     <div className="range-slider client">
                       <i
                         className="fa fa-code"
                         style={{
-                          left: (isEmpty(clients.siteTraffic && clients.siteTraffic.x) ? '' : clients.siteTraffic.x.toString() / clients.siteTraffic.y) * 100 + '%'
+                          left: (this.state.web_x / this.state.web_y) * 100 + '%'
                         }}
                       />
                     </div>
                   </div>
                   <div className="col-sm-3 goal">
-                    <TextInputField icon="laptop" name="web_y" classname="web" placeholder="Goal Web Traffic" value={isEmpty(clients.siteTraffic && clients.siteTraffic.y) ? '' : clients.siteTraffic.y.toString()} onChange={this.handleChange} />
+                    <TextInputField icon="laptop" name="web_y" classname="web" placeholder="Goal Web Traffic" value={this.state.web_y} onChange={this.handleChange} />
                   </div>
                 </div>
                 {/* End of Site Traffic*/}
