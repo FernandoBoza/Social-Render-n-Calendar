@@ -57,6 +57,8 @@ export class Client extends Component {
   render() {
     const { clients, loading } = this.props.clients;
     const { isAuthenticated } = this.props.auth;
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const today = new Date();
     let clientContent;
 
     const authLinks = (
@@ -78,8 +80,10 @@ export class Client extends Component {
         <div>
           {isAuthenticated ? authLinks : guestLinks}
 
-          <div className="col-md-12 m-auto">
-            <h1 className="display-4 text-center">{clients.name}</h1>
+          <div className="col-md-12 m-auto mt-5">
+            <h1 className="display-4 text-center">
+              {clients.name} <span className="lead">{today.toLocaleDateString('en-US', options)}</span>
+            </h1>
             <div className="row" />
             <button className="btn btn-info d-block w-100 mb-5" type="button" data-toggle="collapse" data-target="#pageFollowers" aria-expanded="true" aria-controls="collapseExample">
               <h4 className="font-weight-light m-0">Page Followers</h4>
