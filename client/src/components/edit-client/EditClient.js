@@ -175,7 +175,7 @@ export class EditClient extends Component {
             <div className="col-md-12 m-auto">
               <h1 className="display-4 text-center">Edit {clients.name}</h1>
               <div className="row" />
-              <button className="btn btn-info d-block w-100 mb-5" type="button" data-toggle="collapse" data-target="#pageFollowers" aria-expanded="true" aria-controls="collapseExample">
+              <button className="btn btn-info d-block w-100 mb-5" type="button" data-toggle="collapse" data-target="#pageFollow" aria-expanded="true" aria-controls="collapseExample">
                 <h4 className="font-weight-light m-0">Page Followers</h4>
               </button>
               <div className="collapse show my-3" id="pageFollow">
