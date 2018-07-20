@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
 body {
   margin: 0;
   padding: 0;
-  font-family: 'semplicita pro';
+  font-family: 'poppins', 'semplicita pro', 'arial';
   position: relative;
   height: 100vh;
   display: -ms-flexbox;
@@ -179,4 +181,8 @@ i.fa.fa-spinner.fa-pulse.fa-3x.fa-fw {
 
 .before li {
   width: 15%;
+}
+
+a.btn {
+  line-height: 1;
 }
