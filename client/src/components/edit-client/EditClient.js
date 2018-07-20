@@ -151,7 +151,7 @@ export class EditClient extends Component {
   };
 
   onDeleteClick = e => {
-    this.props.deleteClient();
+    this.props.deleteClient(this.props.match.params.handle, this.props.history);
   };
 
   render() {
@@ -167,9 +167,9 @@ export class EditClient extends Component {
             Back To {clients.name}
           </Link>
 
-          {/* <button onClick={this.onDeleteClick.bind(this)} className="btn btn-danger ml-5 mb-3">
+          <button onClick={this.onDeleteClick.bind(this)} className="btn btn-danger ml-5 mb-3">
             Delete {clients.name}
-          </button> */}
+          </button>
 
           <form onSubmit={this.handleSubmit}>
             <div className="col-md-12 m-auto">
