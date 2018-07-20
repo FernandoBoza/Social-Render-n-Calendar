@@ -172,3 +172,7 @@ i.fa.fa-spinner.fa-pulse.fa-3x.fa-fw {
   height: auto;
   width: auto;
 }
+
+.before li {
+  width: 15%;
+}

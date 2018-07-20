@@ -10,6 +10,7 @@ export class CreateClientProfile extends Component {
     super(props);
     this.state = {
       name: '',
+      // Page Followers
       pgf_fb_x: '',
       pgf_fb_y: '',
       pgf_ig_x: '',
@@ -20,6 +21,7 @@ export class CreateClientProfile extends Component {
       pgf_ln_y: '',
       pgf_pt_x: '',
       pgf_pt_y: '',
+      // Engagement
       eng_fb_x: '',
       eng_fb_y: '',
       eng_ig_x: '',
@@ -30,6 +32,7 @@ export class CreateClientProfile extends Component {
       eng_ln_y: '',
       eng_pt_x: '',
       eng_pt_y: '',
+      // Impressions
       imp_fb_x: '',
       imp_fb_y: '',
       imp_ig_x: '',
@@ -40,8 +43,27 @@ export class CreateClientProfile extends Component {
       imp_ln_y: '',
       imp_pt_x: '',
       imp_pt_y: '',
+      // Web Traffic
+      web_b4: '',
       web_x: '',
       web_y: '',
+
+      // Before Input
+      pgf_b4_fb: '',
+      pgf_b4_ig: '',
+      pgf_b4_tw: '',
+      pgf_b4_ln: '',
+      pgf_b4_pt: '',
+      eng_b4_fb: '',
+      eng_b4_ig: '',
+      eng_b4_tw: '',
+      eng_b4_ln: '',
+      eng_b4_pt: '',
+      imp_b4_fb: '',
+      imp_b4_ig: '',
+      imp_b4_tw: '',
+      imp_b4_ln: '',
+      imp_b4_pt: '',
       errors: {}
     };
 
@@ -95,7 +117,25 @@ export class CreateClientProfile extends Component {
       imp_pt_x: this.state.imp_pt_x,
       imp_pt_y: this.state.imp_pt_y,
       web_x: this.state.web_x,
-      web_y: this.state.web_y
+      web_y: this.state.web_y,
+
+      // Before Input
+      pgf_b4_fb: this.state.pgf_b4_fb,
+      pgf_b4_ig: this.state.pgf_b4_ig,
+      pgf_b4_tw: this.state.pgf_b4_tw,
+      pgf_b4_ln: this.state.pgf_b4_ln,
+      pgf_b4_pt: this.state.pgf_b4_pt,
+      eng_b4_fb: this.state.eng_b4_fb,
+      eng_b4_ig: this.state.eng_b4_ig,
+      eng_b4_tw: this.state.eng_b4_tw,
+      eng_b4_ln: this.state.eng_b4_ln,
+      eng_b4_pt: this.state.eng_b4_pt,
+      imp_b4_fb: this.state.imp_b4_fb,
+      imp_b4_ig: this.state.imp_b4_ig,
+      imp_b4_tw: this.state.imp_b4_tw,
+      imp_b4_ln: this.state.imp_b4_ln,
+      imp_b4_pt: this.state.imp_b4_pt,
+      web_b4: this.state.web_b4
     };
     this.props.createClient(clientData, this.props.history);
   };
@@ -123,12 +163,13 @@ export class CreateClientProfile extends Component {
                 <h4 className="font-weight-light mt-5">Page Followers</h4>
                 <div className="row">
                   <div className="col-sm-3 current">
-                    <TextInputField icon="facebook" name="pgf_fb_x" classname="pgf fb" placeholder="Current Facebook Followers" value={this.state.pgf_fb_x} onChange={this.handleChange} />
-                    <TextInputField icon="twitter" name="pgf_tw_x" classname="pgf tw" placeholder="Current Twitter Followers" value={this.state.pgf_tw_x} onChange={this.handleChange} />
-                    <TextInputField icon="instagram" name="pgf_ig_x" classname="pgf ig" placeholder="Current Instagram Followers" value={this.state.pgf_ig_x} onChange={this.handleChange} />
-                    <TextInputField icon="linkedin" name="pgf_ln_x" classname="pgf ln" placeholder="Current LinkedIn Followers" value={this.state.pgf_ln_x} onChange={this.handleChange} />
-                    <TextInputField icon="pinterest" name="pgf_pt_x" classname="pgf pn" placeholder="Current Pinterest Followers" value={this.state.pgf_pt_x} onChange={this.handleChange} />
+                    <TextInputField icon="facebook" name="pgf_fb_x" classname="pgf fb" placeholder="Current" value={this.state.pgf_fb_x} onChange={this.handleChange} />
+                    <TextInputField icon="twitter" name="pgf_tw_x" classname="pgf tw" placeholder="Current" value={this.state.pgf_tw_x} onChange={this.handleChange} />
+                    <TextInputField icon="instagram" name="pgf_ig_x" classname="pgf ig" placeholder="Current" value={this.state.pgf_ig_x} onChange={this.handleChange} />
+                    <TextInputField icon="linkedin" name="pgf_ln_x" classname="pgf ln" placeholder="Current" value={this.state.pgf_ln_x} onChange={this.handleChange} />
+                    <TextInputField icon="pinterest" name="pgf_pt_x" classname="pgf pn" placeholder="Current" value={this.state.pgf_pt_x} onChange={this.handleChange} />
                   </div>
+
                   <div className="col-sm-6 rangeSlider">
                     <div className="range-slider">
                       <i
@@ -163,6 +204,7 @@ export class CreateClientProfile extends Component {
                       />
                     </div>
                   </div>
+
                   <div className="col-sm-3 goal">
                     <TextInputField icon="facebook" name="pgf_fb_y" classname="pgf fb" placeholder="Goal Facebook Followers" value={this.state.pgf_fb_y} onChange={this.handleChange} />
                     <TextInputField icon="twitter" name="pgf_tw_y" classname="pgf tw" placeholder="Goal Twitter Followers" value={this.state.pgf_tw_y} onChange={this.handleChange} />
@@ -170,7 +212,28 @@ export class CreateClientProfile extends Component {
                     <TextInputField icon="linkedin" name="pgf_ln_y" classname="pgf ln" placeholder="Goal LinkedIn Followers" value={this.state.pgf_ln_y} onChange={this.handleChange} />
                     <TextInputField icon="pinterest" name="pgf_pt_y" classname="pgf pn" placeholder="Goal Pinterest Followers" value={this.state.pgf_pt_y} onChange={this.handleChange} />
                   </div>
+
+                  <div className="col-sm-12 before">
+                    <ul className="d-flex justify-content-around list-unstyled">
+                      <li>
+                        <TextInputField icon="facebook" name="pgf_fb_x" classname="pgf fb" placeholder="Before" value={this.state.pgf_fb_x} onChange={this.handleChange} />
+                      </li>
+                      <li>
+                        <TextInputField icon="twitter" name="pgf_tw_x" classname="pgf tw" placeholder="Before" value={this.state.pgf_tw_x} onChange={this.handleChange} />
+                      </li>
+                      <li>
+                        <TextInputField icon="instagram" name="pgf_ig_x" classname="pgf ig" placeholder="Before" value={this.state.pgf_ig_x} onChange={this.handleChange} />
+                      </li>
+                      <li>
+                        <TextInputField icon="linkedin" name="pgf_ln_x" classname="pgf ln" placeholder="Before" value={this.state.pgf_ln_x} onChange={this.handleChange} />
+                      </li>
+                      <li>
+                        <TextInputField icon="pinterest" name="pgf_pt_x" classname="pgf pn" placeholder="Before" value={this.state.pgf_pt_x} onChange={this.handleChange} />
+                      </li>
+                    </ul>
+                  </div>
                 </div>
+
                 {/* End of Page Followers*/}
                 <h4 className="font-weight-light mt-5">Engagement</h4>
                 <div className="row">
