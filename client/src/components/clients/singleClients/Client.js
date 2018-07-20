@@ -81,11 +81,9 @@ export class Client extends Component {
           <div className="col-md-12 m-auto">
             <h1 className="display-4 text-center">{clients.name}</h1>
             <div className="row" />
-
             <button className="btn btn-info d-block w-100 mb-5" type="button" data-toggle="collapse" data-target="#pageFollowers" aria-expanded="true" aria-controls="collapseExample">
               <h4 className="font-weight-light m-0">Page Followers</h4>
             </button>
-
             <div className="collapse show my-3" id="pageFollowers">
               <div className="row">
                 <div className="col-sm-12 d-flex justify-content-around mb-4 hide-btn-col">
@@ -200,14 +198,34 @@ export class Client extends Component {
                   <TextInputField icon="linkedin" divClassName={this.state.pgf_ln ? '' : 'hide'} classname="pgf ln" placeholder="Goal LinkedIn Followers" value={isEmpty(clients.pageFollowers && clients.pageFollowers.ln_y) ? '' : clients.pageFollowers.ln_y.toString()} onChange={this.handleChange} />
                   <TextInputField icon="pinterest" divClassName={this.state.pgf_pt ? '' : 'hide'} classname="pgf pn" placeholder="Goal Pinterest Followers" value={isEmpty(clients.pageFollowers && clients.pageFollowers.pt_y) ? '' : clients.pageFollowers.pt_y.toString()} onChange={this.handleChange} />
                 </div>
-              </div>
-              {/* End of Page Followers*/}
-            </div>
 
+                <div className="col-sm-12 before">
+                  <hr />
+                  <h6 className="font-weight-light mt-2">Before Page Followers</h6>
+                  <ul className="d-flex justify-content-between list-unstyled">
+                    <li className={this.state.pgf_fb ? '' : 'hide'}>
+                      <TextInputField icon="facebook" classname="pgf fb" placeholder="Before" value={isEmpty(clients.pageFollowers && clients.pageFollowers.b4_fb) ? '' : clients.pageFollowers.b4_fb.toString()} onChange={this.handleChange} />
+                    </li>
+                    <li className={this.state.pgf_tw ? '' : 'hide'}>
+                      <TextInputField icon="twitter" classname="pgf tw" placeholder="Before" value={isEmpty(clients.pageFollowers && clients.pageFollowers.b4_tw) ? '' : clients.pageFollowers.b4_tw.toString()} onChange={this.handleChange} />
+                    </li>
+                    <li className={this.state.pgf_ig ? '' : 'hide'}>
+                      <TextInputField icon="instagram" classname="pgf ig" placeholder="Before" value={isEmpty(clients.pageFollowers && clients.pageFollowers.b4_ig) ? '' : clients.pageFollowers.b4_ig.toString()} onChange={this.handleChange} />
+                    </li>
+                    <li className={this.state.pgf_ln ? '' : 'hide'}>
+                      <TextInputField icon="linkedin" classname="pgf ln" placeholder="Before" value={isEmpty(clients.pageFollowers && clients.pageFollowers.b4_ln) ? '' : clients.pageFollowers.b4_ln.toString()} onChange={this.handleChange} />
+                    </li>
+                    <li className={this.state.pgf_pt ? '' : 'hide'}>
+                      <TextInputField icon="pinterest" classname="pgf pn" placeholder="Before" value={isEmpty(clients.pageFollowers && clients.pageFollowers.b4_pt) ? '' : clients.pageFollowers.b4_pt.toString()} onChange={this.handleChange} />
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            {/* End of Page Followers*/}
             <button className="btn btn-info d-block w-100 mb-5" type="button" data-toggle="collapse" data-target="#engagement" aria-expanded="false" aria-controls="collapseExample">
               <h4 className="font-weight-light m-0">Engagement</h4>
             </button>
-
             <div className="collapse  my-3" id="engagement">
               <div className="row">
                 <div className="col-sm-12 d-flex justify-content-around mb-4 hide-btn-col">
@@ -321,14 +339,34 @@ export class Client extends Component {
                   <TextInputField icon="linkedin" divClassName={this.state.eng_ln ? '' : 'hide'} classname="eng ln" placeholder="Goal LinkedIn Engagement" value={isEmpty(clients.engagement && clients.engagement.ln_y) ? '' : clients.engagement.ln_y.toString()} onChange={this.handleChange} />
                   <TextInputField icon="pinterest" divClassName={this.state.eng_pt ? '' : 'hide'} classname="eng pn" placeholder="Goal Pinterest Engagement" value={isEmpty(clients.engagement && clients.engagement.pt_y) ? '' : clients.engagement.pt_y.toString()} onChange={this.handleChange} />
                 </div>
+
+                <div className="col-sm-12 before">
+                  <hr />
+                  <h6 className="font-weight-light mt-2">Before Engagement</h6>
+                  <ul className="d-flex justify-content-between list-unstyled">
+                    <li className={this.state.eng_fb ? '' : 'hide'}>
+                      <TextInputField icon="facebook" classname="eng fb" placeholder="Before" value={isEmpty(clients.engagement && clients.engagement.b4_fb) ? '' : clients.engagement.b4_fb.toString()} onChange={this.handleChange} />
+                    </li>
+                    <li className={this.state.eng_tw ? '' : 'hide'}>
+                      <TextInputField icon="twitter" classname="eng tw" placeholder="Before" value={isEmpty(clients.engagement && clients.engagement.b4_tw) ? '' : clients.engagement.b4_tw.toString()} onChange={this.handleChange} />
+                    </li>
+                    <li className={this.state.eng_ig ? '' : 'hide'}>
+                      <TextInputField icon="instagram" classname="eng ig" placeholder="Before" value={isEmpty(clients.engagement && clients.engagement.b4_ig) ? '' : clients.engagement.b4_ig.toString()} onChange={this.handleChange} />
+                    </li>
+                    <li className={this.state.eng_ln ? '' : 'hide'}>
+                      <TextInputField icon="linkedin" classname="eng ln" placeholder="Before" value={isEmpty(clients.engagement && clients.engagement.b4_ln) ? '' : clients.engagement.b4_ln.toString()} onChange={this.handleChange} />
+                    </li>
+                    <li className={this.state.eng_pt ? '' : 'hide'}>
+                      <TextInputField icon="pinterest" classname="eng pn" placeholder="Before" value={isEmpty(clients.engagement && clients.engagement.b4_pt) ? '' : clients.engagement.b4_pt.toString()} onChange={this.handleChange} />
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
             {/* End of Engagement*/}
-
             <button className="btn btn-info d-block w-100 mb-5" type="button" data-toggle="collapse" data-target="#impressions" aria-expanded="false" aria-controls="collapseExample">
               <h4 className="font-weight-light m-0">Impressions</h4>
             </button>
-
             <div className="collapse my-3" id="impressions">
               <div className="row">
                 <div className="col-sm-12 d-flex justify-content-around mb-4 hide-btn-col">
@@ -442,14 +480,34 @@ export class Client extends Component {
                   <TextInputField icon="linkedin" divClassName={this.state.imp_ln ? '' : 'hide'} classname="imp ln" placeholder="Goal LinkedIn Impressions" value={isEmpty(clients.impressions && clients.impressions.ln_y) ? '' : clients.impressions.ln_y.toString()} onChange={this.handleChange} />
                   <TextInputField icon="pinterest" divClassName={this.state.imp_pt ? '' : 'hide'} classname="imp pn" placeholder="Goal Pinterest Impressions" value={isEmpty(clients.impressions && clients.impressions.pt_y) ? '' : clients.impressions.pt_y.toString()} onChange={this.handleChange} />
                 </div>
+
+                <div className="col-sm-12 before">
+                  <hr />
+                  <h6 className="font-weight-light mt-2">Before Impressions</h6>
+                  <ul className="d-flex justify-content-between list-unstyled">
+                    <li className={this.state.imp_fb ? '' : 'hide'}>
+                      <TextInputField icon="facebook" classname="eng fb" placeholder="Before" value={isEmpty(clients.impressions && clients.impressions.b4_fb) ? '' : clients.impressions.b4_fb.toString()} onChange={this.handleChange} />
+                    </li>
+                    <li className={this.state.imp_tw ? '' : 'hide'}>
+                      <TextInputField icon="twitter" classname="eng tw" placeholder="Before" value={isEmpty(clients.impressions && clients.impressions.b4_tw) ? '' : clients.impressions.b4_tw.toString()} onChange={this.handleChange} />
+                    </li>
+                    <li className={this.state.imp_ig ? '' : 'hide'}>
+                      <TextInputField icon="instagram" classname="eng ig" placeholder="Before" value={isEmpty(clients.impressions && clients.impressions.b4_ig) ? '' : clients.impressions.b4_ig.toString()} onChange={this.handleChange} />
+                    </li>
+                    <li className={this.state.imp_ln ? '' : 'hide'}>
+                      <TextInputField icon="linkedin" classname="eng ln" placeholder="Before" value={isEmpty(clients.impressions && clients.impressions.b4_ln) ? '' : clients.impressions.b4_ln.toString()} onChange={this.handleChange} />
+                    </li>
+                    <li className={this.state.imp_pt ? '' : 'hide'}>
+                      <TextInputField icon="pinterest" classname="eng pn" placeholder="Before" value={isEmpty(clients.impressions && clients.impressions.b4_pt) ? '' : clients.impressions.b4_pt.toString()} onChange={this.handleChange} />
+                    </li>
+                  </ul>
+                </div>
               </div>
               {/* End of Impressions*/}
             </div>
-
             <button className="btn btn-info d-block w-100 mb-5" type="button" data-toggle="collapse" data-target="#site_traffic" aria-expanded="false" aria-controls="collapseExample">
               <h4 className="font-weight-light m-0">Site Traffic</h4>
             </button>
-
             <div className="collapse my-3" id="site_traffic">
               <div className="row">
                 <div className="col-sm-3 current">
@@ -467,6 +525,16 @@ export class Client extends Component {
                 </div>
                 <div className="col-sm-3 goal">
                   <TextInputField icon="laptop" name="web_y" classname="web" placeholder="Goal Web Traffic" value={isEmpty(clients.siteTraffic && clients.siteTraffic.y) ? '' : clients.siteTraffic.y.toString()} onChange={this.handleChange} />
+                </div>
+
+                <div className="col-sm-12 before">
+                  <hr />
+                  <h6 className="font-weight-light mt-2">Before Site Traffic</h6>
+                  <ul className="d-flex justify-content-between list-unstyled">
+                    <li>
+                      <TextInputField icon="laptop" classname="web_x" placeholder="Before" value={isEmpty(clients.siteTraffic && clients.siteTraffic.web_b4) ? '' : clients.siteTraffic.web_b4.toString()} onChange={this.handleChange} />
+                    </li>
+                  </ul>
                 </div>
               </div>
               {/* End of Site Traffic*/}

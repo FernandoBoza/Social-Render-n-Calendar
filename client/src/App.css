@@ -143,6 +143,10 @@ i.fa.fa-tachometer {
   margin-left: 0.5rem;
 }
 
+i.fa.fa-laptop {
+  color: #e87305;
+}
+
 i.fa.fa-code {
   background: #e87305;
   padding: 6px 0 0px 5px;
@@ -171,4 +175,8 @@ i.fa.fa-spinner.fa-pulse.fa-3x.fa-fw {
   font-size: 7.7rem;
   height: auto;
   width: auto;
+}
+
+.before li {
+  width: 15%;
 }

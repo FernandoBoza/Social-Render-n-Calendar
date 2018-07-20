@@ -71,6 +71,7 @@ const ClientSchema = new Schema({
     pt_y: { type: Number }
   },
   siteTraffic: {
+    web_b4: { type: Number },
     x: { type: Number },
     y: { type: Number }
   }

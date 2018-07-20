@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Spinner from '../common/Spinner';
-import { getAClient, updateAClient } from '../../actions/clientActions';
+import { getAClient, updateAClient, deleteClient } from '../../actions/clientActions';
 import TextInputField from '../common/TextInputField';
 import isEmpty from '../../validation/is-empty';
 
@@ -150,6 +150,10 @@ export class EditClient extends Component {
     console.log(clientData);
   };
 
+  onDeleteClick = e => {
+    this.props.deleteClient();
+  };
+
   render() {
     const { clients, loading } = this.props.clients;
     let clientContent;
@@ -159,9 +163,14 @@ export class EditClient extends Component {
     } else {
       clientContent = (
         <div>
-          <Link to={`/clients/${this.props.match.params.handle}`} className="btn btn-primary mb-3 fload-left">
+          <Link to={`/clients/${this.props.match.params.handle}`} className="btn btn-primary mb-3">
             Back To {clients.name}
           </Link>
+
+          {/* <button onClick={this.onDeleteClick.bind(this)} className="btn btn-danger ml-5 mb-3">
+            Delete {clients.name}
+          </button> */}
+
           <form onSubmit={this.handleSubmit}>
             <div className="col-md-12 m-auto">
               <h1 className="display-4 text-center">Edit {clients.name}</h1>
@@ -382,7 +391,8 @@ export class EditClient extends Component {
 EditClient.propTypes = {
   clients: PropTypes.object.isRequired,
   getAClient: PropTypes.func.isRequired,
-  updateAClient: PropTypes.func.isRequired
+  updateAClient: PropTypes.func.isRequired,
+  deleteClient: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -391,5 +401,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getAClient, updateAClient }
+  { getAClient, updateAClient, deleteClient }
 )(EditClient);
