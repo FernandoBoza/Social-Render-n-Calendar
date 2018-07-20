@@ -143,6 +143,10 @@ i.fa.fa-tachometer {
   margin-left: 0.5rem;
 }
 
+i.fa.fa-laptop {
+  color: #e87305;
+}
+
 i.fa.fa-code {
   background: #e87305;
   padding: 6px 0 0px 5px;

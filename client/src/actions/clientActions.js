@@ -67,6 +67,13 @@ export const updateAClient = (handle, clientData, history) => dispatch => {
     );
 };
 
+// Delete client
+export const deleteClient = handle => dispatch => {
+  // if (window.confirm('Are you sure? This can NOT be undone!')) {
+  //   axios.delete(`/api/clients/handle/${handle}`);
+  // }
+};
+
 //Profile Loading
 export const setProfileLoading = () => {
   return {

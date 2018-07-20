@@ -44,11 +44,11 @@ export class CreateClientProfile extends Component {
       imp_pt_x: '',
       imp_pt_y: '',
       // Web Traffic
-      web_b4: '',
       web_x: '',
       web_y: '',
 
       // Before Input
+      web_b4: '',
       pgf_b4_fb: '',
       pgf_b4_ig: '',
       pgf_b4_tw: '',
@@ -214,21 +214,22 @@ export class CreateClientProfile extends Component {
                   </div>
 
                   <div className="col-sm-12 before">
-                    <ul className="d-flex justify-content-around list-unstyled">
+                    <h6 className="font-weight-light mt-2">Before Page Followers</h6>
+                    <ul className="d-flex justify-content-between list-unstyled">
                       <li>
-                        <TextInputField icon="facebook" name="pgf_fb_x" classname="pgf fb" placeholder="Before" value={this.state.pgf_fb_x} onChange={this.handleChange} />
+                        <TextInputField icon="facebook" name="pgf_b4_fb" classname="pgf fb" placeholder="Before" value={this.state.pgf_b4_fb} onChange={this.handleChange} />
                       </li>
                       <li>
-                        <TextInputField icon="twitter" name="pgf_tw_x" classname="pgf tw" placeholder="Before" value={this.state.pgf_tw_x} onChange={this.handleChange} />
+                        <TextInputField icon="twitter" name="pgf_b4_tw" classname="pgf tw" placeholder="Before" value={this.state.pgf_b4_tw} onChange={this.handleChange} />
                       </li>
                       <li>
-                        <TextInputField icon="instagram" name="pgf_ig_x" classname="pgf ig" placeholder="Before" value={this.state.pgf_ig_x} onChange={this.handleChange} />
+                        <TextInputField icon="instagram" name="pgf_b4_ig" classname="pgf ig" placeholder="Before" value={this.state.pgf_b4_ig} onChange={this.handleChange} />
                       </li>
                       <li>
-                        <TextInputField icon="linkedin" name="pgf_ln_x" classname="pgf ln" placeholder="Before" value={this.state.pgf_ln_x} onChange={this.handleChange} />
+                        <TextInputField icon="linkedin" name="pgf_b4_ln" classname="pgf ln" placeholder="Before" value={this.state.pgf_b4_ln} onChange={this.handleChange} />
                       </li>
                       <li>
-                        <TextInputField icon="pinterest" name="pgf_pt_x" classname="pgf pn" placeholder="Before" value={this.state.pgf_pt_x} onChange={this.handleChange} />
+                        <TextInputField icon="pinterest" name="pgf_b4_pt" classname="pgf pn" placeholder="Before" value={this.state.pgf_b4_pt} onChange={this.handleChange} />
                       </li>
                     </ul>
                   </div>
@@ -285,6 +286,27 @@ export class CreateClientProfile extends Component {
                     <TextInputField icon="linkedin" name="eng_ln_y" classname="eng ln" placeholder="Goal LinkedIn Engagement" value={this.state.eng_ln_y} onChange={this.handleChange} />
                     <TextInputField icon="pinterest" name="eng_pt_y" classname="eng pn" placeholder="Goal Pinterest Engagement" value={this.state.eng_pt_y} onChange={this.handleChange} />
                   </div>
+
+                  <div className="col-sm-12 before">
+                    <h6 className="font-weight-light mt-2">Before Engagement</h6>
+                    <ul className="d-flex justify-content-between list-unstyled">
+                      <li>
+                        <TextInputField icon="facebook" name="eng_b4_fb" classname="pgf fb" placeholder="Before" value={this.state.eng_b4_fb} onChange={this.handleChange} />
+                      </li>
+                      <li>
+                        <TextInputField icon="twitter" name="eng_b4_tw" classname="pgf tw" placeholder="Before" value={this.state.eng_b4_tw} onChange={this.handleChange} />
+                      </li>
+                      <li>
+                        <TextInputField icon="instagram" name="eng_b4_ig" classname="pgf ig" placeholder="Before" value={this.state.eng_b4_ig} onChange={this.handleChange} />
+                      </li>
+                      <li>
+                        <TextInputField icon="linkedin" name="eng_b4_ln" classname="pgf ln" placeholder="Before" value={this.state.eng_b4_ln} onChange={this.handleChange} />
+                      </li>
+                      <li>
+                        <TextInputField icon="pinterest" name="eng_b4_pt" classname="pgf pn" placeholder="Before" value={this.state.eng_b4_pt} onChange={this.handleChange} />
+                      </li>
+                    </ul>
+                  </div>
                 </div>
                 {/* End of Engagement*/}
                 <h4 className="font-weight-light mt-5">Impressions</h4>
@@ -337,6 +359,27 @@ export class CreateClientProfile extends Component {
                     <TextInputField icon="linkedin" name="imp_ln_y" classname="imp ln" placeholder="Goal LinkedIn Impressions" value={this.state.imp_ln_y} onChange={this.handleChange} />
                     <TextInputField icon="pinterest" name="imp_pt_y" classname="imp pn" placeholder="Goal Pinterest Impressions" value={this.state.imp_pt_y} onChange={this.handleChange} />
                   </div>
+
+                  <div className="col-sm-12 before">
+                    <h6 className="font-weight-light mt-2">Before Impressions</h6>
+                    <ul className="d-flex justify-content-between list-unstyled">
+                      <li>
+                        <TextInputField icon="facebook" name="imp_b4_fb" classname="pgf fb" placeholder="Before" value={this.state.imp_b4_fb} onChange={this.handleChange} />
+                      </li>
+                      <li>
+                        <TextInputField icon="twitter" name="imp_b4_tw" classname="pgf tw" placeholder="Before" value={this.state.imp_b4_tw} onChange={this.handleChange} />
+                      </li>
+                      <li>
+                        <TextInputField icon="instagram" name="imp_b4_ig" classname="pgf ig" placeholder="Before" value={this.state.imp_b4_ig} onChange={this.handleChange} />
+                      </li>
+                      <li>
+                        <TextInputField icon="linkedin" name="imp_b4_ln" classname="pgf ln" placeholder="Before" value={this.state.imp_b4_ln} onChange={this.handleChange} />
+                      </li>
+                      <li>
+                        <TextInputField icon="pinterest" name="imp_b4_pt" classname="pgf pn" placeholder="Before" value={this.state.imp_b4_pt} onChange={this.handleChange} />
+                      </li>
+                    </ul>
+                  </div>
                 </div>
                 {/* End of Impressions*/}
                 <h4 className=" font-weight-light mt-5">Site Traffic</h4>
@@ -356,6 +399,14 @@ export class CreateClientProfile extends Component {
                   </div>
                   <div className="col-sm-3 goal">
                     <TextInputField icon="laptop" name="web_y" classname="web" placeholder="Goal Web Traffic" value={this.state.web_y} onChange={this.handleChange} />
+                  </div>
+                  <div className="col-sm-12 before">
+                    <h6 className="font-weight-light mt-2">Before Engagement</h6>
+                    <ul className="d-flex justify-content-between list-unstyled">
+                      <li>
+                        <TextInputField icon="laptop" name="web_b4" classname="pgf fb" placeholder="Before" value={this.state.web_b4} onChange={this.handleChange} />
+                      </li>
+                    </ul>
                   </div>
                 </div>
                 {/* End of Site Traffic*/}

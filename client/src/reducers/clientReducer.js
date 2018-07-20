@@ -1,9 +1,4 @@
-import {
-  GET_ALL_CLIENTS_PROFILES,
-  GET_CLIENT_PROFILE,
-  CLIENT_LOADING,
-  CLEAR_CURRENT_USER
-} from '../actions/types';
+import { GET_ALL_CLIENTS_PROFILES, GET_CLIENT_PROFILE, CLIENT_LOADING, CLEAR_CURRENT_USER } from '../actions/types';
 
 const initialState = {
   client: null,
