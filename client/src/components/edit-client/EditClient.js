@@ -167,13 +167,10 @@ export class EditClient extends Component {
             Back To {clients.name}
           </Link>
 
-          <button onClick={this.onDeleteClick().bind(this)} className="btn btn-danger ml-5 mb-3">
+          {/* <button onClick={this.onDeleteClick.bind(this)} className="btn btn-danger ml-5 mb-3">
             Delete {clients.name}
-          </button>
+          </button> */}
 
-          <Link to={`/clients/${this.props.match.params.handle}`} className="btn btn-danger ml-5 mb-3">
-            Delete {clients.name}
-          </Link>
           <form onSubmit={this.handleSubmit}>
             <div className="col-md-12 m-auto">
               <h1 className="display-4 text-center">Edit {clients.name}</h1>

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { GET_ALL_CLIENTS_PROFILES, GET_CLIENT_PROFILE, GET_ERRORS, CLIENT_LOADING, CLEAR_CURRENT_USER } from './types';
+import { GET_ALL_CLIENTS_PROFILES, GET_CLIENT_PROFILE, GET_ERRORS, CLIENT_LOADING, CLEAR_CURRENT_USER, CLIENT_NOT_FOUND } from './types';
 
 // GET ALL Client Profile
 export const getAllClients = () => dispatch => {
@@ -69,9 +69,22 @@ export const updateAClient = (handle, clientData, history) => dispatch => {
 
 // Delete client
 export const deleteClient = handle => dispatch => {
-  // if (window.confirm('Are you sure? This can NOT be undone!')) {
-  //   axios.delete(`/api/clients/handle/${handle}`);
-  // }
+  if (window.confirm('Are you sure? This can NOT be undone!')) {
+    axios
+      .delete(`/api/clients/handle/${handle}`)
+      .then(res =>
+        dispatch({
+          type: CLIENT_NOT_FOUND,
+          payload: {}
+        })
+      )
+      .catch(err =>
+        dispatch({
+          type: GET_ERRORS,
+          payload: err.response.data
+        })
+      );
+  }
 };
 
 //Profile Loading
