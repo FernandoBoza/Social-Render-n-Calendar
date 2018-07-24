@@ -139,11 +139,6 @@ export class Client extends Component {
                   <div className="range-slider">
                     <i
                       className={this.state.pgf_fb ? 'fa fa-facebook' : 'hide'}
-                      data-trigger="hover"
-                      data-container="body"
-                      data-toggle="popover"
-                      data-placement="top"
-                      data-content={`Progress ${isEmpty(clients.pageFollowers && clients.pageFollowers.fb_x) ? '0' : Math.round((clients.pageFollowers.fb_x / clients.pageFollowers.fb_y) * 100)}%`}
                       style={{
                         left: (isEmpty(clients.pageFollowers && clients.pageFollowers.fb_x) ? '' : clients.pageFollowers.fb_x.toString() / clients.pageFollowers.fb_y) * 100 + '%'
                       }}
@@ -151,44 +146,24 @@ export class Client extends Component {
                     <i
                       className={this.state.pgf_tw ? 'fa fa-twitter' : 'hide'}
                       tabIndex="0"
-                      data-trigger="hover"
-                      data-container="body"
-                      data-toggle="popover"
-                      data-placement="top"
-                      data-content={`Progress ${isEmpty(clients.pageFollowers && clients.pageFollowers.tw_x) ? '0' : Math.round((clients.pageFollowers.tw_x / clients.pageFollowers.tw_y) * 100)}%`}
                       style={{
                         left: (isEmpty(clients.pageFollowers && clients.pageFollowers.tw_x) ? '' : clients.pageFollowers.tw_x.toString() / clients.pageFollowers.tw_y) * 100 + '%'
                       }}
                     />
                     <i
                       className={this.state.pgf_ln ? 'fa fa-linkedin' : 'hide'}
-                      data-trigger="hover"
-                      data-container="body"
-                      data-toggle="popover"
-                      data-placement="top"
-                      data-content={`Progress ${isEmpty(clients.pageFollowers && clients.pageFollowers.ln_x) ? '0' : Math.round((clients.pageFollowers.ln_x / clients.pageFollowers.ln_y) * 100)}%`}
                       style={{
                         left: (isEmpty(clients.pageFollowers && clients.pageFollowers.ln_x) ? '' : clients.pageFollowers.ln_x.toString() / clients.pageFollowers.ln_y) * 100 + '%'
                       }}
                     />
                     <i
                       className={this.state.pgf_pt ? 'fa fa-pinterest' : 'hide'}
-                      data-trigger="hover"
-                      data-container="body"
-                      data-toggle="popover"
-                      data-placement="top"
-                      data-content={`Progress ${isEmpty(clients.pageFollowers && clients.pageFollowers.pt_x) ? '0' : Math.round((clients.pageFollowers.pt_x / clients.pageFollowers.pt_y) * 100)}%`}
                       style={{
                         left: (isEmpty(clients.pageFollowers && clients.pageFollowers.pt_x) ? '' : clients.pageFollowers.pt_x.toString() / clients.pageFollowers.pt_y) * 100 + '%'
                       }}
                     />
                     <i
                       className={this.state.pgf_ig ? 'fa fa-instagram' : 'hide'}
-                      data-trigger="hover"
-                      data-container="body"
-                      data-toggle="popover"
-                      data-placement="top"
-                      data-content={`Progress ${isEmpty(clients.pageFollowers && clients.pageFollowers.ig_x) ? '0' : Math.round((clients.pageFollowers.ig_x / clients.pageFollowers.ig_y) * 100)}%`}
                       style={{
                         left: (isEmpty(clients.pageFollowers && clients.pageFollowers.ig_x) ? '' : clients.pageFollowers.ig_x.toString() / clients.pageFollowers.ig_y) * 100 + '%'
                       }}
@@ -205,22 +180,22 @@ export class Client extends Component {
 
                 <div className="col-sm-12 before">
                   <hr />
-                  <h6 className="font-weight-light mt-2">Before Page Followers</h6>
+                  <h6 className="font-weight-light mt-2">Starting Page Followers</h6>
                   <ul className="d-flex justify-content-between list-unstyled">
                     <li className={this.state.pgf_fb ? '' : 'hide'}>
-                      <TextInputField icon="facebook" classname="pgf fb" placeholder="Before" value={isEmpty(clients.pageFollowers && clients.pageFollowers.b4_fb) ? '' : clients.pageFollowers.b4_fb.toString()} onChange={this.handleChange} />
+                      <TextInputField icon="facebook" classname="pgf fb" placeholder="Starting" value={isEmpty(clients.pageFollowers && clients.pageFollowers.b4_fb) ? '' : clients.pageFollowers.b4_fb.toString()} onChange={this.handleChange} />
                     </li>
                     <li className={this.state.pgf_tw ? '' : 'hide'}>
-                      <TextInputField icon="twitter" classname="pgf tw" placeholder="Before" value={isEmpty(clients.pageFollowers && clients.pageFollowers.b4_tw) ? '' : clients.pageFollowers.b4_tw.toString()} onChange={this.handleChange} />
+                      <TextInputField icon="twitter" classname="pgf tw" placeholder="Starting" value={isEmpty(clients.pageFollowers && clients.pageFollowers.b4_tw) ? '' : clients.pageFollowers.b4_tw.toString()} onChange={this.handleChange} />
                     </li>
                     <li className={this.state.pgf_ig ? '' : 'hide'}>
-                      <TextInputField icon="instagram" classname="pgf ig" placeholder="Before" value={isEmpty(clients.pageFollowers && clients.pageFollowers.b4_ig) ? '' : clients.pageFollowers.b4_ig.toString()} onChange={this.handleChange} />
+                      <TextInputField icon="instagram" classname="pgf ig" placeholder="Starting" value={isEmpty(clients.pageFollowers && clients.pageFollowers.b4_ig) ? '' : clients.pageFollowers.b4_ig.toString()} onChange={this.handleChange} />
                     </li>
                     <li className={this.state.pgf_ln ? '' : 'hide'}>
-                      <TextInputField icon="linkedin" classname="pgf ln" placeholder="Before" value={isEmpty(clients.pageFollowers && clients.pageFollowers.b4_ln) ? '' : clients.pageFollowers.b4_ln.toString()} onChange={this.handleChange} />
+                      <TextInputField icon="linkedin" classname="pgf ln" placeholder="Starting" value={isEmpty(clients.pageFollowers && clients.pageFollowers.b4_ln) ? '' : clients.pageFollowers.b4_ln.toString()} onChange={this.handleChange} />
                     </li>
                     <li className={this.state.pgf_pt ? '' : 'hide'}>
-                      <TextInputField icon="pinterest" classname="pgf pn" placeholder="Before" value={isEmpty(clients.pageFollowers && clients.pageFollowers.b4_pt) ? '' : clients.pageFollowers.b4_pt.toString()} onChange={this.handleChange} />
+                      <TextInputField icon="pinterest" classname="pgf pn" placeholder="Starting" value={isEmpty(clients.pageFollowers && clients.pageFollowers.b4_pt) ? '' : clients.pageFollowers.b4_pt.toString()} onChange={this.handleChange} />
                     </li>
                   </ul>
                 </div>
@@ -281,55 +256,30 @@ export class Client extends Component {
                   <div className="range-slider">
                     <i
                       className={this.state.eng_fb ? 'fa fa-facebook' : 'hide'}
-                      data-trigger="hover"
-                      data-container="body"
-                      data-toggle="popover"
-                      data-placement="top"
-                      data-content={`Progress ${isEmpty(clients.engagement && clients.engagement.fb_x) ? '0' : Math.round((clients.engagement.fb_x / clients.engagement.fb_y) * 100)}%`}
                       style={{
                         left: (isEmpty(clients.engagement && clients.engagement.fb_x) ? '' : clients.engagement.fb_x.toString() / clients.engagement.fb_y) * 100 + '%'
                       }}
                     />
                     <i
                       className={this.state.eng_tw ? 'fa fa-twitter' : 'hide'}
-                      data-trigger="hover"
-                      data-container="body"
-                      data-toggle="popover"
-                      data-placement="top"
-                      data-content={`Progress ${isEmpty(clients.engagement && clients.engagement.fb_x) ? '0' : Math.round((clients.engagement.fb_x / clients.engagement.fb_y) * 100)}%`}
                       style={{
                         left: (isEmpty(clients.engagement && clients.engagement.tw_x) ? '' : clients.engagement.tw_x.toString() / clients.engagement.tw_y) * 100 + '%'
                       }}
                     />
                     <i
                       className={this.state.eng_ln ? 'fa fa-linkedin' : 'hide'}
-                      data-trigger="hover"
-                      data-container="body"
-                      data-toggle="popover"
-                      data-placement="top"
-                      data-content={`Progress ${isEmpty(clients.engagement && clients.engagement.fb_x) ? '0' : Math.round((clients.engagement.fb_x / clients.engagement.fb_y) * 100)}%`}
                       style={{
                         left: (isEmpty(clients.engagement && clients.engagement.ln_x) ? '' : clients.engagement.ln_x.toString() / clients.engagement.ln_y) * 100 + '%'
                       }}
                     />
                     <i
                       className={this.state.eng_pt ? 'fa fa-pinterest' : 'hide'}
-                      data-trigger="hover"
-                      data-container="body"
-                      data-toggle="popover"
-                      data-placement="top"
-                      data-content={`Progress ${isEmpty(clients.engagement && clients.engagement.fb_x) ? '0' : Math.round((clients.engagement.fb_x / clients.engagement.fb_y) * 100)}%`}
                       style={{
                         left: (isEmpty(clients.engagement && clients.engagement.pt_x) ? '' : clients.engagement.pt_x.toString() / clients.engagement.pt_y) * 100 + '%'
                       }}
                     />
                     <i
                       className={this.state.eng_ig ? 'fa fa-instagram' : 'hide'}
-                      data-trigger="hover"
-                      data-container="body"
-                      data-toggle="popover"
-                      data-placement="top"
-                      data-content={`Progress ${isEmpty(clients.engagement && clients.engagement.fb_x) ? '0' : Math.round((clients.engagement.fb_x / clients.engagement.fb_y) * 100)}%`}
                       style={{
                         left: (isEmpty(clients.engagement && clients.engagement.ig_x) ? '' : clients.engagement.ig_x.toString() / clients.engagement.ig_y) * 100 + '%'
                       }}
@@ -346,22 +296,22 @@ export class Client extends Component {
 
                 <div className="col-sm-12 before">
                   <hr />
-                  <h6 className="font-weight-light mt-2">Before Engagement</h6>
+                  <h6 className="font-weight-light mt-2">Starting Engagement</h6>
                   <ul className="d-flex justify-content-between list-unstyled">
                     <li className={this.state.eng_fb ? '' : 'hide'}>
-                      <TextInputField icon="facebook" classname="eng fb" placeholder="Before" value={isEmpty(clients.engagement && clients.engagement.b4_fb) ? '' : clients.engagement.b4_fb.toString()} onChange={this.handleChange} />
+                      <TextInputField icon="facebook" classname="eng fb" placeholder="Starting" value={isEmpty(clients.engagement && clients.engagement.b4_fb) ? '' : clients.engagement.b4_fb.toString()} onChange={this.handleChange} />
                     </li>
                     <li className={this.state.eng_tw ? '' : 'hide'}>
-                      <TextInputField icon="twitter" classname="eng tw" placeholder="Before" value={isEmpty(clients.engagement && clients.engagement.b4_tw) ? '' : clients.engagement.b4_tw.toString()} onChange={this.handleChange} />
+                      <TextInputField icon="twitter" classname="eng tw" placeholder="Starting" value={isEmpty(clients.engagement && clients.engagement.b4_tw) ? '' : clients.engagement.b4_tw.toString()} onChange={this.handleChange} />
                     </li>
                     <li className={this.state.eng_ig ? '' : 'hide'}>
-                      <TextInputField icon="instagram" classname="eng ig" placeholder="Before" value={isEmpty(clients.engagement && clients.engagement.b4_ig) ? '' : clients.engagement.b4_ig.toString()} onChange={this.handleChange} />
+                      <TextInputField icon="instagram" classname="eng ig" placeholder="Starting" value={isEmpty(clients.engagement && clients.engagement.b4_ig) ? '' : clients.engagement.b4_ig.toString()} onChange={this.handleChange} />
                     </li>
                     <li className={this.state.eng_ln ? '' : 'hide'}>
-                      <TextInputField icon="linkedin" classname="eng ln" placeholder="Before" value={isEmpty(clients.engagement && clients.engagement.b4_ln) ? '' : clients.engagement.b4_ln.toString()} onChange={this.handleChange} />
+                      <TextInputField icon="linkedin" classname="eng ln" placeholder="Starting" value={isEmpty(clients.engagement && clients.engagement.b4_ln) ? '' : clients.engagement.b4_ln.toString()} onChange={this.handleChange} />
                     </li>
                     <li className={this.state.eng_pt ? '' : 'hide'}>
-                      <TextInputField icon="pinterest" classname="eng pn" placeholder="Before" value={isEmpty(clients.engagement && clients.engagement.b4_pt) ? '' : clients.engagement.b4_pt.toString()} onChange={this.handleChange} />
+                      <TextInputField icon="pinterest" classname="eng pn" placeholder="Starting" value={isEmpty(clients.engagement && clients.engagement.b4_pt) ? '' : clients.engagement.b4_pt.toString()} onChange={this.handleChange} />
                     </li>
                   </ul>
                 </div>
@@ -422,55 +372,30 @@ export class Client extends Component {
                   <div className="range-slider">
                     <i
                       className={this.state.imp_fb ? 'fa fa-facebook' : 'hide'}
-                      data-trigger="hover"
-                      data-container="body"
-                      data-toggle="popover"
-                      data-placement="top"
-                      data-content={`Progress ${isEmpty(clients.impressions && clients.impressions.fb_x) ? '0' : Math.round((clients.impressions.fb_x / clients.impressions.fb_y) * 100)}%`}
                       style={{
                         left: (isEmpty(clients.impressions && clients.impressions.fb_x) ? '' : clients.impressions.fb_x.toString() / clients.impressions.fb_y) * 100 + '%'
                       }}
                     />
                     <i
                       className={this.state.imp_tw ? 'fa fa-twitter' : 'hide'}
-                      data-trigger="hover"
-                      data-container="body"
-                      data-toggle="popover"
-                      data-placement="top"
-                      data-content={`Progress ${isEmpty(clients.impressions && clients.impressions.fb_x) ? '0' : Math.round((clients.impressions.fb_x / clients.impressions.fb_y) * 100)}%`}
                       style={{
                         left: (isEmpty(clients.impressions && clients.impressions.tw_x) ? '' : clients.impressions.tw_x.toString() / clients.impressions.tw_y) * 100 + '%'
                       }}
                     />
                     <i
                       className={this.state.imp_ln ? 'fa fa-linkedin' : 'hide'}
-                      data-trigger="hover"
-                      data-container="body"
-                      data-toggle="popover"
-                      data-placement="top"
-                      data-content={`Progress ${isEmpty(clients.impressions && clients.impressions.fb_x) ? '0' : Math.round((clients.impressions.fb_x / clients.impressions.fb_y) * 100)}%`}
                       style={{
                         left: (isEmpty(clients.impressions && clients.impressions.ln_x) ? '' : clients.impressions.ln_x.toString() / clients.impressions.ln_y) * 100 + '%'
                       }}
                     />
                     <i
                       className={this.state.imp_pt ? 'fa fa-pinterest' : 'hide'}
-                      data-trigger="hover"
-                      data-container="body"
-                      data-toggle="popover"
-                      data-placement="top"
-                      data-content={`Progress ${isEmpty(clients.impressions && clients.impressions.fb_x) ? '0' : Math.round((clients.impressions.fb_x / clients.impressions.fb_y) * 100)}%`}
                       style={{
                         left: (isEmpty(clients.impressions && clients.impressions.pt_x) ? '' : clients.impressions.pt_x.toString() / clients.impressions.pt_y) * 100 + '%'
                       }}
                     />
                     <i
                       className={this.state.imp_ig ? 'fa fa-instagram' : 'hide'}
-                      data-trigger="hover"
-                      data-container="body"
-                      data-toggle="popover"
-                      data-placement="top"
-                      data-content={`Progress ${isEmpty(clients.impressions && clients.impressions.fb_x) ? '0' : Math.round((clients.impressions.fb_x / clients.impressions.fb_y) * 100)}%`}
                       style={{
                         left: (isEmpty(clients.impressions && clients.impressions.ig_x) ? '' : clients.impressions.ig_x.toString() / clients.impressions.ig_y) * 100 + '%'
                       }}
@@ -487,22 +412,22 @@ export class Client extends Component {
 
                 <div className="col-sm-12 before">
                   <hr />
-                  <h6 className="font-weight-light mt-2">Before Impressions</h6>
+                  <h6 className="font-weight-light mt-2">Starting Impressions</h6>
                   <ul className="d-flex justify-content-between list-unstyled">
                     <li className={this.state.imp_fb ? '' : 'hide'}>
-                      <TextInputField icon="facebook" classname="eng fb" placeholder="Before" value={isEmpty(clients.impressions && clients.impressions.b4_fb) ? '' : clients.impressions.b4_fb.toString()} onChange={this.handleChange} />
+                      <TextInputField icon="facebook" classname="eng fb" placeholder="Starting" value={isEmpty(clients.impressions && clients.impressions.b4_fb) ? '' : clients.impressions.b4_fb.toString()} onChange={this.handleChange} />
                     </li>
                     <li className={this.state.imp_tw ? '' : 'hide'}>
-                      <TextInputField icon="twitter" classname="eng tw" placeholder="Before" value={isEmpty(clients.impressions && clients.impressions.b4_tw) ? '' : clients.impressions.b4_tw.toString()} onChange={this.handleChange} />
+                      <TextInputField icon="twitter" classname="eng tw" placeholder="Starting" value={isEmpty(clients.impressions && clients.impressions.b4_tw) ? '' : clients.impressions.b4_tw.toString()} onChange={this.handleChange} />
                     </li>
                     <li className={this.state.imp_ig ? '' : 'hide'}>
-                      <TextInputField icon="instagram" classname="eng ig" placeholder="Before" value={isEmpty(clients.impressions && clients.impressions.b4_ig) ? '' : clients.impressions.b4_ig.toString()} onChange={this.handleChange} />
+                      <TextInputField icon="instagram" classname="eng ig" placeholder="Starting" value={isEmpty(clients.impressions && clients.impressions.b4_ig) ? '' : clients.impressions.b4_ig.toString()} onChange={this.handleChange} />
                     </li>
                     <li className={this.state.imp_ln ? '' : 'hide'}>
-                      <TextInputField icon="linkedin" classname="eng ln" placeholder="Before" value={isEmpty(clients.impressions && clients.impressions.b4_ln) ? '' : clients.impressions.b4_ln.toString()} onChange={this.handleChange} />
+                      <TextInputField icon="linkedin" classname="eng ln" placeholder="Starting" value={isEmpty(clients.impressions && clients.impressions.b4_ln) ? '' : clients.impressions.b4_ln.toString()} onChange={this.handleChange} />
                     </li>
                     <li className={this.state.imp_pt ? '' : 'hide'}>
-                      <TextInputField icon="pinterest" classname="eng pn" placeholder="Before" value={isEmpty(clients.impressions && clients.impressions.b4_pt) ? '' : clients.impressions.b4_pt.toString()} onChange={this.handleChange} />
+                      <TextInputField icon="pinterest" classname="eng pn" placeholder="Starting" value={isEmpty(clients.impressions && clients.impressions.b4_pt) ? '' : clients.impressions.b4_pt.toString()} onChange={this.handleChange} />
                     </li>
                   </ul>
                 </div>
@@ -533,10 +458,10 @@ export class Client extends Component {
 
                 <div className="col-sm-12 before">
                   <hr />
-                  <h6 className="font-weight-light mt-2">Before Site Traffic</h6>
+                  <h6 className="font-weight-light mt-2">Starting Site Traffic</h6>
                   <ul className="d-flex justify-content-between list-unstyled">
                     <li>
-                      <TextInputField icon="laptop" classname="web_x" placeholder="Before" value={isEmpty(clients.siteTraffic && clients.siteTraffic.web_b4) ? '' : clients.siteTraffic.web_b4.toString()} onChange={this.handleChange} />
+                      <TextInputField icon="laptop" classname="web_x" placeholder="Starting" value={isEmpty(clients.siteTraffic && clients.siteTraffic.web_b4) ? '' : clients.siteTraffic.web_b4.toString()} onChange={this.handleChange} />
                     </li>
                   </ul>
                 </div>
