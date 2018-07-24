@@ -235,6 +235,68 @@ export class EditClient extends Component {
     const { clients, loading } = this.props.clients;
     let clientContent;
 
+    const createEditFields_5 = (cat_name, categoryName, categoryAbbrv, hideOrShow) => {
+      return (
+        <div>
+          <button className="btn btn-info d-block w-100 mb-5" type="button" data-toggle="collapse" data-target={`#${categoryName}`} aria-expanded="true" aria-controls="collapseExample">
+            <h4 className="font-weight-light m-0">{cat_name}</h4>
+          </button>
+          <div className={`${hideOrShow} collapse my-3`} id={categoryName}>
+            <div className="row">
+              <div className="col-sm-3 current">
+                <TextInputField icon="facebook" name={`${categoryAbbrv}_fb_x`} classname={categoryAbbrv + ' fb'} placeholder="Current" value={this.state[categoryAbbrv + '_fb_x'].toString()} onChange={this.handleChange} />
+                <TextInputField icon="twitter" name={`${categoryAbbrv}_tw_x`} classname={categoryAbbrv + ' tw'} placeholder="Current" value={this.state[categoryAbbrv + '_tw_x'].toString()} onChange={this.handleChange} />
+                <TextInputField icon="instagram" name={`${categoryAbbrv}_ig_x`} classname={categoryAbbrv + ' ig'} placeholder="Current" value={this.state[categoryAbbrv + '_ig_x'].toString()} onChange={this.handleChange} />
+                <TextInputField icon="linkedin" name={`${categoryAbbrv}_ln_x`} classname={categoryAbbrv + ' ln'} placeholder="Current" value={this.state[categoryAbbrv + '_ln_x'].toString()} onChange={this.handleChange} />
+                <TextInputField icon="pinterest" name={`${categoryAbbrv}_pt_x`} classname={categoryAbbrv + ' pn'} placeholder="Current" value={this.state[categoryAbbrv + '_pt_x'].toString()} onChange={this.handleChange} />
+              </div>
+              <div className="col-sm-6 rangeSlider">
+                <div className="range-slider">
+                  <i
+                    className="fa fa-facebook"
+                    style={{
+                      left: (this.state[categoryAbbrv + '_fb_x'] / this.state[categoryAbbrv + '_fb_y']) * 100 + '%'
+                    }}
+                  />
+                  <i
+                    className="fa fa-twitter"
+                    style={{
+                      left: (this.state[categoryAbbrv + '_tw_x'] / this.state[categoryAbbrv + '_tw_y']) * 100 + '%'
+                    }}
+                  />
+                  <i
+                    className="fa fa-linkedin"
+                    style={{
+                      left: (this.state[categoryAbbrv + '_ln_x'] / this.state[categoryAbbrv + '_ln_y']) * 100 + '%'
+                    }}
+                  />
+                  <i
+                    className="fa fa-pinterest"
+                    style={{
+                      left: (this.state[categoryAbbrv + '_pt_x'] / this.state[categoryAbbrv + '_pt_y']) * 100 + '%'
+                    }}
+                  />
+                  <i
+                    className="fa fa-instagram"
+                    style={{
+                      left: (this.state[categoryAbbrv + '_ig_x'] / this.state[categoryAbbrv + '_ig_y']) * 100 + '%'
+                    }}
+                  />
+                </div>
+              </div>
+              <div className="col-sm-3 goal">
+                <TextInputField icon="facebook" name={`${categoryAbbrv}_fb_y`} classname={categoryAbbrv + 'fb'} placeholder="Goal Facebook" value={this.state[categoryAbbrv + '_fb_y']} onChange={this.handleChange} />
+                <TextInputField icon="twitter" name={`${categoryAbbrv}_tw_y`} classname={categoryAbbrv + 'tw'} placeholder="Goal Twitter" value={this.state[categoryAbbrv + '_tw_y']} onChange={this.handleChange} />
+                <TextInputField icon="instagram" name={`${categoryAbbrv}_ig_y`} classname={categoryAbbrv + 'ig'} placeholder="Goal Instagram" value={this.state[categoryAbbrv + '_ig_y']} onChange={this.handleChange} />
+                <TextInputField icon="linkedin" name={`${categoryAbbrv}_ln_y`} classname={categoryAbbrv + 'ln'} placeholder="Goal LinkedIn" value={this.state[categoryAbbrv + '_ln_y']} onChange={this.handleChange} />
+                <TextInputField icon="pinterest" name={`${categoryAbbrv}_pt_y`} classname={categoryAbbrv + 'pn'} placeholder="Goal Pinterest" value={this.state[categoryAbbrv + '_pt_y']} onChange={this.handleChange} />
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    };
+
     if (clients === null || loading) {
       clientContent = <Spinner />;
     } else {
@@ -252,230 +314,12 @@ export class EditClient extends Component {
             <div className="col-md-12 m-auto">
               <h1 className="display-4 text-center">Edit {clients.name}</h1>
               <div className="row" />
-              <button className="btn btn-info d-block w-100 mb-5" type="button" data-toggle="collapse" data-target="#pageFollow" aria-expanded="true" aria-controls="collapseExample">
-                <h4 className="font-weight-light m-0">Page Followers</h4>
-              </button>
-              <div className="collapse show my-3" id="pageFollow">
-                <div className="row">
-                  <div className="col-sm-3 current">
-                    <TextInputField icon="facebook" name="pgf_fb_x" classname=" pgf fb" placeholder="Current Facebook Followers" value={this.state.pgf_fb_x.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="twitter" name="pgf_tw_x" classname=" pgf tw" placeholder="Current Twitter Followers" value={this.state.pgf_tw_x.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="instagram" name="pgf_ig_x" classname=" pgf ig" placeholder="Current Instagram Followers" value={this.state.pgf_ig_x.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="linkedin" name="pgf_ln_x" classname=" pgf ln" placeholder="Current LinkedIn Followers" value={this.state.pgf_ln_x.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="pinterest" name="pgf_pt_x" classname=" pgf pn" placeholder="Current Pinterest Followers" value={this.state.pgf_pt_x.toString()} onChange={this.handleChange} />
-                  </div>
-                  <div className="col-sm-6 rangeSlider">
-                    <div className="range-slider">
-                      <i
-                        className="fa fa-facebook"
-                        style={{
-                          left: (this.state.pgf_fb_x / this.state.pgf_fb_y) * 100 + '%'
-                        }}
-                      />
-                      <i
-                        className="fa fa-twitter"
-                        style={{
-                          left: (this.state.pgf_tw_x / this.state.pgf_tw_y) * 100 + '%'
-                        }}
-                      />
-                      <i
-                        className="fa fa-linkedin"
-                        style={{
-                          left: (this.state.pgf_ig_x / this.state.pgf_ig_y) * 100 + '%'
-                        }}
-                      />
-                      <i
-                        className="fa fa-pinterest"
-                        style={{
-                          left: (this.state.pgf_ln_x / this.state.pgf_ln_y) * 100 + '%'
-                        }}
-                      />
-                      <i
-                        className="fa fa-instagram"
-                        style={{
-                          left: (this.state.pgf_pt_x / this.state.pgf_pt_y) * 100 + '%'
-                        }}
-                      />
-                    </div>
-                  </div>
-                  <div className="col-sm-3 goal">
-                    <TextInputField icon="facebook" name="pgf_fb_y" classname="pgf fb" placeholder="Goal Facebook Followers" value={this.state.pgf_fb_y.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="twitter" name="pgf_tw_y" classname="pgf tw" placeholder="Goal Twitter Followers" value={this.state.pgf_tw_y.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="instagram" name="pgf_ig_y" classname="pgf ig" placeholder="Goal Instagram Followers" value={this.state.pgf_ig_y.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="linkedin" name="pgf_ln_y" classname="pgf ln" placeholder="Goal LinkedIn Followers" value={this.state.pgf_ln_y.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="pinterest" name="pgf_pt_y" classname="pgf pn" placeholder="Goal Pinterest Followers" value={this.state.pgf_pt_y.toString()} onChange={this.handleChange} />
-                  </div>
-                </div>
-                {/* End of Page Followers*/}
-              </div>
-              <button className="btn btn-info d-block w-100 mb-5" type="button" data-toggle="collapse" data-target="#impressions" aria-expanded="false" aria-controls="collapseExample">
-                <h4 className="font-weight-light m-0">Impressions</h4>
-              </button>
-              <div className="collapse my-3" id="impressions">
-                <div className="row">
-                  <div className="col-sm-3 current">
-                    <TextInputField icon="facebook" name="imp_fb_x" classname="imp fb" placeholder="Current Facebook Impressions" value={this.state.imp_fb_x.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="twitter" name="imp_tw_x" classname="imp tw" placeholder="Current Twitter Impressions" value={this.state.imp_tw_x.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="instagram" name="imp_ig_x" classname="imp ig" placeholder="Current Instagram Impressions" value={this.state.imp_ig_x.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="linkedin" name="imp_ln_x" classname="imp ln" placeholder="Current LinkedIn Impressions" value={this.state.imp_ln_x.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="pinterest" name="imp_pt_x" classname="imp pn" placeholder="Current Pinterest Impressions" value={this.state.imp_pt_x.toString()} onChange={this.handleChange} />
-                  </div>
-                  <div className="col-sm-6 rangeSlider">
-                    <div className="range-slider">
-                      <i
-                        className="fa fa-facebook"
-                        style={{
-                          left: (this.state.imp_fb_x / this.state.imp_fb_y) * 100 + '%'
-                        }}
-                      />
-                      <i
-                        className="fa fa-twitter"
-                        style={{
-                          left: (this.state.imp_tw_x / this.state.imp_tw_y) * 100 + '%'
-                        }}
-                      />
-                      <i
-                        className="fa fa-linkedin"
-                        style={{
-                          left: (this.state.imp_ig_x / this.state.imp_ig_y) * 100 + '%'
-                        }}
-                      />
-                      <i
-                        className="fa fa-pinterest"
-                        style={{
-                          left: (this.state.imp_ln_x / this.state.imp_ln_y) * 100 + '%'
-                        }}
-                      />
-                      <i
-                        className="fa fa-instagram"
-                        style={{
-                          left: (this.state.imp_pt_x / this.state.imp_pt_y) * 100 + '%'
-                        }}
-                      />
-                    </div>
-                  </div>
-                  <div className="col-sm-3 goal">
-                    <TextInputField icon="facebook" name="imp_fb_y" classname="imp fb" placeholder="Goal Facebook Impressions" value={this.state.imp_fb_y.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="twitter" name="imp_tw_y" classname="imp tw" placeholder="Goal Twitter Impressions" value={this.state.imp_tw_y.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="instagram" name="imp_ig_y" classname="imp ig" placeholder="Goal Instagram Impressions" value={this.state.imp_ig_y.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="linkedin" name="imp_ln_y" classname="imp ln" placeholder="Goal LinkedIn Impressions" value={this.state.imp_ln_y.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="pinterest" name="imp_pt_y" classname="imp pn" placeholder="Goal Pinterest Impressions" value={this.state.imp_pt_y.toString()} onChange={this.handleChange} />
-                  </div>
-                </div>
-                {/* End of Impressions*/}
-              </div>
-              <button className="btn btn-info d-block w-100 mb-5" type="button" data-toggle="collapse" data-target="#reach" aria-expanded="false" aria-controls="collapseExample">
-                <h4 className="font-weight-light m-0">Reach</h4>
-              </button>
-              <div className="collapse my-3" id="reach">
-                <div className="row">
-                  <div className="col-sm-3 current">
-                    <TextInputField icon="facebook" name="reach_fb_x" classname="imp fb" placeholder="Current Facebook Reach" value={this.state.reach_fb_x.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="twitter" name="reach_tw_x" classname="imp tw" placeholder="Current Twitter Reach" value={this.state.reach_tw_x.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="instagram" name="reach_ig_x" classname="imp ig" placeholder="Current Instagram Reach" value={this.state.reach_ig_x.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="linkedin" name="reach_ln_x" classname="imp ln" placeholder="Current LinkedIn Reach" value={this.state.reach_ln_x.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="pinterest" name="reach_pt_x" classname="imp pn" placeholder="Current Pinterest Reach" value={this.state.reach_pt_x.toString()} onChange={this.handleChange} />
-                  </div>
-                  <div className="col-sm-6 rangeSlider">
-                    <div className="range-slider">
-                      <i
-                        className="fa fa-facebook"
-                        style={{
-                          left: (this.state.reach_fb_x / this.state.reach_fb_y) * 100 + '%'
-                        }}
-                      />
-                      <i
-                        className="fa fa-twitter"
-                        style={{
-                          left: (this.state.reach_tw_x / this.state.reach_tw_y) * 100 + '%'
-                        }}
-                      />
-                      <i
-                        className="fa fa-linkedin"
-                        style={{
-                          left: (this.state.reach_ig_x / this.state.reach_ig_y) * 100 + '%'
-                        }}
-                      />
-                      <i
-                        className="fa fa-pinterest"
-                        style={{
-                          left: (this.state.reach_ln_x / this.state.reach_ln_y) * 100 + '%'
-                        }}
-                      />
-                      <i
-                        className="fa fa-instagram"
-                        style={{
-                          left: (this.state.reach_pt_x / this.state.reach_pt_y) * 100 + '%'
-                        }}
-                      />
-                    </div>
-                  </div>
-                  <div className="col-sm-3 goal">
-                    <TextInputField icon="facebook" name="reach_fb_y" classname="imp fb" placeholder="Goal Facebook Reach" value={this.state.reach_fb_y.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="twitter" name="reach_tw_y" classname="imp tw" placeholder="Goal Twitter Reach" value={this.state.reach_tw_y.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="instagram" name="reach_ig_y" classname="imp ig" placeholder="Goal Instagram Reach" value={this.state.reach_ig_y.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="linkedin" name="reach_ln_y" classname="imp ln" placeholder="Goal LinkedIn Reach" value={this.state.reach_ln_y.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="pinterest" name="reach_pt_y" classname="imp pn" placeholder="Goal Pinterest Reach" value={this.state.reach_pt_y.toString()} onChange={this.handleChange} />
-                  </div>
-                </div>
-                {/* End of Reach*/}
-              </div>
-              <button className="btn btn-info d-block w-100 mb-5" type="button" data-toggle="collapse" data-target="#engagement" aria-expanded="false" aria-controls="collapseExample">
-                <h4 className="font-weight-light m-0">Engagement</h4>
-              </button>
-              <div className="collapse  my-3" id="engagement">
-                <div className="row">
-                  <div className="col-sm-3 current">
-                    <TextInputField icon="facebook" name="eng_fb_x" classname="eng fb" placeholder="Current Facebook Engagement" value={this.state.eng_fb_x.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="twitter" name="eng_tw_x" classname="eng tw" placeholder="Current Twitter Engagement" value={this.state.eng_tw_x.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="instagram" name="eng_ig_x" classname="eng ig" placeholder="Current Instagram Engagement" value={this.state.eng_ig_x.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="linkedin" name="eng_ln_x" classname="eng ln" placeholder="Current LinkedIn Engagement" value={this.state.eng_ln_x.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="pinterest" name="eng_pt_x" classname="eng pn" placeholder="Current Pinterest Engagement" value={this.state.eng_pt_x.toString()} onChange={this.handleChange} />
-                  </div>
-                  <div className="col-sm-6 rangeSlider">
-                    <div className="range-slider">
-                      <i
-                        className="fa fa-facebook"
-                        style={{
-                          left: (this.state.eng_fb_x / this.state.eng_fb_y) * 100 + '%'
-                        }}
-                      />
-                      <i
-                        className="fa fa-twitter"
-                        style={{
-                          left: (this.state.eng_tw_x / this.state.eng_tw_y) * 100 + '%'
-                        }}
-                      />
-                      <i
-                        className="fa fa-linkedin"
-                        style={{
-                          left: (this.state.eng_ig_x / this.state.eng_ig_y) * 100 + '%'
-                        }}
-                      />
-                      <i
-                        className="fa fa-pinterest"
-                        style={{
-                          left: (this.state.eng_ln_x / this.state.eng_ln_y) * 100 + '%'
-                        }}
-                      />
-                      <i
-                        className="fa fa-instagram"
-                        style={{
-                          left: (this.state.eng_pt_x / this.state.eng_pt_y) * 100 + '%'
-                        }}
-                      />
-                    </div>
-                  </div>
-                  <div className="col-sm-3 goal">
-                    <TextInputField icon="facebook" name="eng_fb_y" classname="eng fb" placeholder="Goal Facebook Engagement" value={this.state.eng_fb_y.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="twitter" name="eng_tw_y" classname="eng tw" placeholder="Goal Twitter Engagement" value={this.state.eng_tw_y.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="instagram" name="eng_ig_y" classname="eng ig" placeholder="Goal Instagram Engagement" value={this.state.eng_ig_y.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="linkedin" name="eng_ln_y" classname="eng ln" placeholder="Goal LinkedIn Engagement" value={this.state.eng_ln_y.toString()} onChange={this.handleChange} />
-                    <TextInputField icon="pinterest" name="eng_pt_y" classname="eng pn" placeholder="Goal Pinterest Engagement" value={this.state.eng_pt_y.toString()} onChange={this.handleChange} />
-                  </div>
-                </div>
-              </div>
-              {/* End of Engagement*/}
+
+              {createEditFields_5('Page Followers', 'pageFollowers', 'pgf', 'show')}
+              {createEditFields_5('Impressions', 'impressions', 'imp')}
+              {createEditFields_5('Reach', 'reach', 'reach')}
+              {createEditFields_5('Engagement', 'engagement', 'eng')}
+
               <button className="btn btn-info d-block w-100 mb-5" type="button" data-toggle="collapse" data-target="#site_traffic" aria-expanded="false" aria-controls="collapseExample">
                 <h4 className="font-weight-light m-0">Site Traffic</h4>
               </button>
