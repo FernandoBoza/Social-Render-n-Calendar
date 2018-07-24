@@ -217,6 +217,7 @@ export class CreateClientProfile extends Component {
                     <TextInputField icon="user-o" name="name" classname="clientName" placeholder="Client Name" value={this.state.name} onChange={this.handleChange} errors={errors.name} />
                   </div>
                 </div>
+
                 <h4 className="font-weight-light mt-5">Page Followers</h4>
                 <div className="row">
                   <div className="col-sm-3 current">
@@ -291,81 +292,8 @@ export class CreateClientProfile extends Component {
                     </ul>
                   </div>
                 </div>
-
                 {/* End of Page Followers*/}
-                <h4 className="font-weight-light mt-5">Engagement</h4>
-                <div className="row">
-                  <div className="col-sm-3 current">
-                    <TextInputField icon="facebook" name="eng_fb_x" classname="eng fb" placeholder="Current Facebook Engagement" value={this.state.eng_fb_x} onChange={this.handleChange} />
-                    <TextInputField icon="twitter" name="eng_tw_x" classname="eng tw" placeholder="Current Twitter Engagement" value={this.state.eng_tw_x} onChange={this.handleChange} />
-                    <TextInputField icon="instagram" name="eng_ig_x" classname="eng ig" placeholder="Current Instagram Engagement" value={this.state.eng_ig_x} onChange={this.handleChange} />
-                    <TextInputField icon="linkedin" name="eng_ln_x" classname="eng ln" placeholder="Current LinkedIn Engagement" value={this.state.eng_ln_x} onChange={this.handleChange} />
-                    <TextInputField icon="pinterest" name="eng_pt_x" classname="eng pn" placeholder="Current Pinterest Engagement" value={this.state.eng_pt_x} onChange={this.handleChange} />
-                  </div>
-                  <div className="col-sm-6 rangeSlider">
-                    <div className="range-slider">
-                      <i
-                        className="fa fa-facebook"
-                        style={{
-                          left: (this.state.eng_fb_x / this.state.eng_fb_y) * 100 + '%'
-                        }}
-                      />
-                      <i
-                        className="fa fa-twitter"
-                        style={{
-                          left: (this.state.eng_tw_x / this.state.eng_tw_y) * 100 + '%'
-                        }}
-                      />
-                      <i
-                        className="fa fa-linkedin"
-                        style={{
-                          left: (this.state.eng_ln_x / this.state.eng_ln_y) * 100 + '%'
-                        }}
-                      />
-                      <i
-                        className="fa fa-pinterest"
-                        style={{
-                          left: (this.state.eng_pt_x / this.state.eng_pt_y) * 100 + '%'
-                        }}
-                      />
-                      <i
-                        className="fa fa-instagram"
-                        style={{
-                          left: (this.state.eng_ig_x / this.state.eng_ig_y) * 100 + '%'
-                        }}
-                      />
-                    </div>
-                  </div>
-                  <div className="col-sm-3 goal">
-                    <TextInputField icon="facebook" name="eng_fb_y" classname="eng fb" placeholder="Goal Facebook Engagement" value={this.state.eng_fb_y} onChange={this.handleChange} />
-                    <TextInputField icon="twitter" name="eng_tw_y" classname="eng tw" placeholder="Goal Twitter Engagement" value={this.state.eng_tw_y} onChange={this.handleChange} />
-                    <TextInputField icon="instagram" name="eng_ig_y" classname="eng ig" placeholder="Goal Instagram Engagement" value={this.state.eng_ig_y} onChange={this.handleChange} />
-                    <TextInputField icon="linkedin" name="eng_ln_y" classname="eng ln" placeholder="Goal LinkedIn Engagement" value={this.state.eng_ln_y} onChange={this.handleChange} />
-                    <TextInputField icon="pinterest" name="eng_pt_y" classname="eng pn" placeholder="Goal Pinterest Engagement" value={this.state.eng_pt_y} onChange={this.handleChange} />
-                  </div>
 
-                  <div className="col-sm-12 before">
-                    <h6 className="font-weight-light mt-2">Starting Engagement</h6>
-                    <ul className="d-flex justify-content-between list-unstyled">
-                      <li>
-                        <TextInputField icon="facebook" name="eng_b4_fb" classname="pgf fb" placeholder="Starting" value={this.state.eng_b4_fb} onChange={this.handleChange} />
-                      </li>
-                      <li>
-                        <TextInputField icon="twitter" name="eng_b4_tw" classname="pgf tw" placeholder="Starting" value={this.state.eng_b4_tw} onChange={this.handleChange} />
-                      </li>
-                      <li>
-                        <TextInputField icon="instagram" name="eng_b4_ig" classname="pgf ig" placeholder="Starting" value={this.state.eng_b4_ig} onChange={this.handleChange} />
-                      </li>
-                      <li>
-                        <TextInputField icon="linkedin" name="eng_b4_ln" classname="pgf ln" placeholder="Starting" value={this.state.eng_b4_ln} onChange={this.handleChange} />
-                      </li>
-                      <li>
-                        <TextInputField icon="pinterest" name="eng_b4_pt" classname="pgf pn" placeholder="Starting" value={this.state.eng_b4_pt} onChange={this.handleChange} />
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                {/* End of Engagement*/}
                 <h4 className="font-weight-light mt-5">Impressions</h4>
                 <div className="row">
                   <div className="col-sm-3 current">
@@ -514,6 +442,80 @@ export class CreateClientProfile extends Component {
                 </div>
                 {/* End of Reach*/}
 
+                <h4 className="font-weight-light mt-5">Engagement</h4>
+                <div className="row">
+                  <div className="col-sm-3 current">
+                    <TextInputField icon="facebook" name="eng_fb_x" classname="eng fb" placeholder="Current Facebook Engagement" value={this.state.eng_fb_x} onChange={this.handleChange} />
+                    <TextInputField icon="twitter" name="eng_tw_x" classname="eng tw" placeholder="Current Twitter Engagement" value={this.state.eng_tw_x} onChange={this.handleChange} />
+                    <TextInputField icon="instagram" name="eng_ig_x" classname="eng ig" placeholder="Current Instagram Engagement" value={this.state.eng_ig_x} onChange={this.handleChange} />
+                    <TextInputField icon="linkedin" name="eng_ln_x" classname="eng ln" placeholder="Current LinkedIn Engagement" value={this.state.eng_ln_x} onChange={this.handleChange} />
+                    <TextInputField icon="pinterest" name="eng_pt_x" classname="eng pn" placeholder="Current Pinterest Engagement" value={this.state.eng_pt_x} onChange={this.handleChange} />
+                  </div>
+                  <div className="col-sm-6 rangeSlider">
+                    <div className="range-slider">
+                      <i
+                        className="fa fa-facebook"
+                        style={{
+                          left: (this.state.eng_fb_x / this.state.eng_fb_y) * 100 + '%'
+                        }}
+                      />
+                      <i
+                        className="fa fa-twitter"
+                        style={{
+                          left: (this.state.eng_tw_x / this.state.eng_tw_y) * 100 + '%'
+                        }}
+                      />
+                      <i
+                        className="fa fa-linkedin"
+                        style={{
+                          left: (this.state.eng_ln_x / this.state.eng_ln_y) * 100 + '%'
+                        }}
+                      />
+                      <i
+                        className="fa fa-pinterest"
+                        style={{
+                          left: (this.state.eng_pt_x / this.state.eng_pt_y) * 100 + '%'
+                        }}
+                      />
+                      <i
+                        className="fa fa-instagram"
+                        style={{
+                          left: (this.state.eng_ig_x / this.state.eng_ig_y) * 100 + '%'
+                        }}
+                      />
+                    </div>
+                  </div>
+                  <div className="col-sm-3 goal">
+                    <TextInputField icon="facebook" name="eng_fb_y" classname="eng fb" placeholder="Goal Facebook Engagement" value={this.state.eng_fb_y} onChange={this.handleChange} />
+                    <TextInputField icon="twitter" name="eng_tw_y" classname="eng tw" placeholder="Goal Twitter Engagement" value={this.state.eng_tw_y} onChange={this.handleChange} />
+                    <TextInputField icon="instagram" name="eng_ig_y" classname="eng ig" placeholder="Goal Instagram Engagement" value={this.state.eng_ig_y} onChange={this.handleChange} />
+                    <TextInputField icon="linkedin" name="eng_ln_y" classname="eng ln" placeholder="Goal LinkedIn Engagement" value={this.state.eng_ln_y} onChange={this.handleChange} />
+                    <TextInputField icon="pinterest" name="eng_pt_y" classname="eng pn" placeholder="Goal Pinterest Engagement" value={this.state.eng_pt_y} onChange={this.handleChange} />
+                  </div>
+
+                  <div className="col-sm-12 before">
+                    <h6 className="font-weight-light mt-2">Starting Engagement</h6>
+                    <ul className="d-flex justify-content-between list-unstyled">
+                      <li>
+                        <TextInputField icon="facebook" name="eng_b4_fb" classname="pgf fb" placeholder="Starting" value={this.state.eng_b4_fb} onChange={this.handleChange} />
+                      </li>
+                      <li>
+                        <TextInputField icon="twitter" name="eng_b4_tw" classname="pgf tw" placeholder="Starting" value={this.state.eng_b4_tw} onChange={this.handleChange} />
+                      </li>
+                      <li>
+                        <TextInputField icon="instagram" name="eng_b4_ig" classname="pgf ig" placeholder="Starting" value={this.state.eng_b4_ig} onChange={this.handleChange} />
+                      </li>
+                      <li>
+                        <TextInputField icon="linkedin" name="eng_b4_ln" classname="pgf ln" placeholder="Starting" value={this.state.eng_b4_ln} onChange={this.handleChange} />
+                      </li>
+                      <li>
+                        <TextInputField icon="pinterest" name="eng_b4_pt" classname="pgf pn" placeholder="Starting" value={this.state.eng_b4_pt} onChange={this.handleChange} />
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                {/* End of Engagement*/}
+
                 <h4 className=" font-weight-light mt-5">Site Traffic</h4>
                 <div className="row site-traffic">
                   <div className="col-sm-3 current">
@@ -542,6 +544,7 @@ export class CreateClientProfile extends Component {
                   </div>
                 </div>
                 {/* End of Site Traffic*/}
+
                 <button className="btn btn-lg btn-outline-primary btn-block mt-5 w-50 mx-auto" type="submit">
                   Create Client
                 </button>
