@@ -27,6 +27,11 @@ export class Client extends Component {
       imp_tw: true,
       imp_ln: true,
       imp_pt: true,
+      reach_fb: true,
+      reach_ig: true,
+      reach_tw: true,
+      reach_ln: true,
+      reach_pt: true,
       web: true
     };
 
@@ -318,6 +323,122 @@ export class Client extends Component {
               </div>
             </div>
             {/* End of Engagement*/}
+            <button className="btn btn-info d-block w-100 mb-5" type="button" data-toggle="collapse" data-target="#reach" aria-expanded="false" aria-controls="collapseExample">
+              <h4 className="font-weight-light m-0">Reach</h4>
+            </button>
+            <div className="collapse my-3" id="reach">
+              <div className="row">
+                <div className="col-sm-12 d-flex justify-content-around mb-4 hide-btn-col">
+                  <div className="form-check">
+                    <input name="reach_fb" checked={this.state.reach_fb} onChange={this.toggleShowBtn} type="checkbox" className="form-check-input" id="btnCheckReachFb" />
+                    <label className="form-check-label" htmlFor="btnCheckReachFb">
+                      <i className="fa fa-facebook" />
+                    </label>
+                  </div>
+
+                  <div className="form-check">
+                    <input name="reach_tw" checked={this.state.reach_tw} onChange={this.toggleShowBtn} type="checkbox" className="form-check-input" id="btnCheckReach2" />
+                    <label className="form-check-label" htmlFor="btnCheckReach2">
+                      <i className="fa fa-twitter" />
+                    </label>
+                  </div>
+
+                  <div className="form-check">
+                    <input name="reach_ig" checked={this.state.reach_ig} onChange={this.toggleShowBtn} type="checkbox" className="form-check-input" id="btnCheckReach3" />
+                    <label className="form-check-label" htmlFor="btnCheckReach3">
+                      <i className="fa fa-instagram" />
+                    </label>
+                  </div>
+
+                  <div className="form-check">
+                    <input name="reach_ln" checked={this.state.reach_ln} onChange={this.toggleShowBtn} type="checkbox" className="form-check-input" id="btnCheckReach4" />
+                    <label className="form-check-label" htmlFor="btnCheckReach4">
+                      <i className="fa fa-linkedin" />
+                    </label>
+                  </div>
+
+                  <div className="form-check">
+                    <input name="reach_pt" checked={this.state.reach_pt} onChange={this.toggleShowBtn} type="checkbox" className="form-check-input" id="btnCheckReach5" />
+                    <label className="form-check-label" htmlFor="btnCheckReach5">
+                      <i className="fa fa-pinterest" />
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-sm-3 current">
+                  <TextInputField icon="facebook" divClassName={this.state.reach_fb ? '' : 'hide'} classname="reach fb" placeholder="Current Facebook Reach" value={isEmpty(clients.reach && clients.reach.fb_x) ? '' : clients.reach.fb_x.toString()} onChange={this.handleChange} />
+                  <TextInputField icon="twitter" divClassName={this.state.reach_tw ? '' : 'hide'} classname="reach tw" placeholder="Current Twitter Reach" value={isEmpty(clients.reach && clients.reach.tw_x) ? '' : clients.reach.tw_x.toString()} onChange={this.handleChange} />
+                  <TextInputField icon="instagram" divClassName={this.state.reach_ig ? '' : 'hide'} classname="reach ig" placeholder="Current Instagram Reach" value={isEmpty(clients.reach && clients.reach.ig_x) ? '' : clients.reach.ig_x.toString()} onChange={this.handleChange} />
+                  <TextInputField icon="linkedin" divClassName={this.state.reach_ln ? '' : 'hide'} classname="reach ln" placeholder="Current LinkedIn Reach" value={isEmpty(clients.reach && clients.reach.ln_x) ? '' : clients.reach.ln_x.toString()} onChange={this.handleChange} />
+                  <TextInputField icon="pinterest" divClassName={this.state.reach_pt ? '' : 'hide'} classname="reach pn" placeholder="Current Pinterest Reach" value={isEmpty(clients.reach && clients.reach.pt_x) ? '' : clients.reach.pt_x.toString()} onChange={this.handleChange} />
+                </div>
+                <div className="col-sm-6 rangeSlider">
+                  <div className="range-slider">
+                    <i
+                      className={this.state.reach_fb ? 'fa fa-facebook' : 'hide'}
+                      style={{
+                        left: (isEmpty(clients.reach && clients.reach.fb_x) ? '' : clients.reach.fb_x.toString() / clients.reach.fb_y) * 100 + '%'
+                      }}
+                    />
+                    <i
+                      className={this.state.reach_tw ? 'fa fa-twitter' : 'hide'}
+                      style={{
+                        left: (isEmpty(clients.reach && clients.reach.tw_x) ? '' : clients.reach.tw_x.toString() / clients.reach.tw_y) * 100 + '%'
+                      }}
+                    />
+                    <i
+                      className={this.state.reach_ln ? 'fa fa-linkedin' : 'hide'}
+                      style={{
+                        left: (isEmpty(clients.reach && clients.reach.ln_x) ? '' : clients.reach.ln_x.toString() / clients.reach.ln_y) * 100 + '%'
+                      }}
+                    />
+                    <i
+                      className={this.state.reach_pt ? 'fa fa-pinterest' : 'hide'}
+                      style={{
+                        left: (isEmpty(clients.reach && clients.reach.pt_x) ? '' : clients.reach.pt_x.toString() / clients.reach.pt_y) * 100 + '%'
+                      }}
+                    />
+                    <i
+                      className={this.state.reach_ig ? 'fa fa-instagram' : 'hide'}
+                      style={{
+                        left: (isEmpty(clients.reach && clients.reach.ig_x) ? '' : clients.reach.ig_x.toString() / clients.reach.ig_y) * 100 + '%'
+                      }}
+                    />
+                  </div>
+                </div>
+                <div className="col-sm-3 goal">
+                  <TextInputField icon="facebook" divClassName={this.state.reach_fb ? '' : 'hide'} classname="reach fb" placeholder="Goal Facebook Reach" value={isEmpty(clients.reach && clients.reach.fb_y) ? '' : clients.reach.fb_y.toString()} onChange={this.handleChange} />
+                  <TextInputField icon="twitter" divClassName={this.state.reach_tw ? '' : 'hide'} classname="reach tw" placeholder="Goal Twitter Reach" value={isEmpty(clients.reach && clients.reach.tw_y) ? '' : clients.reach.tw_y.toString()} onChange={this.handleChange} />
+                  <TextInputField icon="instagram" divClassName={this.state.reach_ig ? '' : 'hide'} classname="reach ig" placeholder="Goal Instagram Reach" value={isEmpty(clients.reach && clients.reach.ig_y) ? '' : clients.reach.ig_y.toString()} onChange={this.handleChange} />
+                  <TextInputField icon="linkedin" divClassName={this.state.reach_ln ? '' : 'hide'} classname="reach ln" placeholder="Goal LinkedIn Reach" value={isEmpty(clients.reach && clients.reach.ln_y) ? '' : clients.reach.ln_y.toString()} onChange={this.handleChange} />
+                  <TextInputField icon="pinterest" divClassName={this.state.reach_pt ? '' : 'hide'} classname="reach pn" placeholder="Goal Pinterest Reach" value={isEmpty(clients.reach && clients.reach.pt_y) ? '' : clients.reach.pt_y.toString()} onChange={this.handleChange} />
+                </div>
+
+                <div className="col-sm-12 before">
+                  <hr />
+                  <h6 className="font-weight-light mt-2">Starting Reach</h6>
+                  <ul className="d-flex justify-content-between list-unstyled">
+                    <li className={this.state.reach_fb ? '' : 'hide'}>
+                      <TextInputField icon="facebook" classname="reach fb" placeholder="Starting" value={isEmpty(clients.reach && clients.reach.b4_fb) ? '' : clients.reach.b4_fb.toString()} onChange={this.handleChange} />
+                    </li>
+                    <li className={this.state.reach_tw ? '' : 'hide'}>
+                      <TextInputField icon="twitter" classname="reach tw" placeholder="Starting" value={isEmpty(clients.reach && clients.reach.b4_tw) ? '' : clients.reach.b4_tw.toString()} onChange={this.handleChange} />
+                    </li>
+                    <li className={this.state.reach_ig ? '' : 'hide'}>
+                      <TextInputField icon="instagram" classname="reach ig" placeholder="Starting" value={isEmpty(clients.reach && clients.reach.b4_ig) ? '' : clients.reach.b4_ig.toString()} onChange={this.handleChange} />
+                    </li>
+                    <li className={this.state.reach_ln ? '' : 'hide'}>
+                      <TextInputField icon="linkedin" classname="reach ln" placeholder="Starting" value={isEmpty(clients.reach && clients.reach.b4_ln) ? '' : clients.reach.b4_ln.toString()} onChange={this.handleChange} />
+                    </li>
+                    <li className={this.state.reach_pt ? '' : 'hide'}>
+                      <TextInputField icon="pinterest" classname="reach pn" placeholder="Starting" value={isEmpty(clients.reach && clients.reach.b4_pt) ? '' : clients.reach.b4_pt.toString()} onChange={this.handleChange} />
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            {/* End of Reach*/}
             <button className="btn btn-info d-block w-100 mb-5" type="button" data-toggle="collapse" data-target="#impressions" aria-expanded="false" aria-controls="collapseExample">
               <h4 className="font-weight-light m-0">Impressions</h4>
             </button>
@@ -432,8 +553,8 @@ export class Client extends Component {
                   </ul>
                 </div>
               </div>
-              {/* End of Impressions*/}
             </div>
+            {/* End of Impressions*/}
             <button className="btn btn-info d-block w-100 mb-5" type="button" data-toggle="collapse" data-target="#site_traffic" aria-expanded="false" aria-controls="collapseExample">
               <h4 className="font-weight-light m-0">Site Traffic</h4>
             </button>
@@ -466,8 +587,8 @@ export class Client extends Component {
                   </ul>
                 </div>
               </div>
-              {/* End of Site Traffic*/}
             </div>
+            {/* End of Site Traffic*/}
           </div>
         </div>
       );

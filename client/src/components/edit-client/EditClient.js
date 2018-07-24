@@ -12,6 +12,9 @@ export class EditClient extends Component {
     super(props);
     this.state = {
       name: '',
+      //--------------------
+      // Page Followers
+      //--------------------
       pgf_fb_x: '',
       pgf_fb_y: '',
       pgf_ig_x: '',
@@ -22,6 +25,9 @@ export class EditClient extends Component {
       pgf_ln_y: '',
       pgf_pt_x: '',
       pgf_pt_y: '',
+      //--------------------
+      // Engagment
+      //--------------------
       eng_fb_x: '',
       eng_fb_y: '',
       eng_ig_x: '',
@@ -32,6 +38,9 @@ export class EditClient extends Component {
       eng_ln_y: '',
       eng_pt_x: '',
       eng_pt_y: '',
+      //--------------------
+      // Impressions
+      //--------------------
       imp_fb_x: '',
       imp_fb_y: '',
       imp_ig_x: '',
@@ -42,6 +51,22 @@ export class EditClient extends Component {
       imp_ln_y: '',
       imp_pt_x: '',
       imp_pt_y: '',
+      //--------------------
+      // Reach
+      //--------------------
+      reach_fb_x: '',
+      reach_fb_y: '',
+      reach_ig_x: '',
+      reach_ig_y: '',
+      reach_tw_x: '',
+      reach_tw_y: '',
+      reach_ln_x: '',
+      reach_ln_y: '',
+      reach_pt_x: '',
+      reach_pt_y: '',
+      // --------------------------
+      //  Web Traffic
+      // --------------------------
       web_x: '',
       web_y: '',
       errors: {}
@@ -67,6 +92,9 @@ export class EditClient extends Component {
 
       this.setState({
         name: isEmpty(clients.name && clients.name) ? '' : clients.name,
+        // --------------------------
+        //Page Followers
+        // --------------------------
         pgf_fb_x: isEmpty(clients.pageFollowers && clients.pageFollowers.fb_x) ? '' : clients.pageFollowers.fb_x,
         pgf_fb_y: isEmpty(clients.pageFollowers && clients.pageFollowers.fb_y) ? '' : clients.pageFollowers.fb_y,
         pgf_ig_x: isEmpty(clients.pageFollowers && clients.pageFollowers.ig_x) ? '' : clients.pageFollowers.ig_x,
@@ -77,6 +105,9 @@ export class EditClient extends Component {
         pgf_ln_y: isEmpty(clients.pageFollowers && clients.pageFollowers.ln_y) ? '' : clients.pageFollowers.ln_y,
         pgf_pt_x: isEmpty(clients.pageFollowers && clients.pageFollowers.pt_x) ? '' : clients.pageFollowers.pt_x,
         pgf_pt_y: isEmpty(clients.pageFollowers && clients.pageFollowers.pt_y) ? '' : clients.pageFollowers.pt_y,
+        // --------------------------
+        // Engagement
+        // --------------------------
         eng_fb_x: isEmpty(clients.engagement && clients.engagement.fb_x) ? '' : clients.engagement.fb_x,
         eng_fb_y: isEmpty(clients.engagement && clients.engagement.fb_y) ? '' : clients.engagement.fb_y,
         eng_ig_x: isEmpty(clients.engagement && clients.engagement.ig_x) ? '' : clients.engagement.ig_x,
@@ -87,6 +118,9 @@ export class EditClient extends Component {
         eng_ln_y: isEmpty(clients.engagement && clients.engagement.ln_y) ? '' : clients.engagement.ln_y,
         eng_pt_x: isEmpty(clients.engagement && clients.engagement.pt_x) ? '' : clients.engagement.pt_x,
         eng_pt_y: isEmpty(clients.engagement && clients.engagement.pt_y) ? '' : clients.engagement.pt_y,
+        // --------------------------
+        // Impressions
+        // --------------------------
         imp_fb_x: isEmpty(clients.impressions && clients.impressions.fb_x) ? '' : clients.impressions.fb_x,
         imp_fb_y: isEmpty(clients.impressions && clients.impressions.fb_y) ? '' : clients.impressions.fb_y,
         imp_ig_x: isEmpty(clients.impressions && clients.impressions.ig_x) ? '' : clients.impressions.ig_x,
@@ -97,6 +131,24 @@ export class EditClient extends Component {
         imp_ln_y: isEmpty(clients.impressions && clients.impressions.ln_y) ? '' : clients.impressions.ln_y,
         imp_pt_x: isEmpty(clients.impressions && clients.impressions.pt_x) ? '' : clients.impressions.pt_x,
         imp_pt_y: isEmpty(clients.impressions && clients.impressions.pt_y) ? '' : clients.impressions.pt_y,
+
+        // --------------------------
+        // Reach
+        // --------------------------
+        reach_fb_x: isEmpty(clients.reach && clients.reach.fb_x) ? '' : clients.reach.fb_x,
+        reach_fb_y: isEmpty(clients.reach && clients.reach.fb_y) ? '' : clients.reach.fb_y,
+        reach_ig_x: isEmpty(clients.reach && clients.reach.ig_x) ? '' : clients.reach.ig_x,
+        reach_ig_y: isEmpty(clients.reach && clients.reach.ig_y) ? '' : clients.reach.ig_y,
+        reach_tw_x: isEmpty(clients.reach && clients.reach.tw_x) ? '' : clients.reach.tw_x,
+        reach_tw_y: isEmpty(clients.reach && clients.reach.tw_y) ? '' : clients.reach.tw_y,
+        reach_ln_x: isEmpty(clients.reach && clients.reach.ln_x) ? '' : clients.reach.ln_x,
+        reach_ln_y: isEmpty(clients.reach && clients.reach.ln_y) ? '' : clients.reach.ln_y,
+        reach_pt_x: isEmpty(clients.reach && clients.reach.pt_x) ? '' : clients.reach.pt_x,
+        reach_pt_y: isEmpty(clients.reach && clients.reach.pt_y) ? '' : clients.reach.pt_y,
+
+        // --------------------------
+        //  Web Traffic
+        // --------------------------
         web_x: isEmpty(clients.siteTraffic && clients.siteTraffic.x) ? '' : clients.siteTraffic.x,
         web_y: isEmpty(clients.siteTraffic && clients.siteTraffic.y) ? '' : clients.siteTraffic.y
       });
@@ -113,6 +165,9 @@ export class EditClient extends Component {
 
     const clientData = {
       name: this.state.name,
+      //----------------------
+      // Page Followers
+      //----------------------
       pgf_fb_x: this.state.pgf_fb_x,
       pgf_fb_y: this.state.pgf_fb_y,
       pgf_ig_x: this.state.pgf_ig_x,
@@ -123,6 +178,9 @@ export class EditClient extends Component {
       pgf_ln_y: this.state.pgf_ln_y,
       pgf_pt_x: this.state.pgf_pt_x,
       pgf_pt_y: this.state.pgf_pt_y,
+      //----------------------
+      // Engagment
+      //----------------------
       eng_fb_x: this.state.eng_fb_x,
       eng_fb_y: this.state.eng_fb_y,
       eng_ig_x: this.state.eng_ig_x,
@@ -133,6 +191,9 @@ export class EditClient extends Component {
       eng_ln_y: this.state.eng_ln_y,
       eng_pt_x: this.state.eng_pt_x,
       eng_pt_y: this.state.eng_pt_y,
+      //----------------------
+      // Impressions
+      //----------------------
       imp_fb_x: this.state.imp_fb_x,
       imp_fb_y: this.state.imp_fb_y,
       imp_ig_x: this.state.imp_ig_x,
@@ -143,6 +204,22 @@ export class EditClient extends Component {
       imp_ln_y: this.state.imp_ln_y,
       imp_pt_x: this.state.imp_pt_x,
       imp_pt_y: this.state.imp_pt_y,
+      //----------------------
+      // Reach
+      //----------------------
+      reach_fb_x: this.state.reach_fb_x,
+      reach_fb_y: this.state.reach_fb_y,
+      reach_ig_x: this.state.reach_ig_x,
+      reach_ig_y: this.state.reach_ig_y,
+      reach_tw_x: this.state.reach_tw_x,
+      reach_tw_y: this.state.reach_tw_y,
+      reach_ln_x: this.state.reach_ln_x,
+      reach_ln_y: this.state.reach_ln_y,
+      reach_pt_x: this.state.reach_pt_x,
+      reach_pt_y: this.state.reach_pt_y,
+      //----------------------
+      // Web Traffic
+      //----------------------
       web_x: this.state.web_x,
       web_y: this.state.web_y
     };
@@ -342,6 +419,62 @@ export class EditClient extends Component {
                   </div>
                 </div>
                 {/* End of Impressions*/}
+              </div>
+              <button className="btn btn-info d-block w-100 mb-5" type="button" data-toggle="collapse" data-target="#reach" aria-expanded="false" aria-controls="collapseExample">
+                <h4 className="font-weight-light m-0">Reach</h4>
+              </button>
+              <div className="collapse my-3" id="reach">
+                <div className="row">
+                  <div className="col-sm-3 current">
+                    <TextInputField icon="facebook" name="reach_fb_x" classname="imp fb" placeholder="Current Facebook Reach" value={this.state.reach_fb_x.toString()} onChange={this.handleChange} />
+                    <TextInputField icon="twitter" name="reach_tw_x" classname="imp tw" placeholder="Current Twitter Reach" value={this.state.reach_tw_x.toString()} onChange={this.handleChange} />
+                    <TextInputField icon="instagram" name="reach_ig_x" classname="imp ig" placeholder="Current Instagram Reach" value={this.state.reach_ig_x.toString()} onChange={this.handleChange} />
+                    <TextInputField icon="linkedin" name="reach_ln_x" classname="imp ln" placeholder="Current LinkedIn Reach" value={this.state.reach_ln_x.toString()} onChange={this.handleChange} />
+                    <TextInputField icon="pinterest" name="reach_pt_x" classname="imp pn" placeholder="Current Pinterest Reach" value={this.state.reach_pt_x.toString()} onChange={this.handleChange} />
+                  </div>
+                  <div className="col-sm-6 rangeSlider">
+                    <div className="range-slider">
+                      <i
+                        className="fa fa-facebook"
+                        style={{
+                          left: (this.state.reach_fb_x / this.state.reach_fb_y) * 100 + '%'
+                        }}
+                      />
+                      <i
+                        className="fa fa-twitter"
+                        style={{
+                          left: (this.state.reach_tw_x / this.state.reach_tw_y) * 100 + '%'
+                        }}
+                      />
+                      <i
+                        className="fa fa-linkedin"
+                        style={{
+                          left: (this.state.reach_ig_x / this.state.reach_ig_y) * 100 + '%'
+                        }}
+                      />
+                      <i
+                        className="fa fa-pinterest"
+                        style={{
+                          left: (this.state.reach_ln_x / this.state.reach_ln_y) * 100 + '%'
+                        }}
+                      />
+                      <i
+                        className="fa fa-instagram"
+                        style={{
+                          left: (this.state.reach_pt_x / this.state.reach_pt_y) * 100 + '%'
+                        }}
+                      />
+                    </div>
+                  </div>
+                  <div className="col-sm-3 goal">
+                    <TextInputField icon="facebook" name="reach_fb_y" classname="imp fb" placeholder="Goal Facebook Reach" value={this.state.reach_fb_y.toString()} onChange={this.handleChange} />
+                    <TextInputField icon="twitter" name="reach_tw_y" classname="imp tw" placeholder="Goal Twitter Reach" value={this.state.reach_tw_y.toString()} onChange={this.handleChange} />
+                    <TextInputField icon="instagram" name="reach_ig_y" classname="imp ig" placeholder="Goal Instagram Reach" value={this.state.reach_ig_y.toString()} onChange={this.handleChange} />
+                    <TextInputField icon="linkedin" name="reach_ln_y" classname="imp ln" placeholder="Goal LinkedIn Reach" value={this.state.reach_ln_y.toString()} onChange={this.handleChange} />
+                    <TextInputField icon="pinterest" name="reach_pt_y" classname="imp pn" placeholder="Goal Pinterest Reach" value={this.state.reach_pt_y.toString()} onChange={this.handleChange} />
+                  </div>
+                </div>
+                {/* End of Reach*/}
               </div>
               <button className="btn btn-info d-block w-100 mb-5" type="button" data-toggle="collapse" data-target="#site_traffic" aria-expanded="false" aria-controls="collapseExample">
                 <h4 className="font-weight-light m-0">Site Traffic</h4>

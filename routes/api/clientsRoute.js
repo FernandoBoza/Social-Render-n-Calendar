@@ -59,8 +59,9 @@ router.put('/handle/:handle', passport.authenticate('jwt', { session: false }), 
   clientProfileFields.impressions = {};
   clientProfileFields.reach = {};
   clientProfileFields.siteTraffic = {};
-
+  // ------------------------
   //Page Followers
+  // ------------------------
   if (req.body.pgf_b4_fb) clientProfileFields.pageFollowers.b4_fb = req.body.pgf_b4_fb;
   if (req.body.pgf_fb_x) clientProfileFields.pageFollowers.fb_x = req.body.pgf_fb_x;
   if (req.body.pgf_fb_y) clientProfileFields.pageFollowers.fb_y = req.body.pgf_fb_y;
@@ -76,8 +77,9 @@ router.put('/handle/:handle', passport.authenticate('jwt', { session: false }), 
   if (req.body.pgf_b4_pt) clientProfileFields.pageFollowers.b4_pt = req.body.pgf_b4_pt;
   if (req.body.pgf_pt_x) clientProfileFields.pageFollowers.pt_x = req.body.pgf_pt_x;
   if (req.body.pgf_pt_y) clientProfileFields.pageFollowers.pt_y = req.body.pgf_pt_y;
-
+  // ------------------------
   // Engagement
+  // ------------------------
   if (req.body.eng_b4_fb) clientProfileFields.engagement.b4_fb = req.body.eng_b4_fb;
   if (req.body.eng_fb_x) clientProfileFields.engagement.fb_x = req.body.eng_fb_x;
   if (req.body.eng_fb_y) clientProfileFields.engagement.fb_y = req.body.eng_fb_y;
@@ -93,8 +95,9 @@ router.put('/handle/:handle', passport.authenticate('jwt', { session: false }), 
   if (req.body.eng_b4_pt) clientProfileFields.engagement.b4_pt = req.body.eng_b4_pt;
   if (req.body.eng_pt_x) clientProfileFields.engagement.pt_x = req.body.eng_pt_x;
   if (req.body.eng_pt_y) clientProfileFields.engagement.pt_y = req.body.eng_pt_y;
-
+  // ------------------------
   // Impressions
+  // ------------------------
   if (req.body.imp_b4_fb) clientProfileFields.impressions.b4_fb = req.body.imp_b4_fb;
   if (req.body.imp_fb_x) clientProfileFields.impressions.fb_x = req.body.imp_fb_x;
   if (req.body.imp_fb_y) clientProfileFields.impressions.fb_y = req.body.imp_fb_y;
@@ -110,8 +113,9 @@ router.put('/handle/:handle', passport.authenticate('jwt', { session: false }), 
   if (req.body.imp_b4_pt) clientProfileFields.impressions.b4_pt = req.body.imp_b4_pt;
   if (req.body.imp_pt_x) clientProfileFields.impressions.pt_x = req.body.imp_pt_x;
   if (req.body.imp_pt_y) clientProfileFields.impressions.pt_y = req.body.imp_pt_y;
-
+  // ------------------------
   // Reach
+  // ------------------------
   if (req.body.reach_b4_fb) clientProfileFields.reach.b4_fb = req.body.reach_b4_fb;
   if (req.body.reach_fb_x) clientProfileFields.reach.fb_x = req.body.reach_fb_x;
   if (req.body.reach_fb_y) clientProfileFields.reach.fb_y = req.body.reach_fb_y;
@@ -127,8 +131,9 @@ router.put('/handle/:handle', passport.authenticate('jwt', { session: false }), 
   if (req.body.reach_b4_pt) clientProfileFields.reach.b4_pt = req.body.reach_b4_pt;
   if (req.body.reach_pt_x) clientProfileFields.reach.pt_x = req.body.reach_pt_x;
   if (req.body.reach_pt_y) clientProfileFields.reach.pt_y = req.body.reach_pt_y;
-
+  // ------------------------
   // Site Traffic
+  // ------------------------
   if (req.body.web_b4) clientProfileFields.siteTraffic.web_b4 = req.body.web_b4;
   if (req.body.web_x) clientProfileFields.siteTraffic.x = req.body.web_x;
   if (req.body.web_y) clientProfileFields.siteTraffic.y = req.body.web_y;
@@ -159,8 +164,9 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
   clientProfileFields.impressions = {};
   clientProfileFields.reach = {};
   clientProfileFields.siteTraffic = {};
-
+  // ---------------------
   //Page Followers
+  // ---------------------
   if (req.body.pgf_b4_fb) clientProfileFields.pageFollowers.b4_fb = req.body.pgf_b4_fb;
   if (req.body.pgf_fb_x) clientProfileFields.pageFollowers.fb_x = req.body.pgf_fb_x;
   if (req.body.pgf_fb_y) clientProfileFields.pageFollowers.fb_y = req.body.pgf_fb_y;
@@ -176,8 +182,9 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
   if (req.body.pgf_b4_pt) clientProfileFields.pageFollowers.b4_pt = req.body.pgf_b4_pt;
   if (req.body.pgf_pt_x) clientProfileFields.pageFollowers.pt_x = req.body.pgf_pt_x;
   if (req.body.pgf_pt_y) clientProfileFields.pageFollowers.pt_y = req.body.pgf_pt_y;
-
+  // ---------------------
   // Engagement
+  // ---------------------
   if (req.body.eng_b4_fb) clientProfileFields.engagement.b4_fb = req.body.eng_b4_fb;
   if (req.body.eng_fb_x) clientProfileFields.engagement.fb_x = req.body.eng_fb_x;
   if (req.body.eng_fb_y) clientProfileFields.engagement.fb_y = req.body.eng_fb_y;
@@ -193,8 +200,9 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
   if (req.body.eng_b4_pt) clientProfileFields.engagement.b4_pt = req.body.eng_b4_pt;
   if (req.body.eng_pt_x) clientProfileFields.engagement.pt_x = req.body.eng_pt_x;
   if (req.body.eng_pt_y) clientProfileFields.engagement.pt_y = req.body.eng_pt_y;
-
+  // ---------------------
   // Impressions
+  // ---------------------
   if (req.body.imp_b4_fb) clientProfileFields.impressions.b4_fb = req.body.imp_b4_fb;
   if (req.body.imp_fb_x) clientProfileFields.impressions.fb_x = req.body.imp_fb_x;
   if (req.body.imp_fb_y) clientProfileFields.impressions.fb_y = req.body.imp_fb_y;
@@ -210,8 +218,9 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
   if (req.body.imp_b4_pt) clientProfileFields.impressions.b4_pt = req.body.imp_b4_pt;
   if (req.body.imp_pt_x) clientProfileFields.impressions.pt_x = req.body.imp_pt_x;
   if (req.body.imp_pt_y) clientProfileFields.impressions.pt_y = req.body.imp_pt_y;
-
+  // ---------------------
   // Reach
+  // ---------------------
   if (req.body.reach_b4_fb) clientProfileFields.reach.b4_fb = req.body.reach_b4_fb;
   if (req.body.reach_fb_x) clientProfileFields.reach.fb_x = req.body.reach_fb_x;
   if (req.body.reach_fb_y) clientProfileFields.reach.fb_y = req.body.reach_fb_y;
@@ -227,8 +236,9 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
   if (req.body.reach_b4_pt) clientProfileFields.reach.b4_pt = req.body.reach_b4_pt;
   if (req.body.reach_pt_x) clientProfileFields.reach.pt_x = req.body.reach_pt_x;
   if (req.body.reach_pt_y) clientProfileFields.reach.pt_y = req.body.reach_pt_y;
-
+  // ---------------------
   // Site Traffic
+  // ---------------------
   if (req.body.web_b4) clientProfileFields.siteTraffic.web_b4 = req.body.web_b4;
   if (req.body.web_x) clientProfileFields.siteTraffic.x = req.body.web_x;
   if (req.body.web_y) clientProfileFields.siteTraffic.y = req.body.web_y;
