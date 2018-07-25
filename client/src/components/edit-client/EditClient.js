@@ -69,6 +69,31 @@ export class EditClient extends Component {
       // --------------------------
       web_x: '',
       web_y: '',
+
+      // --------------------------
+      // Before Input
+      // --------------------------
+      web_b4: '',
+      pgf_b4_fb: '',
+      pgf_b4_ig: '',
+      pgf_b4_tw: '',
+      pgf_b4_ln: '',
+      pgf_b4_pt: '',
+      eng_b4_fb: '',
+      eng_b4_ig: '',
+      eng_b4_tw: '',
+      eng_b4_ln: '',
+      eng_b4_pt: '',
+      imp_b4_fb: '',
+      imp_b4_ig: '',
+      imp_b4_tw: '',
+      imp_b4_ln: '',
+      imp_b4_pt: '',
+      reach_b4_fb: '',
+      reach_b4_ig: '',
+      reach_b4_tw: '',
+      reach_b4_ln: '',
+      reach_b4_pt: '',
       errors: {}
     };
 
@@ -105,6 +130,13 @@ export class EditClient extends Component {
         pgf_ln_y: isEmpty(clients.pageFollowers && clients.pageFollowers.ln_y) ? '' : clients.pageFollowers.ln_y,
         pgf_pt_x: isEmpty(clients.pageFollowers && clients.pageFollowers.pt_x) ? '' : clients.pageFollowers.pt_x,
         pgf_pt_y: isEmpty(clients.pageFollowers && clients.pageFollowers.pt_y) ? '' : clients.pageFollowers.pt_y,
+
+        pgf_b4_fb: isEmpty(clients.pageFollowers && clients.pageFollowers.b4_fb) ? '' : clients.pageFollowers.b4_fb,
+        pgf_b4_ig: isEmpty(clients.pageFollowers && clients.pageFollowers.b4_ig) ? '' : clients.pageFollowers.b4_ig,
+        pgf_b4_tw: isEmpty(clients.pageFollowers && clients.pageFollowers.b4_tw) ? '' : clients.pageFollowers.b4_tw,
+        pgf_b4_ln: isEmpty(clients.pageFollowers && clients.pageFollowers.b4_ln) ? '' : clients.pageFollowers.b4_ln,
+        pgf_b4_pt: isEmpty(clients.pageFollowers && clients.pageFollowers.b4_pt) ? '' : clients.pageFollowers.b4_pt,
+
         // --------------------------
         // Engagement
         // --------------------------
@@ -118,6 +150,13 @@ export class EditClient extends Component {
         eng_ln_y: isEmpty(clients.engagement && clients.engagement.ln_y) ? '' : clients.engagement.ln_y,
         eng_pt_x: isEmpty(clients.engagement && clients.engagement.pt_x) ? '' : clients.engagement.pt_x,
         eng_pt_y: isEmpty(clients.engagement && clients.engagement.pt_y) ? '' : clients.engagement.pt_y,
+
+        eng_b4_fb: isEmpty(clients.engagement && clients.engagement.b4_fb) ? '' : clients.engagement.b4_fb,
+        eng_b4_ig: isEmpty(clients.engagement && clients.engagement.b4_ig) ? '' : clients.engagement.b4_ig,
+        eng_b4_tw: isEmpty(clients.engagement && clients.engagement.b4_tw) ? '' : clients.engagement.b4_tw,
+        eng_b4_ln: isEmpty(clients.engagement && clients.engagement.b4_ln) ? '' : clients.engagement.b4_ln,
+        eng_b4_pt: isEmpty(clients.engagement && clients.engagement.b4_pt) ? '' : clients.engagement.b4_pt,
+
         // --------------------------
         // Impressions
         // --------------------------
@@ -131,6 +170,12 @@ export class EditClient extends Component {
         imp_ln_y: isEmpty(clients.impressions && clients.impressions.ln_y) ? '' : clients.impressions.ln_y,
         imp_pt_x: isEmpty(clients.impressions && clients.impressions.pt_x) ? '' : clients.impressions.pt_x,
         imp_pt_y: isEmpty(clients.impressions && clients.impressions.pt_y) ? '' : clients.impressions.pt_y,
+
+        imp_b4_fb: isEmpty(clients.impressions && clients.impressions.b4_fb) ? '' : clients.impressions.b4_fb,
+        imp_b4_ig: isEmpty(clients.impressions && clients.impressions.b4_ig) ? '' : clients.impressions.b4_ig,
+        imp_b4_tw: isEmpty(clients.impressions && clients.impressions.b4_tw) ? '' : clients.impressions.b4_tw,
+        imp_b4_ln: isEmpty(clients.impressions && clients.impressions.b4_ln) ? '' : clients.impressions.b4_ln,
+        imp_b4_pt: isEmpty(clients.impressions && clients.impressions.b4_pt) ? '' : clients.impressions.b4_pt,
 
         // --------------------------
         // Reach
@@ -146,11 +191,19 @@ export class EditClient extends Component {
         reach_pt_x: isEmpty(clients.reach && clients.reach.pt_x) ? '' : clients.reach.pt_x,
         reach_pt_y: isEmpty(clients.reach && clients.reach.pt_y) ? '' : clients.reach.pt_y,
 
+        reach_b4_fb: isEmpty(clients.reach && clients.reach.b4_fb) ? '' : clients.reach.b4_fb,
+        reach_b4_ig: isEmpty(clients.reach && clients.reach.b4_ig) ? '' : clients.reach.b4_ig,
+        reach_b4_tw: isEmpty(clients.reach && clients.reach.b4_tw) ? '' : clients.reach.b4_tw,
+        reach_b4_ln: isEmpty(clients.reach && clients.reach.b4_ln) ? '' : clients.reach.b4_ln,
+        reach_b4_pt: isEmpty(clients.reach && clients.reach.b4_pt) ? '' : clients.reach.b4_pt,
+
         // --------------------------
         //  Web Traffic
         // --------------------------
         web_x: isEmpty(clients.siteTraffic && clients.siteTraffic.x) ? '' : clients.siteTraffic.x,
-        web_y: isEmpty(clients.siteTraffic && clients.siteTraffic.y) ? '' : clients.siteTraffic.y
+        web_y: isEmpty(clients.siteTraffic && clients.siteTraffic.y) ? '' : clients.siteTraffic.y,
+
+        web_b4: isEmpty(clients.siteTraffic && clients.siteTraffic.web_b4) ? '' : clients.siteTraffic.web_b4
       });
     }
   };
@@ -221,7 +274,47 @@ export class EditClient extends Component {
       // Web Traffic
       //----------------------
       web_x: this.state.web_x,
-      web_y: this.state.web_y
+      web_y: this.state.web_y,
+
+      // ------------------------------
+      // Before Page Followers
+      // ------------------------------
+      pgf_b4_fb: this.state.pgf_b4_fb,
+      pgf_b4_ig: this.state.pgf_b4_ig,
+      pgf_b4_tw: this.state.pgf_b4_tw,
+      pgf_b4_ln: this.state.pgf_b4_ln,
+      pgf_b4_pt: this.state.pgf_b4_pt,
+
+      // ------------------------------
+      // Before Engagement
+      // ------------------------------
+      eng_b4_fb: this.state.eng_b4_fb,
+      eng_b4_ig: this.state.eng_b4_ig,
+      eng_b4_tw: this.state.eng_b4_tw,
+      eng_b4_ln: this.state.eng_b4_ln,
+      eng_b4_pt: this.state.eng_b4_pt,
+
+      // ------------------------------
+      // Before Impressions
+      // ------------------------------
+      imp_b4_fb: this.state.imp_b4_fb,
+      imp_b4_ig: this.state.imp_b4_ig,
+      imp_b4_tw: this.state.imp_b4_tw,
+      imp_b4_ln: this.state.imp_b4_ln,
+      imp_b4_pt: this.state.imp_b4_pt,
+
+      // ------------------------------
+      // Before Reach
+      // ------------------------------
+      reach_b4_fb: this.state.reach_b4_fb,
+      reach_b4_ig: this.state.reach_b4_ig,
+      reach_b4_tw: this.state.reach_b4_tw,
+      reach_b4_ln: this.state.reach_b4_ln,
+      reach_b4_pt: this.state.reach_b4_pt,
+      // --------------------------
+      //  Web Traffic
+      // --------------------------
+      web_b4: this.state.web_b4
     };
     this.props.updateAClient(this.props.match.params.handle, clientData, this.props.history);
     console.log(clientData);
@@ -285,11 +378,33 @@ export class EditClient extends Component {
                 </div>
               </div>
               <div className="col-sm-3 goal">
-                <TextInputField icon="facebook" name={`${categoryAbbrv}_fb_y`} classname={categoryAbbrv + 'fb'} placeholder="Goal Facebook" value={this.state[categoryAbbrv + '_fb_y']} onChange={this.handleChange} />
-                <TextInputField icon="twitter" name={`${categoryAbbrv}_tw_y`} classname={categoryAbbrv + 'tw'} placeholder="Goal Twitter" value={this.state[categoryAbbrv + '_tw_y']} onChange={this.handleChange} />
-                <TextInputField icon="instagram" name={`${categoryAbbrv}_ig_y`} classname={categoryAbbrv + 'ig'} placeholder="Goal Instagram" value={this.state[categoryAbbrv + '_ig_y']} onChange={this.handleChange} />
-                <TextInputField icon="linkedin" name={`${categoryAbbrv}_ln_y`} classname={categoryAbbrv + 'ln'} placeholder="Goal LinkedIn" value={this.state[categoryAbbrv + '_ln_y']} onChange={this.handleChange} />
-                <TextInputField icon="pinterest" name={`${categoryAbbrv}_pt_y`} classname={categoryAbbrv + 'pn'} placeholder="Goal Pinterest" value={this.state[categoryAbbrv + '_pt_y']} onChange={this.handleChange} />
+                <TextInputField icon="facebook" name={`${categoryAbbrv}_fb_y`} classname={categoryAbbrv + 'fb'} placeholder="Goal Facebook" value={this.state[categoryAbbrv + '_fb_y'].toString()} onChange={this.handleChange} />
+                <TextInputField icon="twitter" name={`${categoryAbbrv}_tw_y`} classname={categoryAbbrv + 'tw'} placeholder="Goal Twitter" value={this.state[categoryAbbrv + '_tw_y'].toString()} onChange={this.handleChange} />
+                <TextInputField icon="instagram" name={`${categoryAbbrv}_ig_y`} classname={categoryAbbrv + 'ig'} placeholder="Goal Instagram" value={this.state[categoryAbbrv + '_ig_y'].toString()} onChange={this.handleChange} />
+                <TextInputField icon="linkedin" name={`${categoryAbbrv}_ln_y`} classname={categoryAbbrv + 'ln'} placeholder="Goal LinkedIn" value={this.state[categoryAbbrv + '_ln_y'].toString()} onChange={this.handleChange} />
+                <TextInputField icon="pinterest" name={`${categoryAbbrv}_pt_y`} classname={categoryAbbrv + 'pn'} placeholder="Goal Pinterest" value={this.state[categoryAbbrv + '_pt_y'].toString()} onChange={this.handleChange} />
+              </div>
+
+              <div className="col-sm-12 before">
+                <hr />
+                <h6 className="font-weight-light mt-2">Starting {cat_name}</h6>
+                <ul className="d-flex justify-content-between list-unstyled">
+                  <li>
+                    <TextInputField icon="facebook" name={`${categoryAbbrv}_b4_fb`} classname={categoryAbbrv + ' fb'} placeholder="Starting" value={this.state[categoryAbbrv + '_b4_fb'].toString()} onChange={this.handleChange} />
+                  </li>
+                  <li>
+                    <TextInputField icon="twitter" name={`${categoryAbbrv}_b4_tw`} classname={categoryAbbrv + ' tw'} placeholder="Starting" value={this.state[categoryAbbrv + '_b4_tw'].toString()} onChange={this.handleChange} />
+                  </li>
+                  <li>
+                    <TextInputField icon="instagram" name={`${categoryAbbrv}_b4_ig`} classname={categoryAbbrv + ' ig'} placeholder="Starting" value={this.state[categoryAbbrv + '_b4_ig'].toString()} onChange={this.handleChange} />
+                  </li>
+                  <li>
+                    <TextInputField icon="linkedin" name={`${categoryAbbrv}_b4_ln`} classname={categoryAbbrv + ' ln'} placeholder="Starting" value={this.state[categoryAbbrv + '_b4_ln'].toString()} onChange={this.handleChange} />
+                  </li>
+                  <li>
+                    <TextInputField icon="pinterest" name={`${categoryAbbrv}_b4_pt`} classname={categoryAbbrv + ' pt'} placeholder="Starting" value={this.state[categoryAbbrv + '_b4_pt'].toString()} onChange={this.handleChange} />
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
@@ -326,7 +441,7 @@ export class EditClient extends Component {
               <div className="collapse my-3" id="site_traffic">
                 <div className="row">
                   <div className="col-sm-3 current">
-                    <TextInputField icon="laptop" name="web_x" classname="web" placeholder="Current Web Traffic" value={this.state.web_x} onChange={this.handleChange} />
+                    <TextInputField icon="laptop" name="web_x" classname="web" placeholder="Current Web Traffic" value={this.state.web_x.toString()} onChange={this.handleChange} />
                   </div>
                   <div className="col-sm-6 rangeSlider">
                     <div className="range-slider client">
@@ -339,7 +454,7 @@ export class EditClient extends Component {
                     </div>
                   </div>
                   <div className="col-sm-3 goal">
-                    <TextInputField icon="laptop" name="web_y" classname="web" placeholder="Goal Web Traffic" value={this.state.web_y} onChange={this.handleChange} />
+                    <TextInputField icon="laptop" name="web_y" classname="web" placeholder="Goal Web Traffic" value={this.state.web_y.toString()} onChange={this.handleChange} />
                   </div>
                 </div>
                 {/* End of Site Traffic*/}

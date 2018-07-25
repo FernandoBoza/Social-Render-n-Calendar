@@ -290,11 +290,11 @@ export class CreateClientProfile extends Component {
                 <i className="fa fa-user ml-3" style={{ fontSize: '3rem', color: '#18a2b9' }} />
               </h1>
               <p className="lead text-center">Let's Set Up A Client Profile</p>
-              <small className="d-block pb-3">Client Name is Required</small>
 
               <form onSubmit={this.handleSubmit}>
                 <div className="row">
                   <div className="col-md-4">
+                    <p className="d-block">Client Name is Required</p>
                     <TextInputField icon="user-o" name="name" classname="clientName" placeholder="Client Name" value={this.state.name} onChange={this.handleChange} errors={errors.name} />
                   </div>
                 </div>

@@ -62,9 +62,6 @@ export class Client extends Component {
   handleChange = e => {
     alert('Please Login To Make Changes');
   };
-  handleSubmit = e => {
-    e.preventDefault();
-  };
 
   toggleShowBtn = e => {
     const target = e.target;
