@@ -199,6 +199,87 @@ export class CreateClientProfile extends Component {
 
   render() {
     const { errors } = this.state;
+    const createCategory_5 = (cat_name, category) => {
+      return (
+        <div>
+          <h4 className="font-weight-light mt-5">{cat_name}</h4>
+          <div className="row">
+            <div className="col-sm-3 current">
+              <TextInputField icon="facebook" name={`${category}_fb_x`} classname={category + ' fb'} placeholder="Current" value={this.state[category + '_fb_x']} onChange={this.handleChange} />
+              <TextInputField icon="twitter" name={`${category}_tw_x`} classname={category + ' tw'} placeholder="Current" value={this.state[category + '_tw_x']} onChange={this.handleChange} />
+              <TextInputField icon="instagram" name={`${category}_ig_x`} classname={category + ' ig'} placeholder="Current" value={this.state[category + '_ig_x']} onChange={this.handleChange} />
+              <TextInputField icon="linkedin" name={`${category}_ln_x`} classname={category + ' ln'} placeholder="Current" value={this.state[category + '_ln_x']} onChange={this.handleChange} />
+              <TextInputField icon="pinterest" name={`${category}_pt_x`} classname={category + ' pn'} placeholder="Current" value={this.state[category + '_pt_x']} onChange={this.handleChange} />
+            </div>
+
+            <div className="col-sm-6 rangeSlider">
+              <div className="range-slider">
+                <i
+                  className="fa fa-facebook"
+                  style={{
+                    left: (this.state[category + '_fb_x'] / this.state[category + '_fb_y']) * 100 + '%'
+                  }}
+                />
+                <i
+                  className="fa fa-twitter"
+                  style={{
+                    left: (this.state[category + '_tw_x'] / this.state[category + '_tw_y']) * 100 + '%'
+                  }}
+                />
+                <i
+                  className="fa fa-linkedin"
+                  style={{
+                    left: (this.state[category + '_ln_x'] / this.state[category + '_ln_y']) * 100 + '%'
+                  }}
+                />
+                <i
+                  className="fa fa-pinterest"
+                  style={{
+                    left: (this.state[category + '_pt_x'] / this.state[category + '_pt_y']) * 100 + '%'
+                  }}
+                />
+                <i
+                  className="fa fa-instagram"
+                  style={{
+                    left: (this.state[category + '_ig_x'] / this.state[category + '_ig_y']) * 100 + '%'
+                  }}
+                />
+              </div>
+            </div>
+
+            <div className="col-sm-3 goal">
+              <TextInputField icon="facebook" name={`${category}_fb_y`} classname={category + 'fb'} placeholder="Goal Facebook" value={this.state[category + '_fb_y']} onChange={this.handleChange} />
+              <TextInputField icon="twitter" name={`${category}_tw_y`} classname={category + 'tw'} placeholder="Goal Twitter" value={this.state[category + '_tw_y']} onChange={this.handleChange} />
+              <TextInputField icon="instagram" name={`${category}_ig_y`} classname={category + 'ig'} placeholder="Goal Instagram" value={this.state[category + '_ig_y']} onChange={this.handleChange} />
+              <TextInputField icon="linkedin" name={`${category}_ln_y`} classname={category + 'ln'} placeholder="Goal LinkedIn" value={this.state[category + '_ln_y']} onChange={this.handleChange} />
+              <TextInputField icon="pinterest" name={`${category}_pt_y`} classname={category + 'pn'} placeholder="Goal Pinterest" value={this.state[category + '_pt_y']} onChange={this.handleChange} />
+            </div>
+
+            <div className="col-sm-12 before">
+              <h6 className="font-weight-light mt-2">Starting {cat_name}</h6>
+              <ul className="d-flex justify-content-between list-unstyled">
+                <li>
+                  <TextInputField icon="facebook" name={`${category}_b4_fb`} classname={`${category} fb`} placeholder="Starting" value={this.state[category + '_b4_fb']} onChange={this.handleChange} />
+                </li>
+                <li>
+                  <TextInputField icon="twitter" name={`${category}_b4_tw`} classname={`${category} tw`} placeholder="Starting" value={this.state[category + '_b4_tw']} onChange={this.handleChange} />
+                </li>
+                <li>
+                  <TextInputField icon="instagram" name={`${category}_b4_ig`} classname={`${category} ig`} placeholder="Starting" value={this.state[category + '_b4_ig']} onChange={this.handleChange} />
+                </li>
+                <li>
+                  <TextInputField icon="linkedin" name={`${category}_b4_ln`} classname={`${category} ln`} placeholder="Starting" value={this.state[category + '_b4_ln']} onChange={this.handleChange} />
+                </li>
+                <li>
+                  <TextInputField icon="pinterest" name={`${category}_b4_pt`} classname={`${category} pn`} placeholder="Starting" value={this.state[category + '_b4_pt']} onChange={this.handleChange} />
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      );
+    };
+
     return (
       <div className="create-profile mb-5">
         <div className="container">
@@ -209,310 +290,19 @@ export class CreateClientProfile extends Component {
                 <i className="fa fa-user ml-3" style={{ fontSize: '3rem', color: '#18a2b9' }} />
               </h1>
               <p className="lead text-center">Let's Set Up A Client Profile</p>
-              <small className="d-block pb-3">Client Name is Required</small>
 
               <form onSubmit={this.handleSubmit}>
                 <div className="row">
                   <div className="col-md-4">
+                    <p className="d-block">Client Name is Required</p>
                     <TextInputField icon="user-o" name="name" classname="clientName" placeholder="Client Name" value={this.state.name} onChange={this.handleChange} errors={errors.name} />
                   </div>
                 </div>
-                <h4 className="font-weight-light mt-5">Page Followers</h4>
-                <div className="row">
-                  <div className="col-sm-3 current">
-                    <TextInputField icon="facebook" name="pgf_fb_x" classname="pgf fb" placeholder="Current" value={this.state.pgf_fb_x} onChange={this.handleChange} />
-                    <TextInputField icon="twitter" name="pgf_tw_x" classname="pgf tw" placeholder="Current" value={this.state.pgf_tw_x} onChange={this.handleChange} />
-                    <TextInputField icon="instagram" name="pgf_ig_x" classname="pgf ig" placeholder="Current" value={this.state.pgf_ig_x} onChange={this.handleChange} />
-                    <TextInputField icon="linkedin" name="pgf_ln_x" classname="pgf ln" placeholder="Current" value={this.state.pgf_ln_x} onChange={this.handleChange} />
-                    <TextInputField icon="pinterest" name="pgf_pt_x" classname="pgf pn" placeholder="Current" value={this.state.pgf_pt_x} onChange={this.handleChange} />
-                  </div>
 
-                  <div className="col-sm-6 rangeSlider">
-                    <div className="range-slider">
-                      <i
-                        className="fa fa-facebook"
-                        style={{
-                          left: (this.state.pgf_fb_x / this.state.pgf_fb_y) * 100 + '%'
-                        }}
-                      />
-                      <i
-                        className="fa fa-twitter"
-                        style={{
-                          left: (this.state.pgf_tw_x / this.state.pgf_tw_y) * 100 + '%'
-                        }}
-                      />
-                      <i
-                        className="fa fa-linkedin"
-                        style={{
-                          left: (this.state.pgf_ln_x / this.state.pgf_ln_y) * 100 + '%'
-                        }}
-                      />
-                      <i
-                        className="fa fa-pinterest"
-                        style={{
-                          left: (this.state.pgf_pt_x / this.state.pgf_pt_y) * 100 + '%'
-                        }}
-                      />
-                      <i
-                        className="fa fa-instagram"
-                        style={{
-                          left: (this.state.pgf_ig_x / this.state.pgf_ig_y) * 100 + '%'
-                        }}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="col-sm-3 goal">
-                    <TextInputField icon="facebook" name="pgf_fb_y" classname="pgf fb" placeholder="Goal Facebook Followers" value={this.state.pgf_fb_y} onChange={this.handleChange} />
-                    <TextInputField icon="twitter" name="pgf_tw_y" classname="pgf tw" placeholder="Goal Twitter Followers" value={this.state.pgf_tw_y} onChange={this.handleChange} />
-                    <TextInputField icon="instagram" name="pgf_ig_y" classname="pgf ig" placeholder="Goal Instagram Followers" value={this.state.pgf_ig_y} onChange={this.handleChange} />
-                    <TextInputField icon="linkedin" name="pgf_ln_y" classname="pgf ln" placeholder="Goal LinkedIn Followers" value={this.state.pgf_ln_y} onChange={this.handleChange} />
-                    <TextInputField icon="pinterest" name="pgf_pt_y" classname="pgf pn" placeholder="Goal Pinterest Followers" value={this.state.pgf_pt_y} onChange={this.handleChange} />
-                  </div>
-
-                  <div className="col-sm-12 before">
-                    <h6 className="font-weight-light mt-2">Starting Page Followers</h6>
-                    <ul className="d-flex justify-content-between list-unstyled">
-                      <li>
-                        <TextInputField icon="facebook" name="pgf_b4_fb" classname="pgf fb" placeholder="Starting" value={this.state.pgf_b4_fb} onChange={this.handleChange} />
-                      </li>
-                      <li>
-                        <TextInputField icon="twitter" name="pgf_b4_tw" classname="pgf tw" placeholder="Starting" value={this.state.pgf_b4_tw} onChange={this.handleChange} />
-                      </li>
-                      <li>
-                        <TextInputField icon="instagram" name="pgf_b4_ig" classname="pgf ig" placeholder="Starting" value={this.state.pgf_b4_ig} onChange={this.handleChange} />
-                      </li>
-                      <li>
-                        <TextInputField icon="linkedin" name="pgf_b4_ln" classname="pgf ln" placeholder="Starting" value={this.state.pgf_b4_ln} onChange={this.handleChange} />
-                      </li>
-                      <li>
-                        <TextInputField icon="pinterest" name="pgf_b4_pt" classname="pgf pn" placeholder="Starting" value={this.state.pgf_b4_pt} onChange={this.handleChange} />
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-
-                {/* End of Page Followers*/}
-                <h4 className="font-weight-light mt-5">Engagement</h4>
-                <div className="row">
-                  <div className="col-sm-3 current">
-                    <TextInputField icon="facebook" name="eng_fb_x" classname="eng fb" placeholder="Current Facebook Engagement" value={this.state.eng_fb_x} onChange={this.handleChange} />
-                    <TextInputField icon="twitter" name="eng_tw_x" classname="eng tw" placeholder="Current Twitter Engagement" value={this.state.eng_tw_x} onChange={this.handleChange} />
-                    <TextInputField icon="instagram" name="eng_ig_x" classname="eng ig" placeholder="Current Instagram Engagement" value={this.state.eng_ig_x} onChange={this.handleChange} />
-                    <TextInputField icon="linkedin" name="eng_ln_x" classname="eng ln" placeholder="Current LinkedIn Engagement" value={this.state.eng_ln_x} onChange={this.handleChange} />
-                    <TextInputField icon="pinterest" name="eng_pt_x" classname="eng pn" placeholder="Current Pinterest Engagement" value={this.state.eng_pt_x} onChange={this.handleChange} />
-                  </div>
-                  <div className="col-sm-6 rangeSlider">
-                    <div className="range-slider">
-                      <i
-                        className="fa fa-facebook"
-                        style={{
-                          left: (this.state.eng_fb_x / this.state.eng_fb_y) * 100 + '%'
-                        }}
-                      />
-                      <i
-                        className="fa fa-twitter"
-                        style={{
-                          left: (this.state.eng_tw_x / this.state.eng_tw_y) * 100 + '%'
-                        }}
-                      />
-                      <i
-                        className="fa fa-linkedin"
-                        style={{
-                          left: (this.state.eng_ln_x / this.state.eng_ln_y) * 100 + '%'
-                        }}
-                      />
-                      <i
-                        className="fa fa-pinterest"
-                        style={{
-                          left: (this.state.eng_pt_x / this.state.eng_pt_y) * 100 + '%'
-                        }}
-                      />
-                      <i
-                        className="fa fa-instagram"
-                        style={{
-                          left: (this.state.eng_ig_x / this.state.eng_ig_y) * 100 + '%'
-                        }}
-                      />
-                    </div>
-                  </div>
-                  <div className="col-sm-3 goal">
-                    <TextInputField icon="facebook" name="eng_fb_y" classname="eng fb" placeholder="Goal Facebook Engagement" value={this.state.eng_fb_y} onChange={this.handleChange} />
-                    <TextInputField icon="twitter" name="eng_tw_y" classname="eng tw" placeholder="Goal Twitter Engagement" value={this.state.eng_tw_y} onChange={this.handleChange} />
-                    <TextInputField icon="instagram" name="eng_ig_y" classname="eng ig" placeholder="Goal Instagram Engagement" value={this.state.eng_ig_y} onChange={this.handleChange} />
-                    <TextInputField icon="linkedin" name="eng_ln_y" classname="eng ln" placeholder="Goal LinkedIn Engagement" value={this.state.eng_ln_y} onChange={this.handleChange} />
-                    <TextInputField icon="pinterest" name="eng_pt_y" classname="eng pn" placeholder="Goal Pinterest Engagement" value={this.state.eng_pt_y} onChange={this.handleChange} />
-                  </div>
-
-                  <div className="col-sm-12 before">
-                    <h6 className="font-weight-light mt-2">Starting Engagement</h6>
-                    <ul className="d-flex justify-content-between list-unstyled">
-                      <li>
-                        <TextInputField icon="facebook" name="eng_b4_fb" classname="pgf fb" placeholder="Starting" value={this.state.eng_b4_fb} onChange={this.handleChange} />
-                      </li>
-                      <li>
-                        <TextInputField icon="twitter" name="eng_b4_tw" classname="pgf tw" placeholder="Starting" value={this.state.eng_b4_tw} onChange={this.handleChange} />
-                      </li>
-                      <li>
-                        <TextInputField icon="instagram" name="eng_b4_ig" classname="pgf ig" placeholder="Starting" value={this.state.eng_b4_ig} onChange={this.handleChange} />
-                      </li>
-                      <li>
-                        <TextInputField icon="linkedin" name="eng_b4_ln" classname="pgf ln" placeholder="Starting" value={this.state.eng_b4_ln} onChange={this.handleChange} />
-                      </li>
-                      <li>
-                        <TextInputField icon="pinterest" name="eng_b4_pt" classname="pgf pn" placeholder="Starting" value={this.state.eng_b4_pt} onChange={this.handleChange} />
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                {/* End of Engagement*/}
-                <h4 className="font-weight-light mt-5">Impressions</h4>
-                <div className="row">
-                  <div className="col-sm-3 current">
-                    <TextInputField icon="facebook" name="imp_fb_x" classname="imp fb" placeholder="Current Facebook Impressions" value={this.state.imp_fb_x} onChange={this.handleChange} />
-                    <TextInputField icon="twitter" name="imp_tw_x" classname="imp tw" placeholder="Current Twitter Impressions" value={this.state.imp_tw_x} onChange={this.handleChange} />
-                    <TextInputField icon="instagram" name="imp_ig_x" classname="imp ig" placeholder="Current Instagram Impressions" value={this.state.imp_ig_x} onChange={this.handleChange} />
-                    <TextInputField icon="linkedin" name="imp_ln_x" classname="imp ln" placeholder="Current LinkedIn Impressions" value={this.state.imp_ln_x} onChange={this.handleChange} />
-                    <TextInputField icon="pinterest" name="imp_pt_x" classname="imp pn" placeholder="Current Pinterest Impressions" value={this.state.imp_pt_x} onChange={this.handleChange} />
-                  </div>
-                  <div className="col-sm-6 rangeSlider">
-                    <div className="range-slider">
-                      <i
-                        className="fa fa-facebook"
-                        style={{
-                          left: (this.state.imp_fb_x / this.state.imp_fb_y) * 100 + '%'
-                        }}
-                      />
-                      <i
-                        className="fa fa-twitter"
-                        style={{
-                          left: (this.state.imp_tw_x / this.state.imp_tw_y) * 100 + '%'
-                        }}
-                      />
-                      <i
-                        className="fa fa-linkedin"
-                        style={{
-                          left: (this.state.imp_ln_x / this.state.imp_ln_y) * 100 + '%'
-                        }}
-                      />
-                      <i
-                        className="fa fa-pinterest"
-                        style={{
-                          left: (this.state.imp_pt_x / this.state.imp_pt_y) * 100 + '%'
-                        }}
-                      />
-                      <i
-                        className="fa fa-instagram"
-                        style={{
-                          left: (this.state.imp_ig_x / this.state.imp_ig_y) * 100 + '%'
-                        }}
-                      />
-                    </div>
-                  </div>
-                  <div className="col-sm-3 goal">
-                    <TextInputField icon="facebook" name="imp_fb_y" classname="imp fb" placeholder="Goal Facebook Impressions" value={this.state.imp_fb_y} onChange={this.handleChange} />
-                    <TextInputField icon="twitter" name="imp_tw_y" classname="imp tw" placeholder="Goal Twitter Impressions" value={this.state.imp_tw_y} onChange={this.handleChange} />
-                    <TextInputField icon="instagram" name="imp_ig_y" classname="imp ig" placeholder="Goal Instagram Impressions" value={this.state.imp_ig_y} onChange={this.handleChange} />
-                    <TextInputField icon="linkedin" name="imp_ln_y" classname="imp ln" placeholder="Goal LinkedIn Impressions" value={this.state.imp_ln_y} onChange={this.handleChange} />
-                    <TextInputField icon="pinterest" name="imp_pt_y" classname="imp pn" placeholder="Goal Pinterest Impressions" value={this.state.imp_pt_y} onChange={this.handleChange} />
-                  </div>
-
-                  <div className="col-sm-12 before">
-                    <h6 className="font-weight-light mt-2">Starting Impressions</h6>
-                    <ul className="d-flex justify-content-between list-unstyled">
-                      <li>
-                        <TextInputField icon="facebook" name="imp_b4_fb" classname="pgf fb" placeholder="Starting" value={this.state.imp_b4_fb} onChange={this.handleChange} />
-                      </li>
-                      <li>
-                        <TextInputField icon="twitter" name="imp_b4_tw" classname="pgf tw" placeholder="Starting" value={this.state.imp_b4_tw} onChange={this.handleChange} />
-                      </li>
-                      <li>
-                        <TextInputField icon="instagram" name="imp_b4_ig" classname="pgf ig" placeholder="Starting" value={this.state.imp_b4_ig} onChange={this.handleChange} />
-                      </li>
-                      <li>
-                        <TextInputField icon="linkedin" name="imp_b4_ln" classname="pgf ln" placeholder="Starting" value={this.state.imp_b4_ln} onChange={this.handleChange} />
-                      </li>
-                      <li>
-                        <TextInputField icon="pinterest" name="imp_b4_pt" classname="pgf pn" placeholder="Starting" value={this.state.imp_b4_pt} onChange={this.handleChange} />
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                {/* End of Impressions*/}
-
-                <h4 className="font-weight-light mt-5">Reach</h4>
-                <div className="row">
-                  <div className="col-sm-3 current">
-                    <TextInputField icon="facebook" name="reach_fb_x" classname="reacg fb" placeholder="Current Facebook Reach" value={this.state.reach_fb_x} onChange={this.handleChange} />
-                    <TextInputField icon="twitter" name="reach_tw_x" classname="reacg tw" placeholder="Current Twitter Reach" value={this.state.reach_tw_x} onChange={this.handleChange} />
-                    <TextInputField icon="instagram" name="reach_ig_x" classname="reacg ig" placeholder="Current Instagram Reach" value={this.state.reach_ig_x} onChange={this.handleChange} />
-                    <TextInputField icon="linkedin" name="reach_ln_x" classname="reacg ln" placeholder="Current LinkedIn Reach" value={this.state.reach_ln_x} onChange={this.handleChange} />
-                    <TextInputField icon="pinterest" name="reach_pt_x" classname="reacg pn" placeholder="Current Pinterest Reach" value={this.state.reach_pt_x} onChange={this.handleChange} />
-                  </div>
-                  <div className="col-sm-6 rangeSlider">
-                    <div className="range-slider">
-                      <i
-                        className="fa fa-facebook"
-                        style={{
-                          left: (this.state.reach_fb_x / this.state.reach_fb_y) * 100 + '%'
-                        }}
-                      />
-                      <i
-                        className="fa fa-twitter"
-                        style={{
-                          left: (this.state.reach_tw_x / this.state.reach_tw_y) * 100 + '%'
-                        }}
-                      />
-                      <i
-                        className="fa fa-linkedin"
-                        style={{
-                          left: (this.state.reach_ln_x / this.state.reach_ln_y) * 100 + '%'
-                        }}
-                      />
-                      <i
-                        className="fa fa-pinterest"
-                        style={{
-                          left: (this.state.reach_pt_x / this.state.reach_pt_y) * 100 + '%'
-                        }}
-                      />
-                      <i
-                        className="fa fa-instagram"
-                        style={{
-                          left: (this.state.reach_ig_x / this.state.reach_ig_y) * 100 + '%'
-                        }}
-                      />
-                    </div>
-                  </div>
-                  <div className="col-sm-3 goal">
-                    <TextInputField icon="facebook" name="reach_fb_y" classname="reach fb" placeholder="Goal Facebook Reach" value={this.state.reach_fb_y} onChange={this.handleChange} />
-                    <TextInputField icon="twitter" name="reach_tw_y" classname="reach tw" placeholder="Goal Twitter Reach" value={this.state.reach_tw_y} onChange={this.handleChange} />
-                    <TextInputField icon="instagram" name="reach_ig_y" classname="reach ig" placeholder="Goal Instagram Reach" value={this.state.reach_ig_y} onChange={this.handleChange} />
-                    <TextInputField icon="linkedin" name="reach_ln_y" classname="reach ln" placeholder="Goal LinkedIn Reach" value={this.state.reach_ln_y} onChange={this.handleChange} />
-                    <TextInputField icon="pinterest" name="reach_pt_y" classname="reach pn" placeholder="Goal Pinterest Reach" value={this.state.reach_pt_y} onChange={this.handleChange} />
-                  </div>
-
-                  <div className="col-sm-12 before">
-                    <h6 className="font-weight-light mt-2">Starting Reach</h6>
-                    <ul className="d-flex justify-content-between list-unstyled">
-                      <li>
-                        <TextInputField icon="facebook" name="reach_b4_fb" classname="reach fb" placeholder="Starting" value={this.state.reach_b4_fb} onChange={this.handleChange} />
-                      </li>
-                      <li>
-                        <TextInputField icon="twitter" name="reach_b4_tw" classname="reach tw" placeholder="Starting" value={this.state.reach_b4_tw} onChange={this.handleChange} />
-                      </li>
-                      <li>
-                        <TextInputField icon="instagram" name="reach_b4_ig" classname="reach ig" placeholder="Starting" value={this.state.reach_b4_ig} onChange={this.handleChange} />
-                      </li>
-                      <li>
-                        <TextInputField icon="linkedin" name="reach_b4_ln" classname="reach ln" placeholder="Starting" value={this.state.reach_b4_ln} onChange={this.handleChange} />
-                      </li>
-                      <li>
-                        <TextInputField icon="pinterest" name="reach_b4_pt" classname="reach pn" placeholder="Starting" value={this.state.reach_b4_pt} onChange={this.handleChange} />
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                {/* End of Reach*/}
+                {createCategory_5('Page Followers', 'pgf')}
+                {createCategory_5('Impressions', 'imp')}
+                {createCategory_5('Reach', 'reach')}
+                {createCategory_5('Engagement', 'eng')}
 
                 <h4 className=" font-weight-light mt-5">Site Traffic</h4>
                 <div className="row site-traffic">
@@ -541,7 +331,7 @@ export class CreateClientProfile extends Component {
                     </ul>
                   </div>
                 </div>
-                {/* End of Site Traffic*/}
+
                 <button className="btn btn-lg btn-outline-primary btn-block mt-5 w-50 mx-auto" type="submit">
                   Create Client
                 </button>
