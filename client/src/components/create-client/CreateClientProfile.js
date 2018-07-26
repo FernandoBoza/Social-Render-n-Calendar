@@ -57,6 +57,11 @@ export class CreateClientProfile extends Component {
       // Web Traffic
       web_x: '',
       web_y: '',
+      // Press Release
+      numHits_x: '',
+      numHits_y: '',
+      mediaValue_x: '',
+      mediaValue_y: '',
 
       // Before Input
       web_b4: '',
@@ -149,10 +154,11 @@ export class CreateClientProfile extends Component {
       // Web
       web_x: this.state.web_x,
       web_y: this.state.web_y,
-
-      // ------------------------------
-      // Before Input
-      // ------------------------------
+      // Press Release
+      numHits_x: this.state.numHits_x,
+      numHits_y: this.state.numHits_y,
+      mediaValue_x: this.state.mediaValue_x,
+      mediaValue_y: this.state.mediaValue_y,
 
       // ------------------------------
       // Before Page Followers
@@ -280,6 +286,42 @@ export class CreateClientProfile extends Component {
       );
     };
 
+    const createCategory_2 = (cat_name, icon1, icon2) => {
+      return (
+        <div>
+          <h4 className="font-weight-light mt-5">{cat_name}</h4>
+          <div className="row">
+            <div className="col-sm-3 current">
+              <TextInputField icon={icon1} name="numHits_x" classname={'numHits'} placeholder="Current" value={this.state.numHits_x} onChange={this.handleChange} />
+              <TextInputField icon={icon2} name="mediaValue_x" classname={'mediaValue'} placeholder="Current" value={this.state.mediaValue_x} onChange={this.handleChange} />
+            </div>
+
+            <div className="col-sm-6 rangeSlider">
+              <div className="range-slider">
+                <i
+                  className={`fa fa-${icon1}`}
+                  style={{
+                    left: (this.state.numHits_x / this.state.numHits_y) * 100 + '%'
+                  }}
+                />
+                <i
+                  className={`fa fa-${icon2}`}
+                  style={{
+                    left: (this.state.mediaValue_x / this.state.mediaValue_y) * 100 + '%'
+                  }}
+                />
+              </div>
+            </div>
+
+            <div className="col-sm-3 goal">
+              <TextInputField icon={icon1} name="numHits_y" classname={'numHits'} placeholder="Goal  Hits" value={this.state.numHits_y} onChange={this.handleChange} />
+              <TextInputField icon={icon2} name="mediaValue_y" classname={'mediaValue'} placeholder="Goal Media Value" value={this.state.mediaValue_y} onChange={this.handleChange} />
+            </div>
+          </div>
+        </div>
+      );
+    };
+
     return (
       <div className="create-profile mb-5">
         <div className="container">
@@ -303,6 +345,7 @@ export class CreateClientProfile extends Component {
                 {createCategory_5('Impressions', 'imp')}
                 {createCategory_5('Reach', 'reach')}
                 {createCategory_5('Engagement', 'eng')}
+                {createCategory_2('Press Release', 'hashtag', 'pie-chart')}
 
                 <h4 className=" font-weight-light mt-5">Site Traffic</h4>
                 <div className="row site-traffic">
