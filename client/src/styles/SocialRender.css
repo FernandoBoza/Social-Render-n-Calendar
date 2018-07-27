@@ -1,0 +1,32 @@
+.company {
+  width: 3rem;
+  height: 3rem;
+  font-size: 2rem;
+  text-align: center;
+  padding: 9px;
+  color: white;
+  border-radius: 50rem;
+  font-weight: 100; }
+
+#social-render a i.fa.text-primary {
+  margin-right: 26px;
+  font-size: 1.3rem;
+  transition: transform 0.1s cubic-bezier(0.47, 0, 0.745, 0.715); }
+  #social-render a i.fa.text-primary:hover {
+    transform: scale(1.2); }
+#social-render ul {
+  list-style-type: none;
+  padding: 0;
+  display: inline-block;
+  line-height: 0;
+  padding-left: 1rem;
+  vertical-align: top; }
+
+h5.d-inline-block.card-title.ml-2 {
+  vertical-align: top; }
+
+i.fa.fa-dropbox {
+  font-size: 1rem;
+  padding: 0.1rem 0 0 0.4rem; }
+
+/*# sourceMappingURL=SocialRender.css.map */
