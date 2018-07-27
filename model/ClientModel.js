@@ -95,10 +95,21 @@ const ClientSchema = new Schema({
     b4_ln: { type: Number },
     b4_pt: { type: Number }
   },
+  pressRelease: {
+    numHits_x: { type: Number },
+    numHits_y: { type: Number },
+    mediaValue_x: { type: Number },
+    mediaValue_y: { type: Number }
+  },
+  sales: {
+    sales_x: { type: Number },
+    sales_y: { type: Number },
+    sales_b4: { type: Number }
+  },
   siteTraffic: {
-    web_b4: { type: Number },
     x: { type: Number },
-    y: { type: Number }
+    y: { type: Number },
+    web_b4: { type: Number }
   }
 });
 
