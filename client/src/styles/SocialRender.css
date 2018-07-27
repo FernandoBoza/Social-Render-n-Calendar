@@ -29,4 +29,11 @@ i.fa.fa-dropbox {
   font-size: 1rem;
   padding: 0.1rem 0 0 0.4rem; }
 
+textarea.card-text {
+  font-size: 1.3rem;
+  line-height: 1;
+  border: none;
+  display: block;
+  width: 100%; }
+
 /*# sourceMappingURL=SocialRender.css.map */
