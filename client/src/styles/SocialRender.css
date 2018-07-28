@@ -6,11 +6,17 @@
   padding: 9px;
   color: white;
   border-radius: 50rem;
-  font-weight: 100; }
+  font-weight: 100;
+  pointer-events: none; }
 
+#social-render span {
+  font-size: 1rem;
+  padding-right: 4rem; }
+#social-render a:hover {
+  text-decoration: none; }
 #social-render a i.fa.text-primary {
-  margin-right: 26px;
   font-size: 1.3rem;
+  margin-right: 0.5rem;
   transition: transform 0.1s cubic-bezier(0.47, 0, 0.745, 0.715); }
   #social-render a i.fa.text-primary:hover {
     transform: scale(1.2); }
@@ -21,19 +27,56 @@
   line-height: 0;
   padding-left: 1rem;
   vertical-align: top; }
+#social-render hr {
+  padding-top: 0.6rem; }
 
 h5.d-inline-block.card-title.ml-2 {
   vertical-align: top; }
 
-i.fa.fa-dropbox {
-  font-size: 1rem;
-  padding: 0.1rem 0 0 0.4rem; }
-
 textarea.card-text {
+  border: 1px solid lightgray;
   font-size: 1.3rem;
-  line-height: 1;
-  border: none;
-  display: block;
-  width: 100%; }
+  line-height: 1.2;
+  width: 100%;
+  height: 11.5rem;
+  display: block; }
+
+p.contentCopy {
+  white-space: pre-line; }
+
+.input-group-text {
+  width: 14rem; }
+
+i.fa.fa-dropbox,
+i.fa.fa-pencil-square-o {
+  font-size: 1rem;
+  padding-top: 0.2rem;
+  padding-left: 0.4rem; }
+
+div#right-panel {
+  height: 100vh;
+  position: absolute;
+  top: 27%;
+  bottom: 0;
+  right: 0;
+  overflow-y: scroll; }
+
+.card {
+  margin-bottom: 80px; }
+
+.instagram .company {
+  border: 2px solid #bb5959;
+  font-size: 1.8rem; }
+.instagram .lower-card-body i.fa.text-primary {
+  font-size: 1.3rem;
+  margin-right: 0.5rem;
+  transition: transform 0.1s cubic-bezier(0.47, 0, 0.745, 0.715); }
+
+@media screen and (max-width: 992px) {
+  div#left-panel {
+    display: none; }
+
+  div#right-panel {
+    top: 70%; } }
 
 /*# sourceMappingURL=SocialRender.css.map */

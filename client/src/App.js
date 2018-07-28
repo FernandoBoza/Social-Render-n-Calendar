@@ -43,7 +43,7 @@ class App extends Component {
           <div className="App">
             <NavBar />
             <Route exact path="/" component={Landing} />
-            <div className="container">
+            <div className="container-fluid">
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/clients" component={Clients} />
@@ -55,10 +55,18 @@ class App extends Component {
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
               </Switch>
               <Switch>
-                <PrivateRoute exact path="/create-client" component={CreateClientProfile} />
+                <PrivateRoute
+                  exact
+                  path="/create-client"
+                  component={CreateClientProfile}
+                />
               </Switch>
               <Switch>
-                <PrivateRoute exact path={`/clients/:handle/edit-client`} component={EditClient} />
+                <PrivateRoute
+                  exact
+                  path={`/clients/:handle/edit-client`}
+                  component={EditClient}
+                />
               </Switch>
             </div>
             <Footer />

@@ -1,28 +1,31 @@
 import React, { Component } from 'react';
+import FacebookDesktop from './Facebook/FacebookDesktop';
+import FacebookMobile from './Facebook/FacebookMobile';
+import Instagram from './Instagram/Instagram';
 import '../../styles/SocialRender.css';
 
 export default class SocialRenderComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      imgLink:
-        'http://thr33fold.com/wp-content/uploads/2018/04/3F_SITE_INTRO_2.gif',
-      contentCopy:
-        "Pssst ... Click me to past in the copy ... Some quick example text to build on the card title and make up the bulk of the card's content",
-      height: 44
+      clientName: 'THR33FOLD',
+      clientInitials: '3F',
+      imgLink: 'http://thr33fold.com/wp-content/uploads/2018/04/3F_SITE_INTRO_2.gif',
+      contentCopy: `The Adrienne Arsht Center is looking for a new social media agency and we are auditioning! Should the ArshtCenter & THR33FOLD dance the social tango? Help us upstage the competition by tagging the @arshtcenter & commenting #BreakALeg3F on this post.`
     };
 
     this.handleImgChange = this.handleImgChange.bind(this);
+    this.handleCopyChange = this.handleCopyChange.bind(this);
+    this.handleClient = this.handleClient.bind(this);
   }
-
-  componentDidMount = () => {
-    let height = document.querySelector('textarea.card-text').clientHeight;
-    this.setState({ height });
-  };
 
   changeDBLinkToImgLink = link => {
     link = link.replace('www.dropbox.com', 'dl.dropboxusercontent.com');
     return link;
+  };
+
+  handleClient = e => {
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   handleImgChange = e => {
@@ -34,116 +37,49 @@ export default class SocialRenderComponent extends Component {
 
   handleCopyChange = e => {
     this.setState({
-      contentCopy: e.target.value,
-      height: this.height * 2 + 'px'
+      contentCopy: e.target.value
     });
-    console.log(this.state.height);
   };
 
   render() {
-    const options = {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    };
-    const today = new Date();
-    var height = {
-      height: this.state.height
-    };
-
     return (
       <div id="social-render">
-        <section className="container">
+        <section className="container-fluid">
           <div className="row">
-            <div className="col-sm-12 text-center">
-              <h1 className="display-4">Social Form </h1>
-              <div className="input-group mb-3">
+            <div id="left-panel" className="col-md-6">
+              <div className="input-group ">
                 <div className="input-group-prepend">
-                  <span
-                    className="input-group-text"
-                    id="inputGroup-sizing-default"
-                  >
-                    Dropbox Image Share Link{' '}
-                    <i
-                      className="fa fa-dropbox text-primary"
-                      aria-hidden="true"
-                    />
+                  <span className="input-group-text" id="inputGroup-sizing-default">
+                    Dropbox Image Share Link
+                    <i className="fa fa-dropbox text-primary" aria-hidden="true" />
                   </span>
                 </div>
-                <input
-                  type="text"
-                  className="form-control"
-                  onChange={this.handleImgChange}
-                />
+                <input type="text" className="form-control" onChange={this.handleImgChange} value={this.state.imgLink} />
+              </div>
+              <div className="input-group my-3">
+                <div className="input-group-prepend">
+                  <span className="input-group-text">Client Name and Initials</span>
+                </div>
+                <input type="text" name="clientName" onChange={this.handleClient} value={this.state.clientName} className="form-control" />
+                <input type="text" name="clientInitials" onChange={this.handleClient} value={this.state.clientInitials} className="form-control" />
+              </div>
+              <div className="input-group">
+                <div className="input-group-prepend">
+                  <span className="input-group-text px-5">
+                    Copy Goes Here
+                    <i className="fa fa-pencil-square-o text-primary" aria-hidden="true" />
+                  </span>
+                </div>
+                <textarea className="form-control card-text" aria-label="With textarea" type="text" value={this.state.contentCopy} onChange={this.handleCopyChange} />
               </div>
             </div>
 
-            <div className="row">
-              <div className="col-sm-6">
-                <div className="card">
-                  <div className="card-body">
-                    <div className="d-inline-block fb-title">
-                      <p className="d-inline-block company bg-primary">BB</p>
-                      <ul>
-                        <li>
-                          <h5 className="d-inline-block card-title">
-                            Boca Bearings Company
-                          </h5>
-                        </li>
-                        <li>{today.toLocaleDateString('en-US', options)}</li>
-                      </ul>
-                    </div>
-
-                    <textarea
-                      type="text"
-                      className="card-text"
-                      style={height}
-                      value={this.state.contentCopy}
-                      onChange={this.handleCopyChange}
-                    />
-
-                    <img
-                      className="card-img mt-2 mb-4"
-                      src={this.state.imgLink}
-                      alt="Facebook Style Render"
-                    />
-                    <a href="" onClick={e => e.preventDefault()}>
-                      <i className="fa fa-thumbs-o-up text-primary" />
-                      <i className="fa fa-comment-o text-primary" />
-                      <i className="fa fa-share  text-primary" />
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <div className="col-sm-6">
-                <div className="card">
-                  <div className="card-body">
-                    <div className="d-inline-block fb-title">
-                      <p className="d-inline-block company bg-primary">BB</p>{' '}
-                      <h5 className="d-inline-block card-title ml-2">
-                        Boca Bearings Company
-                      </h5>
-                    </div>
-                    <p className="card-text">
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content.
-                    </p>
-                    <img
-                      className="card-img mt-2 mb-4"
-                      src={this.state.imgLink}
-                      alt="Facebook Style Render"
-                    />
-                    <a href="" onClick={e => e.preventDefault()}>
-                      <i className="fa fa-thumbs-o-up text-primary" />
-                      <i className="fa fa-comment-o text-primary" />
-                      <i className="fa fa-share  text-primary" />
-                    </a>
-                  </div>
-                </div>
-              </div>
+            <div id="right-panel" className="col-sm-6">
+              {/* <FacebookDesktop className="mb-5" clientInitials={this.state.clientInitials} clientName={this.state.clientName} contentCopy={this.state.contentCopy} imgLink={this.state.imgLink} />
+              <FacebookMobile clientInitials={this.state.clientInitials} clientName={this.state.clientName} contentCopy={this.state.contentCopy} imgLink={this.state.imgLink} /> */}
+              <Instagram clientInitials={this.state.clientInitials} clientName={this.state.clientName} contentCopy={this.state.contentCopy} imgLink={this.state.imgLink} />
             </div>
+            {/* Row */}
           </div>
         </section>
       </div>
