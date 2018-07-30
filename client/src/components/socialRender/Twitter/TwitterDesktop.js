@@ -10,27 +10,28 @@ const TwitterDesktop = ({ clientInitials, clientName, contentCopy, imgLink }) =>
       <div className="card-body">
         <div className="d-inline-block fb-title">
           <p className="d-inline-block company bg-primary mb-0">{clientInitials}</p>
-          <h5 className="d-inline-block card-title pl-2">
-            {clientName} <small className="text-muted">@{clientName}</small>
+          <h5 className="d-inline-block card-title pl-3">
+            {clientName} <small className="text-muted">@{clientName.replace(/ /g, '')}</small>
           </h5>
         </div>
 
         <p className="contentCopy">{contentCopy}</p>
 
         <img className="card-img mt-2 mb-4" src={imgLink} alt="Twitter Style Render" />
-        <hr />
         <a href="" onClick={e => e.preventDefault()}>
           <span>
-            <i className="fa fa-thumbs-o-up text-primary" /> Like
+            <i className="fa fa-comment-o text-primary" />10
           </span>
           <span>
-            <i className="fa fa-comment-o text-primary" />Comment
+            <i className="fa fa-retweet text-primary" />20
           </span>
           <span>
-            <i className="fa fa-share  text-primary" />Share
+            <i className="fa fa-heart-o text-primary" />30
+          </span>
+          <span>
+            <i className="fa fa-envelope-o text-primary" />
           </span>
         </a>
-        <hr />
       </div>
     </div>
   );

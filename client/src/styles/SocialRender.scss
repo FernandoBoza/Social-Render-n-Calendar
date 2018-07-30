@@ -107,10 +107,13 @@
 
   .tw-desktop {
     .d-inline-block.fb-title {
-      margin-left: -3.5rem;
+      margin-left: -4rem;
     }
     .card-body {
       padding-left: 4rem;
+    }
+    h5.d-inline-block.card-title.pl-3 {
+      vertical-align: top;
     }
   }
 
