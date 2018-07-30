@@ -1,16 +1,41 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const router = express.Router();
-const mongoose = require('mongoose');
-const passport = require('passport');
-const UserModel = require('../../model/UserModel');
-const ClientModel = require('../../model/ClientModel');
-const validateClientProfile = require('../../validation/clientProfileValidation');
-const jwt = require('jsonwebtoken');
+const SocialRenderModel = require('../../model/SocialRenderModel');
+const validateSocialRender = require('../../validation/socialRenderValidation');
 
-// @GET all api/users
 router.get('/', (req, res) => {
-  res.json({ msg: 'Users Works' });
+  const errorsObj = {};
+  SocialRenderModel.find()
+    .then(socialRender => {
+      if (!socialRender) {
+        errorsObj.noSocialRender = 'There is no Social Render ';
+        return res.status(404).json(errorsObj);
+      }
+      res.json(socialRender);
+    })
+    .catch(err => res.status(404).json(err));
+});
+
+// router.get('/', (req, res) => {
+//   SocialRenderModel.find().then(socialRender => {
+//     res.json(socialRender);
+//   });
+// });
+
+router.post('/', (req, res) => {
+  const newSocialRender = new SocialRenderModel({
+    clientName: req.body.clientName,
+    clientInitials: req.body.clientInitials,
+    contentCopy: req.body.contentCopy,
+    imgLink: req.body.imgLink,
+    imgLinkInstagram: req.body.imgLinkInstagram
+  });
+
+  newSocialRender
+    .save()
+    .then(socialRender => res.json(socialRender))
+    .catch(err => console.log(err));
 });
 
 module.exports = router;

@@ -2,13 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Instagram = ({ clientInitials, clientName, contentCopy, imgLink }) => {
-  const options = {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  };
-  const today = new Date();
   return (
     <div className="col-xs-12  offset-md-2  col-md-7 card px-0 instagram">
       <div className="card-body pb-0">

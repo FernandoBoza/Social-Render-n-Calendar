@@ -1,7 +1,6 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const router = express.Router();
-const mongoose = require('mongoose');
 const passport = require('passport');
 const UserModel = require('../../model/UserModel');
 const ClientModel = require('../../model/ClientModel');
@@ -9,7 +8,6 @@ const validateClientProfile = require('../../validation/clientProfileValidation'
 
 // @GET api/clients
 // @desc Get All Clients
-// router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => {
 router.get('/', (req, res) => {
   const errorsObj = {};
   ClientModel.find()

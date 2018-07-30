@@ -45,7 +45,7 @@ class NavBar extends Component {
       </ul>
     );
     return (
-      <div className="container-fluid mb-5 p-0">
+      <div className="container-fluid p-0">
         <nav className="navbar navbar-expand-lg navbar-light bg-light px-5">
           <Link className="navbar-brand" to="/">
             Social Goal Tracker

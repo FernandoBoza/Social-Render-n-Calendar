@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import FacebookDesktop from './Facebook/FacebookDesktop';
 import FacebookMobile from './Facebook/FacebookMobile';
 import Instagram from './Instagram/Instagram';
+import TwitterDesktop from './Twitter/TwitterDesktop';
 import '../../styles/SocialRender.css';
 
 export default class SocialRenderComponent extends Component {
@@ -10,7 +11,8 @@ export default class SocialRenderComponent extends Component {
     this.state = {
       clientName: 'THR33FOLD',
       clientInitials: '3F',
-      imgLink: 'http://thr33fold.com/wp-content/uploads/2018/04/3F_SITE_INTRO_2.gif',
+      imgLink: 'https://dl.dropboxusercontent.com/s/mmi9gj5y21vhnar/BB_August_BaseContentFull_Ceramic_%232.jpg?dl=0',
+      imgLinkInstagram: 'https://dl.dropboxusercontent.com/s/6cbl8am2p4z379q/BB_August_BaseContentFull_Ceramic_%232_IG.jpg?dl=0',
       contentCopy: `The Adrienne Arsht Center is looking for a new social media agency and we are auditioning! Should the ArshtCenter & THR33FOLD dance the social tango? Help us upstage the competition by tagging the @arshtcenter & commenting #BreakALeg3F on this post.`
     };
 
@@ -35,6 +37,13 @@ export default class SocialRenderComponent extends Component {
     });
   };
 
+  handleInstagramImgChange = e => {
+    let dbLink = this.changeDBLinkToImgLink(e.target.value);
+    this.setState({
+      imgLinkInstagram: dbLink
+    });
+  };
+
   handleCopyChange = e => {
     this.setState({
       contentCopy: e.target.value
@@ -56,6 +65,15 @@ export default class SocialRenderComponent extends Component {
                 </div>
                 <input type="text" className="form-control" onChange={this.handleImgChange} value={this.state.imgLink} />
               </div>
+              <div className="input-group ">
+                <div className="input-group-prepend">
+                  <span className="input-group-text" id="inputGroup-sizing-default">
+                    Instagram Share Link
+                    <i className="fa fa-instagram text-primary" aria-hidden="true" />
+                  </span>
+                </div>
+                <input type="text" className="form-control" onChange={this.handleInstagramImgChange} value={this.state.imgLinkInstagram} />
+              </div>
               <div className="input-group my-3">
                 <div className="input-group-prepend">
                   <span className="input-group-text">Client Name and Initials</span>
@@ -75,9 +93,66 @@ export default class SocialRenderComponent extends Component {
             </div>
 
             <div id="right-panel" className="col-sm-6">
-              {/* <FacebookDesktop className="mb-5" clientInitials={this.state.clientInitials} clientName={this.state.clientName} contentCopy={this.state.contentCopy} imgLink={this.state.imgLink} />
-              <FacebookMobile clientInitials={this.state.clientInitials} clientName={this.state.clientName} contentCopy={this.state.contentCopy} imgLink={this.state.imgLink} /> */}
-              <Instagram clientInitials={this.state.clientInitials} clientName={this.state.clientName} contentCopy={this.state.contentCopy} imgLink={this.state.imgLink} />
+              <div className="accordion" id="accordionExample">
+                <div className="card">
+                  <div className="card-header" id="headingOne">
+                    <h5 className="mb-0">
+                      <button className="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne">
+                        Facebook Desktop
+                      </button>
+                    </h5>
+                  </div>
+                  <div id="collapseOne" className="collapse" data-parent="#accordionExample">
+                    <div className="card-body">
+                      <FacebookDesktop className="mb-5" clientInitials={this.state.clientInitials} clientName={this.state.clientName} contentCopy={this.state.contentCopy} imgLink={this.state.imgLink} />
+                    </div>
+                  </div>
+                </div>
+                <div className="card">
+                  <div className="card-header" id="headingTwo">
+                    <h5 className="mb-0">
+                      <button className="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo">
+                        Facebook Mobile
+                      </button>
+                    </h5>
+                  </div>
+                  <div id="collapseTwo" className="collapse" data-parent="#accordionExample">
+                    <div className="card-body">
+                      <FacebookMobile clientInitials={this.state.clientInitials} clientName={this.state.clientName} contentCopy={this.state.contentCopy} imgLink={this.state.imgLink} />
+                    </div>
+                  </div>
+                </div>
+                <div className="card">
+                  <div className="card-header" id="headingThree">
+                    <h5 className="mb-0">
+                      <button className="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree">
+                        Instagram
+                      </button>
+                    </h5>
+                  </div>
+                  <div id="collapseThree" className="collapse" data-parent="#accordionExample">
+                    <div className="card-body">
+                      <Instagram clientInitials={this.state.clientInitials} clientName={this.state.clientName} contentCopy={this.state.contentCopy} imgLink={this.state.imgLinkInstagram ? this.state.imgLinkInstagram : this.state.imgLink} />
+                    </div>
+                  </div>
+                </div>
+                <div className="card">
+                  <div className="card-header" id="headingFour">
+                    <h5 className="mb-0">
+                      <button className="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour">
+                        Twitter Desktop
+                      </button>
+                    </h5>
+                  </div>
+                  <div id="collapseFour" className="collapse show" data-parent="#accordionExample">
+                    <div className="card-body">
+                      <TwitterDesktop className="mb-5" clientInitials={this.state.clientInitials} clientName={this.state.clientName} contentCopy={this.state.contentCopy} imgLink={this.state.imgLink} />
+                    </div>
+                  </div>
+                </div>
+                {/* Accordian  */}
+              </div>
+              {/* Right Panel */}
             </div>
             {/* Row */}
           </div>

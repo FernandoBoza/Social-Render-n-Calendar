@@ -10,7 +10,7 @@ const FacebookDesktop = ({ clientInitials, clientName, contentCopy, imgLink }) =
   };
   const today = new Date();
   return (
-    <div className="card fb-desktop">
+    <div className=" offset-md-2  col-md-9 card fb-desktop">
       <div className="card-body">
         <div className="d-inline-block fb-title">
           <p className="d-inline-block company bg-primary">{clientInitials}</p>
