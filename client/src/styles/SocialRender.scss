@@ -1,0 +1,133 @@
+.company {
+  width: 3rem;
+  height: 3rem;
+  font-size: 2rem;
+  text-align: center;
+  padding: 6px;
+  color: white;
+  border-radius: 50rem;
+  font-weight: 100;
+  pointer-events: none;
+  padding-top: 9px;
+}
+
+#social-render {
+  span {
+    font-size: 1rem;
+    padding-right: 4rem;
+  }
+
+  a {
+    &:hover {
+      text-decoration: none;
+    }
+    i.fa.text-primary {
+      font-size: 1.3rem;
+      margin-right: 0.5rem;
+      transition: transform 0.1s cubic-bezier(0.47, 0, 0.745, 0.715);
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    display: inline-block;
+    line-height: 0;
+    padding-left: 1rem;
+    vertical-align: top;
+  }
+
+  hr {
+    padding-top: 0.6rem;
+  }
+
+  h5.d-inline-block.card-title.ml-2 {
+    vertical-align: top;
+  }
+
+  textarea.card-text {
+    border: 1px solid lightgray;
+    font-size: 1.3rem;
+    line-height: 1.2;
+    // width: 100%;
+    height: 11.5rem;
+    display: block;
+  }
+
+  p.contentCopy {
+    white-space: pre-line;
+  }
+
+  .input-group-text {
+    width: 14rem;
+  }
+
+  i.fa.fa-dropbox,
+  .fa-instagram.text-primary,
+  i.fa.fa-pencil-square-o {
+    font-size: 1rem;
+    padding-top: 0.2rem;
+    padding-left: 0.4rem;
+    background: none;
+  }
+
+  // div#right-panel {
+  //   height: 100vh;
+  //   position: absolute;
+  //   top: 27%;
+  //   bottom: 0;
+  //   right: 0;
+  //   overflow-y: scroll;
+  //   border-left: 1px solid lightgray;
+  // }
+
+  // .card { margin-bottom: 80px; }
+
+  .accordion .card {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  }
+
+  .instagram {
+    .company {
+      border: 2px solid #bb5959;
+      font-size: 1.5rem;
+    }
+
+    .lower-card-body {
+      i.fa.text-primary {
+        font-size: 1.3rem;
+        margin-right: 0.5rem;
+        transition: transform 0.1s cubic-bezier(0.47, 0, 0.745, 0.715);
+      }
+    }
+  }
+
+  .tw-desktop {
+    .d-inline-block.fb-title {
+      margin-left: -4rem;
+    }
+    .card-body {
+      padding-left: 4rem;
+    }
+    h5.d-inline-block.card-title.pl-3 {
+      vertical-align: top;
+    }
+  }
+
+  @media screen and (max-width: 992px) {
+    div#left-panel {
+      display: none;
+    }
+
+    div#right-panel {
+      top: 70%;
+    }
+  }
+
+  // @media screen and (min-width: 00px) {}
+}
+
+// .verticle-divider {}

@@ -16,7 +16,8 @@ class Dashboard extends Component {
     for (let i = 0; i <= clients.length; i++) {
       return (
         <li key={clients[1].handle}>
-          <Link to={`/clients/${clients[i].handle}`}>{clients[i].name}</Link> last updated by {clients[i].lastUpdatedBy}
+          <Link to={`/clients/${clients[i].handle}`}>{clients[i].name}</Link>{' '}
+          last updated by {clients[i].lastUpdatedBy}
         </li>
       );
     }
@@ -34,10 +35,9 @@ class Dashboard extends Component {
       if (Object.keys(clients).length > 0) {
         dashboardContent = (
           <div>
-            {/* <p className="lead text-muted">{this.buildClientList(clients, user)}</p> */}
-
             <Link to="/create-client" className="btn btn-lg btn-info mr-3">
-              Create Client <i className="fa fa-user-plus" style={{ fontSize: '1.2rem' }} />
+              Create Client{' '}
+              <i className="fa fa-user-plus" style={{ fontSize: '1.2rem' }} />
             </Link>
           </div>
         );
@@ -60,8 +60,16 @@ class Dashboard extends Component {
           <div className="row">
             <div className="col-md-6">
               <h1 className="display-4">Dashboard</h1>
-              <p className="lead text-muted">Welcome {user.name}</p>
+              <p className="lead text-muted mb-5">Welcome {user.name}</p>
               {dashboardContent}
+
+              <Link to="/social-render" className="btn btn-lg btn-info mt-4">
+                Social Render
+                <i
+                  className="fa fa-columns ml-2"
+                  style={{ fontSize: '1.2rem' }}
+                />
+              </Link>
             </div>
             <div className="col-md-6">
               <Clients />

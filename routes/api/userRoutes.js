@@ -79,17 +79,12 @@ router.post('/login', (req, res) => {
         }; // Create JWT Payload, User info
 
         // User Token
-        jwt.sign(
-          payload,
-          keys.secretOrKey,
-          { expiresIn: 3600 },
-          (err, token) => {
-            res.json({
-              success: true,
-              token: 'Bearer ' + token // Token Bearer connected to keys secretOrKey!!
-            });
-          }
-        );
+        jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
+          res.json({
+            success: true,
+            token: 'Bearer ' + token // Token Bearer connected to keys secretOrKey!!
+          });
+        });
       } else {
         errorsObj.password = 'Password Incorrect';
         return res.status(404).json(errorsObj);
@@ -100,16 +95,12 @@ router.post('/login', (req, res) => {
 
 // @POST api/users/current
 // @desc Return a current users
-router.get(
-  '/current',
-  passport.authenticate('jwt', { session: false }),
-  (req, res) => {
-    res.json({
-      id: req.user.id,
-      name: req.user.name,
-      email: req.user.email
-    });
-  }
-);
+router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
+  res.json({
+    id: req.user.id,
+    name: req.user.name,
+    email: req.user.email
+  });
+});
 
 module.exports = router;

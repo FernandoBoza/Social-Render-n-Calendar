@@ -151,7 +151,6 @@ export class Client extends Component {
                   />
                   <i
                     className={this.state[categoryAbbrv + '_tw'] ? 'fa fa-twitter' : 'hide'}
-                    tabIndex="0"
                     style={{
                       left: (isEmpty(clients[categoryName] && clients[categoryName].tw_x) ? '' : clients[categoryName].tw_x.toString() / clients[categoryName].tw_y) * 100 + '%'
                     }}

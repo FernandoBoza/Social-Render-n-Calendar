@@ -1,7 +1,6 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const router = express.Router();
-const mongoose = require('mongoose');
 const passport = require('passport');
 const UserModel = require('../../model/UserModel');
 const ClientModel = require('../../model/ClientModel');
@@ -9,7 +8,6 @@ const validateClientProfile = require('../../validation/clientProfileValidation'
 
 // @GET api/clients
 // @desc Get All Clients
-// router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => {
 router.get('/', (req, res) => {
   const errorsObj = {};
   ClientModel.find()
@@ -55,10 +53,11 @@ router.put('/handle/:handle', passport.authenticate('jwt', { session: false }), 
   if (req.body.name) clientProfileFields.handle = trimHandle(req.body.name);
 
   clientProfileFields.pageFollowers = {};
-  clientProfileFields.engagement = {};
   clientProfileFields.impressions = {};
   clientProfileFields.reach = {};
+  clientProfileFields.engagement = {};
   clientProfileFields.siteTraffic = {};
+  clientProfileFields.pressRelease = {};
   // ------------------------
   //Page Followers
   // ------------------------
@@ -137,6 +136,13 @@ router.put('/handle/:handle', passport.authenticate('jwt', { session: false }), 
   if (req.body.web_b4) clientProfileFields.siteTraffic.web_b4 = req.body.web_b4;
   if (req.body.web_x) clientProfileFields.siteTraffic.x = req.body.web_x;
   if (req.body.web_y) clientProfileFields.siteTraffic.y = req.body.web_y;
+  // ------------------------
+  // Press Release
+  // ------------------------
+  if (req.body.numHits_x) clientProfileFields.pressRelease.x = req.body.numHits_x;
+  if (req.body.numHits_y) clientProfileFields.pressRelease.y = req.body.numHits_y;
+  if (req.body.mediaValue_x) clientProfileFields.pressRelease.x = req.body.mediaValue_x;
+  if (req.body.mediaValue_y) clientProfileFields.pressRelease.y = req.body.mediaValue_y;
 
   // UPDATE
   ClientModel.findOneAndUpdate({ name: clientProfileFields.name }, { $set: clientProfileFields }, { new: true })
@@ -164,6 +170,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
   clientProfileFields.impressions = {};
   clientProfileFields.reach = {};
   clientProfileFields.siteTraffic = {};
+  clientProfileFields.pressRelease = {};
   // ---------------------
   //Page Followers
   // ---------------------
@@ -242,6 +249,14 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
   if (req.body.web_b4) clientProfileFields.siteTraffic.web_b4 = req.body.web_b4;
   if (req.body.web_x) clientProfileFields.siteTraffic.x = req.body.web_x;
   if (req.body.web_y) clientProfileFields.siteTraffic.y = req.body.web_y;
+
+  // ------------------------
+  // Press Release
+  // ------------------------
+  if (req.body.numHits_x) clientProfileFields.pressRelease.x = req.body.numHits_x;
+  if (req.body.numHits_y) clientProfileFields.pressRelease.y = req.body.numHits_y;
+  if (req.body.mediaValue_x) clientProfileFields.pressRelease.x = req.body.mediaValue_x;
+  if (req.body.mediaValue_y) clientProfileFields.pressRelease.y = req.body.mediaValue_y;
 
   ClientModel.findOne({ name: clientProfileFields.name }).then(client => {
     if (client) {
