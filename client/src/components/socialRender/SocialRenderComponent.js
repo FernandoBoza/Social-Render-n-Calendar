@@ -144,7 +144,7 @@ export default class SocialRenderComponent extends Component {
                       </button>
                     </h5>
                   </div>
-                  <div id="collapseFour" className="collapse show" data-parent="#accordionExample">
+                  <div id="collapseFour" className="collapse" data-parent="#accordionExample">
                     <div className="card-body">
                       <TwitterDesktop className="mb-5" clientInitials={this.state.clientInitials} clientName={this.state.clientName} contentCopy={this.state.contentCopy} imgLink={this.state.imgLink} />
                     </div>

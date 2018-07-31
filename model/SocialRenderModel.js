@@ -16,8 +16,7 @@ const SocialRenderSchema = new Schema({
     required: true
   },
   imgLink: {
-    type: String,
-    required: true
+    type: String
   },
   imgLinkInstagram: {
     type: String

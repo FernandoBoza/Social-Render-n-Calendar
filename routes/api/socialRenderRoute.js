@@ -4,6 +4,7 @@ const router = express.Router();
 const SocialRenderModel = require('../../model/SocialRenderModel');
 const validateSocialRender = require('../../validation/socialRenderValidation');
 
+// GET all social render profiles
 router.get('/', (req, res) => {
   const errorsObj = {};
   SocialRenderModel.find()
@@ -16,12 +17,6 @@ router.get('/', (req, res) => {
     })
     .catch(err => res.status(404).json(err));
 });
-
-// router.get('/', (req, res) => {
-//   SocialRenderModel.find().then(socialRender => {
-//     res.json(socialRender);
-//   });
-// });
 
 router.post('/', (req, res) => {
   const newSocialRender = new SocialRenderModel({

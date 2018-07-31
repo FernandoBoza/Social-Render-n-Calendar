@@ -11,3 +11,7 @@ export const CLIENT_NOT_FOUND = 'CLIENT_NOT_FOUND';
 
 // ALL Clients Types
 export const GET_ALL_CLIENTS_PROFILES = 'GET_ALL_CLIENTS_PROFILES';
+
+// Social Render Types
+export const GET_SOCIAL_RENDER = 'GET_SOCIAL_RENDER';
+export const SOCIAL_RENDER_LOADING = 'SOCIAL_RENDER_LOADING';

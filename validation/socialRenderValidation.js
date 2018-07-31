@@ -17,13 +17,13 @@ module.exports = function validateSocialRender(data) {
     errorsObj.clientInitials = 'Client Initials Field is Required';
   }
   if (Validator.isEmpty(data.contentCopy)) {
-    errorsObj.contentCopy = 'Content Copy Field is Invalid';
+    errorsObj.contentCopy = 'Content Copy Field is Required';
   }
   if (Validator.isEmpty(data.imgLink)) {
-    errorsObj.imgLink = 'Img Link Field is Invalid';
+    errorsObj.imgLink = 'Img Link Field is Required';
   }
   if (Validator.isEmpty(data.imgLinkInstagram)) {
-    errorsObj.imgLinkInstagram = 'Img Link Instagram Field is Invalid';
+    errorsObj.imgLinkInstagram = 'Img Link Instagram Field is Required';
   }
 
   return {
