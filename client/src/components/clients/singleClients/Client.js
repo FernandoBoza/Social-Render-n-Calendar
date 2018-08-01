@@ -83,7 +83,6 @@ export class Client extends Component {
     const { isAuthenticated } = this.props.auth;
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const today = new Date();
-    let toggleCollapse = this.state.collapse ? 'show' : '';
     let clientContent;
 
     const authLinks = (
@@ -92,7 +91,7 @@ export class Client extends Component {
           Edit Client
         </Link>
 
-        <button className="btn btn-success mx-4 toggleShowCollapse" onClick={this.toggleCollapse}>
+        <button className="btn btn-success mx-4 toggleShowCollapse" type="button" data-toggle="collapse" data-target=".multi-collapse" onClick={this.toggleCollapse}>
           {this.state.collapse ? 'Collapse' : 'Expand'}
         </button>
       </div>
@@ -110,7 +109,7 @@ export class Client extends Component {
           <button className="btn btn-info d-block w-100 mb-5" type="button" data-toggle="collapse" data-target={`#${categoryName}`} aria-expanded="true" aria-controls="collapseExample">
             <h4 className="font-weight-light m-0">{categoryFullName}</h4>
           </button>
-          <div className={`${toggleCollapse} collapse my-3`} id={categoryName}>
+          <div className={`show collapse multi-collapse my-3`} id={categoryName}>
             <div className="row">
               <div className="col-sm-12 d-flex justify-content-around mb-4 hide-btn-col">
                 <div className="form-check">
@@ -247,7 +246,7 @@ export class Client extends Component {
                 <button className="btn btn-info d-block w-100 mb-5" type="button" data-toggle="collapse" data-target="#site_traffic" aria-expanded="false" aria-controls="collapseExample">
                   <h4 className="font-weight-light m-0">Site Traffic</h4>
                 </button>
-                <div className={`${toggleCollapse} collapse my-3`} id="site_traffic">
+                <div className="show collapse multi-collapse my-3" id="site_traffic">
                   <div className="row">
                     <div className="col-sm-3 current">
                       <TextInputField icon="laptop" name="web_x" classname="web" placeholder="Current Web Traffic" value={isEmpty(clients.siteTraffic && clients.siteTraffic.x) ? '' : clients.siteTraffic.x.toString()} onChange={this.handleChange} />
