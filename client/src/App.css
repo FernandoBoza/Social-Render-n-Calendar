@@ -200,3 +200,7 @@ p {
   font-size: 1.3rem;
   line-height: 1;
 }
+
+.toggleShowCollapse {
+  width: 6rem;
+}
