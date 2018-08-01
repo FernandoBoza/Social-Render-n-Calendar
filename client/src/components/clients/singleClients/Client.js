@@ -47,10 +47,13 @@ export class Client extends Component {
       // --------------------
       //  Web
       // --------------------
-      web: true
+      web: true,
+
+      collapse: true
     };
 
     this.toggleShowBtn = this.toggleShowBtn.bind(this);
+    this.toggleCollapse = this.toggleCollapse.bind(this);
   }
 
   componentDidMount = () => {
@@ -69,17 +72,30 @@ export class Client extends Component {
     this.setState({ [name]: target.checked });
   };
 
+  toggleCollapse = () => {
+    this.setState(prevState => ({
+      collapse: !prevState.collapse
+    }));
+  };
+
   render() {
     const { clients, loading } = this.props.clients;
     const { isAuthenticated } = this.props.auth;
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const today = new Date();
+    let toggleCollapse = this.state.collapse ? 'show' : '';
     let clientContent;
 
     const authLinks = (
-      <Link to={`${this.props.match.params.handle}/edit-client`} className="btn btn-primary mb-3 fload-left">
-        Edit Client
-      </Link>
+      <div className="mb-3">
+        <Link to={`${this.props.match.params.handle}/edit-client`} className="btn btn-primary toggleShowCollapse">
+          Edit Client
+        </Link>
+
+        <button className="btn btn-success mx-4 toggleShowCollapse" onClick={this.toggleCollapse}>
+          {this.state.collapse ? 'Collapse' : 'Expand'}
+        </button>
+      </div>
     );
 
     const guestLinks = (
@@ -94,7 +110,7 @@ export class Client extends Component {
           <button className="btn btn-info d-block w-100 mb-5" type="button" data-toggle="collapse" data-target={`#${categoryName}`} aria-expanded="true" aria-controls="collapseExample">
             <h4 className="font-weight-light m-0">{categoryFullName}</h4>
           </button>
-          <div className={`${hideOrShow} collapse my-3`} id={categoryName}>
+          <div className={`${toggleCollapse} collapse my-3`} id={categoryName}>
             <div className="row">
               <div className="col-sm-12 d-flex justify-content-around mb-4 hide-btn-col">
                 <div className="form-check">
@@ -146,31 +162,31 @@ export class Client extends Component {
                   <i
                     className={this.state[categoryAbbrv + '_fb'] ? 'fa fa-facebook' : 'hide'}
                     style={{
-                      left: (isEmpty(clients[categoryName] && clients[categoryName].fb_x) ? '' : clients[categoryName].fb_x.toString() / clients[categoryName].fb_y) * 100 + '%'
+                      left: (isEmpty(clients[categoryName] && clients[categoryName].fb_x) ? '' : clients[categoryName].fb_x.toString() / clients[categoryName].fb_y) * 100 >= 100 ? '100%' : isEmpty(clients[categoryName] && clients[categoryName].fb_x) ? '' : (clients[categoryName].fb_x.toString() / clients[categoryName].fb_y) * 100 + '%'
                     }}
                   />
                   <i
                     className={this.state[categoryAbbrv + '_tw'] ? 'fa fa-twitter' : 'hide'}
                     style={{
-                      left: (isEmpty(clients[categoryName] && clients[categoryName].tw_x) ? '' : clients[categoryName].tw_x.toString() / clients[categoryName].tw_y) * 100 + '%'
+                      left: (isEmpty(clients[categoryName] && clients[categoryName].tw_x) ? '' : clients[categoryName].tw_x.toString() / clients[categoryName].tw_y) * 100 >= 100 ? '100%' : isEmpty(clients[categoryName] && clients[categoryName].tw_x) ? '' : (clients[categoryName].tw_x.toString() / clients[categoryName].tw_y) * 100 + '%'
                     }}
                   />
                   <i
                     className={this.state[categoryAbbrv + '_ig'] ? 'fa fa-instagram' : 'hide'}
                     style={{
-                      left: (isEmpty(clients[categoryName] && clients[categoryName].ig_x) ? '' : clients[categoryName].ig_x.toString() / clients[categoryName].ig_y) * 100 + '%'
+                      left: (isEmpty(clients[categoryName] && clients[categoryName].ig_x) ? '' : clients[categoryName].ig_x.toString() / clients[categoryName].ig_y) * 100 >= 100 ? '100%' : isEmpty(clients[categoryName] && clients[categoryName].ig_x) ? '' : (clients[categoryName].ig_x.toString() / clients[categoryName].ig_y) * 100 + '%'
                     }}
                   />
                   <i
                     className={this.state[categoryAbbrv + '_ln'] ? 'fa fa-linkedin' : 'hide'}
                     style={{
-                      left: (isEmpty(clients[categoryName] && clients[categoryName].ln_x) ? '' : clients[categoryName].ln_x.toString() / clients[categoryName].ln_y) * 100 + '%'
+                      left: (isEmpty(clients[categoryName] && clients[categoryName].ln_x) ? '' : clients[categoryName].ln_x.toString() / clients[categoryName].ln_y) * 100 >= 100 ? '100%' : isEmpty(clients[categoryName] && clients[categoryName].ln_x) ? '' : (clients[categoryName].ln_x.toString() / clients[categoryName].ln_y) * 100 + '%'
                     }}
                   />
                   <i
                     className={this.state[categoryAbbrv + '_pt'] ? 'fa fa-pinterest' : 'hide'}
                     style={{
-                      left: (isEmpty(clients[categoryName] && clients[categoryName].pt_x) ? '' : clients[categoryName].pt_x.toString() / clients[categoryName].pt_y) * 100 + '%'
+                      left: (isEmpty(clients[categoryName] && clients[categoryName].pt_x) ? '' : clients[categoryName].pt_x.toString() / clients[categoryName].pt_y) * 100 >= 100 ? '100%' : isEmpty(clients[categoryName] && clients[categoryName].pt_x) ? '' : (clients[categoryName].pt_x.toString() / clients[categoryName].pt_y) * 100 + '%'
                     }}
                   />
                 </div>
@@ -227,36 +243,38 @@ export class Client extends Component {
               {createEditFields_5('Reach', 'reach', 'reach')}
               {createEditFields_5('Engagement', 'engagement', 'eng')}
 
-              <button className="btn btn-info d-block w-100 mb-5" type="button" data-toggle="collapse" data-target="#site_traffic" aria-expanded="false" aria-controls="collapseExample">
-                <h4 className="font-weight-light m-0">Site Traffic</h4>
-              </button>
-              <div className="collapse my-3" id="site_traffic">
-                <div className="row">
-                  <div className="col-sm-3 current">
-                    <TextInputField icon="laptop" name="web_x" classname="web" placeholder="Current Web Traffic" value={isEmpty(clients.siteTraffic && clients.siteTraffic.x) ? '' : clients.siteTraffic.x.toString()} onChange={this.handleChange} />
-                  </div>
-                  <div className="col-sm-6 rangeSlider">
-                    <div className="range-slider client">
-                      <i
-                        className="fa fa-code"
-                        style={{
-                          left: (isEmpty(clients.siteTraffic && clients.siteTraffic.x) ? '' : clients.siteTraffic.x.toString() / clients.siteTraffic.y) * 100 + '%'
-                        }}
-                      />
+              <div className="w-100">
+                <button className="btn btn-info d-block w-100 mb-5" type="button" data-toggle="collapse" data-target="#site_traffic" aria-expanded="false" aria-controls="collapseExample">
+                  <h4 className="font-weight-light m-0">Site Traffic</h4>
+                </button>
+                <div className={`${toggleCollapse} collapse my-3`} id="site_traffic">
+                  <div className="row">
+                    <div className="col-sm-3 current">
+                      <TextInputField icon="laptop" name="web_x" classname="web" placeholder="Current Web Traffic" value={isEmpty(clients.siteTraffic && clients.siteTraffic.x) ? '' : clients.siteTraffic.x.toString()} onChange={this.handleChange} />
                     </div>
-                  </div>
-                  <div className="col-sm-3 goal">
-                    <TextInputField icon="laptop" name="web_y" classname="web" placeholder="Goal Web Traffic" value={isEmpty(clients.siteTraffic && clients.siteTraffic.y) ? '' : clients.siteTraffic.y.toString()} onChange={this.handleChange} />
-                  </div>
+                    <div className="col-sm-6 rangeSlider">
+                      <div className="range-slider client">
+                        <i
+                          className="fa fa-code"
+                          style={{
+                            left: (isEmpty(clients.siteTraffic && clients.siteTraffic.x) ? '' : clients.siteTraffic.x.toString() / clients.siteTraffic.y) * 100 >= 100 ? '100%' : isEmpty(clients.siteTraffic && clients.siteTraffic.x) ? '' : (clients.siteTraffic.x.toString() / clients.siteTraffic.y) * 100 + '%'
+                          }}
+                        />
+                      </div>
+                    </div>
+                    <div className="col-sm-3 goal">
+                      <TextInputField icon="laptop" name="web_y" classname="web" placeholder="Goal Web Traffic" value={isEmpty(clients.siteTraffic && clients.siteTraffic.y) ? '' : clients.siteTraffic.y.toString()} onChange={this.handleChange} />
+                    </div>
 
-                  <div className="col-sm-12 before">
-                    <hr />
-                    <h6 className="font-weight-light mt-2">Starting Site Traffic</h6>
-                    <ul className="d-flex justify-content-between list-unstyled">
-                      <li>
-                        <TextInputField icon="laptop" classname="web_x" placeholder="Starting" value={isEmpty(clients.siteTraffic && clients.siteTraffic.web_b4) ? '' : clients.siteTraffic.web_b4.toString()} onChange={this.handleChange} />
-                      </li>
-                    </ul>
+                    <div className="col-sm-12 before">
+                      <hr />
+                      <h6 className="font-weight-light mt-2">Starting Site Traffic</h6>
+                      <ul className="d-flex justify-content-between list-unstyled">
+                        <li>
+                          <TextInputField icon="laptop" classname="web_x" placeholder="Starting" value={isEmpty(clients.siteTraffic && clients.siteTraffic.web_b4) ? '' : clients.siteTraffic.web_b4.toString()} onChange={this.handleChange} />
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
