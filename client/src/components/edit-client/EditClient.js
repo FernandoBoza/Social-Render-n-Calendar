@@ -335,14 +335,14 @@ export class EditClient extends Component {
   render() {
     const { clients, loading } = this.props.clients;
     let clientContent;
-    let toggleCollapse = this.state.collapse ? 'show' : '';
+    // let toggleCollapse = this.state.collapse ? 'show' : '';
     const createEditFields_5 = (cat_name, categoryName, categoryAbbrv, hideOrShow) => {
       return (
         <div>
           <button className="btn btn-info d-block w-100 mb-5" type="button" data-toggle="collapse" data-target={`#${categoryName}`} aria-expanded="true" aria-controls="collapseExample">
             <h4 className="font-weight-light m-0">{cat_name}</h4>
           </button>
-          <div className={`${toggleCollapse} collapse my-3`} id={categoryName}>
+          <div className={`show collapse multi-collapse my-3`} id={categoryName}>
             <div className="row">
               <div className="col-sm-3 current">
                 <TextInputField icon="facebook" name={`${categoryAbbrv}_fb_x`} classname={categoryAbbrv + ' fb'} placeholder="Current" value={this.state[categoryAbbrv + '_fb_x'].toString()} onChange={this.handleChange} />
@@ -433,7 +433,7 @@ export class EditClient extends Component {
             Delete {clients.name}
           </button>
 
-          <button className="btn btn-success toggleShowCollapse mb-3" onClick={this.toggleCollapse}>
+          <button className="btn btn-success mb-3 toggleShowCollapse" type="button" data-toggle="collapse" data-target=".multi-collapse" onClick={this.toggleCollapse}>
             {this.state.collapse ? 'Collapse' : 'Expand'}
           </button>
 
@@ -450,7 +450,7 @@ export class EditClient extends Component {
               <button className="btn btn-info d-block w-100 mb-5" type="button" data-toggle="collapse" data-target="#site_traffic" aria-expanded="false" aria-controls="collapseExample">
                 <h4 className="font-weight-light m-0">Site Traffic</h4>
               </button>
-              <div className={`${toggleCollapse} collapse my-3`} id="site_traffic">
+              <div className={`collapse multi-collapse my-3`} id="site_traffic">
                 <div className="row">
                   <div className="col-sm-3 current">
                     <TextInputField icon="laptop" name="web_x" classname="web" placeholder="Current Web Traffic" value={this.state.web_x.toString()} onChange={this.handleChange} />
