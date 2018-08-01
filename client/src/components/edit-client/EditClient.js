@@ -94,12 +94,20 @@ export class EditClient extends Component {
       reach_b4_tw: '',
       reach_b4_ln: '',
       reach_b4_pt: '',
-      errors: {}
+      errors: {},
+      collapse: true
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.toggleCollapse = this.toggleCollapse.bind(this);
   }
+
+  toggleCollapse = () => {
+    this.setState(prevState => ({
+      collapse: !prevState.collapse
+    }));
+  };
 
   componentDidMount = () => {
     if (this.props.match.params.handle) {
@@ -210,7 +218,7 @@ export class EditClient extends Component {
 
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
-    console.log([e.target.name] + ' : ' + e.target.value);
+    // console.log([e.target.name] + ' : ' + e.target.value);
   };
 
   handleSubmit = e => {
@@ -327,14 +335,14 @@ export class EditClient extends Component {
   render() {
     const { clients, loading } = this.props.clients;
     let clientContent;
-
+    let toggleCollapse = this.state.collapse ? 'show' : '';
     const createEditFields_5 = (cat_name, categoryName, categoryAbbrv, hideOrShow) => {
       return (
         <div>
           <button className="btn btn-info d-block w-100 mb-5" type="button" data-toggle="collapse" data-target={`#${categoryName}`} aria-expanded="true" aria-controls="collapseExample">
             <h4 className="font-weight-light m-0">{cat_name}</h4>
           </button>
-          <div className={`${hideOrShow} collapse my-3`} id={categoryName}>
+          <div className={`${toggleCollapse} collapse my-3`} id={categoryName}>
             <div className="row">
               <div className="col-sm-3 current">
                 <TextInputField icon="facebook" name={`${categoryAbbrv}_fb_x`} classname={categoryAbbrv + ' fb'} placeholder="Current" value={this.state[categoryAbbrv + '_fb_x'].toString()} onChange={this.handleChange} />
@@ -348,31 +356,31 @@ export class EditClient extends Component {
                   <i
                     className="fa fa-facebook"
                     style={{
-                      left: (this.state[categoryAbbrv + '_fb_x'] / this.state[categoryAbbrv + '_fb_y']) * 100 + '%'
+                      left: (this.state[categoryAbbrv + '_fb_x'] / this.state[categoryAbbrv + '_fb_y']) * 100 >= 100 ? '100%' : (this.state[categoryAbbrv + '_fb_x'] / this.state[categoryAbbrv + '_fb_y']) * 100 + '%'
                     }}
                   />
                   <i
                     className="fa fa-twitter"
                     style={{
-                      left: (this.state[categoryAbbrv + '_tw_x'] / this.state[categoryAbbrv + '_tw_y']) * 100 + '%'
+                      left: (this.state[categoryAbbrv + '_tw_x'] / this.state[categoryAbbrv + '_tw_y']) * 100 >= 100 ? '100%' : (this.state[categoryAbbrv + '_tw_x'] / this.state[categoryAbbrv + '_tw_y']) * 100 + '%'
                     }}
                   />
                   <i
                     className="fa fa-linkedin"
                     style={{
-                      left: (this.state[categoryAbbrv + '_ln_x'] / this.state[categoryAbbrv + '_ln_y']) * 100 + '%'
+                      left: (this.state[categoryAbbrv + '_ln_x'] / this.state[categoryAbbrv + '_ln_y']) * 100 >= 100 ? '100%' : (this.state[categoryAbbrv + '_ln_x'] / this.state[categoryAbbrv + '_ln_y']) * 100 + '%'
                     }}
                   />
                   <i
                     className="fa fa-pinterest"
                     style={{
-                      left: (this.state[categoryAbbrv + '_pt_x'] / this.state[categoryAbbrv + '_pt_y']) * 100 + '%'
+                      left: (this.state[categoryAbbrv + '_pt_x'] / this.state[categoryAbbrv + '_pt_y']) * 100 >= 100 ? '100%' : (this.state[categoryAbbrv + '_pt_x'] / this.state[categoryAbbrv + '_pt_y']) * 100 + '%'
                     }}
                   />
                   <i
                     className="fa fa-instagram"
                     style={{
-                      left: (this.state[categoryAbbrv + '_ig_x'] / this.state[categoryAbbrv + '_ig_y']) * 100 + '%'
+                      left: (this.state[categoryAbbrv + '_ig_x'] / this.state[categoryAbbrv + '_ig_y']) * 100 >= 100 ? '100%' : (this.state[categoryAbbrv + '_ig_x'] / this.state[categoryAbbrv + '_ig_y']) * 100 + '%'
                     }}
                   />
                 </div>
@@ -421,8 +429,12 @@ export class EditClient extends Component {
             Back To {clients.name}
           </Link>
 
-          <button onClick={this.onDeleteClick.bind(this)} className="btn btn-danger ml-5 mb-3">
+          <button onClick={this.onDeleteClick.bind(this)} className="btn btn-danger mx-4 mb-3">
             Delete {clients.name}
+          </button>
+
+          <button className="btn btn-success toggleShowCollapse mb-3" onClick={this.toggleCollapse}>
+            {this.state.collapse ? 'Collapse' : 'Expand'}
           </button>
 
           <form onSubmit={this.handleSubmit}>
@@ -438,7 +450,7 @@ export class EditClient extends Component {
               <button className="btn btn-info d-block w-100 mb-5" type="button" data-toggle="collapse" data-target="#site_traffic" aria-expanded="false" aria-controls="collapseExample">
                 <h4 className="font-weight-light m-0">Site Traffic</h4>
               </button>
-              <div className="collapse my-3" id="site_traffic">
+              <div className={`${toggleCollapse} collapse my-3`} id="site_traffic">
                 <div className="row">
                   <div className="col-sm-3 current">
                     <TextInputField icon="laptop" name="web_x" classname="web" placeholder="Current Web Traffic" value={this.state.web_x.toString()} onChange={this.handleChange} />
@@ -448,7 +460,7 @@ export class EditClient extends Component {
                       <i
                         className="fa fa-code"
                         style={{
-                          left: (this.state.web_x / this.state.web_y) * 100 + '%'
+                          left: (this.state.web_x / this.state.web_y) * 100 >= 100 ? '100%' : (this.state.web_x / this.state.web_y) * 100 + '%'
                         }}
                       />
                     </div>
