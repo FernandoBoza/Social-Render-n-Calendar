@@ -3,9 +3,13 @@ import FacebookDesktop from './Facebook/FacebookDesktop';
 import FacebookMobile from './Facebook/FacebookMobile';
 import Instagram from './Instagram/Instagram';
 import TwitterDesktop from './Twitter/TwitterDesktop';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { getAllClients } from '../../actions/clientActions';
+import Spinner from '../common/Spinner';
 import '../../styles/SocialRender.css';
 
-export default class SocialRenderComponent extends Component {
+class SocialRenderComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,6 +24,10 @@ export default class SocialRenderComponent extends Component {
     this.handleCopyChange = this.handleCopyChange.bind(this);
     this.handleClient = this.handleClient.bind(this);
   }
+
+  componentDidMount = e => {
+    this.props.getAllClients();
+  };
 
   changeDBLinkToImgLink = link => {
     link = link.replace('www.dropbox.com', 'dl.dropboxusercontent.com');
@@ -51,6 +59,20 @@ export default class SocialRenderComponent extends Component {
   };
 
   render() {
+    const { clients, loading } = this.props.clients;
+    let clientItems = clients;
+    let clientNameArray = [];
+
+    if (clientItems == null || loading) {
+      clientItems = <Spinner />;
+    } else {
+      if (clients.length > 0) {
+        clientItems = clients.map(client => clientNameArray.push(client.name));
+      } else {
+        clientItems = <h4>No Clients Found</h4>;
+      }
+    }
+    console.log(clientNameArray);
     return (
       <div id="social-render">
         <section className="container-fluid">
@@ -161,3 +183,17 @@ export default class SocialRenderComponent extends Component {
     );
   }
 }
+
+SocialRenderComponent.propTypes = {
+  getAllClients: PropTypes.func.isRequired,
+  clients: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  clients: state.clients
+});
+
+export default connect(
+  mapStateToProps,
+  { getAllClients }
+)(SocialRenderComponent);
