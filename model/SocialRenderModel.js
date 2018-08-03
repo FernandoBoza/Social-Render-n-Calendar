@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 const SocialRenderSchema = new Schema({
   clientName: {
     type: String,
+    ref: 'client',
     required: true
   },
   clientInitials: {
@@ -20,6 +21,9 @@ const SocialRenderSchema = new Schema({
   },
   imgLinkInstagram: {
     type: String
+  },
+  dateGoingLive: {
+    type: Date
   },
   date: {
     type: Date,
