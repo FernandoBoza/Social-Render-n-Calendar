@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getAllClients } from '../../actions/clientActions';
 import Spinner from '../common/Spinner';
+import fuzzysort from 'fuzzysort';
 import '../../styles/SocialRender.css';
 
 class SocialRenderComponent extends Component {
@@ -17,12 +18,14 @@ class SocialRenderComponent extends Component {
       clientInitials: '3F',
       imgLink: 'https://dl.dropboxusercontent.com/s/mmi9gj5y21vhnar/BB_August_BaseContentFull_Ceramic_%232.jpg?dl=0',
       imgLinkInstagram: 'https://dl.dropboxusercontent.com/s/6cbl8am2p4z379q/BB_August_BaseContentFull_Ceramic_%232_IG.jpg?dl=0',
-      contentCopy: `The Adrienne Arsht Center is looking for a new social media agency and we are auditioning! Should the ArshtCenter & THR33FOLD dance the social tango? Help us upstage the competition by tagging the @arshtcenter & commenting #BreakALeg3F on this post.`
+      contentCopy: `The Adrienne Arsht Center is looking for a new social media agency and we are auditioning! Should the ArshtCenter & THR33FOLD dance the social tango? Help us upstage the competition by tagging the @arshtcenter & commenting #BreakALeg3F on this post.`,
+      clientNameArray: []
     };
 
     this.handleImgChange = this.handleImgChange.bind(this);
     this.handleCopyChange = this.handleCopyChange.bind(this);
     this.handleClient = this.handleClient.bind(this);
+    this.handleFuzzySort = this.handleFuzzySort.bind(this);
   }
 
   componentDidMount = e => {
@@ -60,19 +63,22 @@ class SocialRenderComponent extends Component {
 
   render() {
     const { clients, loading } = this.props.clients;
-    let clientItems = clients;
+    let clientItems;
     let clientNameArray = [];
 
-    if (clientItems == null || loading) {
+    if (clients == null || loading) {
       clientItems = <Spinner />;
     } else {
       if (clients.length > 0) {
-        clientItems = clients.map(client => clientNameArray.push(client.name));
+        clients.map(client => clientNameArray.push(client.name));
       } else {
-        clientItems = <h4>No Clients Found</h4>;
+        clientItems = 'No Clients Found';
       }
     }
-    console.log(clientNameArray);
+
+    // const results = fuzzysort.go(this.state.clientName, clientNameArray);
+    // results.map(result => console.log(result.target));
+
     return (
       <div id="social-render">
         <section className="container-fluid">
