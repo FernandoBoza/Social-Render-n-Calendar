@@ -6,6 +6,7 @@ import Spinner from '../../common/Spinner';
 import { getAClient } from '../../../actions/clientActions';
 import TextInputField from '../../common/TextInputField';
 import isEmpty from '../../../validation/is-empty';
+import ReactTooltip from 'react-tooltip';
 
 export class Client extends Component {
   constructor(props) {
@@ -157,32 +158,38 @@ export class Client extends Component {
                 <TextInputField icon="pinterest" divClassName={this.state[categoryAbbrv + '_pt'] ? '' : 'hide'} classname={categoryAbbrv + ' pn'} placeholder="Current Pinterest Followers" value={isEmpty(clients[categoryName] && clients[categoryName].pt_x) ? '' : clients[categoryName].pt_x.toString()} onChange={this.handleChange} />
               </div>
               <div className="col-sm-6 rangeSlider">
+                <ReactTooltip effect="solid" />
                 <div className="range-slider">
                   <i
+                    data-tip={`Progress: ${(isEmpty(clients[categoryName] && clients[categoryName].fb_x) ? '' : clients[categoryName].fb_x.toString() / clients[categoryName].fb_y) * 100 >= 100 ? '100%' : isEmpty(clients[categoryName] && clients[categoryName].fb_x) ? '' : Math.round((clients[categoryName].fb_x.toString() / clients[categoryName].fb_y) * 100) + '%'}`}
                     className={this.state[categoryAbbrv + '_fb'] ? 'fa fa-facebook' : 'hide'}
                     style={{
                       left: (isEmpty(clients[categoryName] && clients[categoryName].fb_x) ? '' : clients[categoryName].fb_x.toString() / clients[categoryName].fb_y) * 100 >= 100 ? '100%' : isEmpty(clients[categoryName] && clients[categoryName].fb_x) ? '' : (clients[categoryName].fb_x.toString() / clients[categoryName].fb_y) * 100 + '%'
                     }}
                   />
                   <i
+                    data-tip={`Progress: ${(isEmpty(clients[categoryName] && clients[categoryName].tw_x) ? '' : clients[categoryName].tw_x.toString() / clients[categoryName].tw_y) * 100 >= 100 ? '100%' : isEmpty(clients[categoryName] && clients[categoryName].tw_x) ? '' : Math.round((clients[categoryName].tw_x.toString() / clients[categoryName].tw_y) * 100) + '%'}`}
                     className={this.state[categoryAbbrv + '_tw'] ? 'fa fa-twitter' : 'hide'}
                     style={{
                       left: (isEmpty(clients[categoryName] && clients[categoryName].tw_x) ? '' : clients[categoryName].tw_x.toString() / clients[categoryName].tw_y) * 100 >= 100 ? '100%' : isEmpty(clients[categoryName] && clients[categoryName].tw_x) ? '' : (clients[categoryName].tw_x.toString() / clients[categoryName].tw_y) * 100 + '%'
                     }}
                   />
                   <i
+                    data-tip={`Progress: ${(isEmpty(clients[categoryName] && clients[categoryName].ig_x) ? '' : clients[categoryName].ig_x.toString() / clients[categoryName].ig_y) * 100 >= 100 ? '100%' : isEmpty(clients[categoryName] && clients[categoryName].ig_x) ? '' : Math.round((clients[categoryName].ig_x.toString() / clients[categoryName].ig_y) * 100) + '%'}`}
                     className={this.state[categoryAbbrv + '_ig'] ? 'fa fa-instagram' : 'hide'}
                     style={{
                       left: (isEmpty(clients[categoryName] && clients[categoryName].ig_x) ? '' : clients[categoryName].ig_x.toString() / clients[categoryName].ig_y) * 100 >= 100 ? '100%' : isEmpty(clients[categoryName] && clients[categoryName].ig_x) ? '' : (clients[categoryName].ig_x.toString() / clients[categoryName].ig_y) * 100 + '%'
                     }}
                   />
                   <i
+                    data-tip={`Progress: ${(isEmpty(clients[categoryName] && clients[categoryName].ln_x) ? '' : clients[categoryName].ln_x.toString() / clients[categoryName].ln_y) * 100 >= 100 ? '100%' : isEmpty(clients[categoryName] && clients[categoryName].ln_x) ? '' : Math.round((clients[categoryName].ln_x.toString() / clients[categoryName].ln_y) * 100) + '%'}`}
                     className={this.state[categoryAbbrv + '_ln'] ? 'fa fa-linkedin' : 'hide'}
                     style={{
                       left: (isEmpty(clients[categoryName] && clients[categoryName].ln_x) ? '' : clients[categoryName].ln_x.toString() / clients[categoryName].ln_y) * 100 >= 100 ? '100%' : isEmpty(clients[categoryName] && clients[categoryName].ln_x) ? '' : (clients[categoryName].ln_x.toString() / clients[categoryName].ln_y) * 100 + '%'
                     }}
                   />
                   <i
+                    data-tip={`Progress: ${(isEmpty(clients[categoryName] && clients[categoryName].pt_x) ? '' : clients[categoryName].pt_x.toString() / clients[categoryName].pt_y) * 100 >= 100 ? '100%' : isEmpty(clients[categoryName] && clients[categoryName].pt_x) ? '' : Math.round((clients[categoryName].pt_x.toString() / clients[categoryName].pt_y) * 100) + '%'}`}
                     className={this.state[categoryAbbrv + '_pt'] ? 'fa fa-pinterest' : 'hide'}
                     style={{
                       left: (isEmpty(clients[categoryName] && clients[categoryName].pt_x) ? '' : clients[categoryName].pt_x.toString() / clients[categoryName].pt_y) * 100 >= 100 ? '100%' : isEmpty(clients[categoryName] && clients[categoryName].pt_x) ? '' : (clients[categoryName].pt_x.toString() / clients[categoryName].pt_y) * 100 + '%'
@@ -254,6 +261,7 @@ export class Client extends Component {
                     <div className="col-sm-6 rangeSlider">
                       <div className="range-slider client">
                         <i
+                          data-tip={`Progress: ${(isEmpty(clients.siteTraffic && clients.siteTraffic.x) ? '' : clients.siteTraffic.x.toString() / clients.siteTraffic.y) * 100 >= 100 ? '100%' : isEmpty(clients.siteTraffic && clients.siteTraffic.x) ? '' : Math.round((clients.siteTraffic.x.toString() / clients.siteTraffic.y) * 100) + '%'}`}
                           className="fa fa-code"
                           style={{
                             left: (isEmpty(clients.siteTraffic && clients.siteTraffic.x) ? '' : clients.siteTraffic.x.toString() / clients.siteTraffic.y) * 100 >= 100 ? '100%' : isEmpty(clients.siteTraffic && clients.siteTraffic.x) ? '' : (clients.siteTraffic.x.toString() / clients.siteTraffic.y) * 100 + '%'
