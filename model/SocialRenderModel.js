@@ -4,17 +4,13 @@ const Schema = mongoose.Schema;
 // Create Schema
 const SocialRenderSchema = new Schema({
   clientName: {
-    type: String,
-    // ref: 'client',
-    required: true
+    type: String
   },
   clientInitials: {
-    type: String,
-    required: true
+    type: String
   },
   contentCopy: {
-    type: String,
-    required: true
+    type: String
   },
   imgLink: {
     type: String
