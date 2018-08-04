@@ -11,7 +11,11 @@ const TwitterDesktop = ({ clientInitials, clientName, contentCopy, imgLink }) =>
         <div className="d-inline-block fb-title">
           <p className="d-inline-block company bg-primary mb-0">{clientInitials}</p>
           <h5 className="d-inline-block card-title pl-3">
-            {clientName} <small className="text-muted">@{clientName.replace(/ /g, '')}</small>
+            {clientName}{' '}
+            <small className="text-muted twitterHandle">
+              <span>@</span>
+              {clientName.replace(/ /g, '')}
+            </small>
           </h5>
         </div>
 

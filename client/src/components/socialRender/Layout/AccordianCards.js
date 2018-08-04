@@ -11,7 +11,7 @@ const AccordianCards = ({ target, cardName, componentName }) => {
           </button>
         </h5>
       </div>
-      <div id={target} className="collapse show" data-parent="#accordionParent">
+      <div id={target} className="collapse " data-parent="#accordionParent">
         <div className="card-body">{componentName}</div>
       </div>
     </div>

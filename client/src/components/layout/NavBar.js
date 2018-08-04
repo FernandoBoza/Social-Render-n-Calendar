@@ -50,11 +50,11 @@ class NavBar extends Component {
           <Link className="navbar-brand" to="/">
             Social Goal Tracker
           </Link>
-          <span className="lead mini-intro mr-auto">
+          {/* <span className="lead mini-intro mr-auto">
             <a href="http://thr33fold.com" rel="noopener noreferrer" target="_blank">
               A THR33FOLD Company
             </a>
-          </span>
+          </span> */}
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon" />
           </button>
