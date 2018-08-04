@@ -27,4 +27,4 @@ const SocialRenderSchema = new Schema({
   }
 });
 
-module.exports = SocialRender = mongoose.model('socialRender', SocialRenderSchema);
+module.exports = SocialRender = mongoose.model('socialRenderContent', SocialRenderSchema);

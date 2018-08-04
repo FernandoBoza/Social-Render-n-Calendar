@@ -21,10 +21,10 @@ export const getAllSocialRender = () => dispatch => {
 };
 
 // POST create Social Render
-export const createSocialRender = (socialData, history) => dispatch => {
+export const createSocialRender = (socialRenderContent, history) => dispatch => {
   axios
-    .post('/api/social-render', socialData)
-    .then(res => history.push('/dashboard'))
+    .post('/api/social-render', socialRenderContent)
+    .then(res => history.push('/social-render'))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,

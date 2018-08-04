@@ -1,14 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const FacebookMobile = ({ clientInitials, clientName, contentCopy, imgLink }) => {
-  const options = {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  };
-  const today = new Date();
+const FacebookMobile = ({ clientInitials, clientName, contentCopy, imgLink, date }) => {
   return (
     <div className="col-xs-12  offset-md-2  col-md-7 card fb-mobile">
       <div className="card-body">
@@ -18,7 +11,7 @@ const FacebookMobile = ({ clientInitials, clientName, contentCopy, imgLink }) =>
             <li>
               <h5 className="d-inline-block card-title">{clientName}</h5>
             </li>
-            <li>{today.toLocaleDateString('en-US', options)}</li>
+            <li>{date}</li>
           </ul>
         </div>
 
@@ -47,7 +40,8 @@ FacebookMobile.propTypes = {
   clientInitials: PropTypes.string,
   clientName: PropTypes.string,
   contentCopy: PropTypes.string,
-  imgLink: PropTypes.string
+  imgLink: PropTypes.string,
+  date: PropTypes.string
 };
 
 FacebookMobile.defaultProps = {};
