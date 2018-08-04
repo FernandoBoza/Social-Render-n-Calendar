@@ -7,6 +7,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getAllClients } from '../../actions/clientActions';
 import Spinner from '../common/Spinner';
+import AccordianCards from './Layout/AccordianCards';
+import InputGroup from './Layout/InputGroup';
+import ClientInputGroup from './Layout/ClientInputGroup';
+import TextArea from './Layout/TextArea';
 import '../../styles/SocialRender.css';
 
 class SocialRenderComponent extends Component {
@@ -72,112 +76,28 @@ class SocialRenderComponent extends Component {
         clientItems = <h4>No Clients Found</h4>;
       }
     }
-    console.log(clientNameArray);
+
     return (
       <div id="social-render">
         <section className="container-fluid">
           <div className="row">
             <div id="left-panel" className="col-md-6">
-              <div className="input-group ">
-                <div className="input-group-prepend">
-                  <span className="input-group-text" id="inputGroup-sizing-default">
-                    Dropbox Image Share Link
-                    <i className="fa fa-dropbox text-primary" aria-hidden="true" />
-                  </span>
-                </div>
-                <input type="text" className="form-control" onChange={this.handleImgChange} value={this.state.imgLink} />
-              </div>
-              <div className="input-group ">
-                <div className="input-group-prepend">
-                  <span className="input-group-text" id="inputGroup-sizing-default">
-                    Instagram Share Link
-                    <i className="fa fa-instagram text-primary" aria-hidden="true" />
-                  </span>
-                </div>
-                <input type="text" className="form-control" onChange={this.handleInstagramImgChange} value={this.state.imgLinkInstagram} />
-              </div>
-              <div className="input-group my-3">
-                <div className="input-group-prepend">
-                  <span className="input-group-text">Client Name and Initials</span>
-                </div>
-                <input type="text" name="clientName" onChange={this.handleClient} value={this.state.clientName} className="form-control" />
-                <input type="text" name="clientInitials" onChange={this.handleClient} value={this.state.clientInitials} className="form-control" />
-              </div>
-              <div className="input-group">
-                <div className="input-group-prepend">
-                  <span className="input-group-text px-5">
-                    Copy Goes Here
-                    <i className="fa fa-pencil-square-o text-primary" aria-hidden="true" />
-                  </span>
-                </div>
-                <textarea className="form-control card-text" aria-label="With textarea" type="text" value={this.state.contentCopy} onChange={this.handleCopyChange} />
-              </div>
+              <InputGroup label={'Dropbox Image Share Link'} icon={'dropbox'} onChange={this.handleImgChange} value={this.state.imgLink} />
+              <InputGroup label={'Instagram Share Link'} icon={'instagram'} onChange={this.handleInstagramImgChange} value={this.state.imgLinkInstagram} />
+              <ClientInputGroup onChange={this.handleClient} value={this.state.clientName} value2={this.state.clientInitials} />
+              <TextArea value={this.state.contentCopy} onChange={this.handleCopyChange} />
             </div>
 
             <div id="right-panel" className="col-sm-6">
-              <div className="accordion" id="accordionExample">
-                <div className="card">
-                  <div className="card-header" id="headingOne">
-                    <h5 className="mb-0">
-                      <button className="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne">
-                        Facebook Desktop
-                      </button>
-                    </h5>
-                  </div>
-                  <div id="collapseOne" className="collapse" data-parent="#accordionExample">
-                    <div className="card-body">
-                      <FacebookDesktop className="mb-5" clientInitials={this.state.clientInitials} clientName={this.state.clientName} contentCopy={this.state.contentCopy} imgLink={this.state.imgLink} />
-                    </div>
-                  </div>
-                </div>
-                <div className="card">
-                  <div className="card-header" id="headingTwo">
-                    <h5 className="mb-0">
-                      <button className="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo">
-                        Facebook Mobile
-                      </button>
-                    </h5>
-                  </div>
-                  <div id="collapseTwo" className="collapse" data-parent="#accordionExample">
-                    <div className="card-body">
-                      <FacebookMobile clientInitials={this.state.clientInitials} clientName={this.state.clientName} contentCopy={this.state.contentCopy} imgLink={this.state.imgLink} />
-                    </div>
-                  </div>
-                </div>
-                <div className="card">
-                  <div className="card-header" id="headingThree">
-                    <h5 className="mb-0">
-                      <button className="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree">
-                        Instagram
-                      </button>
-                    </h5>
-                  </div>
-                  <div id="collapseThree" className="collapse" data-parent="#accordionExample">
-                    <div className="card-body">
-                      <Instagram clientInitials={this.state.clientInitials} clientName={this.state.clientName} contentCopy={this.state.contentCopy} imgLink={this.state.imgLinkInstagram ? this.state.imgLinkInstagram : this.state.imgLink} />
-                    </div>
-                  </div>
-                </div>
-                <div className="card">
-                  <div className="card-header" id="headingFour">
-                    <h5 className="mb-0">
-                      <button className="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour">
-                        Twitter Desktop
-                      </button>
-                    </h5>
-                  </div>
-                  <div id="collapseFour" className="collapse" data-parent="#accordionExample">
-                    <div className="card-body">
-                      <TwitterDesktop className="mb-5" clientInitials={this.state.clientInitials} clientName={this.state.clientName} contentCopy={this.state.contentCopy} imgLink={this.state.imgLink} />
-                    </div>
-                  </div>
-                </div>
-                {/* Accordian  */}
+              <div className="accordion" id="accordionParent">
+                <AccordianCards target={'facebookDesktop'} cardName={'Facebook Desktop'} componentName={<FacebookDesktop className="mb-5" clientInitials={this.state.clientInitials} clientName={this.state.clientName} contentCopy={this.state.contentCopy} imgLink={this.state.imgLink} />} />
+                <AccordianCards target={'facebookMobile'} cardName={'Facebook Mobile'} componentName={<FacebookMobile clientInitials={this.state.clientInitials} clientName={this.state.clientName} contentCopy={this.state.contentCopy} imgLink={this.state.imgLink} />} />
+                <AccordianCards target={'instagram'} cardName={'Instagram'} componentName={<Instagram clientInitials={this.state.clientInitials} clientName={this.state.clientName} contentCopy={this.state.contentCopy} imgLink={this.state.imgLinkInstagram ? this.state.imgLinkInstagram : this.state.imgLink} />} />
+                <AccordianCards target={'twitter'} cardName={'Twitter Desktop'} componentName={<TwitterDesktop className="mb-5" clientInitials={this.state.clientInitials} clientName={this.state.clientName} contentCopy={this.state.contentCopy} imgLink={this.state.imgLink} />} />
               </div>
-              {/* Right Panel */}
             </div>
-            {/* Row */}
           </div>
+          {/* Row ^^ */}
         </section>
       </div>
     );
