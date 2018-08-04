@@ -19,9 +19,10 @@ class SocialRenderComponent extends Component {
     this.state = {
       clientName: 'THR33FOLD',
       clientInitials: '3F',
+      contentCopy: `The Adrienne Arsht Center is looking for a new social media agency and we are auditioning! Should the ArshtCenter & THR33FOLD dance the social tango? Help us upstage the competition by tagging the @arshtcenter & commenting #BreakALeg3F on this post.`,
       imgLink: 'https://dl.dropboxusercontent.com/s/mmi9gj5y21vhnar/BB_August_BaseContentFull_Ceramic_%232.jpg?dl=0',
       imgLinkInstagram: 'https://dl.dropboxusercontent.com/s/6cbl8am2p4z379q/BB_August_BaseContentFull_Ceramic_%232_IG.jpg?dl=0',
-      contentCopy: `The Adrienne Arsht Center is looking for a new social media agency and we are auditioning! Should the ArshtCenter & THR33FOLD dance the social tango? Help us upstage the competition by tagging the @arshtcenter & commenting #BreakALeg3F on this post.`
+      dateGoingLive: ''
     };
 
     this.handleImgChange = this.handleImgChange.bind(this);

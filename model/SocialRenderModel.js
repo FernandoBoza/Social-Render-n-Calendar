@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const SocialRenderSchema = new Schema({
   clientName: {
     type: String,
-    ref: 'client',
+    // ref: 'client',
     required: true
   },
   clientInitials: {
