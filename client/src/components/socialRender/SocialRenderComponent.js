@@ -25,42 +25,15 @@ class SocialRenderComponent extends Component {
       dateGoingLive: ''
     };
 
-    this.handleImgChange = this.handleImgChange.bind(this);
-    this.handleCopyChange = this.handleCopyChange.bind(this);
-    this.handleClient = this.handleClient.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount = e => {
     this.props.getAllClients();
   };
 
-  changeDBLinkToImgLink = link => {
-    link = link.replace('www.dropbox.com', 'dl.dropboxusercontent.com');
-    return link;
-  };
-
-  handleClient = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
-
-  handleImgChange = e => {
-    let dbLink = this.changeDBLinkToImgLink(e.target.value);
-    this.setState({
-      imgLink: dbLink
-    });
-  };
-
-  handleInstagramImgChange = e => {
-    let dbLink = this.changeDBLinkToImgLink(e.target.value);
-    this.setState({
-      imgLinkInstagram: dbLink
-    });
-  };
-
-  handleCopyChange = e => {
-    this.setState({
-      contentCopy: e.target.value
-    });
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value.replace('www.dropbox.com', 'dl.dropboxusercontent.com') });
   };
 
   render() {
@@ -83,10 +56,10 @@ class SocialRenderComponent extends Component {
         <section className="container-fluid">
           <div className="row">
             <div id="left-panel" className="col-md-6">
-              <InputGroup label={'Dropbox Image Share Link'} icon={'dropbox'} onChange={this.handleImgChange} value={this.state.imgLink} />
-              <InputGroup label={'Instagram Share Link'} icon={'instagram'} onChange={this.handleInstagramImgChange} value={this.state.imgLinkInstagram} />
-              <ClientInputGroup onChange={this.handleClient} value={this.state.clientName} value2={this.state.clientInitials} />
-              <TextArea value={this.state.contentCopy} onChange={this.handleCopyChange} />
+              <InputGroup label={'Dropbox Image Share Link'} name={'imgLink'} icon={'dropbox'} onChange={this.handleChange} value={this.state.imgLink} />
+              <InputGroup label={'Instagram Share Link'} name={'imgLinkInstagram'} icon={'instagram'} onChange={this.handleChange} value={this.state.imgLinkInstagram} />
+              <ClientInputGroup onChange={this.handleChange} value={this.state.clientName} value2={this.state.clientInitials} />
+              <TextArea value={this.state.contentCopy} onChange={this.handleChange} />
             </div>
 
             <div id="right-panel" className="col-sm-6">

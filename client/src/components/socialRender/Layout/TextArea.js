@@ -10,7 +10,7 @@ const TextArea = ({ value, onChange }) => {
           <i className="fa fa-pencil-square-o text-primary" aria-hidden="true" />
         </span>
       </div>
-      <textarea className="form-control card-text" aria-label="With textarea" type="text" value={value} onChange={onChange} />
+      <textarea name="contentCopy" className="form-control card-text" aria-label="With textarea" type="text" value={value} onChange={onChange} />
     </div>
   );
 };
