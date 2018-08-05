@@ -53,38 +53,11 @@ class Register extends Component {
           <div className="col-sm-12">
             <div className="text-center">
               <h1 className="mt-5 mb-3 display-4">Sign Up</h1>
-              <form
-                noValidate
-                className="form-signin"
-                onSubmit={this.handleSubmit}
-              >
-                <TextFieldGroup
-                  placeholder="Name"
-                  name="name"
-                  value={this.state.name}
-                  onChange={this.handleChange}
-                  error={errors.name}
-                />
-                <TextFieldGroup
-                  name="email"
-                  placeholder="Email address"
-                  value={this.state.email}
-                  onChange={this.handleChange}
-                  type="email"
-                  error={errors.email}
-                />
-                <TextFieldGroup
-                  name="password"
-                  placeholder="Password"
-                  value={this.state.password}
-                  onChange={this.handleChange}
-                  type="password"
-                  error={errors.password}
-                />
-                <button
-                  className="btn btn-lg btn-outline-primary btn-block mt-3"
-                  type="submit"
-                >
+              <form noValidate className="form-signin" onSubmit={this.handleSubmit}>
+                <TextFieldGroup placeholder="Name" name="name" value={this.state.name} onChange={this.handleChange} error={errors.name} />
+                <TextFieldGroup name="email" placeholder="Email address" value={this.state.email} onChange={this.handleChange} type="email" error={errors.email} />
+                <TextFieldGroup name="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} type="password" error={errors.password} />
+                <button className="btn btn-lg btn-outline-primary btn-block mt-3" type="submit">
                   Sign Up
                 </button>
               </form>
@@ -95,7 +68,7 @@ class Register extends Component {
     );
   }
 }
-// Component propTypes
+
 Register.propTypes = {
   registerUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
