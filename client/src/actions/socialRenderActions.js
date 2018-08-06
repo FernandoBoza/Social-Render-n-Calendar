@@ -1,20 +1,20 @@
 import axios from 'axios';
-import { GET_SOCIAL_RENDER, SOCIAL_RENDER_LOADING, GET_ERRORS } from './types';
+import { SOCIAL_RENDER_LOADING, GET_ERRORS, SET_CONTENT_CALENDAR } from './types';
 
 // GET Social Render Profiles
 export const getAllSocialRender = () => dispatch => {
   dispatch(setSocialRenderLoading());
   axios
-    .get('/api/social-render')
+    .get('/api/content-calendar')
     .then(res =>
       dispatch({
-        type: GET_SOCIAL_RENDER,
+        type: SET_CONTENT_CALENDAR,
         payload: res.data
       })
     )
     .catch(err =>
       dispatch({
-        type: GET_SOCIAL_RENDER,
+        type: SET_CONTENT_CALENDAR,
         payload: null
       })
     );
@@ -24,7 +24,7 @@ export const getAllSocialRender = () => dispatch => {
 export const createSocialRender = (socialRenderContent, history) => dispatch => {
   axios
     .post('/api/social-render', socialRenderContent)
-    .then(res => history.push('/social-render'))
+    .then(res => history.push('/content-calendar'))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
