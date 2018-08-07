@@ -11,17 +11,6 @@ class Dashboard extends Component {
     this.props.getAllClients();
   }
 
-  buildClientList = (clients, user) => {
-    // var arrayOfClients = [];
-    for (let i = 0; i <= clients.length; i++) {
-      return (
-        <li key={clients[1].handle}>
-          <Link to={`/clients/${clients[i].handle}`}>{clients[i].name}</Link> last updated by {clients[i].lastUpdatedBy}
-        </li>
-      );
-    }
-  };
-
   render() {
     const { user } = this.props.auth;
     const { clients, loading } = this.props.clients; // Comoes from IntialState in reducer

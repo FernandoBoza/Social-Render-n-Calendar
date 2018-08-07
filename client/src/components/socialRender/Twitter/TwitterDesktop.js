@@ -1,20 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const TwitterDesktop = ({ clientInitials, clientName, contentCopy, imgLink }) => {
-  //   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-  //   const today = new Date();
-  //   {today.toLocaleDateString('en-US', options)
+const TwitterDesktop = ({ clientInitials, clientName, twtHandle, contentCopy, imgLink }) => {
   return (
     <div className="offset-md-2 col-md-9 card tw-desktop">
       <div className="card-body">
         <div className="d-inline-block fb-title">
           <p className="d-inline-block company bg-primary mb-0">{clientInitials}</p>
           <h5 className="d-inline-block card-title pl-3">
-            {clientName}{' '}
+            {clientName}
             <small className="text-muted twitterHandle">
               <span>@</span>
-              {clientName.replace(/ /g, '')}
+              {/* {clientName.replace(/ /g, '')} */}
+              {twtHandle}
             </small>
           </h5>
         </div>
