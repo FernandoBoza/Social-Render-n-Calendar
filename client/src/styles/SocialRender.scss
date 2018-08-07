@@ -17,9 +17,16 @@
     padding-right: 4rem;
   }
 
-  .twitterHandle span {
-    padding: 0;
-    font-size: 1.2rem;
+  .twitterHandle {
+    span {
+      padding: 0;
+      font-size: 1.2rem;
+    }
+
+    &:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
   }
 
   a {

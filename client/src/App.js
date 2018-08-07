@@ -18,6 +18,7 @@ import Clients from './components/clients/Clients';
 import Client from './components/clients/singleClients/Client';
 import EditClient from './components/clients/EditClient';
 import SocialRender from './components/socialRender/SocialRenderComponent';
+import ContentCalendar from './components/socialRender/Calendar/Calendar';
 import './styles/App.css';
 
 // Check For Token
@@ -48,6 +49,7 @@ class App extends Component {
               <Route exact path="/login" component={Login} />
               <Route exact path="/clients" component={Clients} />
               <Route exact path="/social-render" component={SocialRender} />
+              <Route exact path="/content-calendar" component={ContentCalendar} />
               <Switch>
                 <Route exact path="/clients/:handle" component={Client} />
               </Switch>
@@ -55,18 +57,10 @@ class App extends Component {
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
               </Switch>
               <Switch>
-                <PrivateRoute
-                  exact
-                  path="/create-client"
-                  component={CreateClientProfile}
-                />
+                <PrivateRoute exact path="/create-client" component={CreateClientProfile} />
               </Switch>
               <Switch>
-                <PrivateRoute
-                  exact
-                  path={`/clients/:handle/edit-client`}
-                  component={EditClient}
-                />
+                <PrivateRoute exact path={`/clients/:handle/edit-client`} component={EditClient} />
               </Switch>
             </div>
             <Footer />

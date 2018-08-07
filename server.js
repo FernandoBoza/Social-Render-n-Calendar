@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const userRoutes = require('./routes/api/userRoutes');
 const clientRoutes = require('./routes/api/clientsRoute');
 const socialRenderRoute = require('./routes/api/socialRenderRoute');
+const contentCalendarRoute = require('./routes/api/contentCalendarRoute');
 const passport = require('passport');
 const path = require('path');
 const port = process.env.PORT || 5000;
@@ -35,6 +36,7 @@ require('./config/passport')(passport);
 app.use('/api/users', userRoutes);
 app.use('/api/clients', clientRoutes);
 app.use('/api/social-render', socialRenderRoute);
+app.use('/api/content-calendar', contentCalendarRoute);
 
 // Server static assets if in production
 if (process.env.NODE_ENV === 'production') {

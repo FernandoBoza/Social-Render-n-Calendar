@@ -11,18 +11,6 @@ class Dashboard extends Component {
     this.props.getAllClients();
   }
 
-  buildClientList = (clients, user) => {
-    // var arrayOfClients = [];
-    for (let i = 0; i <= clients.length; i++) {
-      return (
-        <li key={clients[1].handle}>
-          <Link to={`/clients/${clients[i].handle}`}>{clients[i].name}</Link>{' '}
-          last updated by {clients[i].lastUpdatedBy}
-        </li>
-      );
-    }
-  };
-
   render() {
     const { user } = this.props.auth;
     const { clients, loading } = this.props.clients; // Comoes from IntialState in reducer
@@ -35,9 +23,8 @@ class Dashboard extends Component {
       if (Object.keys(clients).length > 0) {
         dashboardContent = (
           <div>
-            <Link to="/create-client" className="btn btn-lg btn-info mr-3">
-              Create Client{' '}
-              <i className="fa fa-user-plus" style={{ fontSize: '1.2rem' }} />
+            <Link to="/create-client" className="btn btn-lg btn-info w-50">
+              Create Client <i className="fa fa-user-plus" style={{ fontSize: '1.2rem' }} />
             </Link>
           </div>
         );
@@ -63,13 +50,18 @@ class Dashboard extends Component {
               <p className="lead text-muted mb-5">Welcome {user.name}</p>
               {dashboardContent}
 
-              <Link to="/social-render" className="btn btn-lg btn-info mt-4">
-                Social Render
-                <i
-                  className="fa fa-columns ml-2"
-                  style={{ fontSize: '1.2rem' }}
-                />
-              </Link>
+              <div>
+                <Link to="/social-render" className="btn btn-lg btn-info mt-4 w-50">
+                  Social Render
+                  <i className="fa fa-columns ml-2" style={{ fontSize: '1.2rem' }} />
+                </Link>
+              </div>
+              <div>
+                <Link to="/content-calendar" className="btn btn-lg btn-info mt-4 w-50">
+                  Content Calendar
+                  <i className="fa fa-calendar ml-2" style={{ fontSize: '1.2rem' }} />
+                </Link>
+              </div>
             </div>
             <div className="col-md-6">
               <Clients />

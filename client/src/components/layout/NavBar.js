@@ -48,7 +48,7 @@ class NavBar extends Component {
       <div className="container-fluid p-0">
         <nav className="navbar navbar-expand-lg navbar-light bg-light px-5">
           <Link className="navbar-brand" to="/">
-            Social Goal Tracker
+            Social Stream
           </Link>
           {/* <span className="lead mini-intro mr-auto">
             <a href="http://thr33fold.com" rel="noopener noreferrer" target="_blank">

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const AccordianCards = ({ target, cardName, componentName }) => {
+const AccordianCards = ({ target, cardName, componentName, expandCollapse }) => {
   return (
     <div className="card">
       <div className="card-header">
@@ -11,7 +11,7 @@ const AccordianCards = ({ target, cardName, componentName }) => {
           </button>
         </h5>
       </div>
-      <div id={target} className="collapse " data-parent="#accordionParent">
+      <div id={target} className={`collapse ${expandCollapse}`} data-parent="#accordionParent">
         <div className="card-body">{componentName}</div>
       </div>
     </div>
@@ -21,6 +21,7 @@ const AccordianCards = ({ target, cardName, componentName }) => {
 AccordianCards.propTypes = {
   target: PropTypes.string,
   cardName: PropTypes.string,
+  expandCollapse: PropTypes.string,
   componentName: PropTypes.any
 };
 
