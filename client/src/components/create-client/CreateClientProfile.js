@@ -99,8 +99,7 @@ export class CreateClientProfile extends Component {
   };
 
   handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-    console.log([e.target.name] + ' : ' + e.target.value);
+    this.setState({ [e.target.name]: e.target.value.replace(/,/g, '') });
   };
   handleSubmit = e => {
     e.preventDefault();
