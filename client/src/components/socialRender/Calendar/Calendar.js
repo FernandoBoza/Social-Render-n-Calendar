@@ -69,31 +69,91 @@ class ContentCalendar extends Component {
         <Calendar
           selectable
           defaultDate={new Date()} // Current Month
+          views={['month', 'agenda']}
           defaultView="month"
           events={PostDate} // Feed in Redux Props
           style={{ height: '100vh' }}
           onSelectEvent={event => this.toggle(event)} // Work on Modal Open
         />
 
-        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+        <Modal
+          isOpen={this.state.modal}
+          toggle={this.toggle}
+          className={this.props.className}
+        >
           <ModalHeader toggle={this.toggle}>
-            Client: {this.state.title} Date To Be Published: {moment(this.state.dateGoingLive).format('MMM Do')}
+            {this.state.title} post to be published:{' '}
+            {moment(this.state.dateGoingLive).format('ddd MMM Do')}
           </ModalHeader>
           <ModalBody id="social-render">
             <div className="accordion" id="accordionParent">
-              <AccordianCards expandCollapse={'show'} target={'facebookDesktop'} cardName={'Facebook Desktop'} componentName={<FacebookDesktop className="mb-5" clientInitials={this.state.clientInitials} clientName={this.state.title} contentCopy={this.state.contentCopy} imgLink={this.state.imgLink} date={moment(this.state.dateGoingLive).format('MMM Do')} />} />
-              <AccordianCards target={'facebookMobile'} cardName={'Facebook Mobile'} componentName={<FacebookMobile clientInitials={this.state.clientInitials} clientName={this.state.title} contentCopy={this.state.contentCopy} imgLink={this.state.imgLink} date={moment(this.state.dateGoingLive).format('MMM Do')} />} />
-              <AccordianCards target={'instagram'} cardName={'Instagram'} componentName={<Instagram clientInitials={this.state.clientInitials} clientName={this.state.title} contentCopy={this.state.contentCopy} imgLink={this.state.imgLinkInstagram ? this.state.imgLinkInstagram : this.state.imgLink} />} />
-              <AccordianCards target={'twitter'} cardName={'Twitter Desktop'} componentName={<TwitterDesktop className="mb-5" clientInitials={this.state.clientInitials} clientName={this.state.title} contentCopy={this.state.contentCopy} imgLink={this.state.imgLink} twtHandle={this.state.twtHandle} />} />
+              <AccordianCards
+                expandCollapse={'show'}
+                target={'facebookDesktop'}
+                cardName={'Facebook Desktop'}
+                componentName={
+                  <FacebookDesktop
+                    className="mb-5"
+                    clientInitials={this.state.clientInitials}
+                    clientName={this.state.title}
+                    contentCopy={this.state.contentCopy}
+                    imgLink={this.state.imgLink}
+                    date={moment(this.state.dateGoingLive).format('MMM Do')}
+                  />
+                }
+              />
+              <AccordianCards
+                target={'facebookMobile'}
+                cardName={'Facebook Mobile'}
+                componentName={
+                  <FacebookMobile
+                    clientInitials={this.state.clientInitials}
+                    clientName={this.state.title}
+                    contentCopy={this.state.contentCopy}
+                    imgLink={this.state.imgLink}
+                    date={moment(this.state.dateGoingLive).format('MMM Do')}
+                  />
+                }
+              />
+              <AccordianCards
+                target={'instagram'}
+                cardName={'Instagram'}
+                componentName={
+                  <Instagram
+                    clientInitials={this.state.clientInitials}
+                    clientName={this.state.title}
+                    contentCopy={this.state.contentCopy}
+                    imgLink={
+                      this.state.imgLinkInstagram
+                        ? this.state.imgLinkInstagram
+                        : this.state.imgLink
+                    }
+                  />
+                }
+              />
+              <AccordianCards
+                target={'twitter'}
+                cardName={'Twitter Desktop'}
+                componentName={
+                  <TwitterDesktop
+                    className="mb-5"
+                    clientInitials={this.state.clientInitials}
+                    clientName={this.state.title}
+                    contentCopy={this.state.contentCopy}
+                    imgLink={this.state.imgLink}
+                    twtHandle={this.state.twtHandle}
+                  />
+                }
+              />
             </div>
           </ModalBody>
           <ModalFooter>
             <Button color="primary" onClick={this.toggle}>
-              Do Something
+              Hide
             </Button>
-            <Button color="secondary" onClick={this.toggle}>
+            {/* <Button color="secondary" onClick={this.toggle}>
               Cancel
-            </Button>
+            </Button> */}
           </ModalFooter>
         </Modal>
       </div>
