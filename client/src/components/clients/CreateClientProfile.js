@@ -11,80 +11,80 @@ export class CreateClientProfile extends Component {
     this.state = {
       name: '',
       // Page Followers
-      pgf_fb_x: '',
-      pgf_fb_y: '',
-      pgf_ig_x: '',
-      pgf_ig_y: '',
-      pgf_tw_x: '',
-      pgf_tw_y: '',
-      pgf_ln_x: '',
-      pgf_ln_y: '',
-      pgf_pt_x: '',
-      pgf_pt_y: '',
+      pgf_fb_x: 0,
+      pgf_fb_y: 0,
+      pgf_ig_x: 0,
+      pgf_ig_y: 0,
+      pgf_tw_x: 0,
+      pgf_tw_y: 0,
+      pgf_ln_x: 0,
+      pgf_ln_y: 0,
+      pgf_pt_x: 0,
+      pgf_pt_y: 0,
       // Engagement
-      eng_fb_x: '',
-      eng_fb_y: '',
-      eng_ig_x: '',
-      eng_ig_y: '',
-      eng_tw_x: '',
-      eng_tw_y: '',
-      eng_ln_x: '',
-      eng_ln_y: '',
-      eng_pt_x: '',
-      eng_pt_y: '',
+      eng_fb_x: 0,
+      eng_fb_y: 0,
+      eng_ig_x: 0,
+      eng_ig_y: 0,
+      eng_tw_x: 0,
+      eng_tw_y: 0,
+      eng_ln_x: 0,
+      eng_ln_y: 0,
+      eng_pt_x: 0,
+      eng_pt_y: 0,
       // Impressions
-      imp_fb_x: '',
-      imp_fb_y: '',
-      imp_ig_x: '',
-      imp_ig_y: '',
-      imp_tw_x: '',
-      imp_tw_y: '',
-      imp_ln_x: '',
-      imp_ln_y: '',
-      imp_pt_x: '',
-      imp_pt_y: '',
+      imp_fb_x: 0,
+      imp_fb_y: 0,
+      imp_ig_x: 0,
+      imp_ig_y: 0,
+      imp_tw_x: 0,
+      imp_tw_y: 0,
+      imp_ln_x: 0,
+      imp_ln_y: 0,
+      imp_pt_x: 0,
+      imp_pt_y: 0,
       // Reach
-      reach_fb_x: '',
-      reach_fb_y: '',
-      reach_ig_x: '',
-      reach_ig_y: '',
-      reach_tw_x: '',
-      reach_tw_y: '',
-      reach_ln_x: '',
-      reach_ln_y: '',
-      reach_pt_x: '',
-      reach_pt_y: '',
+      reach_fb_x: 0,
+      reach_fb_y: 0,
+      reach_ig_x: 0,
+      reach_ig_y: 0,
+      reach_tw_x: 0,
+      reach_tw_y: 0,
+      reach_ln_x: 0,
+      reach_ln_y: 0,
+      reach_pt_x: 0,
+      reach_pt_y: 0,
       // Web Traffic
-      web_x: '',
-      web_y: '',
+      web_x: 0,
+      web_y: 0,
       // Press Release
-      numHits_x: '',
-      numHits_y: '',
-      mediaValue_x: '',
-      mediaValue_y: '',
+      numHits_x: 0,
+      numHits_y: 0,
+      mediaValue_x: 0,
+      mediaValue_y: 0,
 
       // Before Input
-      web_b4: '',
-      pgf_b4_fb: '',
-      pgf_b4_ig: '',
-      pgf_b4_tw: '',
-      pgf_b4_ln: '',
-      pgf_b4_pt: '',
-      eng_b4_fb: '',
-      eng_b4_ig: '',
-      eng_b4_tw: '',
-      eng_b4_ln: '',
-      eng_b4_pt: '',
-      imp_b4_fb: '',
-      imp_b4_ig: '',
-      imp_b4_tw: '',
-      imp_b4_ln: '',
-      imp_b4_pt: '',
-      reach_b4_fb: '',
-      reach_b4_ig: '',
-      reach_b4_tw: '',
-      reach_b4_ln: '',
-      reach_b4_pt: '',
+      web_b4: 0,
+      pgf_b4_fb: 0,
+      pgf_b4_ig: 0,
+      pgf_b4_tw: 0,
+      pgf_b4_ln: 0,
+      pgf_b4_pt: 0,
+      eng_b4_fb: 0,
+      eng_b4_ig: 0,
+      eng_b4_tw: 0,
+      eng_b4_ln: 0,
+      eng_b4_pt: 0,
+      imp_b4_fb: 0,
+      imp_b4_ig: 0,
+      imp_b4_tw: 0,
+      imp_b4_ln: 0,
+      imp_b4_pt: 0,
+      reach_b4_fb: 0,
+      reach_b4_ig: 0,
+      reach_b4_tw: 0,
+      reach_b4_ln: 0,
+      reach_b4_pt: 0,
       errors: {}
     };
 
@@ -99,7 +99,13 @@ export class CreateClientProfile extends Component {
   };
 
   handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value.replace(/,/g, '') });
+    const value = e.target.value.replace(/,/g, '');
+
+    if (typeof value === typeof number) {
+      this.setState({ [e.target.name]: parseInt(value, 10) });
+    } else {
+      this.setState({ [e.target.name]: value });
+    }
   };
   handleSubmit = e => {
     e.preventDefault();
@@ -336,7 +342,7 @@ export class CreateClientProfile extends Component {
                 <div className="row">
                   <div className="col-md-4">
                     <p className="d-block">Client Name is Required</p>
-                    <TextInputField icon="user-o" name="name" classname="clientName" placeholder="Client Name" value={this.state.name} onChange={this.handleChange} errors={errors.name} />
+                    <TextInputField type="text" icon="user-o" name="name" classname="clientName" placeholder="Client Name" value={this.state.name} onChange={this.handleChange} errors={errors.name} />
                   </div>
                 </div>
 

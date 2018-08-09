@@ -20,7 +20,7 @@ TextInputField.propTypes = {
   objective: PropTypes.string,
   name: PropTypes.string,
   channel: PropTypes.string,
-  value: PropTypes.string,
+  value: PropTypes.any,
   errors: PropTypes.string,
   placeholder: PropTypes.string,
   type: PropTypes.string,
@@ -29,7 +29,7 @@ TextInputField.propTypes = {
 };
 
 TextInputField.defaultProps = {
-  type: 'text',
+  type: 'number',
   divClassName: ''
 };
 
