@@ -12,13 +12,14 @@ import Footer from './components/layout/Footer';
 import Landing from './components/layout/Landing';
 import Register from './components/Auth/Register';
 import Login from './components/Auth/Login';
-import Dashboard from './components/Dashboard/Dashboard';
-import CreateClientProfile from './components/create-client/CreateClientProfile';
+import Dashboard from './components/layout/Dashboard';
+import CreateClientProfile from './components/clients/CreateClientProfile';
 import Clients from './components/clients/Clients';
 import Client from './components/clients/singleClients/Client';
-
-import EditClient from './components/edit-client/EditClient';
-import './App.css';
+import EditClient from './components/clients/EditClient';
+import SocialRender from './components/socialRender/SocialRenderComponent';
+import ContentCalendar from './components/socialRender/Calendar/Calendar';
+import './styles/App.css';
 
 // Check For Token
 const token = localStorage.jwtToken;
@@ -43,10 +44,12 @@ class App extends Component {
           <div className="App">
             <NavBar />
             <Route exact path="/" component={Landing} />
-            <div className="container">
+            <div className="container-fluid">
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/clients" component={Clients} />
+              <Route exact path="/social-render" component={SocialRender} />
+              <Route exact path="/content-calendar" component={ContentCalendar} />
               <Switch>
                 <Route exact path="/clients/:handle" component={Client} />
               </Switch>

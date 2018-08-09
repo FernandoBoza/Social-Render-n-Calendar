@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 import { GET_ALL_CLIENTS_PROFILES, GET_CLIENT_PROFILE, GET_ERRORS, CLIENT_LOADING, CLEAR_CURRENT_USER } from './types';
 
 // GET ALL Client Profile
