@@ -76,16 +76,75 @@ class ContentCalendar extends Component {
           onSelectEvent={event => this.toggle(event)} // Work on Modal Open
         />
 
-        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+        <Modal
+          isOpen={this.state.modal}
+          toggle={this.toggle}
+          className={this.props.className}
+        >
           <ModalHeader toggle={this.toggle}>
-            {this.state.title} post to be published: {moment(this.state.dateGoingLive).format('ddd MMM Do')}
+            {this.state.title} post to be published:{' '}
+            {moment(this.state.dateGoingLive).format('ddd MMM Do')}
           </ModalHeader>
           <ModalBody id="social-render">
             <div className="accordion" id="accordionParent">
-              <AccordianCards expandCollapse={'show'} target={'facebookDesktop'} cardName={'Facebook Desktop'} componentName={<FacebookDesktop className="mb-5" clientInitials={this.state.clientInitials} clientName={this.state.title} contentCopy={this.state.contentCopy} imgLink={this.state.imgLink} date={moment(this.state.dateGoingLive).format('MMM Do')} />} />
-              <AccordianCards target={'facebookMobile'} cardName={'Facebook Mobile'} componentName={<FacebookMobile clientInitials={this.state.clientInitials} clientName={this.state.title} contentCopy={this.state.contentCopy} imgLink={this.state.imgLink} date={moment(this.state.dateGoingLive).format('MMM Do')} />} />
-              <AccordianCards target={'instagram'} cardName={'Instagram'} componentName={<Instagram clientInitials={this.state.clientInitials} clientName={this.state.title} contentCopy={this.state.contentCopy} imgLink={this.state.imgLinkInstagram ? this.state.imgLinkInstagram : this.state.imgLink} />} />
-              <AccordianCards target={'twitter'} cardName={'Twitter Desktop'} componentName={<TwitterDesktop className="mb-5" clientInitials={this.state.clientInitials} clientName={this.state.title} contentCopy={this.state.contentCopy} imgLink={this.state.imgLink} twtHandle={this.state.twtHandle} />} />
+              <AccordianCards
+                expandCollapse={'show'}
+                target={'facebookDesktop'}
+                cardName={'Facebook Desktop'}
+                componentName={
+                  <FacebookDesktop
+                    className="mb-5"
+                    clientInitials={this.state.clientInitials}
+                    clientName={this.state.title}
+                    contentCopy={this.state.contentCopy}
+                    imgLink={this.state.imgLink}
+                    date={moment(this.state.dateGoingLive).format('MMM Do')}
+                  />
+                }
+              />
+              <AccordianCards
+                target={'facebookMobile'}
+                cardName={'Facebook Mobile'}
+                componentName={
+                  <FacebookMobile
+                    clientInitials={this.state.clientInitials}
+                    clientName={this.state.title}
+                    contentCopy={this.state.contentCopy}
+                    imgLink={this.state.imgLink}
+                    date={moment(this.state.dateGoingLive).format('MMM Do')}
+                  />
+                }
+              />
+              <AccordianCards
+                target={'instagram'}
+                cardName={'Instagram'}
+                componentName={
+                  <Instagram
+                    clientInitials={this.state.clientInitials}
+                    clientName={this.state.title}
+                    contentCopy={this.state.contentCopy}
+                    imgLink={
+                      this.state.imgLinkInstagram
+                        ? this.state.imgLinkInstagram
+                        : this.state.imgLink
+                    }
+                  />
+                }
+              />
+              <AccordianCards
+                target={'twitter'}
+                cardName={'Twitter Desktop'}
+                componentName={
+                  <TwitterDesktop
+                    className="mb-5"
+                    clientInitials={this.state.clientInitials}
+                    clientName={this.state.title}
+                    contentCopy={this.state.contentCopy}
+                    imgLink={this.state.imgLink}
+                    twtHandle={this.state.twtHandle}
+                  />
+                }
+              />
             </div>
           </ModalBody>
           <ModalFooter>
