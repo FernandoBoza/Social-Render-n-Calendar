@@ -69,6 +69,7 @@ class ContentCalendar extends Component {
         <Calendar
           selectable
           defaultDate={new Date()} // Current Month
+          views={['month', 'agenda']}
           defaultView="month"
           events={PostDate} // Feed in Redux Props
           style={{ height: '100vh' }}
@@ -77,7 +78,7 @@ class ContentCalendar extends Component {
 
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>
-            Client: {this.state.title} Date To Be Published: {moment(this.state.dateGoingLive).format('MMM Do')}
+            {this.state.title} post to be published: {moment(this.state.dateGoingLive).format('ddd MMM Do')}
           </ModalHeader>
           <ModalBody id="social-render">
             <div className="accordion" id="accordionParent">
@@ -89,11 +90,11 @@ class ContentCalendar extends Component {
           </ModalBody>
           <ModalFooter>
             <Button color="primary" onClick={this.toggle}>
-              Do Something
+              Hide
             </Button>
-            <Button color="secondary" onClick={this.toggle}>
+            {/* <Button color="secondary" onClick={this.toggle}>
               Cancel
-            </Button>
+            </Button> */}
           </ModalFooter>
         </Modal>
       </div>

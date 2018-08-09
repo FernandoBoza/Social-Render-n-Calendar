@@ -424,20 +424,24 @@ export class EditClient extends Component {
       clientContent = <Spinner />;
     } else {
       clientContent = (
-        <div>
-          <Link to={`/clients/${this.props.match.params.handle}`} className="btn btn-primary mb-3">
-            Back To {clients.name}
-          </Link>
+        <form onSubmit={this.handleSubmit}>
+          <div>
+            <Link to={`/clients/${this.props.match.params.handle}`} className="btn btn-primary mb-3">
+              Back To {clients.name}
+            </Link>
 
-          <button onClick={this.onDeleteClick.bind(this)} className="btn btn-danger mx-4 mb-3">
-            Delete {clients.name}
-          </button>
+            <button className="btn btn-success ml-4 mb-3" type="submit">
+              Update {clients.name}
+            </button>
 
-          <button className="btn btn-success mb-3 toggleShowCollapse" type="button" data-toggle="collapse" data-target=".multi-collapse" onClick={this.toggleCollapse}>
-            {this.state.collapse ? 'Collapse' : 'Expand'}
-          </button>
+            <button onClick={this.onDeleteClick.bind(this)} className="btn btn-danger mx-4 mb-3">
+              Delete {clients.name}
+            </button>
 
-          <form onSubmit={this.handleSubmit}>
+            <button className="btn btn-info mb-3 toggleShowCollapse" type="button" data-toggle="collapse" data-target=".multi-collapse" onClick={this.toggleCollapse}>
+              {this.state.collapse ? 'Collapse' : 'Expand'}
+            </button>
+
             <div className="col-md-12 m-auto">
               <h1 className="display-4 text-center">Edit {clients.name}</h1>
               <div className="row" />
@@ -450,7 +454,7 @@ export class EditClient extends Component {
               <button className="btn btn-info d-block w-100 mb-5" type="button" data-toggle="collapse" data-target="#site_traffic" aria-expanded="false" aria-controls="collapseExample">
                 <h4 className="font-weight-light m-0">Site Traffic</h4>
               </button>
-              <div className={`collapse multi-collapse my-3`} id="site_traffic">
+              <div className={`show collapse multi-collapse my-3`} id="site_traffic">
                 <div className="row">
                   <div className="col-sm-3 current">
                     <TextInputField icon="laptop" name="web_x" classname="web" placeholder="Current Web Traffic" value={this.state.web_x} onChange={this.handleChange} />
@@ -471,12 +475,9 @@ export class EditClient extends Component {
                 </div>
                 {/* End of Site Traffic*/}
               </div>
-              <button className="btn btn-lg btn-outline-primary btn-block mt-3 w-50 mx-auto" type="submit">
-                Update {clients.name}
-              </button>
             </div>
-          </form>
-        </div>
+          </div>
+        </form>
       );
     }
 
