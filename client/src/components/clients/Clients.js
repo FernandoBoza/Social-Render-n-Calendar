@@ -30,9 +30,6 @@ export class ClientsComponent extends Component {
             <div className="col-md-12">
               <h1 className="display-4 text-">Client Profiles</h1>
               <p className="lead text-">Browser Clients</p>
-              {/* <Link to={'/'} className="btn btn-primary mb-5">
-                Dashboard <i className="fa fa-tachometer" />
-              </Link> */}
               {clientItems}
             </div>
           </div>

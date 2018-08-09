@@ -45,16 +45,16 @@ class NavBar extends Component {
       </ul>
     );
     return (
-      <div className="container-fluid mb-5 p-0">
+      <div className="container-fluid p-0">
         <nav className="navbar navbar-expand-lg navbar-light bg-light px-5">
           <Link className="navbar-brand" to="/">
-            Social Goal Tracker
+            Social Stream
           </Link>
-          <span className="lead mini-intro mr-auto">
+          {/* <span className="lead mini-intro mr-auto">
             <a href="http://thr33fold.com" rel="noopener noreferrer" target="_blank">
               A THR33FOLD Company
             </a>
-          </span>
+          </span> */}
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon" />
           </button>
