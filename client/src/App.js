@@ -19,7 +19,7 @@ import Client from './components/clients/singleClients/Client';
 import EditClient from './components/clients/EditClient';
 import SocialRender from './components/socialRender/SocialRenderComponent';
 import ContentCalendar from './components/socialRender/Calendar/Calendar';
-import './styles/App.css';
+import './styles/styles.css';
 
 // Check For Token
 const token = localStorage.jwtToken;

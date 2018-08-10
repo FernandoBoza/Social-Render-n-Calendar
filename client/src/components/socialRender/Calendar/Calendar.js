@@ -11,7 +11,6 @@ import Instagram from '../Instagram/Instagram';
 import TwitterDesktop from '../Twitter/TwitterDesktop';
 import AccordianCards from '../Layout/AccordianCards';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import '../../../styles/SocialRender.css';
 
 Calendar.setLocalizer(Calendar.momentLocalizer(moment));
 
