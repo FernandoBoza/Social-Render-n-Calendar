@@ -23,7 +23,7 @@ class Dashboard extends Component {
       if (Object.keys(clients).length > 0) {
         dashboardContent = (
           <div>
-            <Link to="/create-client" className="btn btn-lg btn-info w-50">
+            <Link to="/create-client" className="btn btn-info w-50">
               Create Client <i className="fa fa-user-plus" style={{ fontSize: '1.2rem' }} />
             </Link>
           </div>
@@ -33,7 +33,7 @@ class Dashboard extends Component {
         dashboardContent = (
           <div>
             <p>Would you like to create a new client profile</p>
-            <Link to="/create-client" className="btn btn-lg btn-info">
+            <Link to="/create-client" className="btn btn-info">
               Create Client <i className="fa fa-user" />
             </Link>
           </div>
@@ -51,13 +51,13 @@ class Dashboard extends Component {
               {dashboardContent}
 
               <div>
-                <Link to="/social-render" className="btn btn-lg btn-info mt-4 w-50">
+                <Link to="/social-render" className="btn btn-info mt-4 w-50">
                   Social Render
                   <i className="fa fa-columns ml-2" style={{ fontSize: '1.2rem' }} />
                 </Link>
               </div>
               <div>
-                <Link to="/content-calendar" className="btn btn-lg btn-info mt-4 w-50">
+                <Link to="/content-calendar" className="btn btn-info mt-4 w-50">
                   Content Calendar
                   <i className="fa fa-calendar ml-2" style={{ fontSize: '1.2rem' }} />
                 </Link>
