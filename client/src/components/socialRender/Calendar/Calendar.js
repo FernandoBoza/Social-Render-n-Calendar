@@ -73,7 +73,7 @@ class ContentCalendar extends Component {
           views={['month', 'agenda']}
           defaultView="month"
           events={PostDate} // Feed in Redux Props
-          style={{ height: '100vh' }}
+          style={{ height: '91vh' }}
           onSelectEvent={event => this.toggle(event)} // Work on Modal Open
         />
 
