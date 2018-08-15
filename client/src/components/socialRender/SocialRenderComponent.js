@@ -67,9 +67,9 @@ class SocialRenderComponent extends Component {
           <div className="row">
             <div id="left-panel" className="col-md-6">
               <form onSubmit={this.handleSubmit}>
-                <InputGroup label={'Dropbox Image Share Link'} name={'imgLink'} icon={'dropbox'} onChange={this.handleChange} value={this.state.imgLink} />
-                <InputGroup label={'Instagram Share Link'} name={'imgLinkInstagram'} icon={'instagram'} onChange={this.handleChange} value={this.state.imgLinkInstagram} />
-                <ClientInputGroup onChange={this.handleChange} value={this.state.clientName} value2={this.state.clientInitials} />
+                <InputGroup label={'Dropbox Image Share Link'} name={'imgLink'} icon={'dropbox'} onChange={this.handleChange} value={this.state.imgLink} placeholder="Img link or Dropbox share link here" />
+                <InputGroup label={'Instagram Share Link'} name={'imgLinkInstagram'} icon={'instagram'} onChange={this.handleChange} value={this.state.imgLinkInstagram} placeholder="Instagram img link or Dropbox share link here" />
+                <ClientInputGroup onChange={this.handleChange} value={this.state.clientName} value2={this.state.clientInitials} placeholder="Client Name" placeholder2="Client Initials" />
                 <TextArea value={this.state.contentCopy} onChange={this.handleChange} />
                 <SingleDatePicker
                   id={moment(this.state.dateGoingLive).format('L')}
