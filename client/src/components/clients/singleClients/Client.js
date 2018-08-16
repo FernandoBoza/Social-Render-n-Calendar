@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Spinner from '../../common/Spinner';
 import { getAClient } from '../../../actions/clientActions';
-import TextInputField from '../../common/TextInputField';
+import NumInputField from '../../common/NumInputField';
 import isEmpty from '../../../validation/is-empty';
 import ReactTooltip from 'react-tooltip';
 
@@ -151,11 +151,11 @@ export class Client extends Component {
             </div>
             <div className="row">
               <div className="col-sm-3 current">
-                <TextInputField icon="facebook" divClassName={this.state[categoryAbbrv + '_fb'] ? '' : 'hide'} classname={categoryAbbrv + ' fb'} placeholder="Current Facebook Followers" value={isEmpty(clients[categoryName] && clients[categoryName].fb_x) ? 0 : clients[categoryName].fb_x} onChange={this.handleChange} />
-                <TextInputField icon="twitter" divClassName={this.state[categoryAbbrv + '_tw'] ? '' : 'hide'} classname={categoryAbbrv + ' tw'} placeholder="Current Twitter Followers" value={isEmpty(clients[categoryName] && clients[categoryName].tw_x) ? 0 : clients[categoryName].tw_x} onChange={this.handleChange} />
-                <TextInputField icon="instagram" divClassName={this.state[categoryAbbrv + '_ig'] ? '' : 'hide'} classname={categoryAbbrv + ' ig'} placeholder="Current Instagram Followers" value={isEmpty(clients[categoryName] && clients[categoryName].ig_x) ? 0 : clients[categoryName].ig_x} onChange={this.handleChange} />
-                <TextInputField icon="linkedin" divClassName={this.state[categoryAbbrv + '_ln'] ? '' : 'hide'} classname={categoryAbbrv + ' ln'} placeholder="Current LinkedIn Followers" value={isEmpty(clients[categoryName] && clients[categoryName].ln_x) ? 0 : clients[categoryName].ln_x} onChange={this.handleChange} />
-                <TextInputField icon="pinterest" divClassName={this.state[categoryAbbrv + '_pt'] ? '' : 'hide'} classname={categoryAbbrv + ' pn'} placeholder="Current Pinterest Followers" value={isEmpty(clients[categoryName] && clients[categoryName].pt_x) ? 0 : clients[categoryName].pt_x} onChange={this.handleChange} />
+                <NumInputField icon="facebook" divClassName={this.state[categoryAbbrv + '_fb'] ? '' : 'hide'} classname={categoryAbbrv + ' fb'} placeholder="Current Facebook Followers" value={isEmpty(clients[categoryName] && clients[categoryName].fb_x) ? 0 : clients[categoryName].fb_x} onChange={this.handleChange} />
+                <NumInputField icon="twitter" divClassName={this.state[categoryAbbrv + '_tw'] ? '' : 'hide'} classname={categoryAbbrv + ' tw'} placeholder="Current Twitter Followers" value={isEmpty(clients[categoryName] && clients[categoryName].tw_x) ? 0 : clients[categoryName].tw_x} onChange={this.handleChange} />
+                <NumInputField icon="instagram" divClassName={this.state[categoryAbbrv + '_ig'] ? '' : 'hide'} classname={categoryAbbrv + ' ig'} placeholder="Current Instagram Followers" value={isEmpty(clients[categoryName] && clients[categoryName].ig_x) ? 0 : clients[categoryName].ig_x} onChange={this.handleChange} />
+                <NumInputField icon="linkedin" divClassName={this.state[categoryAbbrv + '_ln'] ? '' : 'hide'} classname={categoryAbbrv + ' ln'} placeholder="Current LinkedIn Followers" value={isEmpty(clients[categoryName] && clients[categoryName].ln_x) ? 0 : clients[categoryName].ln_x} onChange={this.handleChange} />
+                <NumInputField icon="pinterest" divClassName={this.state[categoryAbbrv + '_pt'] ? '' : 'hide'} classname={categoryAbbrv + ' pn'} placeholder="Current Pinterest Followers" value={isEmpty(clients[categoryName] && clients[categoryName].pt_x) ? 0 : clients[categoryName].pt_x} onChange={this.handleChange} />
               </div>
               <div className="col-sm-6 rangeSlider">
                 <ReactTooltip effect="solid" />
@@ -198,11 +198,11 @@ export class Client extends Component {
                 </div>
               </div>
               <div className="col-sm-3 goal">
-                <TextInputField icon="facebook" divClassName={this.state[categoryAbbrv + '_fb'] ? '' : 'hide'} classname={categoryAbbrv + ' fb'} placeholder="Goal" value={isEmpty(clients[categoryName] && clients[categoryName].fb_y) ? 0 : clients[categoryName].fb_y} onChange={this.handleChange} />
-                <TextInputField icon="twitter" divClassName={this.state[categoryAbbrv + '_tw'] ? '' : 'hide'} classname={categoryAbbrv + ' tw'} placeholder="Goal" value={isEmpty(clients[categoryName] && clients[categoryName].tw_y) ? 0 : clients[categoryName].tw_y} onChange={this.handleChange} />
-                <TextInputField icon="instagram" divClassName={this.state[categoryAbbrv + '_ig'] ? '' : 'hide'} classname={categoryAbbrv + ' ig'} placeholder="Goal" value={isEmpty(clients[categoryName] && clients[categoryName].ig_y) ? 0 : clients[categoryName].ig_y} onChange={this.handleChange} />
-                <TextInputField icon="linkedin" divClassName={this.state[categoryAbbrv + '_ln'] ? '' : 'hide'} classname={categoryAbbrv + ' ln'} placeholder="Goal" value={isEmpty(clients[categoryName] && clients[categoryName].ln_y) ? 0 : clients[categoryName].ln_y} onChange={this.handleChange} />
-                <TextInputField icon="pinterest" divClassName={this.state[categoryAbbrv + '_pt'] ? '' : 'hide'} classname={categoryAbbrv + ' pn'} placeholder="Goal" value={isEmpty(clients[categoryName] && clients[categoryName].pt_y) ? 0 : clients[categoryName].pt_y} onChange={this.handleChange} />
+                <NumInputField icon="facebook" divClassName={this.state[categoryAbbrv + '_fb'] ? '' : 'hide'} classname={categoryAbbrv + ' fb'} placeholder="Goal" value={isEmpty(clients[categoryName] && clients[categoryName].fb_y) ? 0 : clients[categoryName].fb_y} onChange={this.handleChange} />
+                <NumInputField icon="twitter" divClassName={this.state[categoryAbbrv + '_tw'] ? '' : 'hide'} classname={categoryAbbrv + ' tw'} placeholder="Goal" value={isEmpty(clients[categoryName] && clients[categoryName].tw_y) ? 0 : clients[categoryName].tw_y} onChange={this.handleChange} />
+                <NumInputField icon="instagram" divClassName={this.state[categoryAbbrv + '_ig'] ? '' : 'hide'} classname={categoryAbbrv + ' ig'} placeholder="Goal" value={isEmpty(clients[categoryName] && clients[categoryName].ig_y) ? 0 : clients[categoryName].ig_y} onChange={this.handleChange} />
+                <NumInputField icon="linkedin" divClassName={this.state[categoryAbbrv + '_ln'] ? '' : 'hide'} classname={categoryAbbrv + ' ln'} placeholder="Goal" value={isEmpty(clients[categoryName] && clients[categoryName].ln_y) ? 0 : clients[categoryName].ln_y} onChange={this.handleChange} />
+                <NumInputField icon="pinterest" divClassName={this.state[categoryAbbrv + '_pt'] ? '' : 'hide'} classname={categoryAbbrv + ' pn'} placeholder="Goal" value={isEmpty(clients[categoryName] && clients[categoryName].pt_y) ? 0 : clients[categoryName].pt_y} onChange={this.handleChange} />
               </div>
 
               <div className="col-sm-12 before">
@@ -210,19 +210,19 @@ export class Client extends Component {
                 <h6 className="font-weight-light mt-2">Starting {categoryFullName}</h6>
                 <ul className="d-flex justify-content-between list-unstyled">
                   <li className={this.state[categoryAbbrv + '_fb'] ? '' : 'hide'}>
-                    <TextInputField icon="facebook" classname={categoryAbbrv + ' fb'} placeholder="Starting" value={isEmpty(clients[categoryName] && clients[categoryName].b4_fb) ? 0 : clients[categoryName].b4_fb} onChange={this.handleChange} />
+                    <NumInputField icon="facebook" classname={categoryAbbrv + ' fb'} placeholder="Starting" value={isEmpty(clients[categoryName] && clients[categoryName].b4_fb) ? 0 : clients[categoryName].b4_fb} onChange={this.handleChange} />
                   </li>
                   <li className={this.state[categoryAbbrv + '_tw'] ? '' : 'hide'}>
-                    <TextInputField icon="twitter" classname={categoryAbbrv + ' tw'} placeholder="Starting" value={isEmpty(clients[categoryName] && clients[categoryName].b4_tw) ? 0 : clients[categoryName].b4_tw} onChange={this.handleChange} />
+                    <NumInputField icon="twitter" classname={categoryAbbrv + ' tw'} placeholder="Starting" value={isEmpty(clients[categoryName] && clients[categoryName].b4_tw) ? 0 : clients[categoryName].b4_tw} onChange={this.handleChange} />
                   </li>
                   <li className={this.state[categoryAbbrv + '_ig'] ? '' : 'hide'}>
-                    <TextInputField icon="instagram" classname={categoryAbbrv + ' ig'} placeholder="Starting" value={isEmpty(clients[categoryName] && clients[categoryName].b4_ig) ? 0 : clients[categoryName].b4_ig} onChange={this.handleChange} />
+                    <NumInputField icon="instagram" classname={categoryAbbrv + ' ig'} placeholder="Starting" value={isEmpty(clients[categoryName] && clients[categoryName].b4_ig) ? 0 : clients[categoryName].b4_ig} onChange={this.handleChange} />
                   </li>
                   <li className={this.state[categoryAbbrv + '_ln'] ? '' : 'hide'}>
-                    <TextInputField icon="linkedin" classname={categoryAbbrv + ' ln'} placeholder="Starting" value={isEmpty(clients[categoryName] && clients[categoryName].b4_ln) ? 0 : clients[categoryName].b4_ln} onChange={this.handleChange} />
+                    <NumInputField icon="linkedin" classname={categoryAbbrv + ' ln'} placeholder="Starting" value={isEmpty(clients[categoryName] && clients[categoryName].b4_ln) ? 0 : clients[categoryName].b4_ln} onChange={this.handleChange} />
                   </li>
                   <li className={this.state[categoryAbbrv + '_pt'] ? '' : 'hide'}>
-                    <TextInputField icon="pinterest" classname={categoryAbbrv + ' pt'} placeholder="Starting" value={isEmpty(clients[categoryName] && clients[categoryName].b4_pt) ? 0 : clients[categoryName].b4_pt} onChange={this.handleChange} />
+                    <NumInputField icon="pinterest" classname={categoryAbbrv + ' pt'} placeholder="Starting" value={isEmpty(clients[categoryName] && clients[categoryName].b4_pt) ? 0 : clients[categoryName].b4_pt} onChange={this.handleChange} />
                   </li>
                 </ul>
               </div>
@@ -256,7 +256,7 @@ export class Client extends Component {
                 <div className="show collapse multi-collapse my-3" id="site_traffic">
                   <div className="row">
                     <div className="col-sm-3 current">
-                      <TextInputField icon="laptop" name="web_x" classname="web" placeholder="Current Web Traffic" value={isEmpty(clients.siteTraffic && clients.siteTraffic.x) ? 0 : clients.siteTraffic.x} onChange={this.handleChange} />
+                      <NumInputField icon="laptop" name="web_x" classname="web" placeholder="Current Web Traffic" value={isEmpty(clients.siteTraffic && clients.siteTraffic.x) ? 0 : clients.siteTraffic.x} onChange={this.handleChange} />
                     </div>
                     <div className="col-sm-6 rangeSlider">
                       <div className="range-slider client">
@@ -270,7 +270,7 @@ export class Client extends Component {
                       </div>
                     </div>
                     <div className="col-sm-3 goal">
-                      <TextInputField icon="laptop" name="web_y" classname="web" placeholder="Goal Web Traffic" value={isEmpty(clients.siteTraffic && clients.siteTraffic.y) ? 0 : clients.siteTraffic.y} onChange={this.handleChange} />
+                      <NumInputField icon="laptop" name="web_y" classname="web" placeholder="Goal Web Traffic" value={isEmpty(clients.siteTraffic && clients.siteTraffic.y) ? 0 : clients.siteTraffic.y} onChange={this.handleChange} />
                     </div>
 
                     <div className="col-sm-12 before">
@@ -278,7 +278,7 @@ export class Client extends Component {
                       <h6 className="font-weight-light mt-2">Starting Site Traffic</h6>
                       <ul className="d-flex justify-content-between list-unstyled">
                         <li>
-                          <TextInputField icon="laptop" classname="web_x" placeholder="Starting" value={isEmpty(clients.siteTraffic && clients.siteTraffic.web_b4) ? 0 : clients.siteTraffic.web_b4} onChange={this.handleChange} />
+                          <NumInputField icon="laptop" classname="web_x" placeholder="Starting" value={isEmpty(clients.siteTraffic && clients.siteTraffic.web_b4) ? 0 : clients.siteTraffic.web_b4} onChange={this.handleChange} />
                         </li>
                       </ul>
                     </div>

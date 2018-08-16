@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Spinner from '../common/Spinner';
 import { getAClient, updateAClient, deleteClient } from '../../actions/clientActions';
-import TextInputField from '../common/TextInputField';
+import NumInputField from '../common/NumInputField';
 import isEmpty from '../../validation/is-empty';
 
 export class EditClient extends Component {
@@ -101,6 +101,7 @@ export class EditClient extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.toggleCollapse = this.toggleCollapse.bind(this);
+    this.onDeleteClick = this.onDeleteClick.bind(this);
   }
 
   toggleCollapse = () => {
@@ -345,11 +346,11 @@ export class EditClient extends Component {
           <div className={`show collapse multi-collapse my-3`} id={categoryName}>
             <div className="row">
               <div className="col-sm-3 current">
-                <TextInputField icon="facebook" name={`${categoryAbbrv}_fb_x`} classname={categoryAbbrv + ' fb'} placeholder="Current" value={this.state[categoryAbbrv + '_fb_x']} onChange={this.handleChange} />
-                <TextInputField icon="twitter" name={`${categoryAbbrv}_tw_x`} classname={categoryAbbrv + ' tw'} placeholder="Current" value={this.state[categoryAbbrv + '_tw_x']} onChange={this.handleChange} />
-                <TextInputField icon="instagram" name={`${categoryAbbrv}_ig_x`} classname={categoryAbbrv + ' ig'} placeholder="Current" value={this.state[categoryAbbrv + '_ig_x']} onChange={this.handleChange} />
-                <TextInputField icon="linkedin" name={`${categoryAbbrv}_ln_x`} classname={categoryAbbrv + ' ln'} placeholder="Current" value={this.state[categoryAbbrv + '_ln_x']} onChange={this.handleChange} />
-                <TextInputField icon="pinterest" name={`${categoryAbbrv}_pt_x`} classname={categoryAbbrv + ' pn'} placeholder="Current" value={this.state[categoryAbbrv + '_pt_x']} onChange={this.handleChange} />
+                <NumInputField icon="facebook" name={`${categoryAbbrv}_fb_x`} classname={categoryAbbrv + ' fb'} placeholder="Current" value={this.state[categoryAbbrv + '_fb_x']} onChange={this.handleChange} />
+                <NumInputField icon="twitter" name={`${categoryAbbrv}_tw_x`} classname={categoryAbbrv + ' tw'} placeholder="Current" value={this.state[categoryAbbrv + '_tw_x']} onChange={this.handleChange} />
+                <NumInputField icon="instagram" name={`${categoryAbbrv}_ig_x`} classname={categoryAbbrv + ' ig'} placeholder="Current" value={this.state[categoryAbbrv + '_ig_x']} onChange={this.handleChange} />
+                <NumInputField icon="linkedin" name={`${categoryAbbrv}_ln_x`} classname={categoryAbbrv + ' ln'} placeholder="Current" value={this.state[categoryAbbrv + '_ln_x']} onChange={this.handleChange} />
+                <NumInputField icon="pinterest" name={`${categoryAbbrv}_pt_x`} classname={categoryAbbrv + ' pn'} placeholder="Current" value={this.state[categoryAbbrv + '_pt_x']} onChange={this.handleChange} />
               </div>
               <div className="col-sm-6 rangeSlider">
                 <div className="range-slider">
@@ -386,11 +387,11 @@ export class EditClient extends Component {
                 </div>
               </div>
               <div className="col-sm-3 goal">
-                <TextInputField icon="facebook" name={`${categoryAbbrv}_fb_y`} classname={categoryAbbrv + 'fb'} placeholder="Goal Facebook" value={this.state[categoryAbbrv + '_fb_y']} onChange={this.handleChange} />
-                <TextInputField icon="twitter" name={`${categoryAbbrv}_tw_y`} classname={categoryAbbrv + 'tw'} placeholder="Goal Twitter" value={this.state[categoryAbbrv + '_tw_y']} onChange={this.handleChange} />
-                <TextInputField icon="instagram" name={`${categoryAbbrv}_ig_y`} classname={categoryAbbrv + 'ig'} placeholder="Goal Instagram" value={this.state[categoryAbbrv + '_ig_y']} onChange={this.handleChange} />
-                <TextInputField icon="linkedin" name={`${categoryAbbrv}_ln_y`} classname={categoryAbbrv + 'ln'} placeholder="Goal LinkedIn" value={this.state[categoryAbbrv + '_ln_y']} onChange={this.handleChange} />
-                <TextInputField icon="pinterest" name={`${categoryAbbrv}_pt_y`} classname={categoryAbbrv + 'pn'} placeholder="Goal Pinterest" value={this.state[categoryAbbrv + '_pt_y']} onChange={this.handleChange} />
+                <NumInputField icon="facebook" name={`${categoryAbbrv}_fb_y`} classname={categoryAbbrv + 'fb'} placeholder="Goal Facebook" value={this.state[categoryAbbrv + '_fb_y']} onChange={this.handleChange} />
+                <NumInputField icon="twitter" name={`${categoryAbbrv}_tw_y`} classname={categoryAbbrv + 'tw'} placeholder="Goal Twitter" value={this.state[categoryAbbrv + '_tw_y']} onChange={this.handleChange} />
+                <NumInputField icon="instagram" name={`${categoryAbbrv}_ig_y`} classname={categoryAbbrv + 'ig'} placeholder="Goal Instagram" value={this.state[categoryAbbrv + '_ig_y']} onChange={this.handleChange} />
+                <NumInputField icon="linkedin" name={`${categoryAbbrv}_ln_y`} classname={categoryAbbrv + 'ln'} placeholder="Goal LinkedIn" value={this.state[categoryAbbrv + '_ln_y']} onChange={this.handleChange} />
+                <NumInputField icon="pinterest" name={`${categoryAbbrv}_pt_y`} classname={categoryAbbrv + 'pn'} placeholder="Goal Pinterest" value={this.state[categoryAbbrv + '_pt_y']} onChange={this.handleChange} />
               </div>
 
               <div className="col-sm-12 before">
@@ -398,19 +399,19 @@ export class EditClient extends Component {
                 <h6 className="font-weight-light mt-2">Starting {cat_name}</h6>
                 <ul className="d-flex justify-content-between list-unstyled">
                   <li>
-                    <TextInputField icon="facebook" name={`${categoryAbbrv}_b4_fb`} classname={categoryAbbrv + ' fb'} placeholder="Starting" value={this.state[categoryAbbrv + '_b4_fb']} onChange={this.handleChange} />
+                    <NumInputField icon="facebook" name={`${categoryAbbrv}_b4_fb`} classname={categoryAbbrv + ' fb'} placeholder="Starting" value={this.state[categoryAbbrv + '_b4_fb']} onChange={this.handleChange} />
                   </li>
                   <li>
-                    <TextInputField icon="twitter" name={`${categoryAbbrv}_b4_tw`} classname={categoryAbbrv + ' tw'} placeholder="Starting" value={this.state[categoryAbbrv + '_b4_tw']} onChange={this.handleChange} />
+                    <NumInputField icon="twitter" name={`${categoryAbbrv}_b4_tw`} classname={categoryAbbrv + ' tw'} placeholder="Starting" value={this.state[categoryAbbrv + '_b4_tw']} onChange={this.handleChange} />
                   </li>
                   <li>
-                    <TextInputField icon="instagram" name={`${categoryAbbrv}_b4_ig`} classname={categoryAbbrv + ' ig'} placeholder="Starting" value={this.state[categoryAbbrv + '_b4_ig']} onChange={this.handleChange} />
+                    <NumInputField icon="instagram" name={`${categoryAbbrv}_b4_ig`} classname={categoryAbbrv + ' ig'} placeholder="Starting" value={this.state[categoryAbbrv + '_b4_ig']} onChange={this.handleChange} />
                   </li>
                   <li>
-                    <TextInputField icon="linkedin" name={`${categoryAbbrv}_b4_ln`} classname={categoryAbbrv + ' ln'} placeholder="Starting" value={this.state[categoryAbbrv + '_b4_ln']} onChange={this.handleChange} />
+                    <NumInputField icon="linkedin" name={`${categoryAbbrv}_b4_ln`} classname={categoryAbbrv + ' ln'} placeholder="Starting" value={this.state[categoryAbbrv + '_b4_ln']} onChange={this.handleChange} />
                   </li>
                   <li>
-                    <TextInputField icon="pinterest" name={`${categoryAbbrv}_b4_pt`} classname={categoryAbbrv + ' pt'} placeholder="Starting" value={this.state[categoryAbbrv + '_b4_pt']} onChange={this.handleChange} />
+                    <NumInputField icon="pinterest" name={`${categoryAbbrv}_b4_pt`} classname={categoryAbbrv + ' pt'} placeholder="Starting" value={this.state[categoryAbbrv + '_b4_pt']} onChange={this.handleChange} />
                   </li>
                 </ul>
               </div>
@@ -434,7 +435,7 @@ export class EditClient extends Component {
               Update {clients.name}
             </button>
 
-            <button onClick={this.onDeleteClick.bind(this)} className="btn btn-danger mx-4 mb-3">
+            <button onClick={this.onDeleteClick} className="btn btn-danger mx-4 mb-3">
               Delete {clients.name}
             </button>
 
@@ -457,7 +458,7 @@ export class EditClient extends Component {
               <div className={`show collapse multi-collapse my-3`} id="site_traffic">
                 <div className="row">
                   <div className="col-sm-3 current">
-                    <TextInputField icon="laptop" name="web_x" classname="web" placeholder="Current Web Traffic" value={this.state.web_x} onChange={this.handleChange} />
+                    <NumInputField icon="laptop" name="web_x" classname="web" placeholder="Current Web Traffic" value={this.state.web_x} onChange={this.handleChange} />
                   </div>
                   <div className="col-sm-6 rangeSlider">
                     <div className="range-slider client">
@@ -470,7 +471,7 @@ export class EditClient extends Component {
                     </div>
                   </div>
                   <div className="col-sm-3 goal">
-                    <TextInputField icon="laptop" name="web_y" classname="web" placeholder="Goal Web Traffic" value={this.state.web_y} onChange={this.handleChange} />
+                    <NumInputField icon="laptop" name="web_y" classname="web" placeholder="Goal Web Traffic" value={this.state.web_y} onChange={this.handleChange} />
                   </div>
                 </div>
                 {/* End of Site Traffic*/}
