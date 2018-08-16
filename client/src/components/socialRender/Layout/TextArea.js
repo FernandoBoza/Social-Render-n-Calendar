@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const TextArea = ({ value, onChange }) => {
   return (
-    <div className="input-group">
+    <div className="input-group mb-4">
       <div className="input-group-prepend">
         <span className="input-group-text">
           Copy Goes Here

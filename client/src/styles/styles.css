@@ -238,4 +238,7 @@ p {
   #social-render div#right-panel {
     top: 70%; } }
 
+.DateInput_input {
+  border-bottom: 0; }
+
 /*# sourceMappingURL=styles.css.map */
