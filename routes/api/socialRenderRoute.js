@@ -25,6 +25,8 @@ router.post('/', (req, res) => {
     clientName: req.body.clientName,
     clientInitials: req.body.clientInitials,
     contentCopy: req.body.contentCopy,
+    contentTwitterCopy: req.body.contentTwitterCopy,
+    contentInstagramCopy: req.body.contentInstagramCopy,
     imgLink: req.body.imgLink,
     imgLinkInstagram: req.body.imgLinkInstagram,
     dateGoingLive: req.body.dateGoingLive

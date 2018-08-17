@@ -12,6 +12,12 @@ const SocialRenderSchema = new Schema({
   contentCopy: {
     type: String
   },
+  contentTwitterCopy: {
+    type: String
+  },
+  contentInstagramCopy: {
+    type: String
+  },
   imgLink: {
     type: String
   },

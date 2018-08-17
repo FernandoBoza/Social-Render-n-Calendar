@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const AccordianCards = ({ target, cardName, componentName, expandCollapse }) => {
+const AccordianCards = ({ hidOrShow, target, cardName, componentName, expandCollapse }) => {
   return (
-    <div className="card">
+    <div className={`card ${hidOrShow}`}>
       <div className="card-header">
         <h5 className="mb-0">
           <button className="btn btn-link" type="button" data-toggle="collapse" data-target={`#${target}`}>
@@ -23,6 +23,10 @@ AccordianCards.propTypes = {
   cardName: PropTypes.string,
   expandCollapse: PropTypes.string,
   componentName: PropTypes.any
+};
+
+AccordianCards.defaultProps = {
+  hidOrShow: 'show'
 };
 
 export default AccordianCards;

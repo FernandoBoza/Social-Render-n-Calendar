@@ -24,10 +24,12 @@ const FacebookDesktop = ({ clientInitials, clientName, contentCopy, imgLink, dat
             <i className="fa fa-thumbs-o-up text-primary" /> Like
           </span>
           <span>
-            <i className="fa fa-comment-o text-primary" />Comment
+            <i className="fa fa-comment-o text-primary" />
+            Comment
           </span>
           <span>
-            <i className="fa fa-share  text-primary" />Share
+            <i className="fa fa-share  text-primary" />
+            Share
           </span>
         </a>
         <hr />
