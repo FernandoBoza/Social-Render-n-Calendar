@@ -435,7 +435,7 @@ export class EditClient extends Component {
               Update {clients.name}
             </button>
 
-            <button onClick={this.onDeleteClick} className="btn btn-danger mx-4 mb-3">
+            <button onClick={this.onDeleteClick} type="button" className="btn btn-danger mx-4 mb-3">
               Delete {clients.name}
             </button>
 
