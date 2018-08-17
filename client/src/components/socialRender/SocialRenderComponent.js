@@ -22,7 +22,15 @@ class SocialRenderComponent extends Component {
     this.state = {
       clientName: 'THR33FOLD',
       clientInitials: '3F',
-      contentCopy: ``,
+      contentCopy: `Happy National Ice Cream Day! 🍦The sun’s out, and pastels are in. We’re melting over this hot #MillennialPink, especially when it’s color blocked with #Cerulean blue & #Butterscotch yellow. Check out all the bright content our Ad team is dishing out!`,
+      contentTwitterCopy: `Happy National Ice Cream Day! 🍦The sun’s out, and pastels are in. We’re melting over this hot #MillennialPink, especially when it’s color blocked with #Cerulean blue & #Butterscotch yellow. Check out all the bright content our Ad team is dishing out! http://bit.ly/2mi5NTk `,
+      contentInstagramCopy: `Happy National Ice Cream Day! 🍦 The sun’s out, and pastels are in. We’re melting over this hot #MillennialPink, especially when it’s color blocked with #Cerulean blue & #Butterscotch yellow. Check out THR33FOLD’s Pinterest for all the bright content our Ad team is dishing out!
+      .
+      .
+      .
+      .
+      
+      #NationalIceCreamDay #SundayFunday`,
       imgLink: 'https://scontent-mia3-1.xx.fbcdn.net/v/t39.2147-6/p540x282/37128188_194335607927365_3856798091126505472_n.jpg?_nc_cat=0&oh=f82e5c9685709d72eecb2c3893d915ad&oe=5BFADBCB',
       imgLinkInstagram: 'http://bit.ly/2MuFO9M',
       dateGoingLive: null,
@@ -70,7 +78,9 @@ class SocialRenderComponent extends Component {
                 <InputGroup label={'Dropbox Image Share Link'} name={'imgLink'} icon={'dropbox'} onChange={this.handleChange} value={this.state.imgLink} placeholder="Img link or Dropbox share link here" />
                 <InputGroup label={'Instagram Share Link'} name={'imgLinkInstagram'} icon={'instagram'} onChange={this.handleChange} value={this.state.imgLinkInstagram} placeholder="Instagram img link or Dropbox share link here" />
                 <ClientInputGroup onChange={this.handleChange} value={this.state.clientName} value2={this.state.clientInitials} placeholder="Client Name" placeholder2="Client Initials" />
-                <TextArea value={this.state.contentCopy} onChange={this.handleChange} />
+                <TextArea name="contentCopy" value={this.state.contentCopy} onChange={this.handleChange} />
+                <TextArea name="contentInstagramCopy" channel="Instagram" value={this.state.contentInstagramCopy} onChange={this.handleChange} />
+                <TextArea name="contentTwitterCopy" channel="Twitter" value={this.state.contentTwitterCopy} onChange={this.handleChange} />
                 <SingleDatePicker
                   id={moment(this.state.dateGoingLive).format('L')}
                   date={this.state.dateGoingLive}
@@ -91,8 +101,8 @@ class SocialRenderComponent extends Component {
               <div className="accordion" id="accordionParent">
                 <AccordianCards expandCollapse={'show'} target={'facebookDesktop'} cardName={'Facebook Desktop'} componentName={<FacebookDesktop className="mb-5" clientInitials={this.state.clientInitials} clientName={this.state.clientName} contentCopy={this.state.contentCopy} imgLink={this.state.imgLink} date={this.state.dateGoingLive ? moment(this.state.dateGoingLive).format('MMM Do') : 'Pick a date'} />} />
                 <AccordianCards target={'facebookMobile'} cardName={'Facebook Mobile'} componentName={<FacebookMobile clientInitials={this.state.clientInitials} clientName={this.state.clientName} contentCopy={this.state.contentCopy} imgLink={this.state.imgLink} date={this.state.dateGoingLive ? moment(this.state.dateGoingLive).format('MMM Do') : 'Pick a date'} />} />
-                <AccordianCards target={'instagram'} cardName={'Instagram'} componentName={<Instagram clientInitials={this.state.clientInitials} clientName={this.state.clientName} contentCopy={this.state.contentCopy} imgLink={this.state.imgLinkInstagram ? this.state.imgLinkInstagram : this.state.imgLink} />} />
-                <AccordianCards target={'twitter'} cardName={'Twitter Desktop'} componentName={<TwitterDesktop className="mb-5" clientInitials={this.state.clientInitials} clientName={this.state.clientName} contentCopy={this.state.contentCopy} imgLink={this.state.imgLink} twtHandle={this.state.clientName.replace(/ /g, '')} />} />
+                <AccordianCards target={'instagram'} cardName={'Instagram'} componentName={<Instagram clientInitials={this.state.clientInitials} clientName={this.state.clientName} contentCopy={this.state.contentInstagramCopy} imgLink={this.state.imgLinkInstagram ? this.state.imgLinkInstagram : this.state.imgLink} />} />
+                <AccordianCards target={'twitter'} cardName={'Twitter Desktop'} componentName={<TwitterDesktop className="mb-5" clientInitials={this.state.clientInitials} clientName={this.state.clientName} contentCopy={this.state.contentTwitterCopy} imgLink={this.state.imgLink} twtHandle={this.state.clientName.replace(/ /g, '')} />} />
               </div>
             </div>
           </div>
