@@ -33,7 +33,7 @@ class Dashboard extends Component {
         dashboardContent = (
           <div>
             <p>Would you like to create a new client profile</p>
-            <Link to="/create-client" className="btn btn-info">
+            <Link to="/create-client" className="btn btn-info w-50">
               Create Client <i className="fa fa-user" />
             </Link>
           </div>
