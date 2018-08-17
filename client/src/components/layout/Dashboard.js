@@ -34,7 +34,7 @@ class Dashboard extends Component {
           <div>
             <p>Would you like to create a new client profile</p>
             <Link to="/create-client" className="btn btn-info w-50">
-              Create Client <i className="fa fa-user" />
+              Create Client <i className="fa fa-user" style={{ fontSize: '1.2rem' }} />
             </Link>
           </div>
         );

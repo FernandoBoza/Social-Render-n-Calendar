@@ -68,17 +68,15 @@ export const updateAClient = (handle, clientData, history) => dispatch => {
 
 // DELETE client by handle
 export const deleteClient = (handle, history) => dispatch => {
-  if (window.confirm('Are you sure? This can NOT be undone!')) {
-    axios
-      .delete(`/api/clients/handle/${handle}`)
-      .then(res => history.push('/dashboard'))
-      .catch(err =>
-        dispatch({
-          type: GET_ERRORS,
-          payload: err.response.data
-        })
-      );
-  }
+  axios
+    .delete(`/api/clients/handle/${handle}`)
+    .then(res => history.push('/dashboard'))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
 };
 
 //Profile Loading

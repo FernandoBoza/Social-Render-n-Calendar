@@ -6,6 +6,7 @@ import Spinner from '../common/Spinner';
 import { getAClient, updateAClient, deleteClient } from '../../actions/clientActions';
 import NumInputField from '../common/NumInputField';
 import isEmpty from '../../validation/is-empty';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 export class EditClient extends Component {
   constructor(props) {
@@ -95,13 +96,15 @@ export class EditClient extends Component {
       reach_b4_ln: 0,
       reach_b4_pt: 0,
       errors: {},
-      collapse: true
+      collapse: true,
+      modal: false
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.toggleCollapse = this.toggleCollapse.bind(this);
     this.onDeleteClick = this.onDeleteClick.bind(this);
+    this.toggle = this.toggle.bind(this);
   }
 
   toggleCollapse = () => {
@@ -333,6 +336,12 @@ export class EditClient extends Component {
     this.props.deleteClient(this.props.match.params.handle, this.props.history);
   };
 
+  toggle() {
+    this.setState({
+      modal: !this.state.modal
+    });
+  }
+
   render() {
     const { clients, loading } = this.props.clients;
     let clientContent;
@@ -431,11 +440,11 @@ export class EditClient extends Component {
               Back To {clients.name}
             </Link>
 
-            <button className="btn btn-success ml-4 mb-3" type="submit">
+            <button className="btn btn-warning ml-4 mb-3" type="submit">
               Update {clients.name}
             </button>
 
-            <button onClick={this.onDeleteClick} type="button" className="btn btn-danger mx-4 mb-3">
+            <button onClick={this.toggle} type="button" className="btn btn-danger mx-4 mb-3">
               Delete {clients.name}
             </button>
 
@@ -489,6 +498,26 @@ export class EditClient extends Component {
             <div className="col-md-12 m-auto">{clientContent}</div>
           </div>
         </section>
+        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+          <ModalHeader toggle={this.toggle}>
+            <h1>
+              Think About It{' '}
+              <span role="img" aria-label="think about it emoji">
+                {' '}
+                🤔
+              </span>
+            </h1>
+          </ModalHeader>
+          <ModalBody>Are you sure you want to do this? </ModalBody>
+          <ModalFooter>
+            <Button onClick={this.onDeleteClick} className="btn btn-danger">
+              Delete {this.state.name}
+            </Button>
+            <Button color="primary" onClick={this.toggle}>
+              No, I don't know what I was thinking
+            </Button>
+          </ModalFooter>
+        </Modal>
       </div>
     );
   }

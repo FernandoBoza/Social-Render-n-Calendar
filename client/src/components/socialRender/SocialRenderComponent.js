@@ -20,11 +20,11 @@ class SocialRenderComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      clientName: '',
-      clientInitials: '',
+      clientName: 'THR33FOLD',
+      clientInitials: '3F',
       contentCopy: ``,
-      imgLink: '',
-      imgLinkInstagram: '',
+      imgLink: 'https://scontent-mia3-1.xx.fbcdn.net/v/t39.2147-6/p540x282/37128188_194335607927365_3856798091126505472_n.jpg?_nc_cat=0&oh=f82e5c9685709d72eecb2c3893d915ad&oe=5BFADBCB',
+      imgLinkInstagram: 'http://bit.ly/2MuFO9M',
       dateGoingLive: null,
       errors: {}
     };
