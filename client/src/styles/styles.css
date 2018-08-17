@@ -4,6 +4,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'mr-eaves-modern', 'poppins', 'semplicita pro', 'arial';
+  font-size: 1rem;
   position: relative;
   height: 100vh;
   display: -ms-flexbox;
@@ -174,7 +175,7 @@ p {
 
 #social-render span {
   font-size: 1rem;
-  padding-right: 4rem; }
+  padding-right: 2rem; }
 #social-render .twitterHandle span {
   padding: 0;
   font-size: 1.2rem; }
@@ -204,7 +205,7 @@ p {
   border: 1px solid lightgray;
   font-size: 1.3rem;
   line-height: 1.2;
-  height: 11.5rem;
+  height: 7.5rem;
   display: block; }
 #social-render p.contentCopy {
   white-space: pre-line; }
