@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Instagram = ({ clientInitials, clientName, contentCopy, imgLink }) => {
   return (
-    <div className="col-xs-12  offset-md-2  col-md-7 card px-0 instagram">
+    <div className="col-xs-12 col-md-7 card px-0 instagram">
       <div className="card-body pb-0">
         <div className="d-inline-block fb-title">
           <p className="d-inline-block company bg-primary">{clientInitials}</p>

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createSocialRender } from '../../actions/socialRenderActions';
+import { getAllClients } from '../../actions/clientActions';
 import FacebookDesktop from './Facebook/FacebookDesktop';
 import FacebookMobile from './Facebook/FacebookMobile';
 import Instagram from './Instagram/Instagram';
@@ -15,6 +16,7 @@ import 'react-dates/initialize';
 import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
+import Spinner from '../common/Spinner';
 
 class SocialRenderComponent extends Component {
   constructor(props) {
@@ -47,6 +49,10 @@ class SocialRenderComponent extends Component {
     }
   };
 
+  componentDidMount() {
+    this.props.getAllClients();
+  }
+
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value.replace('www.dropbox.com', 'dl.dropboxusercontent.com')
@@ -74,6 +80,15 @@ class SocialRenderComponent extends Component {
     const fb = this.state.contentCopy ? this.state.contentCopy : false;
     const tw = this.state.contentTwitterCopy ? this.state.contentTwitterCopy : false;
     const ig = this.state.contentInstagramCopy ? this.state.contentInstagramCopy : false;
+    const { clients, loading } = this.props.clients;
+    let clientItems;
+    if (clients == null || loading) {
+      clientItems = <Spinner />;
+    } else {
+      clientItems = clients.map(client => client.name);
+      console.log(clientItems);
+    }
+
     return (
       <div id="social-render">
         <section className="container-fluid">
@@ -111,16 +126,19 @@ class SocialRenderComponent extends Component {
 
 SocialRenderComponent.propTypes = {
   socialRenderContent: PropTypes.object,
+  clients: PropTypes.object.isRequired,
   createSocialRender: PropTypes.func.isRequired,
+  getAllClients: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   socialRenderContent: state.socialRenderContent,
+  clients: state.clients,
   errors: state.errors
 });
 
 export default connect(
   mapStateToProps,
-  { createSocialRender }
+  { createSocialRender, getAllClients }
 )(withRouter(SocialRenderComponent));

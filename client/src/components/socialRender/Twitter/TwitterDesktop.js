@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const TwitterDesktop = ({ clientInitials, clientName, twtHandle, contentCopy, imgLink }) => {
   return (
-    <div className="offset-md-2 col-md-9 card tw-desktop">
+    <div className="col-md-9 card tw-desktop">
       <div className="card-body">
         <div className="d-inline-block fb-title">
           <p className="d-inline-block company bg-primary mb-0">{clientInitials}</p>
@@ -22,13 +22,16 @@ const TwitterDesktop = ({ clientInitials, clientName, twtHandle, contentCopy, im
         <img className="card-img mt-2 mb-4" src={imgLink} alt="Twitter Style Render" />
         <a href="" onClick={e => e.preventDefault()}>
           <span>
-            <i className="fa fa-comment-o text-primary" />10
+            <i className="fa fa-comment-o text-primary" />
+            10
           </span>
           <span>
-            <i className="fa fa-retweet text-primary" />20
+            <i className="fa fa-retweet text-primary" />
+            20
           </span>
           <span>
-            <i className="fa fa-heart-o text-primary" />30
+            <i className="fa fa-heart-o text-primary" />
+            30
           </span>
           <span>
             <i className="fa fa-envelope-o text-primary" />

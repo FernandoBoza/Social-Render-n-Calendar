@@ -3,8 +3,13 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const SocialRenderSchema = new Schema({
+  // clientName: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'client'
+  // },
   clientName: {
-    type: String
+    type: String,
+    ref: 'client'
   },
   clientInitials: {
     type: String
@@ -30,7 +35,29 @@ const SocialRenderSchema = new Schema({
   date: {
     type: Date,
     default: Date.now
-  }
+  },
+  comments: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: 'users'
+      },
+      text: {
+        type: String,
+        required: true
+      },
+      name: {
+        type: String
+      },
+      avatar: {
+        type: String
+      },
+      date: {
+        type: Date,
+        default: Date.now
+      }
+    }
+  ]
 });
 
 module.exports = SocialRender = mongoose.model('socialRenderContent', SocialRenderSchema);

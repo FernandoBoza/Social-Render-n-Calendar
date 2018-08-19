@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const FacebookDesktop = ({ clientInitials, clientName, contentCopy, imgLink, date }) => {
   return (
-    <div className=" offset-md-2  col-md-9 card fb-desktop">
+    <div className="col-md-9 card fb-desktop">
       <div className="card-body">
         <div className="d-inline-block fb-title">
           <p className="d-inline-block company bg-primary">{clientInitials}</p>
