@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Calendar from 'react-big-calendar';
 import moment from 'moment';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getAllSocialRender } from '../../../actions/socialRenderActions'; // Fed the client model
+import { connect } from 'react-redux';
+import { getByClientName } from '../../../actions/socialRenderActions';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import FacebookDesktop from '../Facebook/FacebookDesktop';
 import FacebookMobile from '../Facebook/FacebookMobile';
@@ -12,9 +12,7 @@ import TwitterDesktop from '../Twitter/TwitterDesktop';
 import AccordianCards from '../Layout/AccordianCards';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
-Calendar.setLocalizer(Calendar.momentLocalizer(moment));
-
-class ContentCalendar extends Component {
+export class ClientContentCalendar extends Component {
   constructor(props) {
     super(props);
 
@@ -34,9 +32,10 @@ class ContentCalendar extends Component {
   }
 
   componentDidMount() {
-    this.props.getAllSocialRender();
+    if (this.props.match.params.clientName) {
+      this.props.getByClientName(this.props.match.params.clientName);
+    }
   }
-
   toggle = e => {
     this.setState({
       modal: !this.state.modal,
@@ -51,11 +50,10 @@ class ContentCalendar extends Component {
       start: e.start
     });
   };
-
   render() {
     const { socialRenderContent } = this.props.socialRenderContent;
-    console.log(socialRenderContent);
     let PostDate = [];
+    console.log(socialRenderContent);
 
     if (socialRenderContent) {
       PostDate = socialRenderContent.map(contentInfo => ({
@@ -74,7 +72,6 @@ class ContentCalendar extends Component {
     const fb = this.state.contentCopy ? this.state.contentCopy : false;
     const tw = this.state.contentTwitterCopy ? this.state.contentTwitterCopy : false;
     const ig = this.state.contentInstagramCopy ? this.state.contentInstagramCopy : false;
-
     return (
       <div className="ContentCalendar">
         <Calendar
@@ -110,8 +107,8 @@ class ContentCalendar extends Component {
   }
 }
 
-ContentCalendar.propTypes = {
-  getAllSocialRender: PropTypes.func.isRequired, // from client actions
+ClientContentCalendar.propTypes = {
+  getByClientName: PropTypes.func.isRequired,
   socialRenderContent: PropTypes.object.isRequired
 };
 
@@ -121,5 +118,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getAllSocialRender }
-)(ContentCalendar);
+  { getByClientName }
+)(ClientContentCalendar);

@@ -1,4 +1,4 @@
-import { SET_CONTENT_CALENDAR } from '../actions/types';
+import { SET_CONTENT_CALENDAR, GET_CLIENT_CONTENT } from '../actions/types';
 
 const initialState = {
   socialRenderContent: null
@@ -7,6 +7,11 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case SET_CONTENT_CALENDAR:
+      return {
+        ...state,
+        socialRenderContent: action.payload
+      };
+    case GET_CLIENT_CONTENT:
       return {
         ...state,
         socialRenderContent: action.payload

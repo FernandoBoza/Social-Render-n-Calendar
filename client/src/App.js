@@ -19,6 +19,7 @@ import Client from './components/clients/singleClients/Client';
 import EditClient from './components/clients/EditClient';
 import SocialRender from './components/socialRender/SocialRenderComponent';
 import ContentCalendar from './components/socialRender/Calendar/Calendar';
+import ClientContentCalendar from './components/socialRender/Calendar/ClientContentCalendar';
 import './styles/styles.css';
 
 // Check For Token
@@ -50,6 +51,7 @@ class App extends Component {
               <Route exact path="/clients" component={Clients} />
               <Route exact path="/social-render" component={SocialRender} />
               <Route exact path="/content-calendar" component={ContentCalendar} />
+              <Route exact path="/content-calendar/:clientName" component={ClientContentCalendar} />
               <Switch>
                 <Route exact path="/clients/:handle" component={Client} />
               </Switch>
