@@ -16,7 +16,6 @@ import 'react-dates/initialize';
 import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
-import Spinner from '../common/Spinner';
 
 class SocialRenderComponent extends Component {
   constructor(props) {
@@ -33,7 +32,8 @@ class SocialRenderComponent extends Component {
       .
       
       #NationalIceCreamDay #SundayFunday`,
-      imgLink: 'https://scontent-mia3-1.xx.fbcdn.net/v/t39.2147-6/p540x282/37128188_194335607927365_3856798091126505472_n.jpg?_nc_cat=0&oh=f82e5c9685709d72eecb2c3893d915ad&oe=5BFADBCB',
+      imgLink:
+        'https://scontent-mia3-1.xx.fbcdn.net/v/t39.2147-6/p540x282/37128188_194335607927365_3856798091126505472_n.jpg?_nc_cat=0&oh=f82e5c9685709d72eecb2c3893d915ad&oe=5BFADBCB',
       imgLinkInstagram: 'http://bit.ly/2MuFO9M',
       dateGoingLive: null,
       errors: {}
@@ -41,6 +41,7 @@ class SocialRenderComponent extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleClientSelect = this.handleClientSelect.bind(this);
   }
 
   componentWillReceiveProps = nextProps => {
@@ -55,7 +56,17 @@ class SocialRenderComponent extends Component {
 
   handleChange = e => {
     this.setState({
-      [e.target.name]: e.target.value.replace('www.dropbox.com', 'dl.dropboxusercontent.com')
+      [e.target.name]: e.target.value.replace(
+        'www.dropbox.com',
+        'dl.dropboxusercontent.com'
+      )
+    });
+  };
+
+  handleClientSelect = e => {
+    console.log(e.value);
+    this.setState({
+      clientName: e.label
     });
   };
 
@@ -78,31 +89,86 @@ class SocialRenderComponent extends Component {
 
   render() {
     const fb = this.state.contentCopy ? this.state.contentCopy : false;
-    const tw = this.state.contentTwitterCopy ? this.state.contentTwitterCopy : false;
-    const ig = this.state.contentInstagramCopy ? this.state.contentInstagramCopy : false;
-    const { clients, loading } = this.props.clients;
-    let clientItems;
-    if (clients == null || loading) {
-      clientItems = <Spinner />;
-    } else {
-      clientItems = clients.map(client => client.name);
-      console.log(clientItems);
-    }
+    const tw = this.state.contentTwitterCopy
+      ? this.state.contentTwitterCopy
+      : false;
+    const ig = this.state.contentInstagramCopy
+      ? this.state.contentInstagramCopy
+      : false;
 
+    const { clients, loading } = this.props.clients;
+    var clientItems;
+    if (clients == null || loading) {
+    } else {
+      clientItems = clients.map(client => ({
+        label: client.name,
+        value: client.handle
+      }));
+    }
+    console.log(this.state.clientName);
     return (
       <div id="social-render">
         <section className="container-fluid">
           <div className="row">
             <div id="left-panel" className="col-md-6">
               <form onSubmit={this.handleSubmit}>
-                <InputGroup label={'Dropbox Image Share Link'} name={'imgLink'} icon={'dropbox'} onChange={this.handleChange} value={this.state.imgLink} placeholder="Img link or Dropbox share link here" />
-                <InputGroup label={'Instagram Share Link'} name={'imgLinkInstagram'} icon={'instagram'} onChange={this.handleChange} value={this.state.imgLinkInstagram} placeholder="Instagram img link or Dropbox share link here" />
-                <ClientInputGroup onChange={this.handleChange} value={this.state.clientName} value2={this.state.clientInitials} placeholder="Client Name" placeholder2="Client Initials" />
-                <TextArea name="contentCopy" value={this.state.contentCopy} onChange={this.handleChange} />
-                <TextArea name="contentInstagramCopy" channel="Instagram" value={this.state.contentInstagramCopy} onChange={this.handleChange} />
-                <TextArea name="contentTwitterCopy" channel="Twitter" value={this.state.contentTwitterCopy} onChange={this.handleChange} />
-                <SingleDatePicker id={moment(this.state.dateGoingLive).format('L')} date={this.state.dateGoingLive} hideKeyboardShortcutsPanel={true} block={true} focused={this.state.focused} onDateChange={dateGoingLive => this.setState({ dateGoingLive })} onFocusChange={({ focused }) => this.setState({ focused })} />
-                <button className="btn btn-lg btn-outline-primary btn-block mt-5 w-100 mx-auto" type="submit">
+                <InputGroup
+                  label={'Dropbox Image Share Link'}
+                  name={'imgLink'}
+                  icon={'dropbox'}
+                  onChange={this.handleChange}
+                  value={this.state.imgLink}
+                  placeholder="Img link or Dropbox share link here"
+                />
+                <InputGroup
+                  label={'Instagram Share Link'}
+                  name={'imgLinkInstagram'}
+                  icon={'instagram'}
+                  onChange={this.handleChange}
+                  value={this.state.imgLinkInstagram}
+                  placeholder="Instagram img link or Dropbox share link here"
+                />
+                <ClientInputGroup
+                  options={clientItems}
+                  onChange={this.handleClientSelect}
+                  onChange2={this.handleChange}
+                  value={this.state.clientName}
+                  value2={this.state.clientInitials}
+                  placeholder="Client Name"
+                  placeholder2="Client Initials"
+                />
+                <TextArea
+                  name="contentCopy"
+                  value={this.state.contentCopy}
+                  onChange={this.handleChange}
+                />
+                <TextArea
+                  name="contentInstagramCopy"
+                  channel="Instagram"
+                  value={this.state.contentInstagramCopy}
+                  onChange={this.handleChange}
+                />
+                <TextArea
+                  name="contentTwitterCopy"
+                  channel="Twitter"
+                  value={this.state.contentTwitterCopy}
+                  onChange={this.handleChange}
+                />
+                <SingleDatePicker
+                  id={moment(this.state.dateGoingLive).format('L')}
+                  date={this.state.dateGoingLive}
+                  hideKeyboardShortcutsPanel={true}
+                  block={true}
+                  focused={this.state.focused}
+                  onDateChange={dateGoingLive =>
+                    this.setState({ dateGoingLive })
+                  }
+                  onFocusChange={({ focused }) => this.setState({ focused })}
+                />
+                <button
+                  className="btn btn-lg btn-outline-primary btn-block mt-5 w-100 mx-auto"
+                  type="submit"
+                >
                   Add To Content Calendar
                 </button>
               </form>
@@ -110,10 +176,76 @@ class SocialRenderComponent extends Component {
 
             <div id="right-panel" className="col-sm-6">
               <div className="accordion" id="accordionParent">
-                <AccordianCards hidOrShow={fb ? '' : 'hide'} expandCollapse={'show'} target={'facebookDesktop'} cardName={'Facebook Desktop'} componentName={<FacebookDesktop className="mb-5" clientInitials={this.state.clientInitials} clientName={this.state.clientName} contentCopy={this.state.contentCopy} imgLink={this.state.imgLink} date={this.state.dateGoingLive ? moment(this.state.dateGoingLive).format('MMM Do') : 'Pick a date'} />} />
-                <AccordianCards hidOrShow={fb ? '' : 'hide'} target={'facebookMobile'} cardName={'Facebook Mobile'} componentName={<FacebookMobile clientInitials={this.state.clientInitials} clientName={this.state.clientName} contentCopy={this.state.contentCopy} imgLink={this.state.imgLink} date={this.state.dateGoingLive ? moment(this.state.dateGoingLive).format('MMM Do') : 'Pick a date'} />} />
-                <AccordianCards hidOrShow={ig ? '' : 'hide'} target={'instagram'} cardName={'Instagram'} componentName={<Instagram clientInitials={this.state.clientInitials} clientName={this.state.clientName} contentCopy={this.state.contentInstagramCopy} imgLink={this.state.imgLinkInstagram ? this.state.imgLinkInstagram : this.state.imgLink} />} />
-                <AccordianCards hidOrShow={tw ? '' : 'hide'} target={'twitter'} cardName={'Twitter Desktop'} componentName={<TwitterDesktop className="mb-5" clientInitials={this.state.clientInitials} clientName={this.state.clientName} contentCopy={this.state.contentTwitterCopy} imgLink={this.state.imgLink} twtHandle={this.state.clientName.replace(/ /g, '')} />} />
+                <AccordianCards
+                  hidOrShow={fb ? '' : 'hide'}
+                  expandCollapse={'show'}
+                  target={'facebookDesktop'}
+                  cardName={'Facebook Desktop'}
+                  componentName={
+                    <FacebookDesktop
+                      className="mb-5"
+                      clientInitials={this.state.clientInitials}
+                      clientName={this.state.clientName}
+                      contentCopy={this.state.contentCopy}
+                      imgLink={this.state.imgLink}
+                      date={
+                        this.state.dateGoingLive
+                          ? moment(this.state.dateGoingLive).format('MMM Do')
+                          : 'Pick a date'
+                      }
+                    />
+                  }
+                />
+                <AccordianCards
+                  hidOrShow={fb ? '' : 'hide'}
+                  target={'facebookMobile'}
+                  cardName={'Facebook Mobile'}
+                  componentName={
+                    <FacebookMobile
+                      clientInitials={this.state.clientInitials}
+                      clientName={this.state.clientName}
+                      contentCopy={this.state.contentCopy}
+                      imgLink={this.state.imgLink}
+                      date={
+                        this.state.dateGoingLive
+                          ? moment(this.state.dateGoingLive).format('MMM Do')
+                          : 'Pick a date'
+                      }
+                    />
+                  }
+                />
+                <AccordianCards
+                  hidOrShow={ig ? '' : 'hide'}
+                  target={'instagram'}
+                  cardName={'Instagram'}
+                  componentName={
+                    <Instagram
+                      clientInitials={this.state.clientInitials}
+                      clientName={this.state.clientName}
+                      contentCopy={this.state.contentInstagramCopy}
+                      imgLink={
+                        this.state.imgLinkInstagram
+                          ? this.state.imgLinkInstagram
+                          : this.state.imgLink
+                      }
+                    />
+                  }
+                />
+                <AccordianCards
+                  hidOrShow={tw ? '' : 'hide'}
+                  target={'twitter'}
+                  cardName={'Twitter Desktop'}
+                  componentName={
+                    <TwitterDesktop
+                      className="mb-5"
+                      clientInitials={this.state.clientInitials}
+                      clientName={this.state.clientName}
+                      contentCopy={this.state.contentTwitterCopy}
+                      imgLink={this.state.imgLink}
+                      twtHandle={this.state.clientName.replace(/ /g, '')}
+                    />
+                  }
+                />
               </div>
             </div>
           </div>
