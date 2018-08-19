@@ -22,9 +22,9 @@ router.get('/', (req, res) => {
 
 // @GET api/calendar/name/:clientName
 // @desc Get by client clientName
-router.get('/:clientName', (req, res) => {
+router.get('/:clientHandle', (req, res) => {
   const errorsObj = {};
-  SocialRenderModel.find({ clientName: req.params.clientName })
+  SocialRenderModel.find({ clientHandle: req.params.clientHandle })
     .then(socialRenderContent => {
       if (!socialRenderContent) {
         errorsObj.noclient = 'There is no client';

@@ -14,6 +14,9 @@ const SocialRenderSchema = new Schema({
   clientInitials: {
     type: String
   },
+  clientHandle: {
+    type: String
+  },
   contentCopy: {
     type: String
   },
@@ -60,4 +63,7 @@ const SocialRenderSchema = new Schema({
   ]
 });
 
-module.exports = SocialRender = mongoose.model('socialRenderContent', SocialRenderSchema);
+module.exports = SocialRender = mongoose.model(
+  'socialRenderContent',
+  SocialRenderSchema
+);
