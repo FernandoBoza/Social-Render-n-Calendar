@@ -15,6 +15,13 @@ export default class ClientItem extends Component {
             <Link to={`/clients/${clients.handle}`} className="btn btn-primary">
               View Client <i className="fa fa-user" />
             </Link>
+
+            <Link
+              to={`/content-calendar/${clients.handle}`}
+              className="btn btn-success mx-3"
+            >
+              View Client Calendar <i className="fa fa-calendar-plus-o" />
+            </Link>
           </div>
         </div>
       </div>

@@ -125,7 +125,7 @@ i.fa.fa-code {
   background: #e87305;
   padding: 6px 0 0px 5px; }
 
-.card-body .fa-user {
+.card-body .fa {
   font-size: 1.3rem;
   margin-left: 0.5rem; }
 
@@ -177,20 +177,23 @@ p {
 .card {
   margin: 0 auto; }
 
-.css-10nd86i {
-  width: 28%; }
-
-#social-render span.css-d8oujb {
-  padding-right: 0; }
-
-.css-1aya2g8 {
-  height: 2.8rem;
-  border-color: transparent !important;
-  border-bottom-color: #d8d8d8 !important; }
+.css-1wy0on6 {
+  display: none !important; }
 
 #social-render span {
   font-size: 1rem;
   padding-right: 2rem; }
+#social-render input#react-select-2-input {
+  width: 100% !important; }
+#social-render .css-1rtrksz {
+  padding: 0;
+  border-right: 1px solid lightgray; }
+#social-render .css-rsyb7x {
+  margin: 0;
+  padding: 0; }
+  #social-render .css-rsyb7x,
+  #social-render .css-rsyb7x * {
+    width: 100%; }
 #social-render .twitterHandle span {
   padding: 0;
   font-size: 1.2rem; }

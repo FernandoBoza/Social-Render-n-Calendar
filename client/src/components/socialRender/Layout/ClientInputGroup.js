@@ -11,6 +11,23 @@ const ClientInputGroup = ({
   placeholder2,
   options
 }) => {
+  const customStyles = {
+    option: (base, state) => ({
+      ...base,
+      color: state.isFullscreen ? 'red' : 'blue',
+      padding: 20
+    }),
+    control: () => ({
+      // none of react-selects styles are passed to <View />
+      width: 200
+    }),
+    singleValue: (base, state) => {
+      const opacity = state.isDisabled ? 0.5 : 1;
+      const transition = 'opacity 300ms';
+
+      return { ...base, opacity, transition };
+    }
+  };
   return (
     <div className="input-group my-3">
       <div className="input-group-prepend">
@@ -22,6 +39,7 @@ const ClientInputGroup = ({
         onChange={onChange}
         placeholder={placeholder}
         defaultValue={value}
+        styles={customStyles}
       />
       <input
         type="text"
