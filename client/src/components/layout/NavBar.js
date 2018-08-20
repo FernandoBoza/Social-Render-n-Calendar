@@ -22,8 +22,15 @@ class NavBar extends Component {
           </Link>
         </li>
         <li className="nav-item active mx-5">
-          <a href="" onClick={this.onLogoutClick.bind(this)} className="nav-link">
-            <i className="fa fa-hand-peace text-primary" style={{ fontSize: '1.2rem' }} />
+          <a
+            href=""
+            onClick={this.onLogoutClick.bind(this)}
+            className="nav-link"
+          >
+            <i
+              className="fa fa-hand-peace text-primary"
+              style={{ fontSize: '1.2rem' }}
+            />
             Bye {user.name}
           </a>
         </li>
@@ -46,7 +53,7 @@ class NavBar extends Component {
     );
     return (
       <div className="container-fluid p-0">
-        <nav className="navbar navbar-expand-lg navbar-light bg-light px-5">
+        <nav className="navbar navbar-expand-lg navbar-light px-5">
           <Link className="navbar-brand" to="/">
             Social Stream
           </Link>
@@ -55,7 +62,15 @@ class NavBar extends Component {
               A THR33FOLD Company
             </a>
           </span> */}
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
             <span className="navbar-toggler-icon" />
           </button>
 

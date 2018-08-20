@@ -2,6 +2,16 @@
 
 @import url('https://use.typekit.net/gnh8ezk.css');
 
+// Variables
+
+// dark city miami
+// $img: 'https://images.unsplash.com/photo-1533106497176-45ae19e68ba2?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=fc7f17d00c13cf50d62f4ebd5743a9bc&auto=format&fit=crop&w=2100&q=80';
+// beachshore
+// $img: 'https://images.unsplash.com/photo-1506477331477-33d5d8b3dc85?ixlib=rb-0.3.5&s=0f14cf08c5a3cbaba2f12524089d3a21&auto=format&fit=crop&w=1274&q=80';
+// $img: 'https://images.unsplash.com/photo-1498036882173-b41c28a8ba34?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=11d9d5a5d76bd21f6876c2c3142f4de6&auto=format&fit=crop&w=2400&q=80';
+// $img: 'https://images.unsplash.com/photo-1523860493558-9065a0923b59?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=73daf705ee44cadd19a485d7a8fb68ff&auto=format&fit=crop&w=2661&q=80';
+$img: 'https://images.unsplash.com/photo-1505118380757-91f5f5632de0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=87c34605f09867ba11dc29d18fb4e573&auto=format&fit=crop&w=2902&q=80';
+
 body {
   margin: 0;
   padding: 0;
@@ -13,6 +23,13 @@ body {
   -ms-flex-align: center;
   align-items: center;
   background-color: #f8f9fa;
+}
+
+.App {
+  background-image: url($img);
+  // height: 100vh;
+  background-size: cover;
+  // background-position-y: -36rem;
 }
 
 .modal-dialog[role='document'] {

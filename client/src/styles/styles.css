@@ -12,6 +12,10 @@ body {
   align-items: center;
   background-color: #f8f9fa; }
 
+.App {
+  background-image: url("https://images.unsplash.com/photo-1505118380757-91f5f5632de0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=87c34605f09867ba11dc29d18fb4e573&auto=format&fit=crop&w=2902&q=80");
+  background-size: cover; }
+
 .modal-dialog[role='document'] {
   max-width: 50% !important; }
 
