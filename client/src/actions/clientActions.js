@@ -1,12 +1,20 @@
 import axios from 'axios';
-import { GET_ALL_CLIENTS_PROFILES, GET_CLIENT_PROFILE, GET_ERRORS, CLIENT_LOADING, CLEAR_CURRENT_USER } from './types';
+import {
+  GET_ALL_CLIENTS_PROFILES,
+  GET_CLIENT_PROFILE,
+  GET_ERRORS,
+  CLIENT_LOADING,
+  CLEAR_CURRENT_USER
+} from './types';
 
 // GET ALL Client Profile
 export const getAllClients = () => dispatch => {
   dispatch(setProfileLoading());
   axios
     .get('/api/clients')
-    .then(res => dispatch({ type: GET_ALL_CLIENTS_PROFILES, payload: res.data }))
+    .then(res =>
+      dispatch({ type: GET_ALL_CLIENTS_PROFILES, payload: res.data })
+    )
     .catch(err => dispatch({ type: GET_ALL_CLIENTS_PROFILES, payload: null }));
 };
 

@@ -11,6 +11,7 @@ import Instagram from '../Instagram/Instagram';
 import TwitterDesktop from '../Twitter/TwitterDesktop';
 import AccordianCards from '../Layout/AccordianCards';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
+import { Link } from 'react-router-dom';
 
 Calendar.setLocalizer(Calendar.momentLocalizer(moment));
 
@@ -28,7 +29,8 @@ class ContentCalendar extends Component {
       imgLink: '',
       imgLinkInstagram: '',
       twtHandle: '',
-      start: null
+      start: null,
+      _id: ''
     };
     this.toggle = this.toggle.bind(this);
   }
@@ -40,6 +42,7 @@ class ContentCalendar extends Component {
   toggle = e => {
     this.setState({
       modal: !this.state.modal,
+      _id: e._id,
       title: e.title,
       clientInitials: e.clientInitials,
       contentCopy: e.contentCopy,
@@ -68,7 +71,8 @@ class ContentCalendar extends Component {
         contentTwitterCopy: contentInfo.contentTwitterCopy,
         contentInstagramCopy: contentInfo.contentInstagramCopy,
         imgLink: contentInfo.imgLink,
-        imgLinkInstagram: contentInfo.imgLinkInstagram
+        imgLinkInstagram: contentInfo.imgLinkInstagram,
+        _id: contentInfo._id
       }));
     }
     const fb = this.state.contentCopy ? this.state.contentCopy : false;
@@ -103,6 +107,10 @@ class ContentCalendar extends Component {
             <Button color="primary" onClick={this.toggle}>
               Hide
             </Button>
+
+            <Link to={`/social-render/${this.state._id}/edit-content`} className="btn btn-success mx-3">
+              Edit Post
+            </Link>
           </ModalFooter>
         </Modal>
       </div>
