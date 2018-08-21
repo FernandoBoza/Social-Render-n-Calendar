@@ -57,8 +57,8 @@ class EditSocialRenderComponent extends Component {
         contentTwitterCopy: isEmpty(socialContent.contentTwitterCopy && socialContent.contentTwitterCopy) ? '' : socialContent.contentTwitterCopy,
         contentInstagramCopy: isEmpty(socialContent.contentInstagramCopy && socialContent.contentInstagramCopy) ? '' : socialContent.contentInstagramCopy,
         imgLink: isEmpty(socialContent.imgLink && socialContent.imgLink) ? '' : socialContent.imgLink,
-        imgLinkInstagram: isEmpty(socialContent.imgLinkInstagram && socialContent.imgLinkInstagram) ? '' : socialContent.imgLinkInstagram,
-        dateGoingLive: isEmpty(socialContent.dateGoingLive && socialContent.dateGoingLive) ? '' : socialContent.dateGoingLive
+        imgLinkInstagram: isEmpty(socialContent.imgLinkInstagram && socialContent.imgLinkInstagram) ? '' : socialContent.imgLinkInstagram
+        // dateGoingLive: isEmpty(socialContent.dateGoingLive && socialContent.dateGoingLive) ? '' : socialContent.dateGoingLive
       });
     }
   };
@@ -76,7 +76,7 @@ class EditSocialRenderComponent extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    const socialRenderContent = {
+    const socialRenderContentData = {
       clientName: this.state.clientName,
       clientInitials: this.state.clientInitials,
       contentCopy: this.state.contentCopy,
@@ -86,8 +86,8 @@ class EditSocialRenderComponent extends Component {
       imgLinkInstagram: this.state.imgLinkInstagram,
       dateGoingLive: moment(this.state.dateGoingLive).format()
     };
-    console.log(socialRenderContent);
-    this.props.updateClientContent(this.props.match.params.id, socialRenderContent, this.props.history);
+    console.log(socialRenderContentData);
+    this.props.updateClientContent(this.props.match.params.id, socialRenderContentData, this.props.history);
   };
 
   render() {
@@ -109,13 +109,13 @@ class EditSocialRenderComponent extends Component {
                   <div className="input-group-prepend">
                     <span className="input-group-text">Client Name and Initials</span>
                   </div>
-                  <input name="clientName" onChange={this.handleClientSelect} value={this.state.clientName} className="form-control" />
+                  {/* <input name="clientName" onChange={this.handleClientSelect} value={this.state.clientName} className="form-control" /> */}
                   <input name="clientInitials" onChange={this.handleClientSelect} value={this.state.clientInitials} className="form-control" />
                 </div>
                 <TextArea name="contentCopy" value={this.state.contentCopy} onChange={this.handleChange} />
                 <TextArea name="contentInstagramCopy" channel="Instagram" value={this.state.contentInstagramCopy} onChange={this.handleChange} />
                 <TextArea name="contentTwitterCopy" channel="Twitter" value={this.state.contentTwitterCopy} onChange={this.handleChange} />
-                <SingleDatePicker id={moment(this.state.dateGoingLive).format('L')} date={null} hideKeyboardShortcutsPanel={true} block={true} focused={this.state.focused} onDateChange={dateGoingLive => this.setState({ dateGoingLive })} onFocusChange={({ focused }) => this.setState({ focused })} />
+                <SingleDatePicker id={moment(this.state.dateGoingLive).format('L')} date={moment()} hideKeyboardShortcutsPanel={true} block={true} focused={this.state.focused} onDateChange={dateGoingLive => this.setState({ dateGoingLive })} onFocusChange={({ focused }) => this.setState({ focused })} />
                 <button className="btn btn-lg btn-outline-primary btn-block mt-5 w-100 mx-auto" type="submit">
                   Update and Go to Content Calendar
                 </button>
@@ -142,14 +142,12 @@ EditSocialRenderComponent.propTypes = {
   socialRenderContent: PropTypes.object,
   clients: PropTypes.object.isRequired,
   updateClientContent: PropTypes.func.isRequired,
-  getContentbyClient: PropTypes.func.isRequired,
-  errors: PropTypes.object.isRequired
+  getContentbyClient: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   socialRenderContent: state.socialRenderContent,
-  clients: state.clients,
-  errors: state.errors
+  clients: state.clients
 });
 
 export default connect(

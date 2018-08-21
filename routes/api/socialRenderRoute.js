@@ -36,7 +36,7 @@ router.post(
 );
 
 router.put(
-  '/:clientHandle',
+  '/:id/edit-client',
   passport.authenticate('jwt', { session: false }),
   (res, req) => {
     const { errorsObj, isValid } = validateSocialRender(req.body);

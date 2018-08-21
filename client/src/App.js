@@ -62,7 +62,7 @@ class App extends Component {
               <Switch>
                 <PrivateRoute
                   exact
-                  path="/social-render/:id/:edit-content"
+                  path="/social-render/:id/edit-content"
                   component={EditSocialRender}
                 />
               </Switch>

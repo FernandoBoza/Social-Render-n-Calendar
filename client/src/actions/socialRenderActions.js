@@ -43,7 +43,7 @@ export const getContentbyClient = id => dispatch => {
 
 // UPDATE Single Client Profile
 export const updateClientContent = (id, clientData, history) => dispatch => {
-  dispatch(setSocialRenderLoading());
+  // dispatch(setSocialRenderLoading());
   axios
     .put(`/api/social-render/${id}`, clientData)
     .then(res => history.push(`/content-calendar/`))
