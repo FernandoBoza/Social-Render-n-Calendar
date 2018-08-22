@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { updateClientContent, getContentbyClient } from '../../actions/socialRenderActions';
+import PropTypes from 'prop-types';
 import FacebookDesktop from './Facebook/FacebookDesktop';
 import FacebookMobile from './Facebook/FacebookMobile';
 import Instagram from './Instagram/Instagram';
@@ -15,6 +13,7 @@ import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 import isEmpty from '../../validation/is-empty';
+import { updateClientContent, getContentbyClient } from '../../actions/socialRenderActions';
 
 class EditSocialRenderComponent extends Component {
   constructor(props) {
@@ -39,7 +38,6 @@ class EditSocialRenderComponent extends Component {
   componentDidMount() {
     if (this.props.match.params.id) {
       this.props.getContentbyClient(this.props.match.params.id);
-      console.log(this.props.match.params.id);
     }
   }
 
@@ -48,7 +46,7 @@ class EditSocialRenderComponent extends Component {
       this.setState({ errors: nextProps.errors });
     }
 
-    if (nextProps.socialRenderContent) {
+    if (nextProps.socialRenderContent.socialRenderContent) {
       const socialContent = nextProps.socialRenderContent.socialRenderContent;
       this.setState({
         clientName: isEmpty(socialContent.clientName && socialContent.clientName) ? '' : socialContent.clientName,
@@ -153,4 +151,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { updateClientContent, getContentbyClient }
-)(withRouter(EditSocialRenderComponent));
+)(EditSocialRenderComponent);
