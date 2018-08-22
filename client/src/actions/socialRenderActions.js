@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SOCIAL_RENDER_LOADING, SET_CONTENT_CALENDAR, GET_ERRORS, GET_CLIENT_CONTENT } from './types';
+import { CONTENT_LOADING, SET_CONTENT_CALENDAR, GET_ERRORS, GET_CLIENT_CONTENT } from './types';
 
 // GET Social Render Profiles
 export const getAllSocialRender = () => dispatch => {
@@ -20,9 +20,9 @@ export const getByClientName = clientHandle => dispatch => {
 };
 
 // POST create Social Render
-export const createSocialRender = (socialRenderContent, history) => dispatch => {
+export const createSocialRender = (socialContent, history) => dispatch => {
   axios
-    .post('/api/social-render', socialRenderContent)
+    .post('/api/social-render', socialContent)
     .then(res => history.push('/content-calendar'))
     .catch(err =>
       dispatch({
@@ -42,10 +42,10 @@ export const getContentbyClient = id => dispatch => {
 };
 
 // UPDATE Single Content
-export const updateClientContent = (id, clientData, history) => dispatch => {
+export const updateClientContent = (id, socialContent, history) => dispatch => {
   dispatch(setSocialRenderLoading());
   axios
-    .put(`/api/social-render/id/${id}`, clientData)
+    .put(`/api/social-render/id/${id}`, socialContent)
     .then(res => history.push(`/content-calendar`))
     .catch(err => dispatch({ type: GET_ERRORS, payload: err.response.data }));
 };
@@ -53,6 +53,6 @@ export const updateClientContent = (id, clientData, history) => dispatch => {
 //Social Render Loading
 export const setSocialRenderLoading = () => {
   return {
-    type: SOCIAL_RENDER_LOADING
+    type: CONTENT_LOADING
   };
 };
