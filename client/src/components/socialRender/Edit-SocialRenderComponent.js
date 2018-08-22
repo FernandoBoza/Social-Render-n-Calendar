@@ -55,8 +55,8 @@ class EditSocialRenderComponent extends Component {
         contentTwitterCopy: isEmpty(socialContent.contentTwitterCopy && socialContent.contentTwitterCopy) ? '' : socialContent.contentTwitterCopy,
         contentInstagramCopy: isEmpty(socialContent.contentInstagramCopy && socialContent.contentInstagramCopy) ? '' : socialContent.contentInstagramCopy,
         imgLink: isEmpty(socialContent.imgLink && socialContent.imgLink) ? '' : socialContent.imgLink,
-        imgLinkInstagram: isEmpty(socialContent.imgLinkInstagram && socialContent.imgLinkInstagram) ? '' : socialContent.imgLinkInstagram
-        // dateGoingLive: isEmpty(socialContent.dateGoingLive && socialContent.dateGoingLive) ? '' : socialContent.dateGoingLive
+        imgLinkInstagram: isEmpty(socialContent.imgLinkInstagram && socialContent.imgLinkInstagram) ? '' : socialContent.imgLinkInstagram,
+        dateGoingLive: isEmpty(moment(socialContent.dateGoingLive) && moment(socialContent.dateGoingLive)) ? '' : moment(socialContent.dateGoingLive)
       });
     }
   };
@@ -93,7 +93,7 @@ class EditSocialRenderComponent extends Component {
     const tw = this.state.contentTwitterCopy ? this.state.contentTwitterCopy : false;
     const ig = this.state.contentInstagramCopy ? this.state.contentInstagramCopy : false;
 
-    // let date = this.state.dateGoingLive;
+    console.log(this.state.dateGoingLive);
 
     return (
       <div id="social-render">
@@ -113,7 +113,7 @@ class EditSocialRenderComponent extends Component {
                 <TextArea name="contentCopy" value={this.state.contentCopy} onChange={this.handleChange} />
                 <TextArea name="contentInstagramCopy" channel="Instagram" value={this.state.contentInstagramCopy} onChange={this.handleChange} />
                 <TextArea name="contentTwitterCopy" channel="Twitter" value={this.state.contentTwitterCopy} onChange={this.handleChange} />
-                <SingleDatePicker id={moment(this.state.dateGoingLive).format('L')} date={moment()} hideKeyboardShortcutsPanel={true} block={true} focused={this.state.focused} onDateChange={dateGoingLive => this.setState({ dateGoingLive })} onFocusChange={({ focused }) => this.setState({ focused })} />
+                <SingleDatePicker id={moment(this.state.dateGoingLive).format('L')} date={this.state.dateGoingLive} hideKeyboardShortcutsPanel={true} block={true} focused={this.state.focused} onDateChange={dateGoingLive => this.setState({ dateGoingLive })} onFocusChange={({ focused }) => this.setState({ focused })} />
                 <button className="btn btn-lg btn-outline-primary btn-block mt-5 w-100 mx-auto" type="submit">
                   Update and Go to Content Calendar
                 </button>

@@ -56,23 +56,31 @@ export class ClientContentCalendar extends Component {
   };
 
   render() {
-    const { socialRenderContent } = this.props.socialRenderContent;
+    const { socialRenderContent, loading } = this.props.socialRenderContent;
     let PostDate = [];
-    if (socialRenderContent) {
-      PostDate = socialRenderContent.map(contentInfo => ({
-        start: contentInfo.dateGoingLive,
-        end: contentInfo.dateGoingLive,
-        title: contentInfo.clientName,
-        twtHandle: contentInfo.clientName.replace(/ /g, ''),
-        clientInitials: contentInfo.clientInitials,
-        contentCopy: contentInfo.contentCopy,
-        contentTwitterCopy: contentInfo.contentTwitterCopy,
-        contentInstagramCopy: contentInfo.contentInstagramCopy,
-        imgLink: contentInfo.imgLink,
-        imgLinkInstagram: contentInfo.imgLinkInstagram,
-        _id: contentInfo._id
-      }));
+
+    if (socialRenderContent == null || loading) {
+      PostDate = [];
+    } else {
+      if (socialRenderContent.length > 0) {
+        PostDate = socialRenderContent.map(contentInfo => ({
+          start: contentInfo.dateGoingLive,
+          end: contentInfo.dateGoingLive,
+          title: contentInfo.clientName,
+          twtHandle: contentInfo.clientName.replace(/ /g, ''),
+          clientInitials: contentInfo.clientInitials,
+          contentCopy: contentInfo.contentCopy,
+          contentTwitterCopy: contentInfo.contentTwitterCopy,
+          contentInstagramCopy: contentInfo.contentInstagramCopy,
+          imgLink: contentInfo.imgLink,
+          imgLinkInstagram: contentInfo.imgLinkInstagram,
+          _id: contentInfo._id
+        }));
+      } else {
+        PostDate = [];
+      }
     }
+
     const fb = this.state.contentCopy ? this.state.contentCopy : false;
     const tw = this.state.contentTwitterCopy ? this.state.contentTwitterCopy : false;
     const ig = this.state.contentInstagramCopy ? this.state.contentInstagramCopy : false;
