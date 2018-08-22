@@ -100,7 +100,7 @@ class App extends Component {
               <Switch>
                 <PrivateRoute
                   exact
-                  path={`/clients/:handle/edit-client`}
+                  path="/clients/:handle/edit-client"
                   component={EditClient}
                 />
               </Switch>

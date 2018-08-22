@@ -36,17 +36,17 @@ export const createSocialRender = (socialRenderContent, history) => dispatch => 
 export const getContentbyClient = id => dispatch => {
   dispatch(setSocialRenderLoading());
   axios
-    .get(`/api/social-render/${id}`)
+    .get(`/api/social-render/id/${id}`)
     .then(res => dispatch({ type: GET_CLIENT_CONTENT, payload: res.data }))
     .catch(err => dispatch({ type: GET_CLIENT_CONTENT, payload: null }));
 };
 
-// UPDATE Single Client Profile
+// UPDATE Single Content
 export const updateClientContent = (id, clientData, history) => dispatch => {
-  // dispatch(setSocialRenderLoading());
+  dispatch(setSocialRenderLoading());
   axios
-    .put(`/api/social-render/${id}`, clientData)
-    .then(res => history.push(`/content-calendar/`))
+    .put(`/api/social-render/id/${id}`, clientData)
+    .then(res => history.push(`/content-calendar`))
     .catch(err => dispatch({ type: GET_ERRORS, payload: err.response.data }));
 };
 

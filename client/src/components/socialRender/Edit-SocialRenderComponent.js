@@ -109,7 +109,7 @@ class EditSocialRenderComponent extends Component {
                   <div className="input-group-prepend">
                     <span className="input-group-text">Client Name and Initials</span>
                   </div>
-                  {/* <input name="clientName" onChange={this.handleClientSelect} value={this.state.clientName} className="form-control" /> */}
+                  <input name="clientName" onChange={this.handleClientSelect} value={this.state.clientName} className="form-control" />
                   <input name="clientInitials" onChange={this.handleClientSelect} value={this.state.clientInitials} className="form-control" />
                 </div>
                 <TextArea name="contentCopy" value={this.state.contentCopy} onChange={this.handleChange} />
