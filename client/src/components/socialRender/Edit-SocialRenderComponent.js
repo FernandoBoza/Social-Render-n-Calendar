@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { updateClientContent, getContentbyClient } from '../../actions/socialRenderActions';
+import PropTypes from 'prop-types';
 import FacebookDesktop from './Facebook/FacebookDesktop';
 import FacebookMobile from './Facebook/FacebookMobile';
 import Instagram from './Instagram/Instagram';
@@ -15,6 +13,7 @@ import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 import isEmpty from '../../validation/is-empty';
+import { updateClientContent, getContentbyClient } from '../../actions/socialRenderActions';
 
 class EditSocialRenderComponent extends Component {
   constructor(props) {
@@ -39,7 +38,6 @@ class EditSocialRenderComponent extends Component {
   componentDidMount() {
     if (this.props.match.params.id) {
       this.props.getContentbyClient(this.props.match.params.id);
-      console.log(this.props.match.params.id);
     }
   }
 
@@ -48,7 +46,7 @@ class EditSocialRenderComponent extends Component {
       this.setState({ errors: nextProps.errors });
     }
 
-    if (nextProps.socialRenderContent) {
+    if (nextProps.socialRenderContent.socialRenderContent) {
       const socialContent = nextProps.socialRenderContent.socialRenderContent;
       this.setState({
         clientName: isEmpty(socialContent.clientName && socialContent.clientName) ? '' : socialContent.clientName,
@@ -57,8 +55,8 @@ class EditSocialRenderComponent extends Component {
         contentTwitterCopy: isEmpty(socialContent.contentTwitterCopy && socialContent.contentTwitterCopy) ? '' : socialContent.contentTwitterCopy,
         contentInstagramCopy: isEmpty(socialContent.contentInstagramCopy && socialContent.contentInstagramCopy) ? '' : socialContent.contentInstagramCopy,
         imgLink: isEmpty(socialContent.imgLink && socialContent.imgLink) ? '' : socialContent.imgLink,
-        imgLinkInstagram: isEmpty(socialContent.imgLinkInstagram && socialContent.imgLinkInstagram) ? '' : socialContent.imgLinkInstagram
-        // dateGoingLive: isEmpty(socialContent.dateGoingLive && socialContent.dateGoingLive) ? '' : socialContent.dateGoingLive
+        imgLinkInstagram: isEmpty(socialContent.imgLinkInstagram && socialContent.imgLinkInstagram) ? '' : socialContent.imgLinkInstagram,
+        dateGoingLive: isEmpty(moment(socialContent.dateGoingLive) && moment(socialContent.dateGoingLive)) ? '' : moment(socialContent.dateGoingLive)
       });
     }
   };
@@ -95,7 +93,7 @@ class EditSocialRenderComponent extends Component {
     const tw = this.state.contentTwitterCopy ? this.state.contentTwitterCopy : false;
     const ig = this.state.contentInstagramCopy ? this.state.contentInstagramCopy : false;
 
-    // let date = this.state.dateGoingLive;
+    console.log(this.state.dateGoingLive);
 
     return (
       <div id="social-render">
@@ -115,7 +113,7 @@ class EditSocialRenderComponent extends Component {
                 <TextArea name="contentCopy" value={this.state.contentCopy} onChange={this.handleChange} />
                 <TextArea name="contentInstagramCopy" channel="Instagram" value={this.state.contentInstagramCopy} onChange={this.handleChange} />
                 <TextArea name="contentTwitterCopy" channel="Twitter" value={this.state.contentTwitterCopy} onChange={this.handleChange} />
-                <SingleDatePicker id={moment(this.state.dateGoingLive).format('L')} date={moment()} hideKeyboardShortcutsPanel={true} block={true} focused={this.state.focused} onDateChange={dateGoingLive => this.setState({ dateGoingLive })} onFocusChange={({ focused }) => this.setState({ focused })} />
+                <SingleDatePicker id={moment(this.state.dateGoingLive).format('L')} date={this.state.dateGoingLive} hideKeyboardShortcutsPanel={true} block={true} focused={this.state.focused} onDateChange={dateGoingLive => this.setState({ dateGoingLive })} onFocusChange={({ focused }) => this.setState({ focused })} />
                 <button className="btn btn-lg btn-outline-primary btn-block mt-5 w-100 mx-auto" type="submit">
                   Update and Go to Content Calendar
                 </button>
@@ -153,4 +151,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { updateClientContent, getContentbyClient }
-)(withRouter(EditSocialRenderComponent));
+)(EditSocialRenderComponent);

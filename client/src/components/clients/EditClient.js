@@ -8,7 +8,7 @@ import NumInputField from '../common/NumInputField';
 import isEmpty from '../../validation/is-empty';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-export class EditClient extends Component {
+class EditClient extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -126,7 +126,6 @@ export class EditClient extends Component {
 
     if (nextProps.clients.clients) {
       const clients = nextProps.clients.clients;
-
       this.setState({
         name: isEmpty(clients.name && clients.name) ? '' : clients.name,
         // --------------------------
