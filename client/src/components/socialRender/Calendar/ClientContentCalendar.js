@@ -10,6 +10,8 @@ import FacebookMobile from '../Facebook/FacebookMobile';
 import Instagram from '../Instagram/Instagram';
 import TwitterDesktop from '../Twitter/TwitterDesktop';
 import AccordianCards from '../Layout/AccordianCards';
+import { Link } from 'react-router-dom';
+
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 export class ClientContentCalendar extends Component {
@@ -26,7 +28,8 @@ export class ClientContentCalendar extends Component {
       imgLink: '',
       imgLinkInstagram: '',
       twtHandle: '',
-      start: null
+      start: null,
+      _id: ''
     };
     this.toggle = this.toggle.bind(this);
   }
@@ -39,6 +42,7 @@ export class ClientContentCalendar extends Component {
   toggle = e => {
     this.setState({
       modal: !this.state.modal,
+      _id: e._id,
       title: e.title,
       clientInitials: e.clientInitials,
       contentCopy: e.contentCopy,
@@ -50,11 +54,10 @@ export class ClientContentCalendar extends Component {
       start: e.start
     });
   };
+
   render() {
     const { socialRenderContent } = this.props.socialRenderContent;
     let PostDate = [];
-    console.log(socialRenderContent);
-
     if (socialRenderContent) {
       PostDate = socialRenderContent.map(contentInfo => ({
         start: contentInfo.dateGoingLive,
@@ -66,12 +69,14 @@ export class ClientContentCalendar extends Component {
         contentTwitterCopy: contentInfo.contentTwitterCopy,
         contentInstagramCopy: contentInfo.contentInstagramCopy,
         imgLink: contentInfo.imgLink,
-        imgLinkInstagram: contentInfo.imgLinkInstagram
+        imgLinkInstagram: contentInfo.imgLinkInstagram,
+        _id: contentInfo._id
       }));
     }
     const fb = this.state.contentCopy ? this.state.contentCopy : false;
     const tw = this.state.contentTwitterCopy ? this.state.contentTwitterCopy : false;
     const ig = this.state.contentInstagramCopy ? this.state.contentInstagramCopy : false;
+
     return (
       <div className="ContentCalendar">
         <Calendar
@@ -100,6 +105,10 @@ export class ClientContentCalendar extends Component {
             <Button color="primary" onClick={this.toggle}>
               Hide
             </Button>
+
+            <Link to={`/social-render/${this.state._id}/edit-content`} className="btn btn-success mx-3">
+              Edit Post
+            </Link>
           </ModalFooter>
         </Modal>
       </div>

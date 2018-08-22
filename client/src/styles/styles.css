@@ -215,6 +215,8 @@ p {
   line-height: 0;
   padding-left: 1rem;
   vertical-align: top; }
+#social-render ul.DayPicker_weekHeader_ul.DayPicker_weekHeader_ul_1 {
+  padding-left: 0; }
 #social-render hr {
   padding-top: 0.6rem; }
 #social-render h5.d-inline-block.card-title.ml-2 {

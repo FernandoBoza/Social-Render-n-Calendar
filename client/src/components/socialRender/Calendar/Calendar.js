@@ -11,6 +11,7 @@ import Instagram from '../Instagram/Instagram';
 import TwitterDesktop from '../Twitter/TwitterDesktop';
 import AccordianCards from '../Layout/AccordianCards';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
+import { Link } from 'react-router-dom';
 
 Calendar.setLocalizer(Calendar.momentLocalizer(moment));
 
@@ -28,7 +29,8 @@ class ContentCalendar extends Component {
       imgLink: '',
       imgLinkInstagram: '',
       twtHandle: '',
-      start: null
+      start: null,
+      _id: ''
     };
     this.toggle = this.toggle.bind(this);
   }
@@ -40,6 +42,7 @@ class ContentCalendar extends Component {
   toggle = e => {
     this.setState({
       modal: !this.state.modal,
+      _id: e._id,
       title: e.title,
       clientInitials: e.clientInitials,
       contentCopy: e.contentCopy,
@@ -53,24 +56,31 @@ class ContentCalendar extends Component {
   };
 
   render() {
-    const { socialRenderContent } = this.props.socialRenderContent;
-    console.log(socialRenderContent);
+    const { socialRenderContent, loading } = this.props.socialRenderContent;
     let PostDate = [];
 
-    if (socialRenderContent) {
-      PostDate = socialRenderContent.map(contentInfo => ({
-        start: contentInfo.dateGoingLive,
-        end: contentInfo.dateGoingLive,
-        title: contentInfo.clientName,
-        twtHandle: contentInfo.clientName.replace(/ /g, ''),
-        clientInitials: contentInfo.clientInitials,
-        contentCopy: contentInfo.contentCopy,
-        contentTwitterCopy: contentInfo.contentTwitterCopy,
-        contentInstagramCopy: contentInfo.contentInstagramCopy,
-        imgLink: contentInfo.imgLink,
-        imgLinkInstagram: contentInfo.imgLinkInstagram
-      }));
+    if (socialRenderContent == null || loading) {
+      PostDate = [];
+    } else {
+      if (socialRenderContent.length > 0) {
+        PostDate = socialRenderContent.map(contentInfo => ({
+          start: contentInfo.dateGoingLive,
+          end: contentInfo.dateGoingLive,
+          title: contentInfo.clientName,
+          twtHandle: contentInfo.clientName.replace(/ /g, ''),
+          clientInitials: contentInfo.clientInitials,
+          contentCopy: contentInfo.contentCopy,
+          contentTwitterCopy: contentInfo.contentTwitterCopy,
+          contentInstagramCopy: contentInfo.contentInstagramCopy,
+          imgLink: contentInfo.imgLink,
+          imgLinkInstagram: contentInfo.imgLinkInstagram,
+          _id: contentInfo._id
+        }));
+      } else {
+        PostDate = [];
+      }
     }
+
     const fb = this.state.contentCopy ? this.state.contentCopy : false;
     const tw = this.state.contentTwitterCopy ? this.state.contentTwitterCopy : false;
     const ig = this.state.contentInstagramCopy ? this.state.contentInstagramCopy : false;
@@ -103,6 +113,10 @@ class ContentCalendar extends Component {
             <Button color="primary" onClick={this.toggle}>
               Hide
             </Button>
+
+            <Link to={`/social-render/${this.state._id}/edit-content`} className="btn btn-success mx-3">
+              Edit Post
+            </Link>
           </ModalFooter>
         </Modal>
       </div>
