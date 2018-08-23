@@ -1,5 +1,11 @@
 import axios from 'axios';
-import { CONTENT_LOADING, SET_CONTENT_CALENDAR, GET_ERRORS, GET_CLIENT_CONTENT, DELETE_CONTENT } from './types';
+import {
+  CONTENT_LOADING,
+  SET_CONTENT_CALENDAR,
+  GET_ERRORS,
+  GET_CLIENT_CONTENT,
+  DELETE_CONTENT
+} from './types';
 
 // GET Social Render Profiles
 export const getAllSocialRender = () => dispatch => {
