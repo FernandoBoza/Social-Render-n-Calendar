@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
 import Calendar from 'react-big-calendar';
 import moment from 'moment';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getAllSocialRender, deleteContent } from '../../../actions/socialRenderActions'; // Fed the client model
+import { connect } from 'react-redux';
+import { getByClientName } from '../../../actions/socialRenderActions';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import FacebookDesktop from '../Facebook/FacebookDesktop';
 import FacebookMobile from '../Facebook/FacebookMobile';
 import Instagram from '../Instagram/Instagram';
 import TwitterDesktop from '../Twitter/TwitterDesktop';
 import AccordianCards from '../Layout/AccordianCards';
-import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { Link } from 'react-router-dom';
 
-Calendar.setLocalizer(Calendar.momentLocalizer(moment));
+import 'react-big-calendar/lib/css/react-big-calendar.css';
 
-class ContentCalendar extends Component {
+export class ClientContentCalendar extends Component {
   constructor(props) {
     super(props);
 
@@ -33,17 +32,13 @@ class ContentCalendar extends Component {
       _id: ''
     };
     this.toggle = this.toggle.bind(this);
-    this.onDeleteClick = this.onDeleteClick.bind(this);
   }
 
   componentDidMount() {
-    this.props.getAllSocialRender();
+    if (this.props.match.params.clientName) {
+      this.props.getByClientName(this.props.match.params.clientName);
+    }
   }
-
-  onDeleteClick = e => {
-    this.props.deleteContent(this.state._id, this.props.history);
-  };
-
   toggle = e => {
     this.setState({
       modal: !this.state.modal,
@@ -122,10 +117,6 @@ class ContentCalendar extends Component {
             <Link to={`/social-render/${this.state._id}/edit-content`} className="btn btn-success mx-3">
               Edit Post
             </Link>
-
-            <Button onClick={this.onDeleteClick} className="btn btn-danger">
-              Delete Post Content
-            </Button>
           </ModalFooter>
         </Modal>
       </div>
@@ -133,9 +124,8 @@ class ContentCalendar extends Component {
   }
 }
 
-ContentCalendar.propTypes = {
-  getAllSocialRender: PropTypes.func.isRequired, // from client actions
-  deleteContent: PropTypes.func.isRequired, // from client actions
+ClientContentCalendar.propTypes = {
+  getByClientName: PropTypes.func.isRequired,
   socialRenderContent: PropTypes.object.isRequired
 };
 
@@ -145,5 +135,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getAllSocialRender, deleteContent }
-)(ContentCalendar);
+  { getByClientName }
+)(ClientContentCalendar);

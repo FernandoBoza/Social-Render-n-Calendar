@@ -1,39 +1,31 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { createSocialRender } from '../../actions/socialRenderActions';
-import { getAllClients } from '../../actions/clientActions';
+import PropTypes from 'prop-types';
 import FacebookDesktop from './Facebook/FacebookDesktop';
 import FacebookMobile from './Facebook/FacebookMobile';
 import Instagram from './Instagram/Instagram';
 import TwitterDesktop from './Twitter/TwitterDesktop';
 import AccordianCards from './Layout/AccordianCards';
 import InputGroup from './Layout/InputGroup';
-import ClientInputGroup from './Layout/ClientInputGroup';
 import TextArea from './Layout/TextArea';
 import 'react-dates/initialize';
 import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
+import isEmpty from '../../validation/is-empty';
+import { updateClientContent, getContentbyClient } from '../../actions/socialRenderActions';
 
-class SocialRenderComponent extends Component {
+class EditSocialRenderComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      clientName: 'THR33FOLD',
-      clientInitials: '3F',
-      contentCopy: `Happy National Ice Cream Day! 🍦The sun’s out, and pastels are in. We’re melting over this hot #MillennialPink, especially when it’s color blocked with #Cerulean blue & #Butterscotch yellow. Check out all the bright content our Ad team is dishing out!`,
-      contentTwitterCopy: `Happy National Ice Cream Day! 🍦The sun’s out, and pastels are in. We’re melting over this hot #MillennialPink, especially when it’s color blocked with #Cerulean blue & #Butterscotch yellow. Check out all the bright content our Ad team is dishing out! http://bit.ly/2mi5NTk `,
-      contentInstagramCopy: `Happy National Ice Cream Day! 🍦 The sun’s out, and pastels are in. We’re melting over this hot #MillennialPink, especially when it’s color blocked with #Cerulean blue & #Butterscotch yellow. Check out THR33FOLD’s Pinterest for all the bright content our Ad team is dishing out!
-      .
-      .
-      .
-      .
-      
-      #NationalIceCreamDay #SundayFunday`,
-      imgLink: 'https://scontent-mia3-1.xx.fbcdn.net/v/t39.2147-6/p540x282/37128188_194335607927365_3856798091126505472_n.jpg?_nc_cat=0&oh=f82e5c9685709d72eecb2c3893d915ad&oe=5BFADBCB',
-      imgLinkInstagram: 'http://bit.ly/2MuFO9M',
+      clientName: '',
+      clientInitials: '',
+      contentCopy: ``,
+      contentTwitterCopy: ``,
+      contentInstagramCopy: ``,
+      imgLink: '',
+      imgLinkInstagram: '',
       dateGoingLive: null,
       errors: {}
     };
@@ -43,15 +35,31 @@ class SocialRenderComponent extends Component {
     this.handleClientSelect = this.handleClientSelect.bind(this);
   }
 
+  componentDidMount() {
+    if (this.props.match.params.id) {
+      this.props.getContentbyClient(this.props.match.params.id);
+    }
+  }
+
   componentWillReceiveProps = nextProps => {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
-  };
 
-  componentDidMount() {
-    this.props.getAllClients();
-  }
+    if (nextProps.socialRenderContent.socialRenderContent) {
+      const socialContent = nextProps.socialRenderContent.socialRenderContent;
+      this.setState({
+        clientName: isEmpty(socialContent.clientName && socialContent.clientName) ? '' : socialContent.clientName,
+        clientInitials: isEmpty(socialContent.clientInitials && socialContent.clientInitials) ? '' : socialContent.clientInitials,
+        contentCopy: isEmpty(socialContent.contentCopy && socialContent.contentCopy) ? '' : socialContent.contentCopy,
+        contentTwitterCopy: isEmpty(socialContent.contentTwitterCopy && socialContent.contentTwitterCopy) ? '' : socialContent.contentTwitterCopy,
+        contentInstagramCopy: isEmpty(socialContent.contentInstagramCopy && socialContent.contentInstagramCopy) ? '' : socialContent.contentInstagramCopy,
+        imgLink: isEmpty(socialContent.imgLink && socialContent.imgLink) ? '' : socialContent.imgLink,
+        imgLinkInstagram: isEmpty(socialContent.imgLinkInstagram && socialContent.imgLinkInstagram) ? '' : socialContent.imgLinkInstagram,
+        dateGoingLive: isEmpty(moment(socialContent.dateGoingLive) && moment(socialContent.dateGoingLive)) ? '' : moment(socialContent.dateGoingLive)
+      });
+    }
+  };
 
   handleChange = e => {
     this.setState({
@@ -60,15 +68,13 @@ class SocialRenderComponent extends Component {
   };
 
   handleClientSelect = e => {
-    this.setState({
-      clientName: e.label
-    });
+    e.preventDefault();
   };
 
   handleSubmit = e => {
     e.preventDefault();
 
-    const socialRenderContent = {
+    const socialRenderContentData = {
       clientName: this.state.clientName,
       clientInitials: this.state.clientInitials,
       contentCopy: this.state.contentCopy,
@@ -78,8 +84,8 @@ class SocialRenderComponent extends Component {
       imgLinkInstagram: this.state.imgLinkInstagram,
       dateGoingLive: moment(this.state.dateGoingLive).format()
     };
-    console.log(socialRenderContent);
-    this.props.createSocialRender(socialRenderContent, this.props.history);
+    console.log(socialRenderContentData);
+    this.props.updateClientContent(this.props.match.params.id, socialRenderContentData, this.props.history);
   };
 
   render() {
@@ -87,15 +93,8 @@ class SocialRenderComponent extends Component {
     const tw = this.state.contentTwitterCopy ? this.state.contentTwitterCopy : false;
     const ig = this.state.contentInstagramCopy ? this.state.contentInstagramCopy : false;
 
-    const { clients, loading } = this.props.clients;
-    var clientItems;
-    if (clients == null || loading) {
-    } else {
-      clientItems = clients.map(client => ({
-        label: client.name,
-        value: client.handle
-      }));
-    }
+    console.log(this.state.dateGoingLive);
+
     return (
       <div id="social-render">
         <section className="container-fluid">
@@ -104,13 +103,19 @@ class SocialRenderComponent extends Component {
               <form onSubmit={this.handleSubmit}>
                 <InputGroup label={'Dropbox Image Share Link'} name={'imgLink'} icon={'dropbox'} onChange={this.handleChange} value={this.state.imgLink} placeholder="Img link or Dropbox share link here" />
                 <InputGroup label={'Instagram Share Link'} name={'imgLinkInstagram'} icon={'instagram'} onChange={this.handleChange} value={this.state.imgLinkInstagram} placeholder="Instagram img link or Dropbox share link here" />
-                <ClientInputGroup options={clientItems} onChange={this.handleClientSelect} onChange2={this.handleChange} value={this.state.clientName} value2={this.state.clientInitials} placeholder="Client Name" placeholder2="Client Initials" />
+                <div className="input-group my-3">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text">Client Name and Initials</span>
+                  </div>
+                  <input name="clientName" onChange={this.handleClientSelect} value={this.state.clientName} className="form-control" />
+                  <input name="clientInitials" onChange={this.handleClientSelect} value={this.state.clientInitials} className="form-control" />
+                </div>
                 <TextArea name="contentCopy" value={this.state.contentCopy} onChange={this.handleChange} />
                 <TextArea name="contentInstagramCopy" channel="Instagram" value={this.state.contentInstagramCopy} onChange={this.handleChange} />
                 <TextArea name="contentTwitterCopy" channel="Twitter" value={this.state.contentTwitterCopy} onChange={this.handleChange} />
                 <SingleDatePicker id={moment(this.state.dateGoingLive).format('L')} date={this.state.dateGoingLive} hideKeyboardShortcutsPanel={true} block={true} focused={this.state.focused} onDateChange={dateGoingLive => this.setState({ dateGoingLive })} onFocusChange={({ focused }) => this.setState({ focused })} />
                 <button className="btn btn-lg btn-outline-primary btn-block mt-5 w-100 mx-auto" type="submit">
-                  Add To Content Calendar
+                  Update and Go to Content Calendar
                 </button>
               </form>
             </div>
@@ -131,21 +136,19 @@ class SocialRenderComponent extends Component {
   }
 }
 
-SocialRenderComponent.propTypes = {
+EditSocialRenderComponent.propTypes = {
   socialRenderContent: PropTypes.object,
   clients: PropTypes.object.isRequired,
-  createSocialRender: PropTypes.func.isRequired,
-  getAllClients: PropTypes.func.isRequired,
-  errors: PropTypes.object.isRequired
+  updateClientContent: PropTypes.func.isRequired,
+  getContentbyClient: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   socialRenderContent: state.socialRenderContent,
-  clients: state.clients,
-  errors: state.errors
+  clients: state.clients
 });
 
 export default connect(
   mapStateToProps,
-  { createSocialRender, getAllClients }
-)(withRouter(SocialRenderComponent));
+  { updateClientContent, getContentbyClient }
+)(EditSocialRenderComponent);

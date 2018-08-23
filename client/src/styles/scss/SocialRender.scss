@@ -1,7 +1,7 @@
 .company {
   width: 3rem;
   height: 3rem;
-  font-size: 2rem;
+  font-size: 1.9rem;
   text-align: center;
   padding: 6px;
   color: white;
@@ -9,12 +9,49 @@
   font-weight: 100;
   pointer-events: none;
   padding-top: 9px;
+  margin-bottom: 7px;
+}
+
+.card {
+  margin: 0 auto;
+}
+// .css-10nd86i {
+//   width: 28%;
+// }
+// #social-render span.css-d8oujb {
+//   padding-right: 0;
+// }
+// .css-1aya2g8 {
+//   height: 2.8rem;
+//   border-color: transparent !important;
+//   border-bottom-color: #d8d8d8 !important;
+// }
+
+.css-1wy0on6 {
+  display: none !important;
 }
 
 #social-render {
   span {
     font-size: 1rem;
     padding-right: 2rem;
+  }
+
+  input#react-select-2-input {
+    width: 100% !important;
+  }
+  .css-1rtrksz {
+    padding: 0;
+    border-right: 1px solid lightgray;
+  }
+  .css-rsyb7x {
+    margin: 0;
+    padding: 0;
+
+    &,
+    * {
+      width: 100%;
+    }
   }
 
   .twitterHandle {
@@ -50,6 +87,10 @@
     line-height: 0;
     padding-left: 1rem;
     vertical-align: top;
+  }
+
+  ul.DayPicker_weekHeader_ul.DayPicker_weekHeader_ul_1 {
+    padding-left: 0;
   }
 
   hr {
