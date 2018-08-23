@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { CONTENT_LOADING, SET_CONTENT_CALENDAR, GET_ERRORS, GET_CLIENT_CONTENT } from './types';
+import { CONTENT_LOADING, SET_CONTENT_CALENDAR, GET_ERRORS, GET_CLIENT_CONTENT, DELETE_CONTENT } from './types';
 
 // GET Social Render Profiles
 export const getAllSocialRender = () => dispatch => {
@@ -47,6 +47,15 @@ export const updateClientContent = (id, socialContent, history) => dispatch => {
   axios
     .put(`/api/social-render/id/${id}`, socialContent)
     .then(res => history.push(`/content-calendar`))
+    .catch(err => dispatch({ type: GET_ERRORS, payload: err.response.data }));
+};
+
+// DELETE content by id
+export const deleteContent = (id, history) => dispatch => {
+  axios
+    .delete(`/api/content-calendar/id/${id}`)
+    .then(res => history.push('/content-calendar'))
+    // .then(res => dispatch({ type: DELETE_CONTENT, payload: res.data }))
     .catch(err => dispatch({ type: GET_ERRORS, payload: err.response.data }));
 };
 

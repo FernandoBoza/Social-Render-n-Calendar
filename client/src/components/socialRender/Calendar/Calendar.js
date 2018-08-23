@@ -3,7 +3,7 @@ import Calendar from 'react-big-calendar';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getAllSocialRender } from '../../../actions/socialRenderActions'; // Fed the client model
+import { getAllSocialRender, deleteContent } from '../../../actions/socialRenderActions'; // Fed the client model
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import FacebookDesktop from '../Facebook/FacebookDesktop';
 import FacebookMobile from '../Facebook/FacebookMobile';
@@ -33,11 +33,16 @@ class ContentCalendar extends Component {
       _id: ''
     };
     this.toggle = this.toggle.bind(this);
+    this.onDeleteClick = this.onDeleteClick.bind(this);
   }
 
   componentDidMount() {
     this.props.getAllSocialRender();
   }
+
+  onDeleteClick = e => {
+    this.props.deleteContent(this.state._id, this.props.history);
+  };
 
   toggle = e => {
     this.setState({
@@ -117,6 +122,10 @@ class ContentCalendar extends Component {
             <Link to={`/social-render/${this.state._id}/edit-content`} className="btn btn-success mx-3">
               Edit Post
             </Link>
+
+            <Button onClick={this.onDeleteClick} className="btn btn-danger">
+              Delete Post Content
+            </Button>
           </ModalFooter>
         </Modal>
       </div>
@@ -126,6 +135,7 @@ class ContentCalendar extends Component {
 
 ContentCalendar.propTypes = {
   getAllSocialRender: PropTypes.func.isRequired, // from client actions
+  deleteContent: PropTypes.func.isRequired, // from client actions
   socialRenderContent: PropTypes.object.isRequired
 };
 
@@ -135,5 +145,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getAllSocialRender }
+  { getAllSocialRender, deleteContent }
 )(ContentCalendar);
