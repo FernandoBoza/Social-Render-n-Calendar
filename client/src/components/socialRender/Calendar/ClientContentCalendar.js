@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Calendar from 'react-big-calendar';
 import moment from 'moment';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getAllSocialRender, deleteContent } from '../../../actions/socialRenderActions'; // Fed the client model
+import { connect } from 'react-redux';
+import { getByClientName, deleteContent } from '../../../actions/socialRenderActions';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import FacebookDesktop from '../Facebook/FacebookDesktop';
 import FacebookMobile from '../Facebook/FacebookMobile';
@@ -13,9 +13,9 @@ import AccordianCards from '../Layout/AccordianCards';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { Link } from 'react-router-dom';
 
-Calendar.setLocalizer(Calendar.momentLocalizer(moment));
+import 'react-big-calendar/lib/css/react-big-calendar.css';
 
-class ContentCalendar extends Component {
+export class ClientContentCalendar extends Component {
   constructor(props) {
     super(props);
 
@@ -33,16 +33,16 @@ class ContentCalendar extends Component {
       _id: ''
     };
     this.toggle = this.toggle.bind(this);
-    this.onDeleteClick = this.onDeleteClick.bind(this);
   }
 
   componentDidMount() {
-    this.props.getAllSocialRender();
+    if (this.props.match.params.clientName) {
+      this.props.getByClientName(this.props.match.params.clientName);
+    }
   }
 
   onDeleteClick = e => {
     this.props.deleteContent(this.state._id, this.props.history);
-    this.setState({ modal: false });
   };
 
   toggle = e => {
@@ -104,9 +104,7 @@ class ContentCalendar extends Component {
         />
 
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-          <ModalHeader toggle={this.toggle}>
-            {this.state.title} post to be published: {moment(this.state.start).format('ddd MMM Do')}
-          </ModalHeader>
+          <ModalHeader toggle={this.toggle}>Date Going Live: {moment(this.state.start).format('ddd MMM Do')}</ModalHeader>
           <ModalBody id="social-render">
             <div className="accordion" id="accordionParent">
               <AccordianCards hidOrShow={fb ? '' : 'hide'} expandCollapse={'show'} target={'facebookDesktop'} cardName={'Facebook Desktop'} componentName={<FacebookDesktop className="mb-5" clientInitials={this.state.clientInitials} clientName={this.state.title} contentCopy={this.state.contentCopy} imgLink={this.state.imgLink} date={moment(this.state.start).format('MMM Do')} />} />
@@ -123,7 +121,6 @@ class ContentCalendar extends Component {
             <Link to={`/social-render/${this.state._id}/edit-content`} className="btn btn-success mx-3">
               Edit Post
             </Link>
-
             <Button onClick={this.onDeleteClick} className="btn btn-danger">
               Delete Post Content
             </Button>
@@ -134,8 +131,8 @@ class ContentCalendar extends Component {
   }
 }
 
-ContentCalendar.propTypes = {
-  getAllSocialRender: PropTypes.func.isRequired, // from client actions
+ClientContentCalendar.propTypes = {
+  getByClientName: PropTypes.func.isRequired,
   deleteContent: PropTypes.func.isRequired, // from client actions
   socialRenderContent: PropTypes.object.isRequired
 };
@@ -146,5 +143,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getAllSocialRender, deleteContent }
-)(ContentCalendar);
+  { getByClientName, deleteContent }
+)(ClientContentCalendar);

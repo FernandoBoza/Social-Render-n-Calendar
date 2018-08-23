@@ -18,7 +18,9 @@ import Clients from './components/clients/Clients';
 import Client from './components/clients/singleClients/Client';
 import EditClient from './components/clients/EditClient';
 import SocialRender from './components/socialRender/SocialRenderComponent';
+import EditSocialRender from './components/socialRender/Edit-SocialRenderComponent';
 import ContentCalendar from './components/socialRender/Calendar/Calendar';
+import ClientContentCalendar from './components/socialRender/Calendar/ClientContentCalendar';
 import './styles/styles.css';
 
 // Check For Token
@@ -47,20 +49,60 @@ class App extends Component {
             <div className="container-fluid">
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
-              <Route exact path="/clients" component={Clients} />
-              <Route exact path="/social-render" component={SocialRender} />
-              <Route exact path="/content-calendar" component={ContentCalendar} />
               <Switch>
-                <Route exact path="/clients/:handle" component={Client} />
+                <PrivateRoute exact path="/clients" component={Clients} />
+              </Switch>
+              <Switch>
+                <PrivateRoute
+                  exact
+                  path="/social-render"
+                  component={SocialRender}
+                />
+              </Switch>
+              <Switch>
+                <PrivateRoute
+                  exact
+                  path="/social-render/:id/edit-content"
+                  component={EditSocialRender}
+                />
+              </Switch>
+              <Switch>
+                <PrivateRoute
+                  exact
+                  path="/content-calendar"
+                  component={ContentCalendar}
+                />
+              </Switch>
+              <Switch>
+                <PrivateRoute
+                  exact
+                  path="/content-calendar/:clientName"
+                  component={ClientContentCalendar}
+                />
+              </Switch>
+              <Switch>
+                <PrivateRoute
+                  exact
+                  path="/clients/:handle"
+                  component={Client}
+                />
               </Switch>
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
               </Switch>
               <Switch>
-                <PrivateRoute exact path="/create-client" component={CreateClientProfile} />
+                <PrivateRoute
+                  exact
+                  path="/create-client"
+                  component={CreateClientProfile}
+                />
               </Switch>
               <Switch>
-                <PrivateRoute exact path={`/clients/:handle/edit-client`} component={EditClient} />
+                <PrivateRoute
+                  exact
+                  path="/clients/:handle/edit-client"
+                  component={EditClient}
+                />
               </Switch>
             </div>
             <Footer />

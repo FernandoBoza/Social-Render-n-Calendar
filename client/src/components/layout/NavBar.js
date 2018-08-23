@@ -15,13 +15,32 @@ class NavBar extends Component {
   render() {
     const { isAuthenticated, user } = this.props.auth;
     const authLinks = (
-      <ul className="navbar-nav ml-auto">
+      <ul className="navbar-nav mr-auto ml-5">
         <li className="nav-item">
-          <Link className="nav-link text-primary" to="/create-client">
+          <Link className="nav-link" to="/dashboard">
+            <i className="fa fa-home text-primary" style={{ fontSize: '1.2rem' }} />
+            Dashboard
+          </Link>
+        </li>
+        <li className="nav-item ">
+          <Link className="nav-link" to="/create-client">
+            <i className="fa fa-user-plus text-primary mr-1" style={{ fontSize: '1.2rem' }} />
             Create Client
           </Link>
         </li>
-        <li className="nav-item active mx-5">
+        <li className="nav-item">
+          <Link className="nav-link" to="/social-render">
+            <i className="fa fa-calendar-plus-o text-primary" style={{ fontSize: '1.2rem' }} />
+            Create Content
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/content-calendar">
+            <i className="fa fa-calendar text-primary" style={{ fontSize: '1.2rem' }} />
+            Content Calendar
+          </Link>
+        </li>
+        <li className="nav-item active">
           <a href="" onClick={this.onLogoutClick.bind(this)} className="nav-link">
             <i className="fa fa-hand-peace text-primary" style={{ fontSize: '1.2rem' }} />
             Bye {user.name}
@@ -44,17 +63,21 @@ class NavBar extends Component {
         </li>
       </ul>
     );
+
+    // const thr33fold_title = (
+    //   <span className="lead mini-intro mr-auto">
+    //     <a href="http://thr33fold.com" rel="noopener noreferrer" target="_blank">
+    //       A THR33FOLD Company
+    //     </a>
+    //   </span>
+    // );
     return (
       <div className="container-fluid p-0">
         <nav className="navbar navbar-expand-lg navbar-light bg-light px-5">
           <Link className="navbar-brand" to="/">
-            Social Stream
+            Social Goal Flow
           </Link>
-          {/* <span className="lead mini-intro mr-auto">
-            <a href="http://thr33fold.com" rel="noopener noreferrer" target="_blank">
-              A THR33FOLD Company
-            </a>
-          </span> */}
+          {/* {thr33fold_title} */}
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon" />
           </button>
