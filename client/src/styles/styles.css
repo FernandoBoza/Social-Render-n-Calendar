@@ -227,6 +227,8 @@ p {
   line-height: 1.2;
   height: 7.5rem;
   display: block; }
+  #social-render textarea.card-text::placeholder {
+    font-size: 1rem; }
 #social-render p.contentCopy {
   white-space: pre-line; }
 #social-render .input-group-text {

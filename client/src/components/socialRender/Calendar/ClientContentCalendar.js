@@ -3,13 +3,14 @@ import Calendar from 'react-big-calendar';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getByClientName } from '../../../actions/socialRenderActions';
+import { getByClientName, deleteContent } from '../../../actions/socialRenderActions';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import FacebookDesktop from '../Facebook/FacebookDesktop';
 import FacebookMobile from '../Facebook/FacebookMobile';
 import Instagram from '../Instagram/Instagram';
 import TwitterDesktop from '../Twitter/TwitterDesktop';
 import AccordianCards from '../Layout/AccordianCards';
+import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { Link } from 'react-router-dom';
 
 import 'react-big-calendar/lib/css/react-big-calendar.css';
@@ -39,6 +40,11 @@ export class ClientContentCalendar extends Component {
       this.props.getByClientName(this.props.match.params.clientName);
     }
   }
+
+  onDeleteClick = e => {
+    this.props.deleteContent(this.state._id, this.props.history);
+  };
+
   toggle = e => {
     this.setState({
       modal: !this.state.modal,
@@ -98,9 +104,7 @@ export class ClientContentCalendar extends Component {
         />
 
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-          <ModalHeader toggle={this.toggle}>
-            {this.state.title} post to be published: {moment(this.state.start).format('ddd MMM Do')}
-          </ModalHeader>
+          <ModalHeader toggle={this.toggle}>Date Going Live: {moment(this.state.start).format('ddd MMM Do')}</ModalHeader>
           <ModalBody id="social-render">
             <div className="accordion" id="accordionParent">
               <AccordianCards hidOrShow={fb ? '' : 'hide'} expandCollapse={'show'} target={'facebookDesktop'} cardName={'Facebook Desktop'} componentName={<FacebookDesktop className="mb-5" clientInitials={this.state.clientInitials} clientName={this.state.title} contentCopy={this.state.contentCopy} imgLink={this.state.imgLink} date={moment(this.state.start).format('MMM Do')} />} />
@@ -117,6 +121,9 @@ export class ClientContentCalendar extends Component {
             <Link to={`/social-render/${this.state._id}/edit-content`} className="btn btn-success mx-3">
               Edit Post
             </Link>
+            <Button onClick={this.onDeleteClick} className="btn btn-danger">
+              Delete Post Content
+            </Button>
           </ModalFooter>
         </Modal>
       </div>
@@ -126,6 +133,7 @@ export class ClientContentCalendar extends Component {
 
 ClientContentCalendar.propTypes = {
   getByClientName: PropTypes.func.isRequired,
+  deleteContent: PropTypes.func.isRequired, // from client actions
   socialRenderContent: PropTypes.object.isRequired
 };
 
@@ -135,5 +143,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getByClientName }
+  { getByClientName, deleteContent }
 )(ClientContentCalendar);

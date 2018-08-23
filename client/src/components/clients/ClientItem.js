@@ -10,14 +10,14 @@ export default class ClientItem extends Component {
         <div className="row">
           <div className="col-md-12">
             <p>
-              {clients.name} Last Updated By {clients.lastUpdatedBy}
+              <b>{clients.name}: </b> Updated by {clients.lastUpdatedBy}
             </p>
             <Link to={`/clients/${clients.handle}`} className="btn btn-primary">
-              View Client <i className="fa fa-user" />
+              <b>View Client</b> <i className="fa fa-user" />
             </Link>
 
             <Link to={`/content-calendar/${clients.handle}`} className="btn btn-success mx-3">
-              View Client Calendar <i className="fa fa-calendar-plus-o" />
+              <b>View Client Calendar</b> <i className="fa fa-calendar-plus-o" />
             </Link>
           </div>
         </div>

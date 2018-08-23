@@ -42,6 +42,7 @@ class ContentCalendar extends Component {
 
   onDeleteClick = e => {
     this.props.deleteContent(this.state._id, this.props.history);
+    this.setState({ modal: false });
   };
 
   toggle = e => {

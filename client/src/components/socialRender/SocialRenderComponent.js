@@ -21,19 +21,13 @@ class SocialRenderComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      clientName: 'THR33FOLD',
-      clientInitials: '3F',
-      contentCopy: `Happy National Ice Cream Day! 🍦The sun’s out, and pastels are in. We’re melting over this hot #MillennialPink, especially when it’s color blocked with #Cerulean blue & #Butterscotch yellow. Check out all the bright content our Ad team is dishing out!`,
-      contentTwitterCopy: `Happy National Ice Cream Day! 🍦The sun’s out, and pastels are in. We’re melting over this hot #MillennialPink, especially when it’s color blocked with #Cerulean blue & #Butterscotch yellow. Check out all the bright content our Ad team is dishing out! http://bit.ly/2mi5NTk `,
-      contentInstagramCopy: `Happy National Ice Cream Day! 🍦 The sun’s out, and pastels are in. We’re melting over this hot #MillennialPink, especially when it’s color blocked with #Cerulean blue & #Butterscotch yellow. Check out THR33FOLD’s Pinterest for all the bright content our Ad team is dishing out!
-      .
-      .
-      .
-      .
-      
-      #NationalIceCreamDay #SundayFunday`,
-      imgLink: 'https://scontent-mia3-1.xx.fbcdn.net/v/t39.2147-6/p540x282/37128188_194335607927365_3856798091126505472_n.jpg?_nc_cat=0&oh=f82e5c9685709d72eecb2c3893d915ad&oe=5BFADBCB',
-      imgLinkInstagram: 'http://bit.ly/2MuFO9M',
+      clientName: '',
+      clientInitials: '',
+      contentCopy: ``,
+      contentTwitterCopy: ``,
+      contentInstagramCopy: ``,
+      imgLink: '',
+      imgLinkInstagram: '',
       dateGoingLive: null,
       errors: {}
     };
@@ -104,7 +98,7 @@ class SocialRenderComponent extends Component {
               <form onSubmit={this.handleSubmit}>
                 <InputGroup label={'Dropbox Image Share Link'} name={'imgLink'} icon={'dropbox'} onChange={this.handleChange} value={this.state.imgLink} placeholder="Img link or Dropbox share link here" />
                 <InputGroup label={'Instagram Share Link'} name={'imgLinkInstagram'} icon={'instagram'} onChange={this.handleChange} value={this.state.imgLinkInstagram} placeholder="Instagram img link or Dropbox share link here" />
-                <ClientInputGroup options={clientItems} onChange={this.handleClientSelect} onChange2={this.handleChange} value={this.state.clientName} value2={this.state.clientInitials} placeholder="Client Name" placeholder2="Client Initials" />
+                <ClientInputGroup options={clientItems} onChange={this.handleClientSelect} onChange2={this.handleChange} value={this.state.clientName} value2={this.state.clientInitials} placeholder="Choose Client" placeholder2="Client Initials" />
                 <TextArea name="contentCopy" value={this.state.contentCopy} onChange={this.handleChange} />
                 <TextArea name="contentInstagramCopy" channel="Instagram" value={this.state.contentInstagramCopy} onChange={this.handleChange} />
                 <TextArea name="contentTwitterCopy" channel="Twitter" value={this.state.contentTwitterCopy} onChange={this.handleChange} />

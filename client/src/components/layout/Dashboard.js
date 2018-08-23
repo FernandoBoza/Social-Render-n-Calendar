@@ -24,7 +24,7 @@ class Dashboard extends Component {
         dashboardContent = (
           <div>
             <Link to="/create-client" className="btn btn-info w-50">
-              Create Client <i className="fa fa-user-plus" style={{ fontSize: '1.2rem' }} />
+              <b>Create Client</b> <i className="fa fa-user-plus" style={{ fontSize: '1.2rem' }} />
             </Link>
           </div>
         );
@@ -34,7 +34,7 @@ class Dashboard extends Component {
           <div>
             <p>Would you like to create a new client profile</p>
             <Link to="/create-client" className="btn btn-info w-50">
-              Create Client <i className="fa fa-user" style={{ fontSize: '1.2rem' }} />
+              <b>Create Client</b> <i className="fa fa-user" style={{ fontSize: '1.2rem' }} />
             </Link>
           </div>
         );
@@ -52,13 +52,13 @@ class Dashboard extends Component {
 
               <div>
                 <Link to="/social-render" className="btn btn-info mt-4 w-50">
-                  Social Render
+                  <b>Social Render</b>
                   <i className="fa fa-columns ml-2" style={{ fontSize: '1.2rem' }} />
                 </Link>
               </div>
               <div>
                 <Link to="/content-calendar" className="btn btn-info mt-4 w-50">
-                  Content Calendar
+                  <b>Content Calendar</b>
                   <i className="fa fa-calendar ml-2" style={{ fontSize: '1.2rem' }} />
                 </Link>
               </div>
