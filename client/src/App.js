@@ -22,7 +22,6 @@ import EditSocialRender from './components/socialRender/Edit-SocialRenderCompone
 import ContentCalendar from './components/socialRender/Calendar/Calendar';
 import ClientContentCalendar from './components/socialRender/Calendar/ClientContentCalendar';
 import './styles/styles.css';
-import CtrlDateCalendar from './components/socialRender/Calendar/CtrlDateCalendar';
 
 // Check For Token
 const token = localStorage.jwtToken;
