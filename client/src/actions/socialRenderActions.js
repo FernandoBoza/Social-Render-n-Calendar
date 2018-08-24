@@ -19,6 +19,24 @@ export const getByClientName = clientHandle => dispatch => {
     .catch(err => dispatch({ type: SET_CONTENT_CALENDAR, payload: null }));
 };
 
+//GET Content By Calendar month and year
+export const getContentByDate = (m, y) => dispatch => {
+  dispatch(setSocialRenderLoading());
+  axios
+    .get(`/api/content-calendar/${m}/${y}`)
+    .then(res => dispatch({ type: SET_CONTENT_CALENDAR, payload: res.data }))
+    .catch(err => dispatch({ type: SET_CONTENT_CALENDAR, payload: null }));
+};
+
+//GET Post By Client Name
+export const getClientContentByDate = (clientHandle, m, y) => dispatch => {
+  dispatch(setSocialRenderLoading());
+  axios
+    .get(`/api/content-calendar/${clientHandle}/${m}/${y}`)
+    .then(res => dispatch({ type: SET_CONTENT_CALENDAR, payload: res.data }))
+    .catch(err => dispatch({ type: SET_CONTENT_CALENDAR, payload: null }));
+};
+
 // POST create Social Render
 export const createSocialRender = (socialContent, history) => dispatch => {
   axios
