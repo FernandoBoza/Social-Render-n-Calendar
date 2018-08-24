@@ -20,9 +20,41 @@ router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => 
     .catch(err => res.status(404).json(err));
 });
 
-// @GET api/content-calendar/:clientName
+// @GET api/content-calendar/:clientHandle
 // @desc Get by client clientName
 router.get('/:clientHandle', passport.authenticate('jwt', { session: false }), (req, res) => {
+  const errorsObj = {};
+  SocialRenderModel.find({ clientHandle: req.params.clientHandle })
+    .then(socialRenderContent => {
+      if (!socialRenderContent) {
+        errorsObj.noclient = 'There is no client';
+        res.status(404).json(errorsObj);
+      }
+
+      res.json(socialRenderContent);
+    })
+    .catch(err => res.status(404).json(err));
+});
+
+// @GET api/content-calendar/month/year
+// @desc Get content by calendar month and year
+router.get('/:month/:year', passport.authenticate('jwt', { session: false }), (req, res) => {
+  const errorsObj = {};
+  SocialRenderModel.find()
+    .then(socialRenderContent => {
+      if (!socialRenderContent) {
+        errorsObj.noclient = 'There is no client';
+        res.status(404).json(errorsObj);
+      }
+
+      res.json(socialRenderContent);
+    })
+    .catch(err => res.status(404).json(err));
+});
+
+// @GET api/content-calendar/month/year
+// @desc Get content by calendar month and year
+router.get('/:clientHandle/:month/:year', passport.authenticate('jwt', { session: false }), (req, res) => {
   const errorsObj = {};
   SocialRenderModel.find({ clientHandle: req.params.clientHandle })
     .then(socialRenderContent => {
