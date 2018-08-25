@@ -93,14 +93,12 @@ class ContentCalendar extends Component {
     const month = this.props.match.params.m;
     const year = this.props.match.params.y;
 
+    // eslint-disable-next-line
     if (month == undefined || year == undefined) {
       var dateString = new Date();
     } else {
       dateString = `20${year}-${month}-01T20:02:40-04:00`;
     }
-
-    console.log(moment().format());
-    console.log(dateString);
 
     return (
       <div className="CtrlContentCalendar">
