@@ -90,12 +90,21 @@ class ContentCalendar extends Component {
     const fb = this.state.contentCopy ? this.state.contentCopy : false;
     const tw = this.state.contentTwitterCopy ? this.state.contentTwitterCopy : false;
     const ig = this.state.contentInstagramCopy ? this.state.contentInstagramCopy : false;
+    const month = this.props.match.params.m;
+    const year = this.props.match.params.y;
+
+    // eslint-disable-next-line
+    if (month == undefined || year == undefined) {
+      var dateString = new Date();
+    } else {
+      dateString = `20${year}-${month}-01T20:02:40-04:00`;
+    }
 
     return (
-      <div className="ContentCalendar">
+      <div className="CtrlContentCalendar">
         <Calendar
           selectable
-          defaultDate={new Date()} // Current Month
+          defaultDate={new Date(dateString)} // Current Month
           views={['month', 'agenda']}
           defaultView="month"
           events={PostDate} // Feed in Redux Props

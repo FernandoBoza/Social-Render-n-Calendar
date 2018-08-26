@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import Spinner from '../common/Spinner';
 import { getAllClients } from '../../actions/clientActions';
 import ClientItem from './ClientItem';
-// import { Link } from 'react-router-dom';
 
 export class ClientsComponent extends Component {
   componentDidMount = e => {

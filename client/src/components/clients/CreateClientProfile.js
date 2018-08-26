@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { createClient } from '../../actions/clientActions';
 import NumInputField from '../common/NumInputField';
 import TextInputField from '../common/TextInputField';
+import WOW from 'wowjs';
 
 export class CreateClientProfile extends Component {
   constructor(props) {
@@ -97,6 +98,12 @@ export class CreateClientProfile extends Component {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
+  };
+
+  componentDidMount = e => {
+    new WOW.WOW({
+      live: false
+    }).init();
   };
 
   handleChange = e => {
@@ -217,7 +224,7 @@ export class CreateClientProfile extends Component {
         <div>
           <h4 className="font-weight-light mt-5">{cat_name}</h4>
           <div className="row">
-            <div className="col-sm-3 current">
+            <div className="col-sm-3 current wow animated fadeInLeft">
               <NumInputField icon="facebook" name={`${category}_fb_x`} classname={category + ' fb'} placeholder="Current" value={this.state[category + '_fb_x']} onChange={this.handleChange} />
               <NumInputField icon="twitter" name={`${category}_tw_x`} classname={category + ' tw'} placeholder="Current" value={this.state[category + '_tw_x']} onChange={this.handleChange} />
               <NumInputField icon="instagram" name={`${category}_ig_x`} classname={category + ' ig'} placeholder="Current" value={this.state[category + '_ig_x']} onChange={this.handleChange} />
@@ -225,7 +232,7 @@ export class CreateClientProfile extends Component {
               <NumInputField icon="pinterest" name={`${category}_pt_x`} classname={category + ' pn'} placeholder="Current" value={this.state[category + '_pt_x']} onChange={this.handleChange} />
             </div>
 
-            <div className="col-sm-6 rangeSlider">
+            <div className="col-sm-6 rangeSlider wow animated fadeInUp">
               <div className="range-slider">
                 <i
                   className="fa fa-facebook"
@@ -260,7 +267,7 @@ export class CreateClientProfile extends Component {
               </div>
             </div>
 
-            <div className="col-sm-3 goal">
+            <div className="col-sm-3 goal wow animated fadeInRight">
               <NumInputField icon="facebook" name={`${category}_fb_y`} classname={category + 'fb'} placeholder="Goal Facebook" value={this.state[category + '_fb_y']} onChange={this.handleChange} />
               <NumInputField icon="twitter" name={`${category}_tw_y`} classname={category + 'tw'} placeholder="Goal Twitter" value={this.state[category + '_tw_y']} onChange={this.handleChange} />
               <NumInputField icon="instagram" name={`${category}_ig_y`} classname={category + 'ig'} placeholder="Goal Instagram" value={this.state[category + '_ig_y']} onChange={this.handleChange} />
