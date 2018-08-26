@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const TextArea = ({ name, channel, value, onChange }) => {
+const TextArea = ({ name, channel, value, onChange, duration, delay, animation }) => {
   return (
-    <div className="input-group mb-4">
+    <div className={`input-group mb-4  wow animated ${animation}`} data-wow-duration={duration} data-wow-delay={delay}>
       <div className="input-group-prepend">
         <span className="input-group-text">
           {`${channel} Copy Goes Here`}
@@ -18,7 +18,10 @@ const TextArea = ({ name, channel, value, onChange }) => {
 TextArea.propTypes = {
   value: PropTypes.string,
   channel: PropTypes.string,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  duration: PropTypes.string,
+  delay: PropTypes.string,
+  animation: PropTypes.string
 };
 
 TextArea.defaultProps = {

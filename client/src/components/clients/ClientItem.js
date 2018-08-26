@@ -13,11 +13,11 @@ export default class ClientItem extends Component {
               <b>{clients.name}: </b> Updated by {clients.lastUpdatedBy}
             </p>
             <Link to={`/clients/${clients.handle}`} className="btn btn-primary wow animated fadeInRight" data-wow-duration="2s" data-wow-delay="1.5s">
-              <b>View Client</b> <i className="fa fa-user" />
+              <i className="fa fa-user " /> <b>View Client</b>
             </Link>
 
             <Link to={`/content-calendar/${clients.handle}`} className="btn btn-success mx-3 wow animated fadeInRight" data-wow-duration="2s" data-wow-delay="1.5s">
-              <b>View Client Calendar</b> <i className="fa fa-calendar-plus-o" />
+              <i className="fa fa-calendar-plus-o " /> <b>View Client Calendar</b>
             </Link>
           </div>
         </div>
