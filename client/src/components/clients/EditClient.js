@@ -499,13 +499,12 @@ class EditClient extends Component {
         </section>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>
-            <h1>
-              Think About It{' '}
+            <p className="h1">
+              Think About It
               <span role="img" aria-label="think about it emoji">
-                {' '}
                 🤔
               </span>
-            </h1>
+            </p>
           </ModalHeader>
           <ModalBody>Are you sure you want to do this? </ModalBody>
           <ModalFooter>

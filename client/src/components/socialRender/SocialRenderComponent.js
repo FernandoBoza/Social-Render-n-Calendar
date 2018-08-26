@@ -16,6 +16,7 @@ import 'react-dates/initialize';
 import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
+import WOW from 'wowjs';
 
 class SocialRenderComponent extends Component {
   constructor(props) {
@@ -45,6 +46,9 @@ class SocialRenderComponent extends Component {
 
   componentDidMount() {
     this.props.getAllClients();
+    new WOW.WOW({
+      live: false
+    }).init();
   }
 
   handleChange = e => {
@@ -96,14 +100,16 @@ class SocialRenderComponent extends Component {
           <div className="row">
             <div id="left-panel" className="col-md-6">
               <form onSubmit={this.handleSubmit}>
-                <InputGroup label={'Dropbox Image Share Link'} name={'imgLink'} icon={'dropbox'} onChange={this.handleChange} value={this.state.imgLink} placeholder="Img link or Dropbox share link here" />
-                <InputGroup label={'Instagram Share Link'} name={'imgLinkInstagram'} icon={'instagram'} onChange={this.handleChange} value={this.state.imgLinkInstagram} placeholder="Instagram img link or Dropbox share link here" />
+                <InputGroup duration="1.5s" animation="fadeInLeft" label={'Dropbox Image Share Link'} name={'imgLink'} icon={'dropbox'} onChange={this.handleChange} value={this.state.imgLink} placeholder="Img link or Dropbox share link here" />
+                <InputGroup duration="1.5s" delay=".1s" animation="fadeInLeft" label={'Instagram Share Link'} name={'imgLinkInstagram'} icon={'instagram'} onChange={this.handleChange} value={this.state.imgLinkInstagram} placeholder="Instagram img link or Dropbox share link here" />
                 <ClientInputGroup options={clientItems} onChange={this.handleClientSelect} onChange2={this.handleChange} value={this.state.clientName} value2={this.state.clientInitials} placeholder="Choose Client" placeholder2="Client Initials" />
-                <TextArea name="contentCopy" value={this.state.contentCopy} onChange={this.handleChange} />
-                <TextArea name="contentInstagramCopy" channel="Instagram" value={this.state.contentInstagramCopy} onChange={this.handleChange} />
-                <TextArea name="contentTwitterCopy" channel="Twitter" value={this.state.contentTwitterCopy} onChange={this.handleChange} />
-                <SingleDatePicker id={moment(this.state.dateGoingLive).format('L')} date={this.state.dateGoingLive} hideKeyboardShortcutsPanel={true} block={true} focused={this.state.focused} onDateChange={dateGoingLive => this.setState({ dateGoingLive })} onFocusChange={({ focused }) => this.setState({ focused })} />
-                <button className="btn btn-lg btn-outline-primary btn-block mt-5 w-100 mx-auto" type="submit">
+                <TextArea duration="1.5s" delay=".3s" animation="fadeInLeft" name="contentCopy" value={this.state.contentCopy} onChange={this.handleChange} />
+                <TextArea duration="1.5s" delay=".4s" animation="fadeInLeft" name="contentInstagramCopy" channel="Instagram" value={this.state.contentInstagramCopy} onChange={this.handleChange} />
+                <TextArea duration="1.5s" delay=".5s" animation="fadeInLeft" name="contentTwitterCopy" channel="Twitter" value={this.state.contentTwitterCopy} onChange={this.handleChange} />
+                <div className="wow animated fadeInLeft" data-wow-duration="1.5s" data-wow-delay=".6s">
+                  <SingleDatePicker date={this.state.dateGoingLive} hideKeyboardShortcutsPanel={true} block={true} focused={this.state.focused} onDateChange={dateGoingLive => this.setState({ dateGoingLive })} onFocusChange={({ focused }) => this.setState({ focused })} />
+                </div>
+                <button className="btn btn-lg btn-outline-primary btn-block mt-5 w-100 mx-auto wow animated fadeInLeft" data-wow-duration="1.5s" data-wow-delay=".7s" type="submit">
                   Add To Content Calendar
                 </button>
               </form>
