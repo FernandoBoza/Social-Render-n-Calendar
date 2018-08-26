@@ -8,6 +8,7 @@ import FacebookDesktop from './Facebook/FacebookDesktop';
 import FacebookMobile from './Facebook/FacebookMobile';
 import Instagram from './Instagram/Instagram';
 import TwitterDesktop from './Twitter/TwitterDesktop';
+import LinkedInDesktop from './LinkedIn/LinkedIn';
 import AccordianCards from './Layout/AccordianCards';
 import InputGroup from './Layout/InputGroup';
 import ClientInputGroup from './Layout/ClientInputGroup';
@@ -27,6 +28,7 @@ class SocialRenderComponent extends Component {
       contentCopy: ``,
       contentTwitterCopy: ``,
       contentInstagramCopy: ``,
+      contentLinkedInCopy: ``,
       imgLink: '',
       imgLinkInstagram: '',
       dateGoingLive: null,
@@ -72,6 +74,7 @@ class SocialRenderComponent extends Component {
       contentCopy: this.state.contentCopy,
       contentTwitterCopy: this.state.contentTwitterCopy,
       contentInstagramCopy: this.state.contentInstagramCopy,
+      contentLinkedInCopy: this.state.contentLinkedInCopy,
       imgLink: this.state.imgLink,
       imgLinkInstagram: this.state.imgLinkInstagram,
       dateGoingLive: moment(this.state.dateGoingLive).format()
@@ -84,6 +87,7 @@ class SocialRenderComponent extends Component {
     const fb = this.state.contentCopy ? this.state.contentCopy : false;
     const tw = this.state.contentTwitterCopy ? this.state.contentTwitterCopy : false;
     const ig = this.state.contentInstagramCopy ? this.state.contentInstagramCopy : false;
+    const ln = this.state.contentLinkedInCopy ? this.state.contentLinkedInCopy : false;
 
     const { clients, loading } = this.props.clients;
     var clientItems;
@@ -106,10 +110,11 @@ class SocialRenderComponent extends Component {
                 <TextArea duration="1.5s" delay=".3s" animation="fadeInLeft" name="contentCopy" value={this.state.contentCopy} onChange={this.handleChange} />
                 <TextArea duration="1.5s" delay=".4s" animation="fadeInLeft" name="contentInstagramCopy" channel="Instagram" value={this.state.contentInstagramCopy} onChange={this.handleChange} />
                 <TextArea duration="1.5s" delay=".5s" animation="fadeInLeft" name="contentTwitterCopy" channel="Twitter" value={this.state.contentTwitterCopy} onChange={this.handleChange} />
-                <div className="wow animated fadeInLeft" data-wow-duration="1.5s" data-wow-delay=".6s">
+                <TextArea duration="1.5s" delay=".6s" animation="fadeInLeft" name="contentLinkedInCopy" channel="LinkedIn" value={this.state.contentLinkedInCopy} onChange={this.handleChange} />
+                <div className="wow animated fadeInLeft" data-wow-duration="1.5s" data-wow-delay=".7s">
                   <SingleDatePicker date={this.state.dateGoingLive} hideKeyboardShortcutsPanel={true} block={true} focused={this.state.focused} onDateChange={dateGoingLive => this.setState({ dateGoingLive })} onFocusChange={({ focused }) => this.setState({ focused })} />
                 </div>
-                <button className="btn btn-lg btn-outline-primary btn-block mt-5 w-100 mx-auto wow animated fadeInLeft" data-wow-duration="1.5s" data-wow-delay=".7s" type="submit">
+                <button className="btn btn-lg btn-outline-primary btn-block mt-5 w-100 mx-auto wow animated fadeInLeft" data-wow-duration="1.5s" data-wow-delay=".8s" type="submit">
                   Add To Content Calendar
                 </button>
               </form>
@@ -120,7 +125,8 @@ class SocialRenderComponent extends Component {
                 <AccordianCards hidOrShow={fb ? '' : 'hide'} expandCollapse={'show'} target={'facebookDesktop'} cardName={'Facebook Desktop'} componentName={<FacebookDesktop className="mb-5" clientInitials={this.state.clientInitials} clientName={this.state.clientName} contentCopy={this.state.contentCopy} imgLink={this.state.imgLink} date={this.state.dateGoingLive ? moment(this.state.dateGoingLive).format('MMM Do') : 'Pick a date'} />} />
                 <AccordianCards hidOrShow={fb ? '' : 'hide'} target={'facebookMobile'} cardName={'Facebook Mobile'} componentName={<FacebookMobile clientInitials={this.state.clientInitials} clientName={this.state.clientName} contentCopy={this.state.contentCopy} imgLink={this.state.imgLink} date={this.state.dateGoingLive ? moment(this.state.dateGoingLive).format('MMM Do') : 'Pick a date'} />} />
                 <AccordianCards hidOrShow={ig ? '' : 'hide'} target={'instagram'} cardName={'Instagram'} componentName={<Instagram clientInitials={this.state.clientInitials} clientName={this.state.clientName} contentCopy={this.state.contentInstagramCopy} imgLink={this.state.imgLinkInstagram ? this.state.imgLinkInstagram : this.state.imgLink} />} />
-                <AccordianCards hidOrShow={tw ? '' : 'hide'} target={'twitter'} cardName={'Twitter Desktop'} componentName={<TwitterDesktop className="mb-5" clientInitials={this.state.clientInitials} clientName={this.state.clientName} contentCopy={this.state.contentTwitterCopy} imgLink={this.state.imgLink} twtHandle={this.state.clientName.replace(/ /g, '')} />} />
+                <AccordianCards hidOrShow={tw ? '' : 'hide'} target={'twitter'} cardName={'Twitter'} componentName={<TwitterDesktop className="mb-5" clientInitials={this.state.clientInitials} clientName={this.state.clientName} contentCopy={this.state.contentTwitterCopy} imgLink={this.state.imgLink} twtHandle={this.state.clientName.replace(/ /g, '')} />} />
+                <AccordianCards hidOrShow={ln ? '' : 'hide'} target={'linkedin'} cardName={'Linkedin'} componentName={<LinkedInDesktop className="mb-5" clientInitials={this.state.clientInitials} clientName={this.state.clientName} contentCopy={this.state.contentTwitterCopy} imgLink={this.state.imgLink} />} />
               </div>
             </div>
           </div>

@@ -26,6 +26,9 @@ const SocialRenderSchema = new Schema({
   contentInstagramCopy: {
     type: String
   },
+  contentLinkedInCopy: {
+    type: String
+  },
   imgLink: {
     type: String
   },
@@ -63,7 +66,4 @@ const SocialRenderSchema = new Schema({
   ]
 });
 
-module.exports = SocialRender = mongoose.model(
-  'socialRenderContent',
-  SocialRenderSchema
-);
+module.exports = SocialRender = mongoose.model('socialRenderContent', SocialRenderSchema);

@@ -112,7 +112,7 @@ export class ClientContentCalendar extends Component {
           onSelectEvent={event => this.toggle(event)} // Work on Modal Open
         />
 
-        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} size="lg">
           <ModalHeader toggle={this.toggle}>Date Going Live: {moment(this.state.start).format('ddd MMM Do')}</ModalHeader>
           <ModalBody id="social-render">
             <div className="accordion" id="accordionParent">

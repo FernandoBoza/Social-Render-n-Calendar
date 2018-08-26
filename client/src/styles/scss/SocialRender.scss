@@ -15,17 +15,6 @@
 .card {
   margin: 0 auto;
 }
-// .css-10nd86i {
-//   width: 28%;
-// }
-// #social-render span.css-d8oujb {
-//   padding-right: 0;
-// }
-// .css-1aya2g8 {
-//   height: 2.8rem;
-//   border-color: transparent !important;
-//   border-bottom-color: #d8d8d8 !important;
-// }
 
 .css-1wy0on6 {
   display: none !important;
@@ -105,8 +94,7 @@
     border: 1px solid lightgray;
     font-size: 1.3rem;
     line-height: 1.2;
-    // width: 100%;
-    height: 7.5rem;
+    height: 6rem;
     display: block;
 
     &::placeholder {
@@ -148,6 +136,10 @@
         transition: transform 0.1s cubic-bezier(0.47, 0, 0.745, 0.715);
       }
     }
+  }
+
+  .selectClient {
+    z-index: 100;
   }
 
   .tw-desktop {

@@ -112,7 +112,7 @@ class ContentCalendar extends Component {
           onSelectEvent={event => this.toggle(event)} // Work on Modal Open
         />
 
-        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} size="lg">
           <ModalHeader toggle={this.toggle}>
             {this.state.title} post to be published: {moment(this.state.start).format('ddd MMM Do')}
           </ModalHeader>
