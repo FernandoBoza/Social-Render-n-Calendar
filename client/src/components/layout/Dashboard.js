@@ -5,10 +5,14 @@ import PropTypes from 'prop-types';
 import Spinner from '../common/Spinner';
 import { getAllClients } from '../../actions/clientActions'; // Fed the client model
 import Clients from '../clients/Clients';
+import WOW from 'wowjs';
 
 class Dashboard extends Component {
   componentDidMount() {
     this.props.getAllClients();
+    new WOW.WOW({
+      live: false
+    }).init();
   }
 
   render() {
@@ -23,7 +27,7 @@ class Dashboard extends Component {
       if (Object.keys(clients).length > 0) {
         dashboardContent = (
           <div>
-            <Link to="/create-client" className="btn btn-info w-50">
+            <Link to="/create-client" className="btn btn-info w-50 wow animated fadeInLeft" data-wow-duration="2s" data-wow-delay=".9s">
               <b>Create Client</b> <i className="fa fa-user-plus" style={{ fontSize: '1.2rem' }} />
             </Link>
           </div>
@@ -51,13 +55,13 @@ class Dashboard extends Component {
               {dashboardContent}
 
               <div>
-                <Link to="/social-render" className="btn btn-info mt-4 w-50">
+                <Link to="/social-render" className="btn btn-info mt-4 w-50 wow animated fadeInLeft" data-wow-duration="1s" data-wow-delay=".3s">
                   <b>Social Render</b>
                   <i className="fa fa-columns ml-2" style={{ fontSize: '1.2rem' }} />
                 </Link>
               </div>
               <div>
-                <Link to="/content-calendar" className="btn btn-info mt-4 w-50">
+                <Link to="/content-calendar" className="btn btn-info mt-4 w-50 wow animated fadeInLeft" data-wow-duration="1.5s" data-wow-delay=".5s">
                   <b>Content Calendar</b>
                   <i className="fa fa-calendar ml-2" style={{ fontSize: '1.2rem' }} />
                 </Link>
