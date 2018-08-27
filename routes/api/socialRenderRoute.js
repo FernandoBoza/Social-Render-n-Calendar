@@ -49,6 +49,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
     clientHandle: trimHandle(req.body.clientName),
     contentCopy: req.body.contentCopy,
     contentTwitterCopy: req.body.contentTwitterCopy,
+    contentLinkedInCopy: req.body.contentLinkedInCopy,
     contentInstagramCopy: req.body.contentInstagramCopy,
     imgLink: req.body.imgLink,
     imgLinkInstagram: req.body.imgLinkInstagram,
@@ -75,6 +76,7 @@ router.put('/id/:_id/', passport.authenticate('jwt', { session: false }), (req, 
   if (req.body.clientHandle) contentUpdates.clientHandle = trimHandle(req.body.clientName);
   if (req.body.contentCopy) contentUpdates.contentCopy = req.body.contentCopy;
   if (req.body.contentTwitterCopy) contentUpdates.contentTwitterCopy = req.body.contentTwitterCopy;
+  if (req.body.contentLinkedInCopy) contentUpdates.contentLinkedInCopy = req.body.contentLinkedInCopy;
   if (req.body.contentInstagramCopy) contentUpdates.contentInstagramCopy = req.body.contentInstagramCopy;
   if (req.body.imgLink) contentUpdates.imgLink = req.body.imgLink;
   if (req.body.imgLinkInstagram) contentUpdates.imgLinkInstagram = req.body.imgLinkInstagram;

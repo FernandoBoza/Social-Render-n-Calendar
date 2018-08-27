@@ -21,7 +21,7 @@ const ClientInputGroup = ({ onChange, onChange2, value, value2, placeholder, pla
     }
   };
   return (
-    <div className="input-group my-3">
+    <div className="input-group my-3 wow animated fadeInLeft selectClient" data-wow-duration="1.5s" data-wow-delay=".2s">
       <div className="input-group-prepend">
         <span className="input-group-text">Client Name and Initials</span>
       </div>

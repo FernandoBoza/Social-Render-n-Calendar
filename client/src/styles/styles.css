@@ -12,9 +12,6 @@ body {
   align-items: center;
   background-color: #f8f9fa; }
 
-.modal-dialog[role='document'] {
-  max-width: 50% !important; }
-
 h1 {
   font-family: 'freight-sans-pro', sans-serif; }
 
@@ -180,6 +177,9 @@ p {
 .css-1wy0on6 {
   display: none !important; }
 
+span.rbc-toolbar-label {
+  font-size: 2rem; }
+
 #social-render span {
   font-size: 1rem;
   padding-right: 2rem; }
@@ -225,7 +225,7 @@ p {
   border: 1px solid lightgray;
   font-size: 1.3rem;
   line-height: 1.2;
-  height: 7.5rem;
+  height: 6rem;
   display: block; }
   #social-render textarea.card-text::placeholder {
     font-size: 1rem; }
@@ -249,6 +249,18 @@ p {
   font-size: 1.3rem;
   margin-right: 0.5rem;
   transition: transform 0.1s cubic-bezier(0.47, 0, 0.745, 0.715); }
+#social-render .linkedIn .company {
+  width: 4rem;
+  height: 4rem;
+  font-size: 2.5rem;
+  padding-top: 13px; }
+#social-render .linkedIn ul {
+  line-height: 1.2; }
+#social-render .selectClient {
+  z-index: 100; }
+#social-render .wow.fadeInLeft.animated.datePickerDiv {
+  -webkit-animation-fill-mode: none;
+  animation-fill-mode: none; }
 #social-render .tw-desktop .d-inline-block.fb-title {
   margin-left: -4rem; }
 #social-render .tw-desktop .card-body {
