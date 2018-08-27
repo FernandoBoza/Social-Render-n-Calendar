@@ -9,13 +9,14 @@ import FacebookDesktop from '../Facebook/FacebookDesktop';
 import FacebookMobile from '../Facebook/FacebookMobile';
 import Instagram from '../Instagram/Instagram';
 import TwitterDesktop from '../Twitter/TwitterDesktop';
+import LinkedInDesktop from '../LinkedIn/LinkedIn';
 import AccordianCards from '../Layout/AccordianCards';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { Link } from 'react-router-dom';
-
 import 'react-big-calendar/lib/css/react-big-calendar.css';
+Calendar.setLocalizer(Calendar.momentLocalizer(moment));
 
-export class ClientContentCalendar extends Component {
+class ClientContentCalendar extends Component {
   constructor(props) {
     super(props);
 
@@ -26,6 +27,7 @@ export class ClientContentCalendar extends Component {
       contentCopy: '',
       contentTwitterCopy: '',
       contentInstagramCopy: '',
+      contentLinkedInCopy: '',
       imgLink: '',
       imgLinkInstagram: '',
       twtHandle: '',
@@ -54,6 +56,7 @@ export class ClientContentCalendar extends Component {
       contentCopy: e.contentCopy,
       contentTwitterCopy: e.contentTwitterCopy,
       contentInstagramCopy: e.contentInstagramCopy,
+      contentLinkedInCopy: e.contentLinkedInCopy,
       imgLink: e.imgLink,
       imgLinkInstagram: e.imgLinkInstagram,
       twtHandle: e.twtHandle,
@@ -78,6 +81,7 @@ export class ClientContentCalendar extends Component {
           contentCopy: contentInfo.contentCopy,
           contentTwitterCopy: contentInfo.contentTwitterCopy,
           contentInstagramCopy: contentInfo.contentInstagramCopy,
+          contentLinkedInCopy: contentInfo.contentLinkedInCopy,
           imgLink: contentInfo.imgLink,
           imgLinkInstagram: contentInfo.imgLinkInstagram,
           _id: contentInfo._id
@@ -90,6 +94,7 @@ export class ClientContentCalendar extends Component {
     const fb = this.state.contentCopy ? this.state.contentCopy : false;
     const tw = this.state.contentTwitterCopy ? this.state.contentTwitterCopy : false;
     const ig = this.state.contentInstagramCopy ? this.state.contentInstagramCopy : false;
+    const ln = this.state.contentLinkedInCopy ? this.state.contentLinkedInCopy : false;
     const month = this.props.match.params.m;
     const year = this.props.match.params.y;
 
@@ -112,14 +117,15 @@ export class ClientContentCalendar extends Component {
           onSelectEvent={event => this.toggle(event)} // Work on Modal Open
         />
 
-        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} size="lg">
           <ModalHeader toggle={this.toggle}>Date Going Live: {moment(this.state.start).format('ddd MMM Do')}</ModalHeader>
           <ModalBody id="social-render">
             <div className="accordion" id="accordionParent">
-              <AccordianCards hidOrShow={fb ? '' : 'hide'} expandCollapse={'show'} target={'facebookDesktop'} cardName={'Facebook Desktop'} componentName={<FacebookDesktop className="mb-5" clientInitials={this.state.clientInitials} clientName={this.state.title} contentCopy={this.state.contentCopy} imgLink={this.state.imgLink} date={moment(this.state.start).format('MMM Do')} />} />
+              <AccordianCards hidOrShow={fb ? '' : 'hide'} target={'facebookDesktop'} cardName={'Facebook Desktop'} componentName={<FacebookDesktop className="mb-5" clientInitials={this.state.clientInitials} clientName={this.state.title} contentCopy={this.state.contentCopy} imgLink={this.state.imgLink} date={moment(this.state.start).format('MMM Do')} />} />
               <AccordianCards hidOrShow={fb ? '' : 'hide'} target={'facebookMobile'} cardName={'Facebook Mobile'} componentName={<FacebookMobile clientInitials={this.state.clientInitials} clientName={this.state.title} contentCopy={this.state.contentCopy} imgLink={this.state.imgLink} date={moment(this.state.dateGoingLive).format('MMM Do')} />} />
               <AccordianCards hidOrShow={ig ? '' : 'hide'} target={'instagram'} cardName={'Instagram'} componentName={<Instagram clientInitials={this.state.clientInitials} clientName={this.state.title} contentCopy={this.state.contentInstagramCopy} imgLink={this.state.imgLinkInstagram ? this.state.imgLinkInstagram : this.state.imgLink} />} />
               <AccordianCards hidOrShow={tw ? '' : 'hide'} target={'twitter'} cardName={'Twitter Desktop'} componentName={<TwitterDesktop className="mb-5" clientInitials={this.state.clientInitials} clientName={this.state.title} contentCopy={this.state.contentTwitterCopy} imgLink={this.state.imgLink} twtHandle={this.state.twtHandle} />} />
+              <AccordianCards hidOrShow={ln ? '' : 'hide'} target={'linkedin'} cardName={'Linkedin'} componentName={<LinkedInDesktop lnFollowers="1,000" className="mb-5" clientInitials={this.state.clientInitials} clientName={this.state.title} contentCopy={this.state.contentLinkedInCopy} imgLink={this.state.imgLink} />} />
             </div>
           </ModalBody>
           <ModalFooter>

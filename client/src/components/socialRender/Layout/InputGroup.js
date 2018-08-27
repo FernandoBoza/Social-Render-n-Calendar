@@ -6,8 +6,8 @@ const InputGroup = ({ label, icon, name, onChange, value, placeholder, duration,
     <div className={`input-group my-3 wow animated ${animation}`} data-wow-duration={duration} data-wow-delay={delay}>
       <div className="input-group-prepend">
         <span className="input-group-text" id="inputGroup-sizing-default">
+          <i className={`fa fa-${icon} text-primary pl-0 `} aria-hidden="true" />
           {label}
-          <i className={`fa fa-${icon} text-primary`} aria-hidden="true" />
         </span>
       </div>
       <input type="text" name={name} className="form-control" onChange={onChange} value={value} placeholder={placeholder} />
