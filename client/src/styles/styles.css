@@ -248,6 +248,9 @@ p {
   transition: transform 0.1s cubic-bezier(0.47, 0, 0.745, 0.715); }
 #social-render .selectClient {
   z-index: 100; }
+#social-render .wow.fadeInLeft.animated.datePickerDiv {
+  -webkit-animation-fill-mode: none;
+  animation-fill-mode: none; }
 #social-render .tw-desktop .d-inline-block.fb-title {
   margin-left: -4rem; }
 #social-render .tw-desktop .card-body {
