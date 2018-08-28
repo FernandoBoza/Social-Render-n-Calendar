@@ -97,7 +97,8 @@ class EditClient extends Component {
       reach_b4_pt: 0,
       errors: {},
       collapse: true,
-      modal: false
+      modal: false,
+      modal2: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -105,6 +106,7 @@ class EditClient extends Component {
     this.toggleCollapse = this.toggleCollapse.bind(this);
     this.onDeleteClick = this.onDeleteClick.bind(this);
     this.toggle = this.toggle.bind(this);
+    this.toggle2 = this.toggle2.bind(this);
   }
 
   toggleCollapse = () => {
@@ -328,22 +330,30 @@ class EditClient extends Component {
       web_b4: this.state.web_b4
     };
     this.props.updateAClient(this.props.match.params.handle, clientData, this.props.history);
-    console.log(clientData);
   };
 
   onDeleteClick = e => {
     this.props.deleteClient(this.props.match.params.handle, this.props.history);
   };
 
-  toggle() {
+  toggle = () => {
     this.setState({
       modal: !this.state.modal
     });
-  }
+  };
+
+  toggle2 = () => {
+    this.setState({
+      modal2: !this.state.modal2
+    });
+  };
 
   render() {
+    const { user } = this.props.auth;
     const { clients, loading } = this.props.clients;
     let clientContent;
+    let deleteBtn;
+
     // let toggleCollapse = this.state.collapse ? 'show' : '';
     const createEditFields_5 = (cat_name, categoryName, categoryAbbrv, hideOrShow) => {
       return (
@@ -432,6 +442,20 @@ class EditClient extends Component {
     if (clients === null || loading) {
       clientContent = <Spinner />;
     } else {
+      // eslint-disable-next-line
+      if (user.role == 'admin') {
+        deleteBtn = (
+          <button onClick={this.toggle} type="button" className="btn btn-danger mx-4 mb-3">
+            Delete {clients.name}
+          </button>
+        );
+      } else {
+        deleteBtn = (
+          <button onClick={this.toggle2} type="button" className="btn btn-dark mx-4 mb-3">
+            Delete {clients.name}
+          </button>
+        );
+      }
       clientContent = (
         <form onSubmit={this.handleSubmit}>
           <div>
@@ -443,9 +467,7 @@ class EditClient extends Component {
               Update {clients.name}
             </button>
 
-            <button onClick={this.toggle} type="button" className="btn btn-danger mx-4 mb-3">
-              Delete {clients.name}
-            </button>
+            {deleteBtn}
 
             <button className="btn btn-info mb-3 toggleShowCollapse" type="button" data-toggle="collapse" data-target=".multi-collapse" onClick={this.toggleCollapse}>
               {this.state.collapse ? 'Collapse' : 'Expand'}
@@ -516,6 +538,23 @@ class EditClient extends Component {
             </Button>
           </ModalFooter>
         </Modal>
+
+        <Modal isOpen={this.state.modal2} toggle={this.toggle2} className={this.props.className}>
+          <ModalHeader toggle={this.toggle2}>
+            <p className="h1">
+              Sorry
+              <span role="img" aria-label="think about it emoji">
+                ✋
+              </span>
+            </p>
+          </ModalHeader>
+          <ModalBody>Only Admins Can Delete</ModalBody>
+          <ModalFooter>
+            <Button color="primary" onClick={this.toggle2}>
+              I Knew That
+            </Button>
+          </ModalFooter>
+        </Modal>
       </div>
     );
   }
@@ -525,11 +564,13 @@ EditClient.propTypes = {
   clients: PropTypes.object.isRequired,
   getAClient: PropTypes.func.isRequired,
   updateAClient: PropTypes.func.isRequired,
-  deleteClient: PropTypes.func.isRequired
+  deleteClient: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  clients: state.clients
+  clients: state.clients,
+  auth: state.auth
 });
 
 export default connect(
