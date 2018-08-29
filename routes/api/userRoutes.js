@@ -10,7 +10,6 @@ const UserModel = require('../../model/UserModel');
 
 // @GET all api/users
 router.get('/', (req, res) => {
-  //   res.json({ msg: 'Users Works' });
   UserModel.find().then(users => res.json(users));
 });
 

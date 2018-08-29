@@ -1,7 +1,16 @@
 import axios from 'axios';
 import setAuthToken from '../utils/setAuthToken';
 import jwt_decode from 'jwt-decode';
-import { GET_ERRORS, SET_CURRENT_USER } from './types';
+import { GET_ERRORS, SET_CURRENT_USER, GET_ALL_USERS, USERS_LOADING } from './types';
+
+// GET all users
+export const getAllUsers = () => dispatch => {
+  dispatch(setUsersLoading());
+  axios
+    .get('/api/users')
+    .then(res => dispatch({ type: GET_ALL_USERS, payload: res.data }))
+    .catch(err => dispatch({ type: GET_ALL_USERS, payload: null }));
+};
 
 // Register User
 export const registerUser = (userData, history) => dispatch => {
@@ -51,4 +60,10 @@ export const logoutUser = () => dispatch => {
   setAuthToken(false);
   // Set Current Uset to {} Which Will Set isAuthenicated to False
   dispatch(setCurrentUser({}));
+};
+
+export const setUsersLoading = () => {
+  return {
+    type: USERS_LOADING
+  };
 };

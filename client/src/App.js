@@ -22,6 +22,7 @@ import EditSocialRender from './components/socialRender/Edit-SocialRenderCompone
 import ContentCalendar from './components/socialRender/Calendar/Calendar';
 import ClientContentCalendar from './components/socialRender/Calendar/ClientContentCalendar';
 import './styles/styles.css';
+import ManageUsers from './components/Auth/Users/ManageUsers';
 
 // Check For Token
 const token = localStorage.jwtToken;
@@ -51,6 +52,9 @@ class App extends Component {
               <Route exact path="/login" component={Login} />
               <Switch>
                 <PrivateRoute exact path="/clients" component={Clients} />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/users/manage" component={ManageUsers} />
               </Switch>
               <Switch>
                 <PrivateRoute exact path="/social-render" component={SocialRender} />
