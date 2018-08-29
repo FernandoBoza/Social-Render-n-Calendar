@@ -95,13 +95,17 @@ router.post('/login', (req, res) => {
 
 // @POST api/users/current
 // @desc Return a current users
-router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
-  res.json({
-    id: req.user.id,
-    name: req.user.name,
-    email: req.user.email,
-    role: req.user.role
-  });
+router.get('/id/:_id', passport.authenticate('jwt', { session: false }), (req, res) => {
+  const errorsObj = {};
+  UserModel.findOne({ _id: req.params._id })
+    .then(user => {
+      if (!user) {
+        errorsObj.noclient = 'There is no user';
+        return res.status(404).json(errorsObj);
+      }
+      res.json(user);
+    })
+    .catch(err => res.status(404).json(err));
 });
 
 module.exports = router;

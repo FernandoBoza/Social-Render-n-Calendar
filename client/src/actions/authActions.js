@@ -1,7 +1,7 @@
 import axios from 'axios';
 import setAuthToken from '../utils/setAuthToken';
 import jwt_decode from 'jwt-decode';
-import { GET_ERRORS, SET_CURRENT_USER, GET_ALL_USERS, USERS_LOADING } from './types';
+import { GET_ERRORS, SET_CURRENT_USER, GET_ALL_USERS, USERS_LOADING, GET_USER_BY_ID } from './types';
 
 // GET all users
 export const getAllUsers = () => dispatch => {
@@ -10,6 +10,15 @@ export const getAllUsers = () => dispatch => {
     .get('/api/users')
     .then(res => dispatch({ type: GET_ALL_USERS, payload: res.data }))
     .catch(err => dispatch({ type: GET_ALL_USERS, payload: null }));
+};
+
+//GET User By Id
+export const getUserByID = id => dispatch => {
+  dispatch(setUsersLoading());
+  axios
+    .get(`/api/users/id/${id}`)
+    .then(res => dispatch({ type: GET_USER_BY_ID, payload: res.data }))
+    .catch(err => dispatch({ type: GET_USER_BY_ID, payload: null }));
 };
 
 // Register User
