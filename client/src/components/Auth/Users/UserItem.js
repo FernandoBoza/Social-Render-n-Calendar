@@ -17,7 +17,7 @@ class UserItem extends Component {
         <div className="form-check form-check-inline">
           <input className="form-check-input" type="radio" name={users.name + '_inlineRadioOptions'} id={users.name + '_1'} value="option1" />
           <label className="form-check-label" htmlFor={users.name + '_1'}>
-            {users.role}
+            Admin
           </label>
         </div>
         <div className="form-check form-check-inline">
