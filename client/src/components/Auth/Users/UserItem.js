@@ -45,23 +45,45 @@ class UserItem extends Component {
   render() {
     const { users } = this.props.auth;
     return (
-      <div className="col-md-12 row mb-3 wow animated fadeIn" data-wow-duration="2s" data-wow-delay="1s">
-        <p>
-          <b>{users.name}: </b>
-        </p>
+      <div className="col-md-10 offset-md-1 row mb-3 wow animated fadeIn" data-wow-duration="2s" data-wow-delay="1s">
+        <div className=" clientInputs form-group input-group">
+          <div className="input-group-prepend">
+            <span className="input-group-text" id="basic-addon1">
+              <i className="input-icon fa fa-user" />
+            </span>
+          </div>
+          <input type="text" class=" form-control text-capitalize" value={users.name} />
+        </div>
+        <div className=" clientInputs form-group input-group">
+          <div className="input-group-prepend">
+            <span className="input-group-text" id="basic-addon1">
+              <i className="input-icon fa fa-envelope" />
+            </span>
+          </div>
+          <input type="text" class=" form-control text-capitalize" value={users.email} />
+        </div>
+        <div className=" clientInputs form-group input-group">
+          <div className="input-group-prepend">
+            <span className="input-group-text" id="basic-addon1">
+              <i className="input-icon fa fa-pencil" />
+            </span>
+          </div>
+          <input type="text" class=" form-control text-capitalize" value={this.state.role} />
+        </div>
+
         <form onSubmit={this.handleSubmit}>
           <ButtonGroup>
             <Button color="primary" onClick={() => this.onRadioBtnClick('admin')} active={this.state.role === 'admin'}>
               Admin
             </Button>
-            <Button color="primary" onClick={() => this.onRadioBtnClick('user')} active={this.state.role === 'user'}>
+            <Button color="success" onClick={() => this.onRadioBtnClick('user')} active={this.state.role === 'user'}>
               User
             </Button>
-            <Button color="primary" onClick={() => this.onRadioBtnClick('client')} active={this.state.role === 'client'}>
+            <Button color="warning" onClick={() => this.onRadioBtnClick('client')} active={this.state.role === 'client'}>
               Client
             </Button>
           </ButtonGroup>
-          <button className="btn btn-lg btn-outline-primary btn-block mt-5 w-100 mx-auto" type="submit">
+          <button className="btn btn-lg btn-primary btn-block mt-5 mx-auto" type="submit">
             Update User Role
           </button>
         </form>

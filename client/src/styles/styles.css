@@ -140,6 +140,9 @@ i.fa.fa-code {
   .tableHover:hover .hide_opacity:nth-child(2) {
     color: red; }
 
+.adminGuard:hover .hide_opacity {
+  display: none; }
+
 .hide_opacity {
   opacity: 0; }
 
