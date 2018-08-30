@@ -1,7 +1,16 @@
 import axios from 'axios';
 import setAuthToken from '../utils/setAuthToken';
 import jwt_decode from 'jwt-decode';
-import { GET_ERRORS, SET_CURRENT_USER } from './types';
+import { GET_ERRORS, SET_CURRENT_USER, GET_ALL_USERS, USERS_LOADING, GET_USER_BY_ID } from './types';
+
+// GET all users
+export const getAllUsers = () => dispatch => {
+  dispatch(setUsersLoading());
+  axios
+    .get('/api/users')
+    .then(res => dispatch({ type: GET_ALL_USERS, payload: res.data }))
+    .catch(err => dispatch({ type: GET_ALL_USERS, payload: null }));
+};
 
 // Register User
 export const registerUser = (userData, history) => dispatch => {
@@ -14,6 +23,24 @@ export const registerUser = (userData, history) => dispatch => {
         payload: err.response.data
       })
     );
+};
+
+//GET User By Id
+export const getUserByID = id => dispatch => {
+  dispatch(setUsersLoading());
+  axios
+    .get(`/api/users/id/${id}`)
+    .then(res => dispatch({ type: GET_USER_BY_ID, payload: res.data }))
+    .catch(err => dispatch({ type: GET_USER_BY_ID, payload: null }));
+};
+
+// Update User By Id
+export const updateUserRole = (id, userData, history) => dispatch => {
+  dispatch(setUsersLoading());
+  axios
+    .put(`/api/users/id/${id}`, userData)
+    .then(res => history.push(`/users/manage/`))
+    .catch(err => dispatch({ type: GET_ERRORS, payload: err.response.data }));
 };
 
 // Login User I:  Get User token
@@ -45,10 +72,13 @@ export const setCurrentUser = decoded => {
 
 // Log User Out
 export const logoutUser = () => dispatch => {
-  // Remove Token from Local Storage
-  localStorage.removeItem('jwtToken');
-  // Remove Auth Header For Future Request
-  setAuthToken(false);
-  // Set Current Uset to {} Which Will Set isAuthenicated to False
-  dispatch(setCurrentUser({}));
+  localStorage.removeItem('jwtToken'); // Remove Token from Local Storage
+  setAuthToken(false); // Remove Auth Header For Future Request
+  dispatch(setCurrentUser({})); // Set Current Uset to {} Which Will Set isAuthenicated to False
+};
+
+export const setUsersLoading = () => {
+  return {
+    type: USERS_LOADING
+  };
 };

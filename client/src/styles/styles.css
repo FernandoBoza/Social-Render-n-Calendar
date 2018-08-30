@@ -133,8 +133,15 @@ i.fa.fa-code {
   cursor: pointer; }
 
 .hide {
-  opacity: 0;
   display: none; }
+
+.tableHover:hover .hide_opacity {
+  opacity: 1; }
+  .tableHover:hover .hide_opacity:nth-child(2) {
+    color: red; }
+
+.hide_opacity {
+  opacity: 0; }
 
 i.fa.fa-spinner.fa-pulse.fa-3x.fa-fw {
   border-radius: 50rem;

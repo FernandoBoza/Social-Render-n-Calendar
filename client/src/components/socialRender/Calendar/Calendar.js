@@ -108,7 +108,7 @@ class ContentCalendar extends Component {
     }
 
     return (
-      <div className="CtrlContentCalendar animated fadeInLeft">
+      <div className="CtrlContentCalendar animated fadeIn">
         <Calendar
           selectable
           defaultDate={new Date(dateString)} // Current Month
@@ -141,9 +141,12 @@ class ContentCalendar extends Component {
               Edit Post
             </Link>
 
-            <Button onClick={this.onDeleteClick} className="btn btn-danger">
+            <a href="/content-calendar" onClick={this.onDeleteClick} className="btn btn-danger">
               Delete Post Content
-            </Button>
+            </a>
+            {/* <Button onClick={this.onDeleteClick} className="btn btn-danger">
+              Delete Post Content
+            </Button> */}
           </ModalFooter>
         </Modal>
       </div>

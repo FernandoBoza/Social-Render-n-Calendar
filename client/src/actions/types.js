@@ -5,6 +5,11 @@ export const CLIENT_LOADING = 'CLIENT_LOADING';
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 export const CLEAR_CURRENT_USER = 'CLEAR_CURRENT_USER ';
 
+// All User Types
+export const GET_ALL_USERS = 'GET_ALL_USERS ';
+export const GET_USER_BY_ID = 'GET_USER_BY_ID ';
+export const USERS_LOADING = 'USERS_LOADING ';
+
 // Single Client Types
 export const GET_CLIENT_PROFILE = 'GET_CLIENT_PROFILE';
 export const CLIENT_NOT_FOUND = 'CLIENT_NOT_FOUND';

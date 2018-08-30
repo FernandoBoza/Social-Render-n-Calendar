@@ -10,7 +10,6 @@ const UserModel = require('../../model/UserModel');
 
 // @GET all api/users
 router.get('/', (req, res) => {
-  //   res.json({ msg: 'Users Works' });
   UserModel.find().then(users => res.json(users));
 });
 
@@ -75,7 +74,8 @@ router.post('/login', (req, res) => {
         // User Matched
         const payload = {
           id: user.id,
-          name: user.name
+          name: user.name,
+          role: user.role
         }; // Create JWT Payload, User info
 
         // User Token
@@ -93,14 +93,31 @@ router.post('/login', (req, res) => {
   });
 });
 
-// @POST api/users/current
-// @desc Return a current users
-router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
-  res.json({
-    id: req.user.id,
-    name: req.user.name,
-    email: req.user.email
-  });
+// @GET api/users/manager/:id
+// @desc Return a user
+router.get('/id/:_id', passport.authenticate('jwt', { session: false }), (req, res) => {
+  const errorsObj = {};
+  UserModel.findOne({ _id: req.params._id })
+    .then(user => {
+      if (!user) {
+        errorsObj.noclient = 'There is no user';
+        return res.status(404).json(errorsObj);
+      }
+      res.json(user);
+    })
+    .catch(err => res.status(404).json(err));
+});
+
+router.put('/id/:_id/', passport.authenticate('jwt', { session: false }), (req, res) => {
+  UserModel.findOneAndUpdate({ _id: req.params._id }, { role: req.body.role }, { new: true })
+    .then(user => {
+      if (!user) {
+        errorsObj.noclient = 'There is no user';
+        return res.status(404).json(errorsObj);
+      }
+      res.json(user);
+    })
+    .catch(err => res.status(404).json(err));
 });
 
 module.exports = router;
