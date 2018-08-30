@@ -93,11 +93,23 @@ router.post('/login', (req, res) => {
   });
 });
 
-// @POST api/users/current
-// @desc Return a current users
+// @GET api/users/manager/:id
+// @desc Return a user
 router.get('/id/:_id', passport.authenticate('jwt', { session: false }), (req, res) => {
   const errorsObj = {};
   UserModel.findOne({ _id: req.params._id })
+    .then(user => {
+      if (!user) {
+        errorsObj.noclient = 'There is no user';
+        return res.status(404).json(errorsObj);
+      }
+      res.json(user);
+    })
+    .catch(err => res.status(404).json(err));
+});
+
+router.put('/id/:_id/', passport.authenticate('jwt', { session: false }), (req, res) => {
+  UserModel.findOneAndUpdate({ _id: req.params._id }, { role: req.body.role }, { new: true })
     .then(user => {
       if (!user) {
         errorsObj.noclient = 'There is no user';
