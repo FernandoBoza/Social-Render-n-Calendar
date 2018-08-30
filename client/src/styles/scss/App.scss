@@ -196,6 +196,14 @@ i {
   }
 }
 
+.adminGuard {
+  &:hover {
+    .hide_opacity {
+      display: none;
+    }
+  }
+}
+
 .hide_opacity {
   opacity: 0;
 }

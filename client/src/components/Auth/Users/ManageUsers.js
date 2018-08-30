@@ -25,14 +25,14 @@ class ManageUsers extends Component {
       if (users.length > 0) {
         editBoard = users.map(user => (
           <tr key={user._id}>
-            <td className="text-capitalize tableHover">
+            <td className={user.role == 'admin' ? 'text-capitalize adminGuard' : 'text-capitalize tableHover'}>
               {user.name}
               <Link to={`/users/manage/${user._id}`} className="mx-2 hide_opacity">
                 Edit
               </Link>
-              {/* <a href="#" className={' hide_opacity'}>
+              {/* <Link to={`/users/manage/${user._id}`} className=" hide_opacity">
                 Delete
-              </a> */}
+              </Link> */}
             </td>
             <td className="text-capitalize">{user.email}</td>
             <td className="text-capitalize">{user.role}</td>
