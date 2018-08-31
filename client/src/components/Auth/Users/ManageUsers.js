@@ -25,9 +25,20 @@ class ManageUsers extends Component {
       if (users.length > 0) {
         editBoard = users.map(user => (
           <tr key={user._id}>
-            <td className={user.role == 'admin' ? 'text-capitalize adminGuard' : 'text-capitalize tableHover'}>
+            <td
+              className={
+                // eslint-disable-next-line
+                user.role == 'admin' ? 'text-capitalize adminGuard' : 'text-capitalize tableHover' // eslint-disable-next-line
+              }
+            >
               {user.name}
-              <Link to={user.role == 'admin' ? '' : `/users/manage/${user._id}`} className="mx-2 hide_opacity">
+              <Link
+                to={
+                  // eslint-disable-next-line
+                  user.role == 'admin' ? '' : `/users/manage/${user._id}`
+                }
+                className="mx-2 hide_opacity"
+              >
                 Edit
               </Link>
               {/* <Link to={`/users/manage/${user._id}`} className=" hide_opacity">
