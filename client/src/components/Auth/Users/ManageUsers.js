@@ -27,7 +27,7 @@ class ManageUsers extends Component {
           <tr key={user._id}>
             <td className={user.role == 'admin' ? 'text-capitalize adminGuard' : 'text-capitalize tableHover'}>
               {user.name}
-              <Link to={`/users/manage/${user._id}`} className="mx-2 hide_opacity">
+              <Link to={user.role == 'admin' ? '' : `/users/manage/${user._id}`} className="mx-2 hide_opacity">
                 Edit
               </Link>
               {/* <Link to={`/users/manage/${user._id}`} className=" hide_opacity">

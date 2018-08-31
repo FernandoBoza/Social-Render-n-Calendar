@@ -52,7 +52,7 @@ class UserItem extends Component {
               <i className="input-icon fa fa-user" />
             </span>
           </div>
-          <input type="text" class=" form-control text-capitalize" value={users.name} />
+          <input type="text" className=" form-control text-capitalize" defaultValue={users.name} />
         </div>
         <div className=" clientInputs form-group input-group">
           <div className="input-group-prepend">
@@ -60,7 +60,7 @@ class UserItem extends Component {
               <i className="input-icon fa fa-envelope" />
             </span>
           </div>
-          <input type="text" class=" form-control text-capitalize" value={users.email} />
+          <input type="text" className=" form-control text-capitalize" defaultValue={users.email} />
         </div>
         <div className=" clientInputs form-group input-group">
           <div className="input-group-prepend">
@@ -68,7 +68,7 @@ class UserItem extends Component {
               <i className="input-icon fa fa-pencil" />
             </span>
           </div>
-          <input type="text" class=" form-control text-capitalize" value={this.state.role} />
+          <input type="text" className=" form-control text-capitalize" defaultValue={this.state.role} />
         </div>
 
         <form onSubmit={this.handleSubmit}>
