@@ -25,6 +25,19 @@ export const registerUser = (userData, history) => dispatch => {
     );
 };
 
+// Register Client User
+export const registerClientUser = (clientUserData, history) => dispatch => {
+  axios
+    .post('/api/users/register-client', clientUserData)
+    .then(res => history.push('/users/manage'))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
 //GET User By Id
 export const getUserByID = id => dispatch => {
   dispatch(setUsersLoading());

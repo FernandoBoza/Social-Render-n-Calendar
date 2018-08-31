@@ -76,7 +76,8 @@ router.post('/login', (req, res) => {
         const payload = {
           id: user.id,
           name: user.name,
-          role: user.role
+          role: user.role,
+          clientRoleAccess: user.clientRoleAccess
         }; // Create JWT Payload, User info
 
         // User Token
@@ -137,7 +138,7 @@ router.put('/id/:_id/', passport.authenticate('jwt', { session: false }), (req, 
 // @desc CREATES A CLIENT USER
 // *********************************
 // *********************************
-router.post('/register-client', (req, res) => {
+router.post('/register-client', passport.authenticate('jwt', { session: false }), (req, res) => {
   const { errorsObj, isValid } = validateClientRegisterInput(req.body);
 
   // Check Validation
@@ -169,55 +170,6 @@ router.post('/register-client', (req, res) => {
         });
       });
     }
-  });
-});
-
-// *********************************
-// *********************************
-// @POST api/users/LOGIN
-// @desc LOGIN A CLIENT
-// *********************************
-// *********************************
-router.post('/login', (req, res) => {
-  const { errorsObj, isValid } = validateLoginInput(req.body);
-
-  // Check Validation
-  if (!isValid) {
-    return res.status(400).json(errorsObj);
-  }
-  const email = req.body.email;
-  const password = req.body.password;
-
-  // Finder User By Email
-  UserModel.findOne({ email }).then(user => {
-    // Check for User
-    if (!user) {
-      errorsObj.email = 'User Not Found';
-      return res.status(404).json(errorsObj);
-    }
-
-    // Check Password
-    bcrypt.compare(password, user.password).then(isMatch => {
-      if (isMatch) {
-        // User Matched
-        const payload = {
-          id: user.id,
-          name: user.name,
-          role: user.role
-        }; // Create JWT Payload, User info
-
-        // User Token
-        jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
-          res.json({
-            success: true,
-            token: 'Bearer ' + token // Token Bearer connected to keys secretOrKey!!
-          });
-        });
-      } else {
-        errorsObj.password = 'Password Incorrect';
-        return res.status(404).json(errorsObj);
-      }
-    });
   });
 });
 
