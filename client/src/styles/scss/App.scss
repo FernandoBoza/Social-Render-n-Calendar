@@ -208,6 +208,10 @@ i {
   opacity: 0;
 }
 
+.userInfo.form-group.input-group {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
 i.fa.fa-spinner.fa-pulse.fa-3x.fa-fw {
   border-radius: 50rem;
   font-size: 7.7rem;

@@ -13,7 +13,6 @@ import LinkedInDesktop from '../LinkedIn/LinkedIn';
 import AccordianCards from '../Layout/AccordianCards';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { Link } from 'react-router-dom';
-import 'react-big-calendar/lib/css/react-big-calendar.css';
 Calendar.setLocalizer(Calendar.momentLocalizer(moment));
 
 class ClientContentCalendar extends Component {
@@ -35,6 +34,7 @@ class ClientContentCalendar extends Component {
       _id: ''
     };
     this.toggle = this.toggle.bind(this);
+    this.onDeleteClick = this.onDeleteClick.bind(this);
   }
 
   componentDidMount() {
@@ -66,6 +66,12 @@ class ClientContentCalendar extends Component {
 
   render() {
     const { socialRenderContent, loading } = this.props.socialRenderContent;
+    const fb = this.state.contentCopy ? this.state.contentCopy : false;
+    const tw = this.state.contentTwitterCopy ? this.state.contentTwitterCopy : false;
+    const ig = this.state.contentInstagramCopy ? this.state.contentInstagramCopy : false;
+    const ln = this.state.contentLinkedInCopy ? this.state.contentLinkedInCopy : false;
+    const month = this.props.match.params.m;
+    const year = this.props.match.params.y;
     let PostDate = [];
 
     if (socialRenderContent == null || loading) {
@@ -91,13 +97,6 @@ class ClientContentCalendar extends Component {
       }
     }
 
-    const fb = this.state.contentCopy ? this.state.contentCopy : false;
-    const tw = this.state.contentTwitterCopy ? this.state.contentTwitterCopy : false;
-    const ig = this.state.contentInstagramCopy ? this.state.contentInstagramCopy : false;
-    const ln = this.state.contentLinkedInCopy ? this.state.contentLinkedInCopy : false;
-    const month = this.props.match.params.m;
-    const year = this.props.match.params.y;
-
     // eslint-disable-next-line
     if (month == undefined || year == undefined) {
       var dateString = new Date();
@@ -106,7 +105,7 @@ class ClientContentCalendar extends Component {
     }
 
     return (
-      <div className="ContentCalendar">
+      <div className="ContentCalendar animated fadeIn">
         <Calendar
           selectable
           defaultDate={new Date(dateString)} // Current Month
@@ -136,9 +135,13 @@ class ClientContentCalendar extends Component {
             <Link to={`/social-render/${this.state._id}/edit-content`} className="btn btn-success mx-3">
               Edit Post
             </Link>
-            <Button onClick={this.onDeleteClick} className="btn btn-danger">
+
+            <a href={`/content-calendar/${this.props.match.params.clientName}`} onClick={this.onDeleteClick} className="btn btn-danger">
               Delete Post Content
-            </Button>
+            </a>
+            {/* <Button onClick={this.onDeleteClick} className="btn btn-danger">
+              Delete Post Content
+            </Button> */}
           </ModalFooter>
         </Modal>
       </div>

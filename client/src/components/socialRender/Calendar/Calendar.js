@@ -43,7 +43,6 @@ class ContentCalendar extends Component {
 
   onDeleteClick = e => {
     this.props.deleteContent(this.state._id, this.props.history);
-    this.setState({ modal: false });
   };
 
   toggle = e => {
@@ -120,9 +119,7 @@ class ContentCalendar extends Component {
         />
 
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} size="lg">
-          <ModalHeader toggle={this.toggle}>
-            {this.state.title} post to be published: {moment(this.state.start).format('ddd MMM Do')}
-          </ModalHeader>
+          <ModalHeader toggle={this.toggle}>Date Going Live: {moment(this.state.start).format('ddd MMM Do')}</ModalHeader>>
           <ModalBody id="social-render">
             <div className="accordion" id="accordionParent">
               <AccordianCards hidOrShow={fb ? '' : 'hide'} target={'facebookDesktop'} cardName={'Facebook Desktop'} componentName={<FacebookDesktop className="mb-5" clientInitials={this.state.clientInitials} clientName={this.state.title} contentCopy={this.state.contentCopy} imgLink={this.state.imgLink} date={moment(this.state.start).format('MMM Do')} />} />

@@ -45,41 +45,42 @@ class UserItem extends Component {
   render() {
     const { users } = this.props.auth;
     return (
-      <div className="col-md-10 offset-md-1 row mb-3 wow animated fadeIn" data-wow-duration="2s" data-wow-delay="1s">
-        <div className=" clientInputs form-group input-group">
+      <div className="col-md-4 offset-md-1 row mb-3 wow animated fadeIn" data-wow-duration="2s" data-wow-delay="1s">
+        <h1 className="display-4 text-capitalize my-5">Edit {users.name}</h1>
+        <div className="userInfo form-group input-group">
           <div className="input-group-prepend">
             <span className="input-group-text" id="basic-addon1">
               <i className="input-icon fa fa-user" />
             </span>
           </div>
-          <input type="text" className=" form-control text-capitalize" defaultValue={users.name} />
+          <p className=" form-control text-capitalize">{users.name}</p>
         </div>
-        <div className=" clientInputs form-group input-group">
+        <div className="userInfo form-group input-group">
           <div className="input-group-prepend">
             <span className="input-group-text" id="basic-addon1">
               <i className="input-icon fa fa-envelope" />
             </span>
           </div>
-          <input type="text" className=" form-control text-capitalize" defaultValue={users.email} />
+          <p className=" form-control text-capitalize">{users.email}</p>
         </div>
-        <div className=" clientInputs form-group input-group">
+        <div className="userInfo form-group input-group">
           <div className="input-group-prepend">
             <span className="input-group-text" id="basic-addon1">
               <i className="input-icon fa fa-pencil" />
             </span>
           </div>
-          <input type="text" className=" form-control text-capitalize" defaultValue={this.state.role} />
+          <p className=" form-control text-capitalize">{this.state.role}</p>
         </div>
 
-        <form onSubmit={this.handleSubmit}>
+        <form className="mt-4" onSubmit={this.handleSubmit}>
           <ButtonGroup>
             <Button color="primary" onClick={() => this.onRadioBtnClick('admin')} active={this.state.role === 'admin'}>
               Admin
             </Button>
-            <Button color="success" onClick={() => this.onRadioBtnClick('user')} active={this.state.role === 'user'}>
+            <Button color="primary" onClick={() => this.onRadioBtnClick('user')} active={this.state.role === 'user'}>
               User
             </Button>
-            <Button color="warning" onClick={() => this.onRadioBtnClick('client')} active={this.state.role === 'client'}>
+            <Button color="primary" onClick={() => this.onRadioBtnClick('client')} active={this.state.role === 'client'}>
               Client
             </Button>
           </ButtonGroup>
