@@ -18,7 +18,7 @@ class ManageUsers extends Component {
     if (users == null || loading) {
       editBoard = (
         <tr>
-          <td className="h1">No users</td>
+          <td className="h1">Refresh Page</td>
         </tr>
       );
     } else {

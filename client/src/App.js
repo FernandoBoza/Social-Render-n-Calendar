@@ -62,8 +62,8 @@ class App extends Component {
                 <PrivateRoute exact path="/content-calendar/:m/:y" component={ContentCalendar} />
                 <PrivateRoute exact path="/content-calendar/:clientName" component={ClientContentCalendar} />
                 <PrivateRoute exact path="/content-calendar/:clientName/:m/:y" component={ClientContentCalendar} />
-                <PrivateRoute exact path="/clients/:handle" component={Client} />
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
+                <PrivateRoute exact path="/clients/:handle" component={Client} />
                 <PrivateRoute exact path="/create-client" component={CreateClientProfile} />
                 <PrivateRoute exact path="/clients/:handle/edit-client" component={EditClient} />
               </Switch>
