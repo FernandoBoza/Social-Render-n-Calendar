@@ -4,11 +4,28 @@ import { connect } from 'react-redux';
 import { getAllUsers } from '../../../actions/authActions'; // Fed the client model
 import { Table } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { Button, Modal, ModalBody } from 'reactstrap';
+import RegisterClientUser from './RegisterClientUser';
 
 class ManageUsers extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      modal: false
+    };
+    this.toggle = this.toggle.bind(this);
+    // this.onDeleteClick = this.onDeleteClick.bind(this);
+  }
   componentDidMount() {
     this.props.getAllUsers();
   }
+
+  toggle = e => {
+    this.setState({
+      modal: !this.state.modal
+    });
+  };
 
   render() {
     const { users, loading } = this.props.auth;
@@ -41,9 +58,9 @@ class ManageUsers extends Component {
               >
                 Edit
               </Link>
-              {/* <Link to={`/users/manage/${user._id}`} className=" hide_opacity">
+              <Link to={`/users/manage/${user._id}`} className=" hide_opacity">
                 Delete
-              </Link> */}
+              </Link>
             </td>
             <td className="text-capitalize">{user.email}</td>
             <td className="text-capitalize">{user.role}</td>
@@ -69,6 +86,16 @@ class ManageUsers extends Component {
           </thead>
           <tbody>{editBoard}</tbody>
         </Table>
+        <Button color="primary" onClick={this.toggle}>
+          Add A Client User
+        </Button>
+        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} size="lg">
+          <ModalBody id="manage-user">
+            <div className="accordion" id="accordionParent">
+              <RegisterClientUser />
+            </div>
+          </ModalBody>
+        </Modal>
       </div>
     );
   }
