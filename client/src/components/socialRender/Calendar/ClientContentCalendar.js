@@ -66,6 +66,8 @@ class ClientContentCalendar extends Component {
 
   render() {
     const { socialRenderContent, loading } = this.props.socialRenderContent;
+    const { user } = this.props.auth;
+
     const fb = this.state.contentCopy ? this.state.contentCopy : false;
     const tw = this.state.contentTwitterCopy ? this.state.contentTwitterCopy : false;
     const ig = this.state.contentInstagramCopy ? this.state.contentInstagramCopy : false;
@@ -104,6 +106,25 @@ class ClientContentCalendar extends Component {
       dateString = `20${year}-${month}-01T20:02:40-04:00`;
     }
 
+    const editDeleteBtns = (
+      <ModalFooter>
+        <Button color="primary" onClick={this.toggle}>
+          Hide
+        </Button>
+
+        <Link to={`/social-render/${this.state._id}/edit-content`} className="btn btn-success mx-3">
+          Edit Post
+        </Link>
+
+        <a href={`/content-calendar/${this.props.match.params.clientName}`} onClick={this.onDeleteClick} className="btn btn-danger">
+          Delete Post Content
+        </a>
+        {/* <Button onClick={this.onDeleteClick} className="btn btn-danger">
+              Delete Post Content
+            </Button> */}
+      </ModalFooter>
+    );
+
     return (
       <div className="ContentCalendar animated fadeIn">
         <Calendar
@@ -127,22 +148,7 @@ class ClientContentCalendar extends Component {
               <AccordianCards hidOrShow={ln ? '' : 'hide'} target={'linkedin'} cardName={'Linkedin'} componentName={<LinkedInDesktop lnFollowers="1,000" className="mb-5" clientInitials={this.state.clientInitials} clientName={this.state.title} contentCopy={this.state.contentLinkedInCopy} imgLink={this.state.imgLink} />} />
             </div>
           </ModalBody>
-          <ModalFooter>
-            <Button color="primary" onClick={this.toggle}>
-              Hide
-            </Button>
-
-            <Link to={`/social-render/${this.state._id}/edit-content`} className="btn btn-success mx-3">
-              Edit Post
-            </Link>
-
-            <a href={`/content-calendar/${this.props.match.params.clientName}`} onClick={this.onDeleteClick} className="btn btn-danger">
-              Delete Post Content
-            </a>
-            {/* <Button onClick={this.onDeleteClick} className="btn btn-danger">
-              Delete Post Content
-            </Button> */}
-          </ModalFooter>
+          {user.role !== 'client' ? editDeleteBtns : ''}
         </Modal>
       </div>
     );
@@ -152,11 +158,13 @@ class ClientContentCalendar extends Component {
 ClientContentCalendar.propTypes = {
   getByClientName: PropTypes.func.isRequired,
   deleteContent: PropTypes.func.isRequired, // from client actions
-  socialRenderContent: PropTypes.object.isRequired
+  socialRenderContent: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  socialRenderContent: state.socialRenderContent // Feed state to root reducer
+  socialRenderContent: state.socialRenderContent, // Feed state to root reducer
+  auth: state.auth // Comes from the root reducer
 });
 
 export default connect(
