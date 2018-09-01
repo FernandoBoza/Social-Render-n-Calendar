@@ -16,7 +16,7 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { user } = this.props.auth;
+    const { user, isAuthenticated } = this.props.auth;
     const { clients, loading } = this.props.clients; // Comoes from IntialState in reducer
     let dashboardContent;
 
@@ -45,6 +45,26 @@ class Dashboard extends Component {
       }
     }
 
+    const authLinks = (
+      <div>
+        {dashboardContent}
+        <div>
+          <Link to="/social-render" className="btn btn-info mt-4 w-50 wow animated fadeInLeft" data-wow-duration="1s" data-wow-delay=".2s">
+            <i className="fa fa-columns mr-2" style={{ fontSize: '1.2rem' }} />
+            <b>Social Render</b>
+          </Link>
+        </div>
+        <div>
+          <Link to="/content-calendar" className="btn btn-info mt-4 w-50 wow animated fadeInLeft" data-wow-duration="1s" data-wow-delay=".3s">
+            <i className="fa fa-calendar mr-2" style={{ fontSize: '1.2rem' }} />
+            <b>Content Calendar</b>
+          </Link>
+        </div>
+      </div>
+    );
+
+    const clientLinks = <Clients />;
+
     return (
       <div className="dashboard">
         <div className="container">
@@ -52,24 +72,13 @@ class Dashboard extends Component {
             <div className="col-md-6">
               <h1 className="display-4">Dashboard</h1>
               <p className="lead text-muted mb-5">Welcome {user.name}</p>
-
-              {dashboardContent}
-
-              <div>
-                <Link to="/social-render" className="btn btn-info mt-4 w-50 wow animated fadeInLeft" data-wow-duration="1s" data-wow-delay=".2s">
-                  <i className="fa fa-columns mr-2" style={{ fontSize: '1.2rem' }} />
-                  <b>Social Render</b>
-                </Link>
-              </div>
-              <div>
-                <Link to="/content-calendar" className="btn btn-info mt-4 w-50 wow animated fadeInLeft" data-wow-duration="1s" data-wow-delay=".3s">
-                  <i className="fa fa-calendar mr-2" style={{ fontSize: '1.2rem' }} />
-                  <b>Content Calendar</b>
-                </Link>
-              </div>
+              {isAuthenticated}
+              {// eslint-disable-next-line
+              isAuthenticated && user.role !== 'client' ? authLinks : clientLinks}
             </div>
             <div className="col-md-6">
-              <Clients />
+              {// eslint-disable-next-line
+              isAuthenticated && user.role !== 'client' ? clientLinks : ''}
             </div>
           </div>
         </div>

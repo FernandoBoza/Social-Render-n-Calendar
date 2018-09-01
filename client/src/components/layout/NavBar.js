@@ -73,12 +73,12 @@ class NavBar extends Component {
             Dashboard
           </Link>
         </li>
-        <li className="nav-item">
+        {/* <li className="nav-item">
           <Link className="nav-link" to="/content-calendar">
             <i className="fa fa-calendar text-primary" style={{ fontSize: '1.2rem' }} />
             Content Calendar
           </Link>
-        </li>
+        </li> */}
         <li className="nav-item active">
           <a href="" onClick={this.onLogoutClick.bind(this)} className="nav-link">
             <i className="fa fa-hand-peace text-primary" style={{ fontSize: '1.2rem' }} />
