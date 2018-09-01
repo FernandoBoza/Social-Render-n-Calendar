@@ -22,7 +22,7 @@ export default function(state = initialState, action) {
     case GET_CLIENT_PROFILE:
       return {
         ...state,
-        clients: action.payload,
+        client: action.payload,
         loading: false
       };
     case CLEAR_CURRENT_USER:
