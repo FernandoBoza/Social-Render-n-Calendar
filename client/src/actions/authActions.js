@@ -17,12 +17,7 @@ export const registerUser = (userData, history) => dispatch => {
   axios
     .post('/api/users/register', userData)
     .then(res => history.push('/login'))
-    .catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
-    );
+    .catch(err => dispatch({ type: GET_ERRORS, payload: err.response.data }));
 };
 
 // Register Client User
@@ -30,12 +25,7 @@ export const registerClientUser = (clientUserData, history) => dispatch => {
   axios
     .post('/api/users/register-client', clientUserData)
     .then(res => history.push('/'))
-    .catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
-    );
+    .catch(err => dispatch({ type: GET_ERRORS, payload: err.response.data }));
 };
 
 //GET User By Id
@@ -75,12 +65,7 @@ export const loginUser = userData => dispatch => {
       const decoded = jwt_decode(token); // Decode Token To Get User Data
       dispatch(setCurrentUser(decoded)); // Set Current User
     })
-    .catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
-    );
+    .catch(err => dispatch({ type: GET_ERRORS, payload: err.response.data }));
 };
 
 // Login User II:  Set Logged In User

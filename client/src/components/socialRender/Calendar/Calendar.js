@@ -116,8 +116,6 @@ class ContentCalendar extends Component {
       dateString = `20${year}-${month}-01T20:02:40-04:00`;
     }
 
-    console.log(this.state.commentOpen);
-
     return (
       <div className="CtrlContentCalendar animated fadeIn">
         <Calendar

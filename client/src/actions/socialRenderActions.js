@@ -42,12 +42,7 @@ export const createSocialRender = (socialContent, history) => dispatch => {
   axios
     .post('/api/social-render', socialContent)
     .then(res => history.push('/content-calendar'))
-    .catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
-    );
+    .catch(err => dispatch({ type: GET_ERRORS, payload: err.response.data }));
 };
 
 //GET Post By Id
