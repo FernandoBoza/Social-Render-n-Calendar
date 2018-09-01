@@ -81,7 +81,8 @@ export class Client extends Component {
 
   render() {
     const { client, loading } = this.props.clients;
-    const { isAuthenticated } = this.props.auth;
+    const { user, isAuthenticated } = this.props.auth;
+
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const today = new Date();
     let clientContent;
@@ -98,8 +99,8 @@ export class Client extends Component {
       </div>
     );
 
-    const guestLinks = (
-      <Link to={'/clients/'} className="btn btn-primary mb-3 fload-left">
+    const clientLinks = (
+      <Link to={'/'} className="btn btn-primary mb-3 fload-left">
         Back To Clients
       </Link>
     );
@@ -237,7 +238,7 @@ export class Client extends Component {
     } else {
       clientContent = (
         <div>
-          {isAuthenticated ? authLinks : guestLinks}
+          {isAuthenticated && user.role !== 'client' ? authLinks : clientLinks}
 
           <div className="col-md-12 m-auto mt-5">
             <h1 className="display-4 text-center">
