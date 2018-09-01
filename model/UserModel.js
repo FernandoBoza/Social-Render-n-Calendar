@@ -23,6 +23,10 @@ const UserSchema = new Schema({
   date: {
     type: Date,
     default: Date.now
+  },
+  clientRoleAccess: {
+    type: String,
+    ref: 'client'
   }
 });
 

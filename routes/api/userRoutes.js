@@ -6,6 +6,7 @@ const keys = require('../../config/keys');
 const passport = require('passport');
 const validateRegisterInput = require('../../validation/registerValidation');
 const validateLoginInput = require('../../validation/loginValidation');
+const validateClientRegisterInput = require('../../validation/clientRegisterValidation');
 const UserModel = require('../../model/UserModel');
 
 // @GET all api/users
@@ -75,7 +76,8 @@ router.post('/login', (req, res) => {
         const payload = {
           id: user.id,
           name: user.name,
-          role: user.role
+          role: user.role,
+          clientRoleAccess: user.clientRoleAccess
         }; // Create JWT Payload, User info
 
         // User Token
@@ -93,8 +95,12 @@ router.post('/login', (req, res) => {
   });
 });
 
-// @GET api/users/manager/:id
+// *********************************
+// *********************************
+// @GET api/users/manage/:id
 // @desc Return a user
+// *********************************
+// *********************************
 router.get('/id/:_id', passport.authenticate('jwt', { session: false }), (req, res) => {
   const errorsObj = {};
   UserModel.findOne({ _id: req.params._id })
@@ -118,6 +124,74 @@ router.put('/id/:_id/', passport.authenticate('jwt', { session: false }), (req, 
       res.json(user);
     })
     .catch(err => res.status(404).json(err));
+});
+
+// *********************************
+// @DELETE api/users/manage/
+// *********************************
+router.delete('/id/:_id/', passport.authenticate('jwt', { session: false }), (req, res) => {
+  const errorsObj = {};
+  UserModel.findOneAndRemove({ _id: req.params._id }).then(() => {
+    res.json({ success: true });
+  });
+});
+
+// ************************************************************
+// ************************************************************
+// CLIENT USER CREATION
+// ************************************************************
+// ************************************************************
+
+// *********************************
+// *********************************
+// @POST api/users/register-client
+// @desc CREATES A CLIENT USER
+// *********************************
+// *********************************
+router.post('/register-client', passport.authenticate('jwt', { session: false }), (req, res) => {
+  const { errorsObj, isValid } = validateClientRegisterInput(req.body);
+
+  // Check Validation
+  if (!isValid) {
+    return res.status(400).json(errorsObj);
+  }
+
+  UserModel.findOne({ email: req.body.email }).then(user => {
+    if (user) {
+      errorsObj.email = 'Email already exist';
+      return res.status(400).json(errorsObj);
+    } else {
+      const newUser = new UserModel({
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password,
+        role: 'client',
+        clientRoleAccess: req.body.clientRoleAccess
+      });
+
+      bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(newUser.password, salt, (err, hash) => {
+          if (err) throw err;
+          newUser.password = hash;
+          newUser
+            .save()
+            .then(user => res.json(user))
+            .catch(err => console.log(err));
+        });
+      });
+    }
+  });
+});
+
+// @POST api/users/current
+// @desc Return a current users
+router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
+  res.json({
+    id: req.user.id,
+    name: req.user.name,
+    email: req.user.email,
+    role: req.user.role
+  });
 });
 
 module.exports = router;

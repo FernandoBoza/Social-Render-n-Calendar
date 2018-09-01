@@ -199,13 +199,42 @@ i {
 .adminGuard {
   &:hover {
     .hide_opacity {
-      display: none;
+      opacity: 0;
+      pointer-events: none;
     }
   }
 }
 
 .hide_opacity {
   opacity: 0;
+}
+
+.userInfo.form-group.input-group {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#manage-user {
+  span {
+    font-size: 1rem;
+    padding-right: 2rem;
+  }
+
+  input#react-select-2-input {
+    width: 100% !important;
+  }
+  .css-1rtrksz {
+    padding: 0;
+    border-right: none;
+  }
+  .css-rsyb7x {
+    margin: 0;
+    padding: 0;
+
+    &,
+    * {
+      width: 100%;
+    }
+  }
 }
 
 i.fa.fa-spinner.fa-pulse.fa-3x.fa-fw {

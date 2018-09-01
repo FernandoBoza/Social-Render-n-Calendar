@@ -25,6 +25,19 @@ export const registerUser = (userData, history) => dispatch => {
     );
 };
 
+// Register Client User
+export const registerClientUser = (clientUserData, history) => dispatch => {
+  axios
+    .post('/api/users/register-client', clientUserData)
+    .then(res => history.push('/users/manage'))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
 //GET User By Id
 export const getUserByID = id => dispatch => {
   dispatch(setUsersLoading());
@@ -40,6 +53,14 @@ export const updateUserRole = (id, userData, history) => dispatch => {
   axios
     .put(`/api/users/id/${id}`, userData)
     .then(res => history.push(`/users/manage/`))
+    .catch(err => dispatch({ type: GET_ERRORS, payload: err.response.data }));
+};
+
+// DELETE User By Id
+export const deleteUser = (id, history) => dispatch => {
+  axios
+    .delete(`/api/users/id/${id}`)
+    .then(res => history.push('/users/manage'))
     .catch(err => dispatch({ type: GET_ERRORS, payload: err.response.data }));
 };
 
