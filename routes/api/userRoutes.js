@@ -97,7 +97,7 @@ router.post('/login', (req, res) => {
 
 // *********************************
 // *********************************
-// @GET api/users/manager/:id
+// @GET api/users/manage/:id
 // @desc Return a user
 // *********************************
 // *********************************
@@ -124,6 +124,16 @@ router.put('/id/:_id/', passport.authenticate('jwt', { session: false }), (req, 
       res.json(user);
     })
     .catch(err => res.status(404).json(err));
+});
+
+// *********************************
+// @DELETE api/users/manage/
+// *********************************
+router.delete('/id/:_id/', passport.authenticate('jwt', { session: false }), (req, res) => {
+  const errorsObj = {};
+  UserModel.findOneAndRemove({ _id: req.params._id }).then(() => {
+    res.json({ success: true });
+  });
 });
 
 // ************************************************************

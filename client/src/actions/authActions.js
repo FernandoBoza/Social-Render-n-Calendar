@@ -56,6 +56,14 @@ export const updateUserRole = (id, userData, history) => dispatch => {
     .catch(err => dispatch({ type: GET_ERRORS, payload: err.response.data }));
 };
 
+// DELETE User By Id
+export const deleteUser = (id, history) => dispatch => {
+  axios
+    .delete(`/api/users/id/${id}`)
+    .then(res => history.push('/users/manage'))
+    .catch(err => dispatch({ type: GET_ERRORS, payload: err.response.data }));
+};
+
 // Login User I:  Get User token
 export const loginUser = userData => dispatch => {
   axios

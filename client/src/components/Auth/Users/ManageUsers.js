@@ -15,7 +15,6 @@ class ManageUsers extends Component {
       modal: false
     };
     this.toggle = this.toggle.bind(this);
-    // this.onDeleteClick = this.onDeleteClick.bind(this);
   }
   componentDidMount() {
     this.props.getAllUsers();
@@ -45,7 +44,7 @@ class ManageUsers extends Component {
             <td
               className={
                 // eslint-disable-next-line
-                user.role == 'admin' ? 'text-capitalize adminGuard' : 'text-capitalize tableHover' // eslint-disable-next-line
+                user.role == 'admin' ? 'text-capitalize adminGuard' : 'text-capitalize tableHover'
               }
             >
               {user.name}
@@ -57,9 +56,6 @@ class ManageUsers extends Component {
                 className="mx-2 hide_opacity"
               >
                 Edit
-              </Link>
-              <Link to={`/users/manage/${user._id}`} className=" hide_opacity">
-                Delete
               </Link>
             </td>
             <td className="text-capitalize">{user.email}</td>

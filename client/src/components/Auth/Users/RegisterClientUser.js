@@ -97,9 +97,6 @@ class RegisterClientUser extends Component {
                 <button className="btn btn-lg btn-primary btn-block mt-3" type="submit">
                   Register Client User
                 </button>
-                {/* <a href="/users/manage" onClick={this.handleSubmit} className="btn btn-lg btn-primary btn-block mt-3">
-                  Register Client User
-                </a> */}
               </form>
             </div>
           </div>
