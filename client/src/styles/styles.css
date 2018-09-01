@@ -209,6 +209,13 @@ p {
 span.rbc-toolbar-label {
   font-size: 2rem; }
 
+.modal-dialog[role='document'] {
+  transition: max-width 1s !important; }
+  .modal-dialog[role='document'].modal-comment-click {
+    max-width: 87% !important; }
+
+#social-render .input-group-text.commentName {
+  width: 7rem; }
 #social-render span {
   font-size: 1rem;
   padding-right: 2rem; }

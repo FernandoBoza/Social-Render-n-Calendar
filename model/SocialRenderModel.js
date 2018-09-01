@@ -48,16 +48,16 @@ const SocialRenderSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'users'
       },
-      text: {
+      comment: {
         type: String,
         required: true
       },
       name: {
         type: String
       },
-      avatar: {
-        type: String
-      },
+      // avatar: {
+      //   type: String
+      // },
       date: {
         type: Date,
         default: Date.now
