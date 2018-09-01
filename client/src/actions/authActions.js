@@ -29,7 +29,7 @@ export const registerUser = (userData, history) => dispatch => {
 export const registerClientUser = (clientUserData, history) => dispatch => {
   axios
     .post('/api/users/register-client', clientUserData)
-    .then(res => history.push('/users/manage'))
+    .then(res => history.push('/'))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,

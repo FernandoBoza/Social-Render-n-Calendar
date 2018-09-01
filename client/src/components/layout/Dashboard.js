@@ -52,6 +52,7 @@ class Dashboard extends Component {
             <div className="col-md-6">
               <h1 className="display-4">Dashboard</h1>
               <p className="lead text-muted mb-5">Welcome {user.name}</p>
+
               {dashboardContent}
 
               <div>
