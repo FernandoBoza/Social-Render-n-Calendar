@@ -14,6 +14,19 @@ class NavBar extends Component {
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
+    let manageRole;
+    // eslint-disable-next-line
+    if (user.role == 'admin') {
+      manageRole = (
+        <li className="nav-item">
+          <Link className="nav-link" to="/users/manage">
+            <i className="fa fa-users text-primary" style={{ fontSize: '1.2rem' }} />
+            Manage Users
+          </Link>
+        </li>
+      );
+    }
+
     const authLinks = (
       <ul className="navbar-nav mr-auto ml-5">
         <li className="nav-item">
@@ -40,6 +53,9 @@ class NavBar extends Component {
             Content Calendar
           </Link>
         </li>
+
+        {manageRole}
+
         <li className="nav-item active">
           <a href="" onClick={this.onLogoutClick.bind(this)} className="nav-link">
             <i className="fa fa-hand-peace text-primary" style={{ fontSize: '1.2rem' }} />
@@ -64,27 +80,18 @@ class NavBar extends Component {
       </ul>
     );
 
-    // const thr33fold_title = (
-    //   <span className="lead mini-intro mr-auto">
-    //     <a href="http://thr33fold.com" rel="noopener noreferrer" target="_blank">
-    //       A THR33FOLD Company
-    //     </a>
-    //   </span>
-    // );
     return (
       <div className="container-fluid p-0">
         <nav className="navbar navbar-expand-lg navbar-light bg-light px-5">
           <Link className="navbar-brand" to="/">
             Social Goal Flow
           </Link>
-          {/* {thr33fold_title} */}
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon" />
           </button>
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             {isAuthenticated ? authLinks : guestLinks}
-            {/* // Login Form here */}
           </div>
         </nav>
       </div>

@@ -7,6 +7,7 @@ import { clearCurrentProfile } from './actions/clientActions';
 import { Provider } from 'react-redux';
 import store from './store';
 import PrivateRoute from './components/common/PrivateRoute';
+import AdminRoute from './components/common/AdminRoute';
 import NavBar from './components/layout/NavBar';
 import Footer from './components/layout/Footer';
 import Landing from './components/layout/Landing';
@@ -22,6 +23,9 @@ import EditSocialRender from './components/socialRender/Edit-SocialRenderCompone
 import ContentCalendar from './components/socialRender/Calendar/Calendar';
 import ClientContentCalendar from './components/socialRender/Calendar/ClientContentCalendar';
 import './styles/styles.css';
+import ManageUsers from './components/Auth/Users/ManageUsers';
+import UserItem from './components/Auth/Users/UserItem';
+import RegisterClientUser from './components/Auth/Users/RegisterClientUser';
 
 // Check For Token
 const token = localStorage.jwtToken;
@@ -51,35 +55,18 @@ class App extends Component {
               <Route exact path="/login" component={Login} />
               <Switch>
                 <PrivateRoute exact path="/clients" component={Clients} />
-              </Switch>
-              <Switch>
+                <AdminRoute exact path="/users/manage" component={ManageUsers} />
+                <AdminRoute exact path="/users/manage/:id" component={UserItem} />
+                <AdminRoute exact path="/users/manage/e/register-client" component={RegisterClientUser} />
                 <PrivateRoute exact path="/social-render" component={SocialRender} />
-              </Switch>
-              <Switch>
                 <PrivateRoute exact path="/social-render/:id/edit-content" component={EditSocialRender} />
-              </Switch>
-              <Switch>
                 <PrivateRoute exact path="/content-calendar" component={ContentCalendar} />
-              </Switch>
-              <Switch>
                 <PrivateRoute exact path="/content-calendar/:m/:y" component={ContentCalendar} />
-              </Switch>
-              <Switch>
                 <PrivateRoute exact path="/content-calendar/:clientName" component={ClientContentCalendar} />
-              </Switch>
-              <Switch>
                 <PrivateRoute exact path="/content-calendar/:clientName/:m/:y" component={ClientContentCalendar} />
-              </Switch>
-              <Switch>
-                <PrivateRoute exact path="/clients/:handle" component={Client} />
-              </Switch>
-              <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
-              </Switch>
-              <Switch>
+                <PrivateRoute exact path="/clients/:handle" component={Client} />
                 <PrivateRoute exact path="/create-client" component={CreateClientProfile} />
-              </Switch>
-              <Switch>
                 <PrivateRoute exact path="/clients/:handle/edit-client" component={EditClient} />
               </Switch>
             </div>
