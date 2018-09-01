@@ -126,8 +126,8 @@ class EditClient extends Component {
       this.setState({ errors: nextProps.errors });
     }
 
-    if (nextProps.clients.clients) {
-      const clients = nextProps.clients.clients;
+    if (nextProps.clients.client) {
+      const clients = nextProps.clients.client;
       this.setState({
         name: isEmpty(clients.name && clients.name) ? '' : clients.name,
         // --------------------------
@@ -350,7 +350,7 @@ class EditClient extends Component {
 
   render() {
     const { user } = this.props.auth;
-    const { clients, loading } = this.props.clients;
+    const { client, loading } = this.props.clients;
     let clientContent;
     let deleteBtn;
 
@@ -439,20 +439,20 @@ class EditClient extends Component {
       );
     };
 
-    if (clients === null || loading) {
+    if (client === null || loading) {
       clientContent = <Spinner />;
     } else {
       // eslint-disable-next-line
       if (user.role == 'admin') {
         deleteBtn = (
           <button onClick={this.toggle} type="button" className="btn btn-danger mx-4 mb-3">
-            Delete {clients.name}
+            Delete {client.name}
           </button>
         );
       } else {
         deleteBtn = (
           <button onClick={this.toggle2} type="button" className="btn btn-dark mx-4 mb-3">
-            Delete {clients.name}
+            Delete {client.name}
           </button>
         );
       }
@@ -460,11 +460,11 @@ class EditClient extends Component {
         <form onSubmit={this.handleSubmit}>
           <div>
             <Link to={`/clients/${this.props.match.params.handle}`} className="btn btn-primary mb-3">
-              Back To {clients.name}
+              Back To {client.name}
             </Link>
 
             <button className="btn btn-warning ml-4 mb-3" type="submit">
-              Update {clients.name}
+              Update {client.name}
             </button>
 
             {deleteBtn}
@@ -474,7 +474,7 @@ class EditClient extends Component {
             </button>
 
             <div className="col-md-12 m-auto">
-              <h1 className="display-4 text-center">Edit {clients.name}</h1>
+              <h1 className="display-4 text-center">Edit {client.name}</h1>
               <div className="row" />
 
               {createEditFields_5('Page Followers', 'pageFollowers', 'pgf', 'show')}

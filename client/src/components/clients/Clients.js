@@ -11,12 +11,18 @@ export class ClientsComponent extends Component {
   };
 
   render() {
+    const { user } = this.props.auth;
+    const userClientAccess = user.clientRoleAccess;
     const { clients, loading } = this.props.clients;
     let clientItems;
     if (clients == null || loading) {
       clientItems = <Spinner />;
     } else {
-      if (clients.length > 0) {
+      // eslint-disable-next-line
+      if (user.role == 'client') {
+        // eslint-disable-next-line
+        clientItems = clients.map(client => (client.name == userClientAccess ? <ClientItem key={client._id} clients={client} /> : ''));
+      } else if (clients.length > 0) {
         clientItems = clients.map(client => <ClientItem key={client._id} clients={client} />);
       } else {
         clientItems = <h4>No Clients Found</h4>;
@@ -24,11 +30,25 @@ export class ClientsComponent extends Component {
     }
     return (
       <div className="clients">
-        <section className="container">
+        <section className="container p-0">
           <div className="row">
             <div className="col-md-12">
-              <h1 className="display-4 text-">Client Profiles</h1>
-              <p className="lead text-">Browser Clients</p>
+              <h1
+                className={
+                  // eslint-disable-next-line
+                  user.role == 'client' ? 'hide' : 'display-4'
+                }
+              >
+                Client Profiles
+              </h1>
+              <p
+                className={
+                  // eslint-disable-next-line
+                  user.role == 'client' ? 'hide' : 'lead'
+                }
+              >
+                Browser Clients
+              </p>
               {clientItems}
             </div>
           </div>
@@ -39,11 +59,14 @@ export class ClientsComponent extends Component {
 }
 
 ClientsComponent.propTypes = {
+  auth: PropTypes.object.isRequired,
+
   getAllClients: PropTypes.func.isRequired,
   clients: PropTypes.object.isRequired // from Client Reducer
 };
 
 const mapStateToProps = state => ({
+  auth: state.auth,
   clients: state.clients // Feed state to root reducer
 });
 
