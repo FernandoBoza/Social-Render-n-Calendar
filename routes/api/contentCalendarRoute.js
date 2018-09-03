@@ -146,7 +146,6 @@ router.post(
           .indexOf(req.user.id);
 
         content.likes.splice(removeIndex, 1);
-
         content.save().then(content => res.json(content));
       })
       .catch(err => res.status(404).json({ postNotFound: 'No Post Found' }));

@@ -13,6 +13,7 @@ import LinkedInDesktop from '../LinkedIn/LinkedIn';
 import AccordianCards from '../Layout/AccordianCards';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { Link } from 'react-router-dom';
+import CommentFeeds from './CommentFeedComp';
 
 Calendar.setLocalizer(Calendar.momentLocalizer(moment));
 
@@ -46,10 +47,15 @@ class ContentCalendar extends Component {
 
   onDeleteClick = e => {
     this.props.deleteContent(this.state._id, this.props.history);
+    this.setState({
+      modal: !this.state.modal
+    });
   };
 
   handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({
+      [e.target.name]: e.target.value
+    });
   };
 
   toggle = e => {
@@ -76,7 +82,7 @@ class ContentCalendar extends Component {
   };
 
   render() {
-    const { user } = this.props.auth;
+    // const { user } = this.props.auth;
     const { socialRenderContent, loading } = this.props.socialRenderContent;
     const fb = this.state.contentCopy ? this.state.contentCopy : false;
     const tw = this.state.contentTwitterCopy ? this.state.contentTwitterCopy : false;
@@ -117,31 +123,127 @@ class ContentCalendar extends Component {
     }
 
     return (
-      <div className="CtrlContentCalendar animated fadeIn">
+      <div className="CtrlContentCalendar col-sm-10 offset-sm-1 animated fadeIn">
         <Calendar
           selectable
           defaultDate={new Date(dateString)} // Current Month
-          views={['month', 'agenda']}
+          views={['month']}
           defaultView="month"
           events={PostDate} // Feed in Redux Props
-          style={{ height: '91vh' }}
+          style={{
+            height: '85vh'
+          }}
           onSelectEvent={event => this.toggle(event)} // Work on Modal Open
         />
 
-        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.state.commentOpen ? 'modal-comment-click' : ''} size="lg">
-          <ModalHeader toggle={this.toggle}>Date Going Live: {moment(this.state.start).format('ddd MMM Do')}</ModalHeader>
+        <Modal
+          isOpen={this.state.modal}
+          toggle={this.toggle}
+          className={this.state.commentOpen ? 'modal-comment-click' : ''}
+          size="lg"
+        >
+          <ModalHeader toggle={this.toggle}>
+            Date Going Live: {moment(this.state.start).format('ddd MMM Do')}
+          </ModalHeader>
           <ModalBody className="row" id="social-render">
             <div className={!this.state.commentOpen ? 'col-sm-12' : 'col-md-6'}>
               <div className="accordion" id="accordionParent">
-                <AccordianCards hidOrShow={fb ? '' : 'hide'} target={'facebookDesktop'} cardName={'Facebook Desktop'} componentName={<FacebookDesktop className="mb-5" clientInitials={this.state.clientInitials} clientName={this.state.title} contentCopy={this.state.contentCopy} imgLink={this.state.imgLink} date={moment(this.state.start).format('MMM Do')} />} />
-                <AccordianCards hidOrShow={fb ? '' : 'hide'} target={'facebookMobile'} cardName={'Facebook Mobile'} componentName={<FacebookMobile clientInitials={this.state.clientInitials} clientName={this.state.title} contentCopy={this.state.contentCopy} imgLink={this.state.imgLink} date={moment(this.state.dateGoingLive).format('MMM Do')} />} />
-                <AccordianCards hidOrShow={ig ? '' : 'hide'} target={'instagram'} cardName={'Instagram'} componentName={<Instagram clientInitials={this.state.clientInitials} clientName={this.state.title} contentCopy={this.state.contentInstagramCopy} imgLink={this.state.imgLinkInstagram ? this.state.imgLinkInstagram : this.state.imgLink} />} />
-                <AccordianCards hidOrShow={tw ? '' : 'hide'} target={'twitter'} cardName={'Twitter Desktop'} componentName={<TwitterDesktop className="mb-5" clientInitials={this.state.clientInitials} clientName={this.state.title} contentCopy={this.state.contentTwitterCopy} imgLink={this.state.imgLink} twtHandle={this.state.twtHandle} />} />
-                <AccordianCards hidOrShow={ln ? '' : 'hide'} target={'linkedin'} cardName={'Linkedin'} componentName={<LinkedInDesktop lnFollowers="1,000" className="mb-5" clientInitials={this.state.clientInitials} clientName={this.state.title} contentCopy={this.state.contentLinkedInCopy} imgLink={this.state.imgLink} />} />
+                <AccordianCards
+                  expandCollapse={fb ? 'show' : tw ? 'show' : ig ? 'show' : ln ? 'show' : ''}
+                  hidOrShow={fb ? '' : 'hide'}
+                  target={'facebookDesktop'}
+                  cardName={'Facebook Desktop'}
+                  componentName={
+                    <FacebookDesktop
+                      className="mb-5"
+                      clientInitials={this.state.clientInitials}
+                      clientName={this.state.title}
+                      contentCopy={this.state.contentCopy}
+                      imgLink={this.state.imgLink}
+                      date={moment(this.state.start).format('MMM Do')}
+                    />
+                  }
+                />
+                <AccordianCards
+                  expandCollapse={fb ? 'show' : tw ? 'show' : ig ? 'show' : ln ? 'show' : ''}
+                  hidOrShow={fb ? '' : 'hide'}
+                  target={'facebookMobile'}
+                  cardName={'Facebook Mobile'}
+                  componentName={
+                    <FacebookMobile
+                      clientInitials={this.state.clientInitials}
+                      clientName={this.state.title}
+                      contentCopy={this.state.contentCopy}
+                      imgLink={this.state.imgLink}
+                      date={moment(this.state.dateGoingLive).format('MMM Do')}
+                    />
+                  }
+                />
+                <AccordianCards
+                  expandCollapse={fb ? 'show' : tw ? 'show' : ig ? 'show' : ln ? 'show' : ''}
+                  hidOrShow={ig ? '' : 'hide'}
+                  target={'instagram'}
+                  cardName={'Instagram'}
+                  componentName={
+                    <Instagram
+                      clientInitials={this.state.clientInitials}
+                      clientName={this.state.title}
+                      contentCopy={this.state.contentInstagramCopy}
+                      imgLink={
+                        this.state.imgLinkInstagram
+                          ? this.state.imgLinkInstagram
+                          : this.state.imgLink
+                      }
+                    />
+                  }
+                />
+                <AccordianCards
+                  expandCollapse={fb ? 'show' : tw ? 'show' : ig ? 'show' : ln ? 'show' : ''}
+                  hidOrShow={tw ? '' : 'hide'}
+                  target={'twitter'}
+                  cardName={'Twitter Desktop'}
+                  componentName={
+                    <TwitterDesktop
+                      className="mb-5"
+                      clientInitials={this.state.clientInitials}
+                      clientName={this.state.title}
+                      contentCopy={this.state.contentTwitterCopy}
+                      imgLink={this.state.imgLink}
+                      twtHandle={this.state.twtHandle}
+                    />
+                  }
+                />
+                <AccordianCards
+                  expandCollapse={fb ? 'show' : tw ? 'show' : ig ? 'show' : ln ? 'show' : ''}
+                  hidOrShow={ln ? '' : 'hide'}
+                  target={'linkedin'}
+                  cardName={'Linkedin'}
+                  componentName={
+                    <LinkedInDesktop
+                      lnFollowers="1,000"
+                      className="mb-5"
+                      clientInitials={this.state.clientInitials}
+                      clientName={this.state.title}
+                      contentCopy={this.state.contentLinkedInCopy}
+                      imgLink={this.state.imgLink}
+                    />
+                  }
+                />
               </div>
             </div>
             <div className={!this.state.commentOpen ? 'hide ' : 'col-md-6 animated fadeInRight'}>
-              <textarea name="comment" className="form-control card-text pt-1" placeholder="Comment Section Here " aria-label="With textarea" type="text" value={this.state.comment} onChange={this.handleChange} />
+              <div className="commentFeed">
+                <CommentFeeds />
+              </div>
+              <textarea
+                name="comment"
+                className="form-control card-text pt-1"
+                placeholder="Comment Section Here "
+                aria-label="With textarea"
+                type="text"
+                value={this.state.comment}
+                onChange={this.handleChange}
+              />
               <button className="btn btn-success mt-3" type="submit">
                 Post Comment
               </button>
@@ -152,13 +254,17 @@ class ContentCalendar extends Component {
               Hide
             </Button>
 
-            <Link to={`/social-render/${this.state._id}/edit-content`} className="btn btn-success mx-3">
+            <Link
+              to={`/social-render/${this.state._id}/edit-content`}
+              className="btn btn-success mx-3"
+            >
               Edit Post
             </Link>
 
-            <a href="/content-calendar" onClick={this.onDeleteClick} className="btn btn-danger">
+            <Button onClick={this.onDeleteClick} className="btn btn-danger">
               Delete Post Content
-            </a>
+            </Button>
+
             <Button onClick={this.onCommentClick} className="btn btn-warning ml-3">
               Comment
             </Button>
@@ -183,7 +289,10 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getAllSocialRender, deleteContent }
+  {
+    getAllSocialRender,
+    deleteContent
+  }
 )(ContentCalendar);
 
 /* <div className="input-group mb-4 animated">

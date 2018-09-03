@@ -4,6 +4,7 @@ export const CLIENT_LOADING = 'CLIENT_LOADING';
 // User Types
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 export const CLEAR_CURRENT_USER = 'CLEAR_CURRENT_USER ';
+export const CREATE_CLIENT_USER = 'CREATE_CLIENT_USER ';
 
 // All User Types
 export const GET_ALL_USERS = 'GET_ALL_USERS ';

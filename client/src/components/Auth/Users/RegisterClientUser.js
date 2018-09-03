@@ -36,8 +36,6 @@ class RegisterClientUser extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
   handleSubmit = e => {
-    e.preventDefault();
-
     const newUser = {
       name: this.state.name,
       email: this.state.email,
@@ -45,7 +43,6 @@ class RegisterClientUser extends Component {
       clientRoleAccess: this.state.clientRoleAccess
     };
     this.props.registerClientUser(newUser, this.props.history);
-    console.log(newUser);
   };
 
   handleClientSelect = e => {
@@ -89,11 +86,38 @@ class RegisterClientUser extends Component {
             <div className="text-center">
               <h1 className="mt-5 mb-3 display-4">Register A Client</h1>
               <form noValidate className="form-signin" onSubmit={this.handleSubmit}>
-                <TextFieldGroup name="name" placeholder="Client Name" value={this.state.name} onChange={this.handleChange} error={errors.name} />
-                <TextFieldGroup name="email" placeholder="Client Email address" value={this.state.email} onChange={this.handleChange} type="email" error={errors.email} />
-                <TextFieldGroup name="password" placeholder="Client Password" value={this.state.password} onChange={this.handleChange} type="password" error={errors.password} />
+                <TextFieldGroup
+                  name="name"
+                  placeholder="Client Name"
+                  value={this.state.name}
+                  onChange={this.handleChange}
+                  error={errors.name}
+                />
+                <TextFieldGroup
+                  name="email"
+                  placeholder="Client Email address"
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                  type="email"
+                  error={errors.email}
+                />
+                <TextFieldGroup
+                  name="password"
+                  placeholder="Client Password"
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                  type="password"
+                  error={errors.password}
+                />
                 {/* <TextFieldGroup name="clientRoleAccess" placeholder="Clients" value={this.state.clientRoleAccess} onChange={this.handleChange} type="text" error={errors.clientRoleAccess} /> */}
-                <Select options={clientItems} name="clientName" onChange={this.handleClientSelect} placeholder="Choose A Client" defaultValue={this.state.clientRoleAccess} styles={customStyles} />
+                <Select
+                  options={clientItems}
+                  name="clientName"
+                  onChange={this.handleClientSelect}
+                  placeholder="Choose A Client"
+                  defaultValue={this.state.clientRoleAccess}
+                  styles={customStyles}
+                />
                 <button className="btn btn-lg btn-primary btn-block mt-3" type="submit">
                   Register Client User
                 </button>
