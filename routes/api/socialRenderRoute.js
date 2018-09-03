@@ -35,6 +35,8 @@ router.get('/id/:_id', passport.authenticate('jwt', { session: false }), (req, r
     .catch(err => res.status(404).json(err));
 });
 
+// @POST api/social-render/
+// @desc POST A SOCIAL CONTENT
 router.post('/', passport.authenticate('jwt', { session: false }), (req, res) => {
   const { errorsObj, isValid } = validateSocialRender(req.body);
   const trimHandle = n => n.toLowerCase().replace(/\s/g, '_');
@@ -62,6 +64,8 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
     .catch(err => console.log(err));
 });
 
+// @POST api/social-render/id/_id
+// @desc UPDATE A SOCIAL CONTENT BY ID
 router.put('/id/:_id/', passport.authenticate('jwt', { session: false }), (req, res) => {
   const { errorsObj, isValid } = validateSocialRender(req.body);
   const trimHandle = n => n.toLowerCase().replace(/\s/g, '_');

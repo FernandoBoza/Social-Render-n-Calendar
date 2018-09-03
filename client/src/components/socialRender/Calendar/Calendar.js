@@ -142,6 +142,9 @@ class ContentCalendar extends Component {
             </div>
             <div className={!this.state.commentOpen ? 'hide ' : 'col-md-6 animated fadeInRight'}>
               <textarea name="comment" className="form-control card-text pt-1" placeholder="Comment Section Here " aria-label="With textarea" type="text" value={this.state.comment} onChange={this.handleChange} />
+              <button className="btn btn-success mt-3" type="submit">
+                Post Comment
+              </button>
             </div>
           </ModalBody>
           <ModalFooter>

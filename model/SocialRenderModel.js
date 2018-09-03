@@ -3,10 +3,6 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const SocialRenderSchema = new Schema({
-  // clientName: {
-  //   type: Schema.Types.ObjectId,
-  //   ref: 'client'
-  // },
   clientName: {
     type: String,
     ref: 'client'
@@ -42,6 +38,14 @@ const SocialRenderSchema = new Schema({
     type: Date,
     default: Date.now
   },
+  likes: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: 'users'
+      }
+    }
+  ],
   comments: [
     {
       user: {
