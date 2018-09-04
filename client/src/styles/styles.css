@@ -206,8 +206,20 @@ p {
 .css-1wy0on6 {
   display: none !important; }
 
-span.rbc-toolbar-label {
-  font-size: 2rem; }
+.rbc-toolbar span.rbc-toolbar-label {
+  font-size: 2rem;
+  text-align: right;
+  font-weight: 100; }
+
+span.rbc-btn-group button,
+.rbc-toolbar button:active:hover,
+.rbc-toolbar button.rbc-active:hover,
+.rbc-toolbar button:active:focus,
+.rbc-toolbar button.rbc-active:focus {
+  background: #3275ac !important;
+  color: white !important;
+  text-transform: capitalize;
+  outline: none; }
 
 .modal-dialog[role='document'] {
   transition: max-width 1s !important; }
