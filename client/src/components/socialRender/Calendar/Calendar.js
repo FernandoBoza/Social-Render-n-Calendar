@@ -4,6 +4,7 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getAllSocialRender, deleteContent } from '../../../actions/socialRenderActions'; // Fed the client model
+import { getAllUsers } from '../../../actions/authActions';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import FacebookDesktop from '../Facebook/FacebookDesktop';
 import FacebookMobile from '../Facebook/FacebookMobile';
@@ -24,7 +25,7 @@ class ContentCalendar extends Component {
     this.state = {
       modal: false,
       commentOpen: false,
-      comment: '',
+      commentData: [],
       title: '',
       clientInitials: '',
       contentCopy: '',
@@ -43,6 +44,7 @@ class ContentCalendar extends Component {
 
   componentDidMount() {
     this.props.getAllSocialRender();
+    this.props.getAllUsers();
   }
 
   onDeleteClick = e => {
@@ -71,7 +73,8 @@ class ContentCalendar extends Component {
       imgLink: e.imgLink,
       imgLinkInstagram: e.imgLinkInstagram,
       twtHandle: e.twtHandle,
-      start: e.start
+      start: e.start,
+      commentData: e.commentData
     });
   };
 
@@ -82,7 +85,8 @@ class ContentCalendar extends Component {
   };
 
   render() {
-    // const { user } = this.props.auth;
+    const { users, user } = this.props.auth;
+    const usersDataLoading = this.props.auth.loading;
     const { socialRenderContent, loading } = this.props.socialRenderContent;
     const fb = this.state.contentCopy ? this.state.contentCopy : false;
     const tw = this.state.contentTwitterCopy ? this.state.contentTwitterCopy : false;
@@ -91,6 +95,8 @@ class ContentCalendar extends Component {
     const month = this.props.match.params.m;
     const year = this.props.match.params.y;
     let PostDate = [];
+    let commentDataArray = [];
+    let UserDataArray = [];
 
     if (socialRenderContent == null || loading) {
       PostDate = [];
@@ -108,7 +114,8 @@ class ContentCalendar extends Component {
           contentLinkedInCopy: contentInfo.contentLinkedInCopy,
           imgLink: contentInfo.imgLink,
           imgLinkInstagram: contentInfo.imgLinkInstagram,
-          _id: contentInfo._id
+          _id: contentInfo._id,
+          commentData: contentInfo.comments
         }));
       } else {
         PostDate = [];
@@ -121,6 +128,27 @@ class ContentCalendar extends Component {
     } else {
       dateString = `20${year}-${month}-01T20:02:40-04:00`;
     }
+
+    // if (socialRenderContent == null || loading) {
+    //   commentDataArray = [];
+    // } else {
+    //   if (socialRenderContent.length > 0) {
+    //     commentDataArray = socialRenderContent.map(contentInfo => console.log(contentInfo.comments));
+    //   } else {
+    //     commentDataArray = [];
+    //   }
+    // }
+
+    if (users == null || usersDataLoading) {
+      console.log('nothing');
+    } else {
+      for (let i = 0; i < users.length; i++) {
+        UserDataArray.push(users[i]._id);
+      }
+    }
+
+    console.log(UserDataArray);
+    console.log(this.state.commentData.map(x => x._id));
 
     return (
       <div className="CtrlContentCalendar col-sm-10 offset-sm-1 animated fadeIn">
@@ -190,9 +218,7 @@ class ContentCalendar extends Component {
                       clientName={this.state.title}
                       contentCopy={this.state.contentInstagramCopy}
                       imgLink={
-                        this.state.imgLinkInstagram
-                          ? this.state.imgLinkInstagram
-                          : this.state.imgLink
+                        this.state.imgLinkInstagram ? this.state.imgLinkInstagram : this.state.imgLink
                       }
                     />
                   }
@@ -233,7 +259,13 @@ class ContentCalendar extends Component {
             </div>
             <div className={!this.state.commentOpen ? 'hide ' : 'col-md-6 animated fadeInRight'}>
               <div className="commentFeed">
-                <CommentFeeds />
+                <CommentFeeds
+                  name="Fernando"
+                  commentDate={moment()
+                    .startOf('hour')
+                    .fromNow()}
+                  comment={this.state.comment}
+                />
               </div>
               <textarea
                 name="comment"
@@ -254,10 +286,7 @@ class ContentCalendar extends Component {
               Hide
             </Button>
 
-            <Link
-              to={`/social-render/${this.state._id}/edit-content`}
-              className="btn btn-success mx-3"
-            >
+            <Link to={`/social-render/${this.state._id}/edit-content`} className="btn btn-success mx-3">
               Edit Post
             </Link>
 
@@ -284,22 +313,15 @@ ContentCalendar.propTypes = {
 
 const mapStateToProps = state => ({
   socialRenderContent: state.socialRenderContent,
-  auth: state.auth
+  auth: state.auth,
+  getAllUsers: PropTypes.func.isRequired
 });
 
 export default connect(
   mapStateToProps,
   {
     getAllSocialRender,
-    deleteContent
+    deleteContent,
+    getAllUsers
   }
 )(ContentCalendar);
-
-/* <div className="input-group mb-4 animated">
-                <div className="input-group-prepend">
-                  <span className="input-group-text commentName">
-                    <i className="fa fa-pencil-square-o text-primary pl-0" aria-hidden="true" />
-                    {`${user.name}`}
-                  </span>
-                </div>
-              </div> */

@@ -4,7 +4,8 @@ import {
   SET_CONTENT_CALENDAR,
   GET_ERRORS,
   GET_CLIENT_CONTENT,
-  DELETE_CONTENT
+  DELETE_CONTENT,
+  CLEAR_ERRORS
 } from './types';
 
 // GET Social Render Profiles
@@ -77,9 +78,60 @@ export const deleteContent = id => dispatch => {
     .catch(err => dispatch({ type: GET_ERRORS, payload: err.response.data }));
 };
 
+// GET Post by id Content Calendar
+export const getContentById = id => dispatch => {
+  dispatch(setSocialRenderLoading());
+  axios
+    .get(`/api/content-calendar/id/${id}`)
+    .then(res => dispatch({ type: GET_CLIENT_CONTENT, payload: res.data }))
+    .catch(err => dispatch({ type: GET_CLIENT_CONTENT, payload: null }));
+};
+
+// ADD A Comment Like By Id
+export const likeComment = (id, comment_id) => dispatch => {
+  axios
+    .post(`/api/content-calendar/id/:_id/comment/:comment_id/like`)
+    .then(res => dispatch(getContentById()))
+    .catch(err => dispatch({ type: GET_ERRORS, payload: err.response.data }));
+};
+
+// REMOVE A Comment Like By Id
+export const unLikeComment = (id, comment_id) => dispatch => {
+  axios
+    .post(`/api/content-calendar/id/:_id/comment/:comment_id/unlike`)
+    .then(res => dispatch(getContentById()))
+    .catch(err => dispatch({ type: GET_ERRORS, payload: err.response.data }));
+};
+
+// Add Comment
+export const addComment = (id, commentData) => dispatch => {
+  dispatch(clearErrors());
+  axios
+    .post(`/api/content-calendar/id/${id}/${commentData}`, commentData)
+    .then(res =>
+      dispatch({
+        type: GET_CLIENT_CONTENT,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
 //Social Render Loading
 export const setSocialRenderLoading = () => {
   return {
     type: CONTENT_LOADING
+  };
+};
+
+// Clear errors
+export const clearErrors = () => {
+  return {
+    type: CLEAR_ERRORS
   };
 };

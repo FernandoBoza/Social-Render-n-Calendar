@@ -26,6 +26,26 @@
   font-weight: 100;
 }
 
+.commentFeed {
+  .commentProfileImage {
+    width: 3.5rem;
+    height: 3.5rem;
+    font-size: 3rem;
+    text-align: center;
+    color: white;
+    border-radius: 50rem;
+    font-weight: 100;
+    line-height: 1.3;
+  }
+
+  .fa-circle.text-primary {
+    font-size: 5px;
+    vertical-align: middle;
+    height: 0.4rem;
+    width: 0;
+  }
+}
+
 span.rbc-btn-group button,
 .rbc-toolbar button:active:hover,
 .rbc-toolbar button.rbc-active:hover,
