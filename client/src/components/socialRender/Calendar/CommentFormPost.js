@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { addComment } from '../../../actions/socialRenderActions';
 
 class CommentFormPost extends Component {
@@ -11,15 +12,9 @@ class CommentFormPost extends Component {
       comment: '',
       errors: {}
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
-
-  componentDidMount() {}
-
-  componentWillReceiveProps = nextProps => {
-    if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
-    }
-  };
 
   handleSubmit = e => {
     e.preventDefault();
@@ -58,18 +53,16 @@ class CommentFormPost extends Component {
 }
 
 CommentFormPost.propTypes = {
-  socialRenderContent: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   addComment: PropTypes.func.isRequired,
   user: PropTypes.string
 };
 
 const mapStateToProps = state => ({
-  socialRenderContent: state.socialRenderContent,
   auth: state.auth
 });
 
 export default connect(
   mapStateToProps,
   { addComment }
-)(CommentFormPost);
+)(withRouter(CommentFormPost));

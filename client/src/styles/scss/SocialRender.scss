@@ -28,6 +28,10 @@
 
 .commentSection {
   div.commentFeed {
+    width: 100%;
+    height: 75%;
+    overflow-y: scroll;
+
     ul.commentHeader {
       list-style-type: none;
       padding: 0;

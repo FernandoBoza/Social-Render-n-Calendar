@@ -163,7 +163,7 @@ router.post('/id/:_id/comment/', passport.authenticate('jwt', { session: false }
         user: req.user.id
       };
 
-      content.comments.unshift(newComment);
+      content.comments.push(newComment);
       content.save().then(content => res.json(content));
     })
     .catch(err => res.status(404).json({ postNotFound: 'No Post Found' }));
