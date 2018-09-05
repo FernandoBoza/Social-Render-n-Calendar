@@ -70,7 +70,6 @@ class ClientContentCalendar extends Component {
   render() {
     const { socialRenderContent, loading } = this.props.socialRenderContent;
     const { user } = this.props.auth;
-
     const fb = this.state.contentCopy ? this.state.contentCopy : false;
     const tw = this.state.contentTwitterCopy ? this.state.contentTwitterCopy : false;
     const ig = this.state.contentInstagramCopy ? this.state.contentInstagramCopy : false;
@@ -78,27 +77,33 @@ class ClientContentCalendar extends Component {
     const month = this.props.match.params.m;
     const year = this.props.match.params.y;
     let PostDate = [];
+    let userAcess;
 
     if (socialRenderContent == null || loading) {
       PostDate = [];
     } else {
-      if (socialRenderContent.length > 0) {
-        PostDate = socialRenderContent.map(contentInfo => ({
-          start: contentInfo.dateGoingLive,
-          end: contentInfo.dateGoingLive,
-          title: contentInfo.clientName,
-          twtHandle: contentInfo.clientName.replace(/ /g, ''),
-          clientInitials: contentInfo.clientInitials,
-          contentCopy: contentInfo.contentCopy,
-          contentTwitterCopy: contentInfo.contentTwitterCopy,
-          contentInstagramCopy: contentInfo.contentInstagramCopy,
-          contentLinkedInCopy: contentInfo.contentLinkedInCopy,
-          imgLink: contentInfo.imgLink,
-          imgLinkInstagram: contentInfo.imgLinkInstagram,
-          _id: contentInfo._id
-        }));
+      if (socialRenderContent[0].clientName !== user.clientRoleAccess) {
+        userAcess = <h1>Sorry You're Not Allowed Here</h1>;
       } else {
-        PostDate = [];
+        userAcess = true;
+        if (socialRenderContent.length > 0) {
+          PostDate = socialRenderContent.map(contentInfo => ({
+            start: contentInfo.dateGoingLive,
+            end: contentInfo.dateGoingLive,
+            title: contentInfo.clientName,
+            twtHandle: contentInfo.clientName.replace(/ /g, ''),
+            clientInitials: contentInfo.clientInitials,
+            contentCopy: contentInfo.contentCopy,
+            contentTwitterCopy: contentInfo.contentTwitterCopy,
+            contentInstagramCopy: contentInfo.contentInstagramCopy,
+            contentLinkedInCopy: contentInfo.contentLinkedInCopy,
+            imgLink: contentInfo.imgLink,
+            imgLinkInstagram: contentInfo.imgLinkInstagram,
+            _id: contentInfo._id
+          }));
+        } else {
+          PostDate = [];
+        }
       }
     }
 
@@ -127,22 +132,22 @@ class ClientContentCalendar extends Component {
 
     return (
       <div className="ContentCalendar animated fadeIn">
-        <Calendar
-          selectable
-          defaultDate={new Date(dateString)} // Current Month
-          views={['month', 'agenda']}
-          defaultView="month"
-          events={PostDate} // Feed in Redux Props
-          style={{ height: '91vh' }}
-          onSelectEvent={event => this.toggle(event)} // Work on Modal Open
-        />
+        {// eslint-disable-next-line
+        userAcess == true ? (
+          <Calendar
+            selectable
+            defaultDate={new Date(dateString)} // Current Month
+            views={['month', 'agenda']}
+            defaultView="month"
+            events={PostDate} // Feed in Redux Props
+            style={{ height: '91vh' }}
+            onSelectEvent={event => this.toggle(event)} // Work on Modal Open
+          />
+        ) : (
+          userAcess
+        )}
 
-        <Modal
-          isOpen={this.state.modal}
-          toggle={this.toggle}
-          className={this.props.className}
-          size="lg"
-        >
+        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} size="lg">
           <ModalHeader toggle={this.toggle}>
             Date Going Live: {moment(this.state.start).format('ddd MMM Do')}
           </ModalHeader>

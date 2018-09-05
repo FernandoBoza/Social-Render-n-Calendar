@@ -99,6 +99,10 @@ span.rbc-btn-group button,
   transition: max-width 1s !important;
   &.modal-comment-click {
     max-width: 87% !important;
+
+    .modal-content {
+      height: 96vh;
+    }
   }
 }
 

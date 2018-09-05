@@ -265,6 +265,8 @@ span.rbc-btn-group button,
   transition: max-width 1s !important; }
   .modal-dialog[role='document'].modal-comment-click {
     max-width: 87% !important; }
+    .modal-dialog[role='document'].modal-comment-click .modal-content {
+      height: 96vh; }
 
 #social-render .input-group-text.commentName {
   width: 7rem; }

@@ -162,7 +162,7 @@ class ContentCalendar extends Component {
     }
 
     return (
-      <div className="CtrlContentCalendar col-sm-10 offset-sm-1 animated fadeIn">
+      <div className="ContentCalendar col-sm-10 offset-sm-1 animated fadeIn">
         <Calendar
           selectable
           defaultDate={new Date(dateString)} // Current Month
