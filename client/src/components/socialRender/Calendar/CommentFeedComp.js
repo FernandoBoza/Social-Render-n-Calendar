@@ -1,19 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Media } from 'reactstrap';
+import moment from 'moment';
 
-const CommentFeedComp = ({ name, commentDate, comment }) => {
+const CommentFeedComp = ({ name, commentDate, comment, likeNumber, commentLiked, id }) => {
   return (
-    <div className="commentFeed">
-      <Media>
+    <div>
+      <Media className="mb-3">
         <Media left href="#">
           <div className="commentProfileImage bg-primary mr-3">{name.charAt(0)}</div>
         </Media>
         <Media body>
           <Media heading>
-            {name} <i className="fa fa-circle text-primary mx-2" /> {commentDate}
+            <ul className="commentHeader">
+              <li>
+                {name} <i className="fa fa-circle text-primary ml-1 mr-2" />
+                {moment(commentDate).calendar()}
+              </li>
+              <li className="commentLike float-right">
+                <p>
+                  {// eslint-disable-next-line
+                  likeNumber == 0 ? '' : likeNumber}
+                </p>
+                <button className="btn btn-link pl-0 pt-0">
+                  <i
+                    className={
+                      // eslint-disable-next-line
+                      commentLiked == id ? 'fa fa-thumbs-up ml-2' : 'fa fa-thumbs-o-up ml-2'
+                    }
+                  />
+                </button>
+              </li>
+            </ul>
           </Media>
-          {comment}
+          <p>{comment}</p>
         </Media>
       </Media>
     </div>
@@ -23,7 +43,10 @@ const CommentFeedComp = ({ name, commentDate, comment }) => {
 CommentFeedComp.propTypes = {
   name: PropTypes.string,
   commentDate: PropTypes.string,
-  comment: PropTypes.string
+  comment: PropTypes.string,
+  likeNumber: PropTypes.number,
+  commentLiked: PropTypes.string,
+  id: PropTypes.string
 };
 
 export default CommentFeedComp;

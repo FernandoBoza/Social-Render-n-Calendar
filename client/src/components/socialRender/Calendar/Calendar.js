@@ -15,6 +15,7 @@ import AccordianCards from '../Layout/AccordianCards';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { Link } from 'react-router-dom';
 import CommentFeeds from './CommentFeedComp';
+import CommentForm from './CommentFormPost';
 
 Calendar.setLocalizer(Calendar.momentLocalizer(moment));
 
@@ -24,7 +25,7 @@ class ContentCalendar extends Component {
 
     this.state = {
       modal: false,
-      commentOpen: false,
+      commentOpen: true,
       commentData: [],
       title: '',
       clientInitials: '',
@@ -85,7 +86,7 @@ class ContentCalendar extends Component {
   };
 
   render() {
-    const { users, user } = this.props.auth;
+    const { user } = this.props.auth;
     const usersDataLoading = this.props.auth.loading;
     const { socialRenderContent, loading } = this.props.socialRenderContent;
     const fb = this.state.contentCopy ? this.state.contentCopy : false;
@@ -94,9 +95,10 @@ class ContentCalendar extends Component {
     const ln = this.state.contentLinkedInCopy ? this.state.contentLinkedInCopy : false;
     const month = this.props.match.params.m;
     const year = this.props.match.params.y;
+    let comments;
+    let currentUserId;
+    let commentLiked;
     let PostDate = [];
-    let commentDataArray = [];
-    let UserDataArray = [];
 
     if (socialRenderContent == null || loading) {
       PostDate = [];
@@ -122,6 +124,9 @@ class ContentCalendar extends Component {
       }
     }
 
+    // ********************************************
+    // Setting Up fir dates in URL
+    // ********************************************
     // eslint-disable-next-line
     if (month == undefined || year == undefined) {
       var dateString = new Date();
@@ -129,26 +134,32 @@ class ContentCalendar extends Component {
       dateString = `20${year}-${month}-01T20:02:40-04:00`;
     }
 
-    // if (socialRenderContent == null || loading) {
-    //   commentDataArray = [];
-    // } else {
-    //   if (socialRenderContent.length > 0) {
-    //     commentDataArray = socialRenderContent.map(contentInfo => console.log(contentInfo.comments));
-    //   } else {
-    //     commentDataArray = [];
-    //   }
-    // }
-
-    if (users == null || usersDataLoading) {
-      console.log('nothing');
+    if (user == null || usersDataLoading) {
     } else {
-      for (let i = 0; i < users.length; i++) {
-        UserDataArray.push(users[i]._id);
-      }
+      currentUserId = user.id;
     }
-
-    console.log(UserDataArray);
-    console.log(this.state.commentData.map(x => x._id));
+    // ********************************************
+    // Bringing In Comment Data
+    // ********************************************
+    // eslint-disable-next-line
+    if (this.state.commentData == null || this.state.commentData == undefined) {
+      comments = this.state.commentData;
+    } else {
+      this.state.commentData.map(x =>
+        x.likes.filter(t => (t.user === currentUserId ? (commentLiked = x._id) : (commentLiked = null)))
+      );
+      comments = this.state.commentData.map(x => (
+        <CommentFeeds
+          key={x._id}
+          id={x._id}
+          name={x.name}
+          commentDate={x.date}
+          comment={x.comment}
+          likeNumber={x.likes.length}
+          commentLiked={commentLiked}
+        />
+      ));
+    }
 
     return (
       <div className="CtrlContentCalendar col-sm-10 offset-sm-1 animated fadeIn">
@@ -257,28 +268,11 @@ class ContentCalendar extends Component {
                 />
               </div>
             </div>
-            <div className={!this.state.commentOpen ? 'hide ' : 'col-md-6 animated fadeInRight'}>
-              <div className="commentFeed">
-                <CommentFeeds
-                  name="Fernando"
-                  commentDate={moment()
-                    .startOf('hour')
-                    .fromNow()}
-                  comment={this.state.comment}
-                />
-              </div>
-              <textarea
-                name="comment"
-                className="form-control card-text pt-1"
-                placeholder="Comment Section Here "
-                aria-label="With textarea"
-                type="text"
-                value={this.state.comment}
-                onChange={this.handleChange}
-              />
-              <button className="btn btn-success mt-3" type="submit">
-                Post Comment
-              </button>
+            <div
+              className={!this.state.commentOpen ? 'hide ' : 'commentSection col-md-6 animated fadeInUp'}
+            >
+              <div className="commentFeed">{comments}</div>
+              <CommentForm social_id={this.state._id} />
             </div>
           </ModalBody>
           <ModalFooter>

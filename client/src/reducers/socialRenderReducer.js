@@ -2,7 +2,8 @@ import {
   SET_CONTENT_CALENDAR,
   GET_CLIENT_CONTENT,
   CONTENT_LOADING,
-  DELETE_CONTENT
+  DELETE_CONTENT,
+  CREATE_COMMENT
 } from '../actions/types';
 
 const initialState = {
@@ -32,10 +33,13 @@ export default function(state = initialState, action) {
     case DELETE_CONTENT:
       return {
         ...state,
-        socialRenderContent: state.socialRenderContent.filter(
-          content => content._id !== action.payload
-        )
-        // loading: false
+        socialRenderContent: state.socialRenderContent.filter(content => content._id !== action.payload)
+      };
+    case CREATE_COMMENT:
+      return {
+        ...state,
+        socialRenderContent: [action.payload, ...state.socialRenderContent],
+        loading: false
       };
     default:
       return state;

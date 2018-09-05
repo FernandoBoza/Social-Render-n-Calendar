@@ -4,7 +4,7 @@ const router = express.Router();
 const passport = require('passport');
 const UserModel = require('../../model/UserModel');
 const SocialRenderModel = require('../../model/SocialRenderModel');
-const validateSocialRender = require('../../validation/socialRenderValidation');
+const commentValidation = require('../../validation/commentValidation');
 
 // GET all social render profiles
 // @desc Get All Social Render Contents
@@ -114,7 +114,7 @@ router.post(
   }
 );
 
-// @POST api/content-calendar/unlike/_id
+// @POST api/content-calendar/id/_id/comment/:comment_id/unlike
 // @desc UNLIKE A SOCIAL CONTENT BY ID
 router.post(
   '/id/:_id/comment/:comment_id/unlike',
@@ -149,7 +149,7 @@ router.post(
 // @POST api/content-calendar/id/_id/comment
 // @desc COMMENT ON A SOCIAL CONTENT BY ID
 router.post('/id/:_id/comment/', passport.authenticate('jwt', { session: false }), (req, res) => {
-  const { errors, isValid } = validateSocialRender(req.body);
+  const { errors, isValid } = commentValidation(req.body);
 
   if (!isValid) {
     return res.status(400).json(errors);
@@ -159,7 +159,7 @@ router.post('/id/:_id/comment/', passport.authenticate('jwt', { session: false }
     .then(content => {
       const newComment = {
         comment: req.body.comment,
-        name: req.body.name,
+        name: req.user.name,
         user: req.user.id
       };
 

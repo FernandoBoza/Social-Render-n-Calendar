@@ -5,7 +5,8 @@ import {
   GET_ERRORS,
   GET_CLIENT_CONTENT,
   DELETE_CONTENT,
-  CLEAR_ERRORS
+  CLEAR_ERRORS,
+  CREATE_COMMENT
 } from './types';
 
 // GET Social Render Profiles
@@ -87,15 +88,15 @@ export const getContentById = id => dispatch => {
     .catch(err => dispatch({ type: GET_CLIENT_CONTENT, payload: null }));
 };
 
-// ADD A Comment Like By Id
+// ADD A Like By Id
 export const likeComment = (id, comment_id) => dispatch => {
   axios
-    .post(`/api/content-calendar/id/:_id/comment/:comment_id/like`)
+    .post(`/api/content-calendar/id/${id}/comment/${comment_id}/like`)
     .then(res => dispatch(getContentById()))
     .catch(err => dispatch({ type: GET_ERRORS, payload: err.response.data }));
 };
 
-// REMOVE A Comment Like By Id
+// REMOVE A Like By Id
 export const unLikeComment = (id, comment_id) => dispatch => {
   axios
     .post(`/api/content-calendar/id/:_id/comment/:comment_id/unlike`)
@@ -107,10 +108,10 @@ export const unLikeComment = (id, comment_id) => dispatch => {
 export const addComment = (id, commentData) => dispatch => {
   dispatch(clearErrors());
   axios
-    .post(`/api/content-calendar/id/${id}/${commentData}`, commentData)
+    .post(`/api/content-calendar/id/${id}/comment`, commentData)
     .then(res =>
       dispatch({
-        type: GET_CLIENT_CONTENT,
+        type: CREATE_COMMENT,
         payload: res.data
       })
     )
