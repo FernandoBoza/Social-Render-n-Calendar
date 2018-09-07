@@ -3,7 +3,17 @@ import PropTypes from 'prop-types';
 import { Media } from 'reactstrap';
 import moment from 'moment';
 
-const CommentFeedComp = ({ name, commentDate, comment, likeNumber, commentLiked, id }) => {
+const CommentFeedComp = ({
+  name,
+  commentDate,
+  comment,
+  likeNumber,
+  commentLiked,
+  id,
+  post_id,
+  deleteComment
+}) => {
+  const this_id = id;
   return (
     <div>
       <Media className="mb-3">
@@ -34,6 +44,12 @@ const CommentFeedComp = ({ name, commentDate, comment, likeNumber, commentLiked,
             </ul>
           </Media>
           <p>{comment}</p>
+          <button
+            onClick={this_id ? this_id => deleteComment(post_id, id) : 'nope'}
+            className="btn btn-danger "
+          >
+            Delete Comment
+          </button>
         </Media>
       </Media>
     </div>
@@ -46,7 +62,9 @@ CommentFeedComp.propTypes = {
   comment: PropTypes.string,
   likeNumber: PropTypes.number,
   commentLiked: PropTypes.string,
-  id: PropTypes.string
+  id: PropTypes.string,
+  post_id: PropTypes.string,
+  deleteComment: PropTypes.func
 };
 
 export default CommentFeedComp;

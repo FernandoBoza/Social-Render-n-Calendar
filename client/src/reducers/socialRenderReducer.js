@@ -3,7 +3,8 @@ import {
   GET_CLIENT_CONTENT,
   CONTENT_LOADING,
   DELETE_CONTENT,
-  CREATE_COMMENT
+  CREATE_COMMENT,
+  DELETE_COMMENT
 } from '../actions/types';
 
 const initialState = {
@@ -38,7 +39,17 @@ export default function(state = initialState, action) {
     case CREATE_COMMENT:
       return {
         ...state,
-        socialRenderContent: [action.payload, ...state.socialRenderContent],
+        socialRenderContent: state.socialRenderContent.map(
+          x => (x._id === action.payload._id ? action.payload : x)
+        ),
+        loading: false
+      };
+    case DELETE_COMMENT:
+      return {
+        ...state,
+        socialRenderContent: state.socialRenderContent.filter(
+          x => (x._id !== action.payload._id ? x : action.payload)
+        ),
         loading: false
       };
     default:

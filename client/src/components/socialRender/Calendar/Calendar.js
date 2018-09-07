@@ -3,7 +3,7 @@ import Calendar from 'react-big-calendar';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getAllSocialRender, deleteContent } from '../../../actions/socialRenderActions'; // Fed the client model
+import { getAllSocialRender, deleteContent, deleteComment } from '../../../actions/socialRenderActions'; // Fed the client model
 import { getAllUsers } from '../../../actions/authActions';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import FacebookDesktop from '../Facebook/FacebookDesktop';
@@ -22,7 +22,6 @@ Calendar.setLocalizer(Calendar.momentLocalizer(moment));
 class ContentCalendar extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       modal: false,
       commentOpen: true,
@@ -43,6 +42,15 @@ class ContentCalendar extends Component {
     this.onDeleteClick = this.onDeleteClick.bind(this);
   }
 
+  componentWillReceiveProps = nextProps => {
+    if (nextProps.socialRenderContent.socialRenderContent == null) {
+    } else {
+      const updatedFeed = nextProps.socialRenderContent.socialRenderContent.map(x => x.comments);
+      // TODO: WORK ON UPDATING FEED AND BRING IN ISEMPTY FUNCTION
+      this.setState({ commentData: updatedFeed });
+    }
+  };
+
   componentDidMount() {
     this.props.getAllSocialRender();
     this.props.getAllUsers();
@@ -59,6 +67,10 @@ class ContentCalendar extends Component {
     this.setState({
       [e.target.name]: e.target.value
     });
+  };
+
+  deleteComment = (post_id, comment_id) => {
+    this.props.deleteComment(post_id, comment_id);
   };
 
   toggle = e => {
@@ -104,21 +116,22 @@ class ContentCalendar extends Component {
       PostDate = [];
     } else {
       if (socialRenderContent.length > 0) {
-        PostDate = socialRenderContent.map(contentInfo => ({
-          start: contentInfo.dateGoingLive,
-          end: contentInfo.dateGoingLive,
-          title: contentInfo.clientName,
-          twtHandle: contentInfo.clientName.replace(/ /g, ''),
-          clientInitials: contentInfo.clientInitials,
-          contentCopy: contentInfo.contentCopy,
-          contentTwitterCopy: contentInfo.contentTwitterCopy,
-          contentInstagramCopy: contentInfo.contentInstagramCopy,
-          contentLinkedInCopy: contentInfo.contentLinkedInCopy,
-          imgLink: contentInfo.imgLink,
-          imgLinkInstagram: contentInfo.imgLinkInstagram,
-          _id: contentInfo._id,
-          commentData: contentInfo.comments
+        PostDate = socialRenderContent.map(x => ({
+          start: x.dateGoingLive,
+          end: x.dateGoingLive,
+          title: x.clientName,
+          twtHandle: x.clientName.replace(/ /g, ''),
+          clientInitials: x.clientInitials,
+          contentCopy: x.contentCopy,
+          contentTwitterCopy: x.contentTwitterCopy,
+          contentInstagramCopy: x.contentInstagramCopy,
+          contentLinkedInCopy: x.contentLinkedInCopy,
+          imgLink: x.imgLink,
+          imgLinkInstagram: x.imgLinkInstagram,
+          _id: x._id,
+          commentData: x.comments
         }));
+        console.log(PostDate);
       } else {
         PostDate = [];
       }
@@ -157,12 +170,16 @@ class ContentCalendar extends Component {
           comment={x.comment}
           likeNumber={x.likes.length}
           commentLiked={commentLiked}
+          deleteComment={this.deleteComment}
+          post_id={this.state._id}
         />
       ));
     }
 
     return (
-      <div className="ContentCalendar col-sm-10 offset-sm-1 animated fadeIn">
+      <div className="ContentCalendar col-sm-10 offset-sm-1 ">
+        {/* TODO: REMEMBER TO UNCOMMENT FADEIN */}
+        {/* <div className="ContentCalendar col-sm-10 offset-sm-1 animated fadeIn"> */}
         <Calendar
           selectable
           defaultDate={new Date(dateString)} // Current Month
@@ -269,10 +286,11 @@ class ContentCalendar extends Component {
               </div>
             </div>
             <div
-              className={!this.state.commentOpen ? 'hide ' : 'commentSection col-md-6 animated fadeInUp'}
+              // className={!this.state.commentOpen ? 'hide ' : 'commentSection col-md-6 animated fadeInUp'}
+              className={!this.state.commentOpen ? 'hide ' : 'commentSection col-md-6 '}
             >
               <div className="commentFeed">{comments}</div>
-              <CommentForm social_id={this.state._id} />
+              <CommentForm social_id={this.state._id} comments={this.state.commentData} />
             </div>
           </ModalBody>
           <ModalFooter>
@@ -299,8 +317,9 @@ class ContentCalendar extends Component {
 }
 
 ContentCalendar.propTypes = {
-  getAllSocialRender: PropTypes.func.isRequired, // from client actions
-  deleteContent: PropTypes.func.isRequired, // from client actions
+  getAllSocialRender: PropTypes.func.isRequired,
+  deleteComment: PropTypes.func.isRequired,
+  deleteContent: PropTypes.func.isRequired,
   socialRenderContent: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired
 };
@@ -315,6 +334,7 @@ export default connect(
   mapStateToProps,
   {
     getAllSocialRender,
+    deleteComment,
     deleteContent,
     getAllUsers
   }
