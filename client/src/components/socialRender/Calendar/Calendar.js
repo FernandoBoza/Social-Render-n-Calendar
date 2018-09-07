@@ -45,9 +45,9 @@ class ContentCalendar extends Component {
   componentWillReceiveProps = nextProps => {
     if (nextProps.socialRenderContent.socialRenderContent == null) {
     } else {
-      const updatedFeed = nextProps.socialRenderContent.socialRenderContent.map(x => x.comments);
+      // const updatedFeed = nextProps.socialRenderContent.socialRenderContent.map(x => x.comments);
       // TODO: WORK ON UPDATING FEED AND BRING IN ISEMPTY FUNCTION
-      this.setState({ commentData: updatedFeed });
+      // this.setState({ commentData: updatedFeed });
     }
   };
 
