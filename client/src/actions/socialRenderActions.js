@@ -6,7 +6,8 @@ import {
   GET_CLIENT_CONTENT,
   DELETE_CONTENT,
   CLEAR_ERRORS,
-  CREATE_COMMENT
+  CREATE_COMMENT,
+  DELETE_COMMENT
 } from './types';
 
 // GET Social Render Profiles
@@ -106,7 +107,7 @@ export const unLikeComment = (id, comment_id) => dispatch => {
 
 // Add Comment
 export const addComment = (id, commentData) => dispatch => {
-  dispatch(clearErrors());
+  dispatch(setSocialRenderLoading());
   axios
     .post(`/api/content-calendar/id/${id}/comment`, commentData)
     .then(res =>
@@ -121,6 +122,14 @@ export const addComment = (id, commentData) => dispatch => {
         payload: err.response.data
       })
     );
+};
+
+// DELETE comment by id
+export const deleteComment = (id, comment_id) => dispatch => {
+  axios
+    .delete(`/api/content-calendar/id/${id}/comment/${comment_id}`)
+    .then(res => dispatch({ type: DELETE_COMMENT, payload: comment_id }))
+    .catch(err => dispatch({ type: GET_ERRORS, payload: err.response.data }));
 };
 
 //Social Render Loading
