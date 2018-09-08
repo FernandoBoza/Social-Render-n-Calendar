@@ -45,9 +45,10 @@ class ContentCalendar extends Component {
   componentWillReceiveProps = nextProps => {
     if (nextProps.socialRenderContent.socialRenderContent == null) {
     } else {
-      // const updatedFeed = nextProps.socialRenderContent.socialRenderContent.map(x => x.comments);
-      // TODO: WORK ON UPDATING FEED AND BRING IN ISEMPTY FUNCTION
-      // this.setState({ commentData: updatedFeed });
+      nextProps.socialRenderContent.socialRenderContent.map(
+        // eslint-disable-next-line
+        x => (x._id == this.state._id ? this.setState({ commentData: x.comments }) : 'nope')
+      );
     }
   };
 
@@ -98,6 +99,7 @@ class ContentCalendar extends Component {
   };
 
   render() {
+    console.log(this.state.commentData);
     const { user } = this.props.auth;
     const usersDataLoading = this.props.auth.loading;
     const { socialRenderContent, loading } = this.props.socialRenderContent;
@@ -131,7 +133,6 @@ class ContentCalendar extends Component {
           _id: x._id,
           commentData: x.comments
         }));
-        console.log(PostDate);
       } else {
         PostDate = [];
       }
