@@ -546,7 +546,7 @@ export class Client extends Component {
 
     if (client === null || loading) {
       clientContent = <Spinner />;
-    } else if (client.name !== user.clientRoleAccess) {
+    } else if (client.name !== user.clientRoleAccess && user.role !== 'admin' && user.role !== 'user') {
       clientContent = <h1>Sorry You're Not Allowed Here</h1>;
     } else {
       clientContent = (

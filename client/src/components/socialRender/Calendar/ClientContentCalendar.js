@@ -82,7 +82,11 @@ class ClientContentCalendar extends Component {
     if (socialRenderContent == null || loading) {
       PostDate = [];
     } else {
-      if (socialRenderContent[0].clientName !== user.clientRoleAccess) {
+      if (
+        socialRenderContent.clientName !== user.clientRoleAccess &&
+        user.role !== 'admin' &&
+        user.role !== 'user'
+      ) {
         userAcess = <h1>Sorry You're Not Allowed Here</h1>;
       } else {
         userAcess = true;

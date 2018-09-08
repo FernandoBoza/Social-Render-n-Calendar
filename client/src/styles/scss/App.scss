@@ -84,6 +84,14 @@ i.fa {
     background: #8a3ab9;
     padding: 6px 0 0 6.5px;
   }
+  &.fa-pie-chart {
+    background: #009688;
+    padding: 6px 0 0 6.5px;
+  }
+  &.fa-hashtag {
+    background: #3f51b5;
+    padding: 6px 0 0 6px;
+  }
 }
 
 span#basic-addon1 {
@@ -101,6 +109,12 @@ span#basic-addon1 {
   }
   .fa-instagram {
     color: #8a3ab9;
+  }
+  .fa-pie-chart {
+    color: #009688;
+  }
+  .fa-hashtag {
+    color: #3f51b5;
   }
 }
 

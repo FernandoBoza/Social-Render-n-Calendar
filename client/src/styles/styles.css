@@ -67,6 +67,12 @@ i.fa {
   i.fa.fa-instagram {
     background: #8a3ab9;
     padding: 6px 0 0 6.5px; }
+  i.fa.fa-pie-chart {
+    background: #009688;
+    padding: 6px 0 0 6.5px; }
+  i.fa.fa-hashtag {
+    background: #3f51b5;
+    padding: 6px 0 0 6px; }
 
 span#basic-addon1 .fa-facebook {
   color: #2e3192; }
@@ -78,6 +84,10 @@ span#basic-addon1 .fa-pinterest {
   color: #cd486b; }
 span#basic-addon1 .fa-instagram {
   color: #8a3ab9; }
+span#basic-addon1 .fa-pie-chart {
+  color: #009688; }
+span#basic-addon1 .fa-hashtag {
+  color: #3f51b5; }
 
 .startDate {
   display: inline-flex; }
