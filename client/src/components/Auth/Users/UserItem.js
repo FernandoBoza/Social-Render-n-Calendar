@@ -59,13 +59,24 @@ class UserItem extends Component {
   };
   render() {
     const { users } = this.props.auth;
+
+    const clientAccess = (
+      <div className="userInfo form-group input-group">
+        <div className="input-group-prepend">
+          <span className="input-group-text" id="basic-addon1">
+            <i className="input-icon fa fa-id-card text-info" />
+          </span>
+        </div>
+        <p className=" form-control text-capitalize">{users.clientRoleAccess}</p>
+      </div>
+    );
     return (
       <div className="col-md-4 offset-md-1 mb-3 wow animated fadeIn" data-wow-duration="2s" data-wow-delay="1s">
         <h1 className="display-4 text-capitalize my-5">Edit {users.name}</h1>
         <div className="userInfo form-group input-group">
           <div className="input-group-prepend">
             <span className="input-group-text" id="basic-addon1">
-              <i className="input-icon fa fa-user" />
+              <i className="input-icon fa fa-user text-primary" />
             </span>
           </div>
           <p className=" form-control text-capitalize">{users.name}</p>
@@ -73,7 +84,7 @@ class UserItem extends Component {
         <div className="userInfo form-group input-group">
           <div className="input-group-prepend">
             <span className="input-group-text" id="basic-addon1">
-              <i className="input-icon fa fa-envelope" />
+              <i className="input-icon fa fa-envelope text-success" />
             </span>
           </div>
           <p className=" form-control text-capitalize">{users.email}</p>
@@ -81,11 +92,14 @@ class UserItem extends Component {
         <div className="userInfo form-group input-group">
           <div className="input-group-prepend">
             <span className="input-group-text" id="basic-addon1">
-              <i className="input-icon fa fa-pencil" />
+              <i className="input-icon fa fa-pencil text-warning" />
             </span>
           </div>
           <p className=" form-control text-capitalize">{this.state.role}</p>
         </div>
+
+        {// eslint-disable-next-line
+        users.role == 'client' ? clientAccess : ''}
 
         <form className="mt-4" onSubmit={this.handleSubmit}>
           <ButtonGroup>

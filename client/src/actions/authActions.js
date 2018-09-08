@@ -1,7 +1,14 @@
 import axios from 'axios';
 import setAuthToken from '../utils/setAuthToken';
 import jwt_decode from 'jwt-decode';
-import { GET_ERRORS, SET_CURRENT_USER, GET_ALL_USERS, USERS_LOADING, GET_USER_BY_ID } from './types';
+import {
+  GET_ERRORS,
+  SET_CURRENT_USER,
+  GET_ALL_USERS,
+  USERS_LOADING,
+  GET_USER_BY_ID,
+  CREATE_CLIENT_USER
+} from './types';
 
 // GET all users
 export const getAllUsers = () => dispatch => {
@@ -17,25 +24,20 @@ export const registerUser = (userData, history) => dispatch => {
   axios
     .post('/api/users/register', userData)
     .then(res => history.push('/login'))
-    .catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
-    );
+    .catch(err => dispatch({ type: GET_ERRORS, payload: err.response.data }));
 };
 
 // Register Client User
-export const registerClientUser = (clientUserData, history) => dispatch => {
+export const registerClientUser = clientUserData => dispatch => {
   axios
     .post('/api/users/register-client', clientUserData)
-    .then(res => history.push('/'))
-    .catch(err =>
+    .then(res =>
       dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
+        type: CREATE_CLIENT_USER,
+        payload: res.data
       })
-    );
+    )
+    .catch(err => dispatch({ type: GET_ERRORS, payload: err.response.data }));
 };
 
 //GET User By Id
@@ -75,12 +77,7 @@ export const loginUser = userData => dispatch => {
       const decoded = jwt_decode(token); // Decode Token To Get User Data
       dispatch(setCurrentUser(decoded)); // Set Current User
     })
-    .catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
-    );
+    .catch(err => dispatch({ type: GET_ERRORS, payload: err.response.data }));
 };
 
 // Login User II:  Set Logged In User

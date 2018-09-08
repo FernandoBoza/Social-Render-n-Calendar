@@ -28,7 +28,8 @@ TextInputField.propTypes = {
 
 TextInputField.defaultProps = {
   type: 'text',
-  divClassName: ''
+  divClassName: '',
+  errors: ''
 };
 
 export default TextInputField;

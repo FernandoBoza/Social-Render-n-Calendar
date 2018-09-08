@@ -67,6 +67,12 @@ i.fa {
   i.fa.fa-instagram {
     background: #8a3ab9;
     padding: 6px 0 0 6.5px; }
+  i.fa.fa-pie-chart {
+    background: #009688;
+    padding: 6px 0 0 6.5px; }
+  i.fa.fa-hashtag {
+    background: #3f51b5;
+    padding: 6px 0 0 6px; }
 
 span#basic-addon1 .fa-facebook {
   color: #2e3192; }
@@ -78,6 +84,10 @@ span#basic-addon1 .fa-pinterest {
   color: #cd486b; }
 span#basic-addon1 .fa-instagram {
   color: #8a3ab9; }
+span#basic-addon1 .fa-pie-chart {
+  color: #009688; }
+span#basic-addon1 .fa-hashtag {
+  color: #3f51b5; }
 
 .startDate {
   display: inline-flex; }
@@ -206,9 +216,70 @@ p {
 .css-1wy0on6 {
   display: none !important; }
 
-span.rbc-toolbar-label {
-  font-size: 2rem; }
+.rbc-toolbar span.rbc-toolbar-label {
+  font-size: 2rem;
+  text-align: right;
+  font-weight: 100; }
 
+.commentSection div.commentFeed {
+  width: 100%;
+  height: 75%;
+  overflow-y: scroll; }
+  .commentSection div.commentFeed ul.commentHeader {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 0; }
+    .commentSection div.commentFeed ul.commentHeader * {
+      display: inline-block; }
+    .commentSection div.commentFeed ul.commentHeader .commentLike p {
+      vertical-align: top; }
+    .commentSection div.commentFeed ul.commentHeader .commentLike .fa-thumbs-up {
+      color: #2196f3;
+      font-size: 1rem; }
+    .commentSection div.commentFeed ul.commentHeader .commentLike .fa-thumbs-o-up {
+      font-size: 1rem;
+      color: #666;
+      transition: color 0.4s; }
+      .commentSection div.commentFeed ul.commentHeader .commentLike .fa-thumbs-o-up:hover {
+        color: #2196f3; }
+  .commentSection div.commentFeed .commentProfileImage {
+    width: 3.5rem;
+    height: 3.5rem;
+    font-size: 3rem;
+    text-align: center;
+    color: white;
+    border-radius: 50rem;
+    font-weight: 100;
+    line-height: 1.3; }
+  .commentSection div.commentFeed .fa-circle.text-primary {
+    font-size: 5px;
+    vertical-align: middle;
+    height: 0.4rem;
+    width: 0; }
+.commentSection .commentPost {
+  bottom: 0;
+  position: absolute;
+  width: 96%; }
+
+span.rbc-btn-group button,
+.rbc-toolbar button:active:hover,
+.rbc-toolbar button.rbc-active:hover,
+.rbc-toolbar button:active:focus,
+.rbc-toolbar button.rbc-active:focus {
+  background: #3275ac !important;
+  color: white !important;
+  text-transform: capitalize;
+  outline: none; }
+
+.modal-dialog[role='document'] {
+  transition: max-width 1s !important; }
+  .modal-dialog[role='document'].modal-comment-click {
+    max-width: 87% !important; }
+    .modal-dialog[role='document'].modal-comment-click .modal-content {
+      height: 96vh; }
+
+#social-render .input-group-text.commentName {
+  width: 7rem; }
 #social-render span {
   font-size: 1rem;
   padding-right: 2rem; }
@@ -237,7 +308,7 @@ span.rbc-toolbar-label {
   transition: transform 0.1s cubic-bezier(0.47, 0, 0.745, 0.715); }
   #social-render a i.fa.text-primary:hover {
     transform: scale(1.2); }
-#social-render ul {
+#social-render .accordion ul {
   list-style-type: none;
   padding: 0;
   display: inline-block;

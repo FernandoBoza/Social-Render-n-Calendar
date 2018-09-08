@@ -25,7 +25,10 @@ TextArea.propTypes = {
 };
 
 TextArea.defaultProps = {
-  channel: ''
+  channel: '',
+  duration: '',
+  delay: '',
+  animation: ''
 };
 
 export default TextArea;

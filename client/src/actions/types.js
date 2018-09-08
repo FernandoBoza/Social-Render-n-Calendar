@@ -1,9 +1,11 @@
 export const GET_ERRORS = 'GET_ERRORS';
 export const CLIENT_LOADING = 'CLIENT_LOADING';
+export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 
 // User Types
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 export const CLEAR_CURRENT_USER = 'CLEAR_CURRENT_USER ';
+export const CREATE_CLIENT_USER = 'CREATE_CLIENT_USER ';
 
 // All User Types
 export const GET_ALL_USERS = 'GET_ALL_USERS ';
@@ -22,3 +24,8 @@ export const CONTENT_LOADING = 'CONTENT_LOADING';
 export const SET_CONTENT_CALENDAR = 'SET_CONTENT_CALENDAR';
 export const GET_CLIENT_CONTENT = 'GET_CLIENT_CONTENT';
 export const DELETE_CONTENT = 'DELETE_CONTENT';
+
+export const LIKE_COMMENT = 'LIKE_COMMENT';
+export const UNLIKE_COMMENT = 'UNLIKE_COMMENT';
+export const CREATE_COMMENT = 'CREATE_COMMENT';
+export const DELETE_COMMENT = 'DELETE_COMMENT';

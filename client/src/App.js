@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 import PrivateRoute from './components/common/PrivateRoute';
 import AdminRoute from './components/common/AdminRoute';
+import AdminUserRoute from './components/common/AdminUserRoute';
 import NavBar from './components/layout/NavBar';
 import Footer from './components/layout/Footer';
 import Landing from './components/layout/Landing';
@@ -15,7 +16,6 @@ import Register from './components/Auth/Register';
 import Login from './components/Auth/Login';
 import Dashboard from './components/layout/Dashboard';
 import CreateClientProfile from './components/clients/CreateClientProfile';
-import Clients from './components/clients/Clients';
 import Client from './components/clients/singleClients/Client';
 import EditClient from './components/clients/EditClient';
 import SocialRender from './components/socialRender/SocialRenderComponent';
@@ -54,20 +54,35 @@ class App extends Component {
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
               <Switch>
-                <PrivateRoute exact path="/clients" component={Clients} />
                 <AdminRoute exact path="/users/manage" component={ManageUsers} />
                 <AdminRoute exact path="/users/manage/:id" component={UserItem} />
-                <AdminRoute exact path="/users/manage/e/register-client" component={RegisterClientUser} />
-                <PrivateRoute exact path="/social-render" component={SocialRender} />
-                <PrivateRoute exact path="/social-render/:id/edit-content" component={EditSocialRender} />
-                <PrivateRoute exact path="/content-calendar" component={ContentCalendar} />
-                <PrivateRoute exact path="/content-calendar/:m/:y" component={ContentCalendar} />
-                <PrivateRoute exact path="/content-calendar/:clientName" component={ClientContentCalendar} />
-                <PrivateRoute exact path="/content-calendar/:clientName/:m/:y" component={ClientContentCalendar} />
+                <AdminRoute
+                  exact
+                  path="/users/manage/e/register-client"
+                  component={RegisterClientUser}
+                />
+                <AdminUserRoute exact path="/social-render" component={SocialRender} />
+                <AdminUserRoute
+                  exact
+                  path="/social-render/:id/edit-content"
+                  component={EditSocialRender}
+                />
+                <AdminUserRoute exact path="/content-calendar" component={ContentCalendar} />
+                <AdminUserRoute exact path="/content-calendar/:m/:y" component={ContentCalendar} />
+                <PrivateRoute
+                  exact
+                  path="/content-calendar/:clientName"
+                  component={ClientContentCalendar}
+                />
+                <PrivateRoute
+                  exact
+                  path="/content-calendar/:clientName/:m/:y"
+                  component={ClientContentCalendar}
+                />
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
                 <PrivateRoute exact path="/clients/:handle" component={Client} />
-                <PrivateRoute exact path="/create-client" component={CreateClientProfile} />
-                <PrivateRoute exact path="/clients/:handle/edit-client" component={EditClient} />
+                <AdminUserRoute exact path="/create-client" component={CreateClientProfile} />
+                <AdminUserRoute exact path="/clients/:handle/edit-client" component={EditClient} />
               </Switch>
             </div>
             <Footer />

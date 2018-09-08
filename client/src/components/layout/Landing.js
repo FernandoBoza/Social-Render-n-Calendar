@@ -13,26 +13,18 @@ class Landing extends Component {
   render() {
     return (
       <div className="jumbotron">
-        <h1 className="display-4">Social Goal Tracker!</h1>
-        {/* <p className="lead">
-          This is a simple hero unit, a simple jumbotron-style component for
-          calling extra attention to featured content or information.
-        </p> */}
-        <hr className="my-4" />
-        {/* <p>Testing for Boca, and Guzman</p> */}
+        <h1 className="display-4">Social Goal Flow!</h1>
         <p className="lead">
-          <Link
-            className="btn btn-success btn-lg px-5 mr-3"
-            to="/register"
-            role="button"
-          >
+          <span role="img" aria-label="think about it emoji">
+            Faster Streamline Workflow for Social. 👩‍💻 👨‍💻
+          </span>
+        </p>
+        <hr className="my-4" />
+        <p className="lead">
+          <Link className="btn btn-success btn-lg px-5 mr-3" to="/register" role="button">
             Sign Up
           </Link>
-          <Link
-            className="btn btn-primary btn-lg px-5 mx-3"
-            to="/login"
-            role="button"
-          >
+          <Link className="btn btn-primary btn-lg px-5 mx-3" to="/login" role="button">
             Login
           </Link>
         </p>
