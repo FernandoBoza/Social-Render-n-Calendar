@@ -34,7 +34,7 @@ export default function(state = initialState, action) {
     case DELETE_CONTENT:
       return {
         ...state,
-        socialRenderContent: state.socialRenderContent.filter(content => content._id !== action.payload)
+        socialRenderContent: state.socialRenderContent.filter(x => x._id !== action.payload)
       };
     case CREATE_COMMENT:
       return {
@@ -45,10 +45,12 @@ export default function(state = initialState, action) {
         loading: false
       };
     case DELETE_COMMENT:
+      console.log(state.socialRenderContent.flat(2));
+      // console.log(state.socialRenderContent.map(x => x.comments.filter(c => c._id !== action.payload)));
       return {
         ...state,
-        socialRenderContent: state.socialRenderContent.filter(
-          x => (x._id !== action.payload._id ? x : action.payload)
+        socialRenderContent: state.socialRenderContent.map(x =>
+          x.comments.filter(c => c._id !== action.payload)
         ),
         loading: false
       };

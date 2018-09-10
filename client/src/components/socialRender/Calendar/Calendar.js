@@ -43,7 +43,10 @@ class ContentCalendar extends Component {
   }
 
   componentWillReceiveProps = nextProps => {
-    if (nextProps.socialRenderContent.socialRenderContent == null) {
+    if (
+      nextProps.socialRenderContent.socialRenderContent == null ||
+      nextProps.socialRenderContent.loading
+    ) {
     } else {
       nextProps.socialRenderContent.socialRenderContent.map(
         // eslint-disable-next-line
@@ -55,6 +58,7 @@ class ContentCalendar extends Component {
   componentDidMount() {
     this.props.getAllSocialRender();
     this.props.getAllUsers();
+    document.title = 'Content Calendar';
   }
 
   onDeleteClick = e => {
@@ -99,7 +103,6 @@ class ContentCalendar extends Component {
   };
 
   render() {
-    console.log(this.state.commentData);
     const { user } = this.props.auth;
     const usersDataLoading = this.props.auth.loading;
     const { socialRenderContent, loading } = this.props.socialRenderContent;
@@ -122,7 +125,7 @@ class ContentCalendar extends Component {
           start: x.dateGoingLive,
           end: x.dateGoingLive,
           title: x.clientName,
-          twtHandle: x.clientName.replace(/ /g, ''),
+          twtHandle: x.clientName !== undefined ? x.clientName.replace(/ /g, '') : x.clientName,
           clientInitials: x.clientInitials,
           contentCopy: x.contentCopy,
           contentTwitterCopy: x.contentTwitterCopy,
@@ -133,6 +136,7 @@ class ContentCalendar extends Component {
           _id: x._id,
           commentData: x.comments
         }));
+        console.log(socialRenderContent);
       } else {
         PostDate = [];
       }
