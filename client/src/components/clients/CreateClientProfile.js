@@ -214,7 +214,6 @@ export class CreateClientProfile extends Component {
       web_b4: this.state.web_b4
     };
     this.props.createClient(clientData, this.props.history);
-    console.log(clientData);
   };
 
   render() {
@@ -225,11 +224,46 @@ export class CreateClientProfile extends Component {
           <h4 className="font-weight-light mt-5">{cat_name}</h4>
           <div className="row">
             <div className="col-sm-3 current wow animated fadeInLeft">
-              <NumInputField icon="facebook" name={`${category}_fb_x`} classname={category + ' fb'} placeholder="Current" value={this.state[category + '_fb_x']} onChange={this.handleChange} />
-              <NumInputField icon="twitter" name={`${category}_tw_x`} classname={category + ' tw'} placeholder="Current" value={this.state[category + '_tw_x']} onChange={this.handleChange} />
-              <NumInputField icon="instagram" name={`${category}_ig_x`} classname={category + ' ig'} placeholder="Current" value={this.state[category + '_ig_x']} onChange={this.handleChange} />
-              <NumInputField icon="linkedin" name={`${category}_ln_x`} classname={category + ' ln'} placeholder="Current" value={this.state[category + '_ln_x']} onChange={this.handleChange} />
-              <NumInputField icon="pinterest" name={`${category}_pt_x`} classname={category + ' pn'} placeholder="Current" value={this.state[category + '_pt_x']} onChange={this.handleChange} />
+              <NumInputField
+                icon="facebook"
+                name={`${category}_fb_x`}
+                classname={category + ' fb'}
+                placeholder="Current"
+                value={this.state[category + '_fb_x']}
+                onChange={this.handleChange}
+              />
+              <NumInputField
+                icon="twitter"
+                name={`${category}_tw_x`}
+                classname={category + ' tw'}
+                placeholder="Current"
+                value={this.state[category + '_tw_x']}
+                onChange={this.handleChange}
+              />
+              <NumInputField
+                icon="instagram"
+                name={`${category}_ig_x`}
+                classname={category + ' ig'}
+                placeholder="Current"
+                value={this.state[category + '_ig_x']}
+                onChange={this.handleChange}
+              />
+              <NumInputField
+                icon="linkedin"
+                name={`${category}_ln_x`}
+                classname={category + ' ln'}
+                placeholder="Current"
+                value={this.state[category + '_ln_x']}
+                onChange={this.handleChange}
+              />
+              <NumInputField
+                icon="pinterest"
+                name={`${category}_pt_x`}
+                classname={category + ' pn'}
+                placeholder="Current"
+                value={this.state[category + '_pt_x']}
+                onChange={this.handleChange}
+              />
             </div>
 
             <div className="col-sm-6 rangeSlider wow animated fadeInUp">
@@ -268,30 +302,100 @@ export class CreateClientProfile extends Component {
             </div>
 
             <div className="col-sm-3 goal wow animated fadeInRight">
-              <NumInputField icon="facebook" name={`${category}_fb_y`} classname={category + 'fb'} placeholder="Goal Facebook" value={this.state[category + '_fb_y']} onChange={this.handleChange} />
-              <NumInputField icon="twitter" name={`${category}_tw_y`} classname={category + 'tw'} placeholder="Goal Twitter" value={this.state[category + '_tw_y']} onChange={this.handleChange} />
-              <NumInputField icon="instagram" name={`${category}_ig_y`} classname={category + 'ig'} placeholder="Goal Instagram" value={this.state[category + '_ig_y']} onChange={this.handleChange} />
-              <NumInputField icon="linkedin" name={`${category}_ln_y`} classname={category + 'ln'} placeholder="Goal LinkedIn" value={this.state[category + '_ln_y']} onChange={this.handleChange} />
-              <NumInputField icon="pinterest" name={`${category}_pt_y`} classname={category + 'pn'} placeholder="Goal Pinterest" value={this.state[category + '_pt_y']} onChange={this.handleChange} />
+              <NumInputField
+                icon="facebook"
+                name={`${category}_fb_y`}
+                classname={category + 'fb'}
+                placeholder="Goal Facebook"
+                value={this.state[category + '_fb_y']}
+                onChange={this.handleChange}
+              />
+              <NumInputField
+                icon="twitter"
+                name={`${category}_tw_y`}
+                classname={category + 'tw'}
+                placeholder="Goal Twitter"
+                value={this.state[category + '_tw_y']}
+                onChange={this.handleChange}
+              />
+              <NumInputField
+                icon="instagram"
+                name={`${category}_ig_y`}
+                classname={category + 'ig'}
+                placeholder="Goal Instagram"
+                value={this.state[category + '_ig_y']}
+                onChange={this.handleChange}
+              />
+              <NumInputField
+                icon="linkedin"
+                name={`${category}_ln_y`}
+                classname={category + 'ln'}
+                placeholder="Goal LinkedIn"
+                value={this.state[category + '_ln_y']}
+                onChange={this.handleChange}
+              />
+              <NumInputField
+                icon="pinterest"
+                name={`${category}_pt_y`}
+                classname={category + 'pn'}
+                placeholder="Goal Pinterest"
+                value={this.state[category + '_pt_y']}
+                onChange={this.handleChange}
+              />
             </div>
 
             <div className="col-sm-12 before">
               <h6 className="font-weight-light mt-2">Starting {cat_name}</h6>
               <ul className="d-flex justify-content-between list-unstyled">
                 <li>
-                  <NumInputField icon="facebook" name={`${category}_b4_fb`} classname={`${category} fb`} placeholder="Starting" value={this.state[category + '_b4_fb']} onChange={this.handleChange} />
+                  <NumInputField
+                    icon="facebook"
+                    name={`${category}_b4_fb`}
+                    classname={`${category} fb`}
+                    placeholder="Starting"
+                    value={this.state[category + '_b4_fb']}
+                    onChange={this.handleChange}
+                  />
                 </li>
                 <li>
-                  <NumInputField icon="twitter" name={`${category}_b4_tw`} classname={`${category} tw`} placeholder="Starting" value={this.state[category + '_b4_tw']} onChange={this.handleChange} />
+                  <NumInputField
+                    icon="twitter"
+                    name={`${category}_b4_tw`}
+                    classname={`${category} tw`}
+                    placeholder="Starting"
+                    value={this.state[category + '_b4_tw']}
+                    onChange={this.handleChange}
+                  />
                 </li>
                 <li>
-                  <NumInputField icon="instagram" name={`${category}_b4_ig`} classname={`${category} ig`} placeholder="Starting" value={this.state[category + '_b4_ig']} onChange={this.handleChange} />
+                  <NumInputField
+                    icon="instagram"
+                    name={`${category}_b4_ig`}
+                    classname={`${category} ig`}
+                    placeholder="Starting"
+                    value={this.state[category + '_b4_ig']}
+                    onChange={this.handleChange}
+                  />
                 </li>
                 <li>
-                  <NumInputField icon="linkedin" name={`${category}_b4_ln`} classname={`${category} ln`} placeholder="Starting" value={this.state[category + '_b4_ln']} onChange={this.handleChange} />
+                  <NumInputField
+                    icon="linkedin"
+                    name={`${category}_b4_ln`}
+                    classname={`${category} ln`}
+                    placeholder="Starting"
+                    value={this.state[category + '_b4_ln']}
+                    onChange={this.handleChange}
+                  />
                 </li>
                 <li>
-                  <NumInputField icon="pinterest" name={`${category}_b4_pt`} classname={`${category} pn`} placeholder="Starting" value={this.state[category + '_b4_pt']} onChange={this.handleChange} />
+                  <NumInputField
+                    icon="pinterest"
+                    name={`${category}_b4_pt`}
+                    classname={`${category} pn`}
+                    placeholder="Starting"
+                    value={this.state[category + '_b4_pt']}
+                    onChange={this.handleChange}
+                  />
                 </li>
               </ul>
             </div>
@@ -306,8 +410,22 @@ export class CreateClientProfile extends Component {
           <h4 className="font-weight-light mt-5">{cat_name}</h4>
           <div className="row">
             <div className="col-sm-3 current">
-              <NumInputField icon={icon1} name="numHits_x" classname={'numHits'} placeholder="Current" value={this.state.numHits_x} onChange={this.handleChange} />
-              <NumInputField icon={icon2} name="mediaValue_x" classname={'mediaValue'} placeholder="Current" value={this.state.mediaValue_x} onChange={this.handleChange} />
+              <NumInputField
+                icon={icon1}
+                name="numHits_x"
+                classname={'numHits'}
+                placeholder="Current"
+                value={this.state.numHits_x}
+                onChange={this.handleChange}
+              />
+              <NumInputField
+                icon={icon2}
+                name="mediaValue_x"
+                classname={'mediaValue'}
+                placeholder="Current"
+                value={this.state.mediaValue_x}
+                onChange={this.handleChange}
+              />
             </div>
 
             <div className="col-sm-6 rangeSlider">
@@ -328,8 +446,22 @@ export class CreateClientProfile extends Component {
             </div>
 
             <div className="col-sm-3 goal">
-              <NumInputField icon={icon1} name="numHits_y" classname={'numHits'} placeholder="Goal  Hits" value={this.state.numHits_y} onChange={this.handleChange} />
-              <NumInputField icon={icon2} name="mediaValue_y" classname={'mediaValue'} placeholder="Goal Media Value" value={this.state.mediaValue_y} onChange={this.handleChange} />
+              <NumInputField
+                icon={icon1}
+                name="numHits_y"
+                classname={'numHits'}
+                placeholder="Goal  Hits"
+                value={this.state.numHits_y}
+                onChange={this.handleChange}
+              />
+              <NumInputField
+                icon={icon2}
+                name="mediaValue_y"
+                classname={'mediaValue'}
+                placeholder="Goal Media Value"
+                value={this.state.mediaValue_y}
+                onChange={this.handleChange}
+              />
             </div>
           </div>
         </div>
@@ -351,7 +483,16 @@ export class CreateClientProfile extends Component {
                 <div className="row">
                   <div className="col-md-4">
                     <p className="d-block">Client Name is Required</p>
-                    <TextInputField type="text" icon="user-o" name="name" classname="clientName" placeholder="Client Name" value={this.state.name} onChange={this.handleChange} errors={errors.name} />
+                    <TextInputField
+                      type="text"
+                      icon="user-o"
+                      name="name"
+                      classname="clientName"
+                      placeholder="Client Name"
+                      value={this.state.name}
+                      onChange={this.handleChange}
+                      errors={errors.name}
+                    />
                   </div>
                 </div>
 
@@ -364,7 +505,14 @@ export class CreateClientProfile extends Component {
                 <h4 className=" font-weight-light mt-5">Site Traffic</h4>
                 <div className="row site-traffic">
                   <div className="col-sm-3 current">
-                    <NumInputField icon="laptop" name="web_x" classname="web" placeholder="Current Web Traffic" value={this.state.web_x} onChange={this.handleChange} />
+                    <NumInputField
+                      icon="laptop"
+                      name="web_x"
+                      classname="web"
+                      placeholder="Current Web Traffic"
+                      value={this.state.web_x}
+                      onChange={this.handleChange}
+                    />
                   </div>
                   <div className="col-sm-6 rangeSlider">
                     <div className="range-slider">
@@ -377,19 +525,36 @@ export class CreateClientProfile extends Component {
                     </div>
                   </div>
                   <div className="col-sm-3 goal">
-                    <NumInputField icon="laptop" name="web_y" classname="web" placeholder="Goal Web Traffic" value={this.state.web_y} onChange={this.handleChange} />
+                    <NumInputField
+                      icon="laptop"
+                      name="web_y"
+                      classname="web"
+                      placeholder="Goal Web Traffic"
+                      value={this.state.web_y}
+                      onChange={this.handleChange}
+                    />
                   </div>
                   <div className="col-sm-12 before">
                     <h6 className="font-weight-light mt-2">Starting Traffic</h6>
                     <ul className="d-flex justify-content-between list-unstyled">
                       <li>
-                        <NumInputField icon="laptop" name="web_b4" classname="pgf fb" placeholder="Starting" value={this.state.web_b4} onChange={this.handleChange} />
+                        <NumInputField
+                          icon="laptop"
+                          name="web_b4"
+                          classname="pgf fb"
+                          placeholder="Starting"
+                          value={this.state.web_b4}
+                          onChange={this.handleChange}
+                        />
                       </li>
                     </ul>
                   </div>
                 </div>
 
-                <button className="btn btn-lg btn-outline-primary btn-block mt-5 w-50 mx-auto" type="submit">
+                <button
+                  className="btn btn-lg btn-outline-primary btn-block mt-5 w-50 mx-auto"
+                  type="submit"
+                >
                   Create Client
                 </button>
               </form>

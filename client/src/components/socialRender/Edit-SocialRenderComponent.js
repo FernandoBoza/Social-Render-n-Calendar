@@ -110,7 +110,6 @@ class EditSocialRenderComponent extends Component {
       imgLinkInstagram: this.state.imgLinkInstagram,
       dateGoingLive: moment(this.state.dateGoingLive).format()
     };
-    console.log(socialRenderContentData);
     this.props.updateClientContent(
       this.props.match.params.id,
       socialRenderContentData,

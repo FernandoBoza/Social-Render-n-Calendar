@@ -24,7 +24,7 @@ class ContentCalendar extends Component {
     super(props);
     this.state = {
       modal: false,
-      commentOpen: true,
+      commentOpen: false,
       commentData: [],
       title: '',
       clientInitials: '',
@@ -136,7 +136,6 @@ class ContentCalendar extends Component {
           _id: x._id,
           commentData: x.comments
         }));
-        console.log(socialRenderContent);
       } else {
         PostDate = [];
       }
@@ -182,9 +181,7 @@ class ContentCalendar extends Component {
     }
 
     return (
-      <div className="ContentCalendar col-sm-10 offset-sm-1 ">
-        {/* TODO: REMEMBER TO UNCOMMENT FADEIN */}
-        {/* <div className="ContentCalendar col-sm-10 offset-sm-1 animated fadeIn"> */}
+      <div className="ContentCalendar col-sm-10 offset-sm-1 animated fadeIn">
         <Calendar
           selectable
           defaultDate={new Date(dateString)} // Current Month
@@ -210,7 +207,7 @@ class ContentCalendar extends Component {
             <div className={!this.state.commentOpen ? 'col-sm-12' : 'col-md-6'}>
               <div className="accordion" id="accordionParent">
                 <AccordianCards
-                  expandCollapse={fb ? 'show' : tw ? 'show' : ig ? 'show' : ln ? 'show' : ''}
+                  // expandCollapse={fb ? 'show' : tw ? 'show' : ig ? 'show' : ln ? 'show' : ''}
                   hidOrShow={fb ? '' : 'hide'}
                   target={'facebookDesktop'}
                   cardName={'Facebook Desktop'}
@@ -226,7 +223,7 @@ class ContentCalendar extends Component {
                   }
                 />
                 <AccordianCards
-                  expandCollapse={fb ? 'show' : tw ? 'show' : ig ? 'show' : ln ? 'show' : ''}
+                  // expandCollapse={fb ? 'show' : tw ? 'show' : ig ? 'show' : ln ? 'show' : ''}
                   hidOrShow={fb ? '' : 'hide'}
                   target={'facebookMobile'}
                   cardName={'Facebook Mobile'}
@@ -241,7 +238,7 @@ class ContentCalendar extends Component {
                   }
                 />
                 <AccordianCards
-                  expandCollapse={fb ? 'show' : tw ? 'show' : ig ? 'show' : ln ? 'show' : ''}
+                  // expandCollapse={fb ? 'show' : tw ? 'show' : ig ? 'show' : ln ? 'show' : ''}
                   hidOrShow={ig ? '' : 'hide'}
                   target={'instagram'}
                   cardName={'Instagram'}
@@ -257,7 +254,7 @@ class ContentCalendar extends Component {
                   }
                 />
                 <AccordianCards
-                  expandCollapse={fb ? 'show' : tw ? 'show' : ig ? 'show' : ln ? 'show' : ''}
+                  // expandCollapse={fb ? 'show' : tw ? 'show' : ig ? 'show' : ln ? 'show' : ''}
                   hidOrShow={tw ? '' : 'hide'}
                   target={'twitter'}
                   cardName={'Twitter Desktop'}
@@ -273,7 +270,7 @@ class ContentCalendar extends Component {
                   }
                 />
                 <AccordianCards
-                  expandCollapse={fb ? 'show' : tw ? 'show' : ig ? 'show' : ln ? 'show' : ''}
+                  // expandCollapse={fb ? 'show' : tw ? 'show' : ig ? 'show' : ln ? 'show' : ''}
                   hidOrShow={ln ? '' : 'hide'}
                   target={'linkedin'}
                   cardName={'Linkedin'}
@@ -291,8 +288,7 @@ class ContentCalendar extends Component {
               </div>
             </div>
             <div
-              // className={!this.state.commentOpen ? 'hide ' : 'commentSection col-md-6 animated fadeInUp'}
-              className={!this.state.commentOpen ? 'hide ' : 'commentSection col-md-6 '}
+              className={!this.state.commentOpen ? 'hide ' : 'commentSection col-md-6 animated fadeInUp'}
             >
               <div className="commentFeed">{comments}</div>
               <CommentForm social_id={this.state._id} comments={this.state.commentData} />
@@ -311,9 +307,9 @@ class ContentCalendar extends Component {
               Delete Post Content
             </Button>
 
-            <Button onClick={this.onCommentClick} className="btn btn-warning ml-3">
+            {/* <Button onClick={this.onCommentClick} className="btn btn-warning ml-3">
               Comment
-            </Button>
+            </Button> */}
           </ModalFooter>
         </Modal>
       </div>
