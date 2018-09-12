@@ -3,10 +3,6 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const SocialRenderSchema = new Schema({
-  // clientName: {
-  //   type: Schema.Types.ObjectId,
-  //   ref: 'client'
-  // },
   clientName: {
     type: String,
     ref: 'client'
@@ -48,20 +44,25 @@ const SocialRenderSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'users'
       },
-      text: {
+      comment: {
         type: String,
         required: true
       },
       name: {
         type: String
       },
-      avatar: {
-        type: String
-      },
       date: {
         type: Date,
         default: Date.now
-      }
+      },
+      likes: [
+        {
+          user: {
+            type: Schema.Types.ObjectId,
+            ref: 'users'
+          }
+        }
+      ]
     }
   ]
 });

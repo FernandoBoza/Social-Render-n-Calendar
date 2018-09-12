@@ -5,7 +5,10 @@ module.exports = function validateSocialRender(data) {
   let errorsObj = {};
 
   data.clientName = !isEmpty(data.clientName) ? data.clientName : '';
-  data.clientInitials = !isEmpty(data.clientInitials) ? data.clientInitials : '';
+  data.clientInitials = !isEmpty(data.clientInitials)
+    ? data.clientInitials
+    : '';
+  data.comment = !isEmpty(data.comment) ? data.comment : '';
 
   if (Validator.isEmpty(data.clientName)) {
     errorsObj.clientName = 'Client Name Field is Required';

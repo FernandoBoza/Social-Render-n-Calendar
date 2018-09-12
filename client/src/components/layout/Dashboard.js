@@ -27,7 +27,7 @@ class Dashboard extends Component {
       if (Object.keys(clients).length > 0) {
         dashboardContent = (
           <div>
-            <Link to="/create-client" className="btn btn-info w-50 wow animated fadeInLeft" data-wow-duration="2s" data-wow-delay=".9s">
+            <Link to="/create-client" className="btn btn-info w-50 wow animated fadeInUp" data-wow-duration="2s" data-wow-delay=".9s">
               <i className="fa fa-user-plus mr-2" style={{ fontSize: '1.2rem' }} /> <b>Create Client</b>
             </Link>
           </div>
@@ -49,13 +49,13 @@ class Dashboard extends Component {
       <div>
         {dashboardContent}
         <div>
-          <Link to="/social-render" className="btn btn-info mt-4 w-50 wow animated fadeInLeft" data-wow-duration="1s" data-wow-delay=".2s">
+          <Link to="/social-render" className="btn btn-info mt-4 w-50 wow animated fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
             <i className="fa fa-columns mr-2" style={{ fontSize: '1.2rem' }} />
             <b>Social Render</b>
           </Link>
         </div>
         <div>
-          <Link to="/content-calendar" className="btn btn-info mt-4 w-50 wow animated fadeInLeft" data-wow-duration="1s" data-wow-delay=".3s">
+          <Link to="/content-calendar" className="btn btn-info mt-4 w-50 wow animated fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
             <i className="fa fa-calendar mr-2" style={{ fontSize: '1.2rem' }} />
             <b>Content Calendar</b>
           </Link>

@@ -45,6 +45,9 @@ class ClientContentCalendar extends Component {
 
   onDeleteClick = e => {
     this.props.deleteContent(this.state._id, this.props.history);
+    this.setState({
+      modal: !this.state.modal
+    });
   };
 
   toggle = e => {
@@ -67,7 +70,6 @@ class ClientContentCalendar extends Component {
   render() {
     const { socialRenderContent, loading } = this.props.socialRenderContent;
     const { user } = this.props.auth;
-
     const fb = this.state.contentCopy ? this.state.contentCopy : false;
     const tw = this.state.contentTwitterCopy ? this.state.contentTwitterCopy : false;
     const ig = this.state.contentInstagramCopy ? this.state.contentInstagramCopy : false;
@@ -75,27 +77,37 @@ class ClientContentCalendar extends Component {
     const month = this.props.match.params.m;
     const year = this.props.match.params.y;
     let PostDate = [];
+    let userAcess;
 
     if (socialRenderContent == null || loading) {
       PostDate = [];
     } else {
-      if (socialRenderContent.length > 0) {
-        PostDate = socialRenderContent.map(contentInfo => ({
-          start: contentInfo.dateGoingLive,
-          end: contentInfo.dateGoingLive,
-          title: contentInfo.clientName,
-          twtHandle: contentInfo.clientName.replace(/ /g, ''),
-          clientInitials: contentInfo.clientInitials,
-          contentCopy: contentInfo.contentCopy,
-          contentTwitterCopy: contentInfo.contentTwitterCopy,
-          contentInstagramCopy: contentInfo.contentInstagramCopy,
-          contentLinkedInCopy: contentInfo.contentLinkedInCopy,
-          imgLink: contentInfo.imgLink,
-          imgLinkInstagram: contentInfo.imgLinkInstagram,
-          _id: contentInfo._id
-        }));
+      if (
+        socialRenderContent.clientName !== user.clientRoleAccess &&
+        user.role !== 'admin' &&
+        user.role !== 'user'
+      ) {
+        userAcess = <h1>Sorry You're Not Allowed Here</h1>;
       } else {
-        PostDate = [];
+        userAcess = true;
+        if (socialRenderContent.length > 0) {
+          PostDate = socialRenderContent.map(contentInfo => ({
+            start: contentInfo.dateGoingLive,
+            end: contentInfo.dateGoingLive,
+            title: contentInfo.clientName,
+            twtHandle: contentInfo.clientName.replace(/ /g, ''),
+            clientInitials: contentInfo.clientInitials,
+            contentCopy: contentInfo.contentCopy,
+            contentTwitterCopy: contentInfo.contentTwitterCopy,
+            contentInstagramCopy: contentInfo.contentInstagramCopy,
+            contentLinkedInCopy: contentInfo.contentLinkedInCopy,
+            imgLink: contentInfo.imgLink,
+            imgLinkInstagram: contentInfo.imgLinkInstagram,
+            _id: contentInfo._id
+          }));
+        } else {
+          PostDate = [];
+        }
       }
     }
 
@@ -116,36 +128,109 @@ class ClientContentCalendar extends Component {
           Edit Post
         </Link>
 
-        <a href={`/content-calendar/${this.props.match.params.clientName}`} onClick={this.onDeleteClick} className="btn btn-danger">
+        <Button onClick={this.onDeleteClick} className="btn btn-danger">
           Delete Post Content
-        </a>
-        {/* <Button onClick={this.onDeleteClick} className="btn btn-danger">
-              Delete Post Content
-            </Button> */}
+        </Button>
       </ModalFooter>
     );
 
     return (
       <div className="ContentCalendar animated fadeIn">
-        <Calendar
-          selectable
-          defaultDate={new Date(dateString)} // Current Month
-          views={['month', 'agenda']}
-          defaultView="month"
-          events={PostDate} // Feed in Redux Props
-          style={{ height: '91vh' }}
-          onSelectEvent={event => this.toggle(event)} // Work on Modal Open
-        />
+        {// eslint-disable-next-line
+        userAcess == true ? (
+          <Calendar
+            selectable
+            defaultDate={new Date(dateString)} // Current Month
+            views={['month', 'agenda']}
+            defaultView="month"
+            events={PostDate} // Feed in Redux Props
+            style={{ height: '91vh' }}
+            onSelectEvent={event => this.toggle(event)} // Work on Modal Open
+          />
+        ) : (
+          userAcess
+        )}
 
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} size="lg">
-          <ModalHeader toggle={this.toggle}>Date Going Live: {moment(this.state.start).format('ddd MMM Do')}</ModalHeader>
+          <ModalHeader toggle={this.toggle}>
+            Date Going Live: {moment(this.state.start).format('ddd MMM Do')}
+          </ModalHeader>
           <ModalBody id="social-render">
             <div className="accordion" id="accordionParent">
-              <AccordianCards hidOrShow={fb ? '' : 'hide'} target={'facebookDesktop'} cardName={'Facebook Desktop'} componentName={<FacebookDesktop className="mb-5" clientInitials={this.state.clientInitials} clientName={this.state.title} contentCopy={this.state.contentCopy} imgLink={this.state.imgLink} date={moment(this.state.start).format('MMM Do')} />} />
-              <AccordianCards hidOrShow={fb ? '' : 'hide'} target={'facebookMobile'} cardName={'Facebook Mobile'} componentName={<FacebookMobile clientInitials={this.state.clientInitials} clientName={this.state.title} contentCopy={this.state.contentCopy} imgLink={this.state.imgLink} date={moment(this.state.dateGoingLive).format('MMM Do')} />} />
-              <AccordianCards hidOrShow={ig ? '' : 'hide'} target={'instagram'} cardName={'Instagram'} componentName={<Instagram clientInitials={this.state.clientInitials} clientName={this.state.title} contentCopy={this.state.contentInstagramCopy} imgLink={this.state.imgLinkInstagram ? this.state.imgLinkInstagram : this.state.imgLink} />} />
-              <AccordianCards hidOrShow={tw ? '' : 'hide'} target={'twitter'} cardName={'Twitter Desktop'} componentName={<TwitterDesktop className="mb-5" clientInitials={this.state.clientInitials} clientName={this.state.title} contentCopy={this.state.contentTwitterCopy} imgLink={this.state.imgLink} twtHandle={this.state.twtHandle} />} />
-              <AccordianCards hidOrShow={ln ? '' : 'hide'} target={'linkedin'} cardName={'Linkedin'} componentName={<LinkedInDesktop lnFollowers="1,000" className="mb-5" clientInitials={this.state.clientInitials} clientName={this.state.title} contentCopy={this.state.contentLinkedInCopy} imgLink={this.state.imgLink} />} />
+              <AccordianCards
+                hidOrShow={fb ? '' : 'hide'}
+                target={'facebookDesktop'}
+                cardName={'Facebook Desktop'}
+                componentName={
+                  <FacebookDesktop
+                    className="mb-5"
+                    clientInitials={this.state.clientInitials}
+                    clientName={this.state.title}
+                    contentCopy={this.state.contentCopy}
+                    imgLink={this.state.imgLink}
+                    date={moment(this.state.start).format('MMM Do')}
+                  />
+                }
+              />
+              <AccordianCards
+                hidOrShow={fb ? '' : 'hide'}
+                target={'facebookMobile'}
+                cardName={'Facebook Mobile'}
+                componentName={
+                  <FacebookMobile
+                    clientInitials={this.state.clientInitials}
+                    clientName={this.state.title}
+                    contentCopy={this.state.contentCopy}
+                    imgLink={this.state.imgLink}
+                    date={moment(this.state.dateGoingLive).format('MMM Do')}
+                  />
+                }
+              />
+              <AccordianCards
+                hidOrShow={ig ? '' : 'hide'}
+                target={'instagram'}
+                cardName={'Instagram'}
+                componentName={
+                  <Instagram
+                    clientInitials={this.state.clientInitials}
+                    clientName={this.state.title}
+                    contentCopy={this.state.contentInstagramCopy}
+                    imgLink={
+                      this.state.imgLinkInstagram ? this.state.imgLinkInstagram : this.state.imgLink
+                    }
+                  />
+                }
+              />
+              <AccordianCards
+                hidOrShow={tw ? '' : 'hide'}
+                target={'twitter'}
+                cardName={'Twitter Desktop'}
+                componentName={
+                  <TwitterDesktop
+                    className="mb-5"
+                    clientInitials={this.state.clientInitials}
+                    clientName={this.state.title}
+                    contentCopy={this.state.contentTwitterCopy}
+                    imgLink={this.state.imgLink}
+                    twtHandle={this.state.twtHandle}
+                  />
+                }
+              />
+              <AccordianCards
+                hidOrShow={ln ? '' : 'hide'}
+                target={'linkedin'}
+                cardName={'Linkedin'}
+                componentName={
+                  <LinkedInDesktop
+                    lnFollowers="1,000"
+                    className="mb-5"
+                    clientInitials={this.state.clientInitials}
+                    clientName={this.state.title}
+                    contentCopy={this.state.contentLinkedInCopy}
+                    imgLink={this.state.imgLink}
+                  />
+                }
+              />
             </div>
           </ModalBody>
           {user.role !== 'client' ? editDeleteBtns : ''}

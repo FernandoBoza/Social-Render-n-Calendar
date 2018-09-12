@@ -72,19 +72,19 @@ class ManageUsers extends Component {
     }
     return (
       <div>
+        <Button color="primary" onClick={this.toggle}>
+          Add A Client User
+        </Button>
         <Table hover>
           <thead>
             <tr>
-              <th>First Name</th>
+              <th>Name</th>
               <th>Email</th>
               <th>Role</th>
             </tr>
           </thead>
           <tbody>{editBoard}</tbody>
         </Table>
-        <Button color="primary" onClick={this.toggle}>
-          Add A Client User
-        </Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} size="lg">
           <ModalBody id="manage-user">
             <div className="accordion" id="accordionParent">
