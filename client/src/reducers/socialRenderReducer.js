@@ -34,7 +34,7 @@ export default function(state = initialState, action) {
     case DELETE_CONTENT:
       return {
         ...state,
-        socialRenderContent: state.socialRenderContent.filter(content => content._id !== action.payload)
+        socialRenderContent: state.socialRenderContent.filter(x => x._id !== action.payload)
       };
     case CREATE_COMMENT:
       return {
@@ -47,6 +47,8 @@ export default function(state = initialState, action) {
     case DELETE_COMMENT:
       return {
         ...state,
+        // socialRenderContent: state.socialRenderContent.map(x =>
+        //   x.comments.filter(c => c._id !== action.payload)
         socialRenderContent: state.socialRenderContent.filter(
           x => (x._id !== action.payload._id ? x : action.payload)
         ),
