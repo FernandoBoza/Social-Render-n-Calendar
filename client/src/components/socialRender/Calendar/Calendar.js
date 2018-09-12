@@ -43,17 +43,22 @@ class ContentCalendar extends Component {
   }
 
   componentWillReceiveProps = nextProps => {
-    if (nextProps.socialRenderContent.socialRenderContent == null) {
+    if (
+      nextProps.socialRenderContent.socialRenderContent == null ||
+      nextProps.socialRenderContent.loading
+    ) {
     } else {
-      // const updatedFeed = nextProps.socialRenderContent.socialRenderContent.map(x => x.comments);
-      // TODO: WORK ON UPDATING FEED AND BRING IN ISEMPTY FUNCTION
-      // this.setState({ commentData: updatedFeed });
+      nextProps.socialRenderContent.socialRenderContent.map(
+        // eslint-disable-next-line
+        x => (x._id == this.state._id ? this.setState({ commentData: x.comments }) : 'nope')
+      );
     }
   };
 
   componentDidMount() {
     this.props.getAllSocialRender();
     this.props.getAllUsers();
+    document.title = 'Content Calendar';
   }
 
   onDeleteClick = e => {
@@ -120,7 +125,7 @@ class ContentCalendar extends Component {
           start: x.dateGoingLive,
           end: x.dateGoingLive,
           title: x.clientName,
-          twtHandle: x.clientName.replace(/ /g, ''),
+          twtHandle: x.clientName !== undefined ? x.clientName.replace(/ /g, '') : x.clientName,
           clientInitials: x.clientInitials,
           contentCopy: x.contentCopy,
           contentTwitterCopy: x.contentTwitterCopy,
@@ -131,7 +136,7 @@ class ContentCalendar extends Component {
           _id: x._id,
           commentData: x.comments
         }));
-        console.log(PostDate);
+        console.log(socialRenderContent);
       } else {
         PostDate = [];
       }
