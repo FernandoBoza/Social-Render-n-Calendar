@@ -9,7 +9,7 @@
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run watch-scss\" ",
-    "heroku-postbuild": "NODE_MODULES_CACHE=false NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
     "watch-scss": "sass --watch ./client/src/styles/scss/styles.scss:./client/src/styles/styles.css"
   },
   "keywords": [],
