@@ -45,12 +45,12 @@ export default function(state = initialState, action) {
         loading: false
       };
     case DELETE_COMMENT:
-      console.log(state.socialRenderContent.flat(2));
-      // console.log(state.socialRenderContent.map(x => x.comments.filter(c => c._id !== action.payload)));
       return {
         ...state,
-        socialRenderContent: state.socialRenderContent.map(x =>
-          x.comments.filter(c => c._id !== action.payload)
+        // socialRenderContent: state.socialRenderContent.map(x =>
+        //   x.comments.filter(c => c._id !== action.payload)
+        socialRenderContent: state.socialRenderContent.filter(
+          x => (x._id !== action.payload._id ? x : action.payload)
         ),
         loading: false
       };
