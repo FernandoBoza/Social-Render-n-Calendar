@@ -116,6 +116,8 @@ class SocialRenderComponent extends Component {
       });
     }
 
+    console.log(moment(this.state.dateGoingLive).format());
+
     return (
       <div id="social-render">
         <section className="container-fluid">
