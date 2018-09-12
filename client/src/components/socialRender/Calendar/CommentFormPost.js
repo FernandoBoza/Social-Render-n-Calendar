@@ -22,6 +22,7 @@ class CommentFormPost extends Component {
       comment: this.state.comment
     };
     this.props.addComment(this.props.social_id, commentPost);
+    this.setState({ comment: '' });
   };
 
   handleChange = e => {
