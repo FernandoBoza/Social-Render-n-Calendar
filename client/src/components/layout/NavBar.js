@@ -73,12 +73,7 @@ class NavBar extends Component {
             Dashboard
           </Link>
         </li>
-        {/* <li className="nav-item">
-          <Link className="nav-link" to="/content-calendar">
-            <i className="fa fa-calendar text-primary" style={{ fontSize: '1.2rem' }} />
-            Content Calendar
-          </Link>
-        </li> */}
+
         <li className="nav-item active">
           <a href="" onClick={this.onLogoutClick.bind(this)} className="nav-link">
             <i className="fa fa-hand-peace text-primary" style={{ fontSize: '1.2rem' }} />
@@ -107,7 +102,7 @@ class NavBar extends Component {
       <div className="container-fluid p-0">
         <nav className="navbar navbar-expand-lg navbar-light bg-light px-5">
           <Link className="navbar-brand" to="/">
-            Social Goal Flow
+            Social Goals Tracker
           </Link>
           <button
             className="navbar-toggler"
