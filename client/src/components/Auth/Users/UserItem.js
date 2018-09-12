@@ -25,7 +25,6 @@ class UserItem extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const roleData = { role: this.state.role };
-    console.log(roleData);
     this.props.updateUserRole(this.props.match.params.id, roleData, this.props.history);
   };
 
@@ -71,7 +70,11 @@ class UserItem extends Component {
       </div>
     );
     return (
-      <div className="col-md-4 offset-md-1 mb-3 wow animated fadeIn" data-wow-duration="2s" data-wow-delay="1s">
+      <div
+        className="col-md-4 offset-md-1 mb-3 wow animated fadeIn"
+        data-wow-duration="2s"
+        data-wow-delay="1s"
+      >
         <h1 className="display-4 text-capitalize my-5">Edit {users.name}</h1>
         <div className="userInfo form-group input-group">
           <div className="input-group-prepend">
@@ -103,13 +106,25 @@ class UserItem extends Component {
 
         <form className="mt-4" onSubmit={this.handleSubmit}>
           <ButtonGroup>
-            <Button color="primary" onClick={() => this.onRadioBtnClick('admin')} active={this.state.role === 'admin'}>
+            <Button
+              color="primary"
+              onClick={() => this.onRadioBtnClick('admin')}
+              active={this.state.role === 'admin'}
+            >
               Admin
             </Button>
-            <Button color="primary" onClick={() => this.onRadioBtnClick('user')} active={this.state.role === 'user'}>
+            <Button
+              color="primary"
+              onClick={() => this.onRadioBtnClick('user')}
+              active={this.state.role === 'user'}
+            >
               User
             </Button>
-            <Button color="primary" onClick={() => this.onRadioBtnClick('client')} active={this.state.role === 'client'}>
+            <Button
+              color="primary"
+              onClick={() => this.onRadioBtnClick('client')}
+              active={this.state.role === 'client'}
+            >
               Client
             </Button>
           </ButtonGroup>
@@ -117,7 +132,11 @@ class UserItem extends Component {
             Update User Role
           </button>
         </form>
-        <button onClick={this.toggle} type="button" className="btn btn-lg btn-danger btn-block mt-5 mx-auto">
+        <button
+          onClick={this.toggle}
+          type="button"
+          className="btn btn-lg btn-danger btn-block mt-5 mx-auto"
+        >
           Delete {users.name}
         </button>
 
