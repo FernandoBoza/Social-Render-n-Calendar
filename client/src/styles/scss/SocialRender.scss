@@ -200,6 +200,7 @@ span.rbc-btn-group button,
   }
 
   i.fa.fa-dropbox,
+  i.fa.fa-clock-o,
   .fa-instagram.text-primary,
   i.fa.fa-pencil-square-o {
     font-size: 1rem;
@@ -240,12 +241,13 @@ span.rbc-btn-group button,
   }
 
   .selectClient {
-    z-index: 100;
+    z-index: 1;
   }
 
   .wow.fadeInLeft.animated.datePickerDiv {
-    -webkit-animation-fill-mode: none;
-    animation-fill-mode: none;
+    // -webkit-animation-fill-mode: none;
+    // animation-fill-mode: none;
+    z-index: 2;
   }
 
   .tw-desktop {

@@ -542,6 +542,7 @@ span.rbc-btn-group button,
 #social-render .input-group-text {
   width: 14rem; }
 #social-render i.fa.fa-dropbox,
+#social-render i.fa.fa-clock-o,
 #social-render .fa-instagram.text-primary,
 #social-render i.fa.fa-pencil-square-o {
   font-size: 1rem;
@@ -565,10 +566,9 @@ span.rbc-btn-group button,
 #social-render .linkedIn ul {
   line-height: 1.2; }
 #social-render .selectClient {
-  z-index: 100; }
+  z-index: 1; }
 #social-render .wow.fadeInLeft.animated.datePickerDiv {
-  -webkit-animation-fill-mode: none;
-  animation-fill-mode: none; }
+  z-index: 2; }
 #social-render .tw-desktop .d-inline-block.fb-title {
   margin-left: -4rem; }
 #social-render .tw-desktop .card-body {

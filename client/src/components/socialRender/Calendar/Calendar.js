@@ -201,7 +201,7 @@ class ContentCalendar extends Component {
           size="lg"
         >
           <ModalHeader toggle={this.toggle}>
-            Date Going Live: {moment(this.state.start).format('ddd MMM Do')}
+            <b>Date Going Live:</b> {moment(this.state.start).format('MMM Do YY, h:mm A')}
           </ModalHeader>
           <ModalBody className="row" id="social-render">
             <div className={!this.state.commentOpen ? 'col-sm-12' : 'col-md-6'}>
@@ -307,9 +307,9 @@ class ContentCalendar extends Component {
               Delete Post Content
             </Button>
 
-            {/* <Button onClick={this.onCommentClick} className="btn btn-warning ml-3">
+            <Button onClick={this.onCommentClick} className="btn btn-warning ml-3">
               Comment
-            </Button> */}
+            </Button>
           </ModalFooter>
         </Modal>
       </div>

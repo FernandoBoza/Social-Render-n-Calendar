@@ -16,8 +16,6 @@ import TextArea from './Layout/TextArea';
 import 'react-dates/initialize';
 import moment from 'moment';
 import DateTimePicker from 'react-datetime';
-import { SingleDatePicker } from 'react-dates';
-import 'react-dates/lib/css/_datepicker.css';
 import WOW from 'wowjs';
 
 class SocialRenderComponent extends Component {
@@ -32,7 +30,7 @@ class SocialRenderComponent extends Component {
       contentLinkedInCopy: ``,
       imgLink: '',
       imgLinkInstagram: '',
-      dateGoingLive: null,
+      dateGoingLive: new Date(),
       errors: {}
     };
 
@@ -122,6 +120,24 @@ class SocialRenderComponent extends Component {
           <div className="row">
             <div id="left-panel" className="col-md-6">
               <form onSubmit={this.handleSubmit}>
+                <div
+                  className="input-group my-3 wow animated fadeInLeft datePickerDiv"
+                  data-wow-duration="1.5s"
+                >
+                  <div className="input-group-prepend">
+                    <span className="input-group-text" id="inputGroup-sizing-default">
+                      <i className="fa fa-clock-o text-primary pl-0 " aria-hidden="true" />
+                      Pick a date
+                    </span>
+                  </div>
+                  <DateTimePicker
+                    className="form-control"
+                    value={this.state.dateGoingLive}
+                    inputProps={{ placeholder: 'Pick a date' }}
+                    onChange={dateGoingLive => this.setState({ dateGoingLive })}
+                  />
+                </div>
+
                 <InputGroup
                   duration="1.5s"
                   animation="fadeInLeft"
@@ -188,21 +204,6 @@ class SocialRenderComponent extends Component {
                   value={this.state.contentLinkedInCopy}
                   onChange={this.handleChange}
                 />
-                <DateTimePicker />
-                <div
-                  className="wow animated fadeInLeft datePickerDiv"
-                  data-wow-duration="1.5s"
-                  data-wow-delay=".7s"
-                >
-                  <SingleDatePicker
-                    date={this.state.dateGoingLive}
-                    hideKeyboardShortcutsPanel={true}
-                    block={true}
-                    focused={this.state.focused}
-                    onDateChange={dateGoingLive => this.setState({ dateGoingLive })}
-                    onFocusChange={({ focused }) => this.setState({ focused })}
-                  />
-                </div>
                 <button
                   className="btn btn-lg btn-outline-primary btn-block mt-5 w-100 mx-auto wow animated fadeInLeft"
                   data-wow-duration="1.5s"
