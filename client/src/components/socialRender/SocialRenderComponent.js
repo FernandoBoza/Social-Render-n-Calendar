@@ -13,7 +13,6 @@ import AccordianCards from './Layout/AccordianCards';
 import InputGroup from './Layout/InputGroup';
 import ClientInputGroup from './Layout/ClientInputGroup';
 import TextArea from './Layout/TextArea';
-import 'react-dates/initialize';
 import moment from 'moment';
 import DateTimePicker from 'react-datetime';
 import WOW from 'wowjs';
