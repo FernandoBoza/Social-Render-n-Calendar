@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import Calendar from 'react-big-calendar';
 import moment from 'moment';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getByClientName, deleteContent } from '../../../actions/socialRenderActions';
+import PropTypes from 'prop-types';
+import { getByClientName, deleteContent, deleteComment } from '../../../actions/socialRenderActions';
+import { getAllUsers } from '../../../actions/authActions';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import FacebookDesktop from '../Facebook/FacebookDesktop';
 import FacebookMobile from '../Facebook/FacebookMobile';
@@ -13,14 +14,18 @@ import LinkedInDesktop from '../LinkedIn/LinkedIn';
 import AccordianCards from '../Layout/AccordianCards';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { Link } from 'react-router-dom';
+import CommentFeeds from './CommentFeedComp';
+import CommentForm from './CommentFormPost';
+
 Calendar.setLocalizer(Calendar.momentLocalizer(moment));
 
 class ClientContentCalendar extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       modal: false,
+      commentOpen: false,
+      commentData: [],
       title: '',
       clientInitials: '',
       contentCopy: '',
@@ -37,9 +42,24 @@ class ClientContentCalendar extends Component {
     this.onDeleteClick = this.onDeleteClick.bind(this);
   }
 
+  componentWillReceiveProps = nextProps => {
+    if (
+      nextProps.socialRenderContent.socialRenderContent == null ||
+      nextProps.socialRenderContent.loading
+    ) {
+    } else {
+      nextProps.socialRenderContent.socialRenderContent.map(
+        // eslint-disable-next-line
+        x => (x._id == this.state._id ? this.setState({ commentData: x.comments }) : 'nope')
+      );
+    }
+  };
+
   componentDidMount() {
     if (this.props.match.params.clientName) {
       this.props.getByClientName(this.props.match.params.clientName);
+      this.props.getAllUsers();
+      document.title = 'Content Calendar';
     }
   }
 
@@ -48,6 +68,10 @@ class ClientContentCalendar extends Component {
     this.setState({
       modal: !this.state.modal
     });
+  };
+
+  deleteComment = (post_id, comment_id) => {
+    this.props.deleteComment(post_id, comment_id);
   };
 
   toggle = e => {
@@ -63,19 +87,30 @@ class ClientContentCalendar extends Component {
       imgLink: e.imgLink,
       imgLinkInstagram: e.imgLinkInstagram,
       twtHandle: e.twtHandle,
-      start: e.start
+      start: e.start,
+      commentData: e.commentData
     });
   };
 
+  onCommentClick = e => {
+    this.setState(prevState => ({
+      commentOpen: !prevState.commentOpen
+    }));
+  };
+
   render() {
-    const { socialRenderContent, loading } = this.props.socialRenderContent;
     const { user } = this.props.auth;
+    const usersDataLoading = this.props.auth.loading;
+    const { socialRenderContent, loading } = this.props.socialRenderContent;
     const fb = this.state.contentCopy ? this.state.contentCopy : false;
     const tw = this.state.contentTwitterCopy ? this.state.contentTwitterCopy : false;
     const ig = this.state.contentInstagramCopy ? this.state.contentInstagramCopy : false;
     const ln = this.state.contentLinkedInCopy ? this.state.contentLinkedInCopy : false;
     const month = this.props.match.params.m;
     const year = this.props.match.params.y;
+    let comments;
+    let currentUserId;
+    let commentLiked;
     let PostDate = [];
     let userAcess;
 
@@ -91,19 +126,20 @@ class ClientContentCalendar extends Component {
       } else {
         userAcess = true;
         if (socialRenderContent.length > 0) {
-          PostDate = socialRenderContent.map(contentInfo => ({
-            start: contentInfo.dateGoingLive,
-            end: contentInfo.dateGoingLive,
-            title: contentInfo.clientName,
-            twtHandle: contentInfo.clientName.replace(/ /g, ''),
-            clientInitials: contentInfo.clientInitials,
-            contentCopy: contentInfo.contentCopy,
-            contentTwitterCopy: contentInfo.contentTwitterCopy,
-            contentInstagramCopy: contentInfo.contentInstagramCopy,
-            contentLinkedInCopy: contentInfo.contentLinkedInCopy,
-            imgLink: contentInfo.imgLink,
-            imgLinkInstagram: contentInfo.imgLinkInstagram,
-            _id: contentInfo._id
+          PostDate = socialRenderContent.map(x => ({
+            start: x.dateGoingLive,
+            end: x.dateGoingLive,
+            title: x.clientName,
+            twtHandle: x.clientName !== undefined ? x.clientName.replace(/ /g, '') : x.clientName,
+            clientInitials: x.clientInitials,
+            contentCopy: x.contentCopy,
+            contentTwitterCopy: x.contentTwitterCopy,
+            contentInstagramCopy: x.contentInstagramCopy,
+            contentLinkedInCopy: x.contentLinkedInCopy,
+            imgLink: x.imgLink,
+            imgLinkInstagram: x.imgLinkInstagram,
+            _id: x._id,
+            commentData: x.comments
           }));
         } else {
           PostDate = [];
@@ -111,11 +147,44 @@ class ClientContentCalendar extends Component {
       }
     }
 
+    // ********************************************
+    // Setting Up fir dates in URL
+    // ********************************************
     // eslint-disable-next-line
     if (month == undefined || year == undefined) {
       var dateString = new Date();
     } else {
       dateString = `20${year}-${month}-01T20:02:40-04:00`;
+    }
+
+    if (user == null || usersDataLoading) {
+    } else {
+      currentUserId = user.id;
+    }
+
+    // ********************************************
+    // Bringing In Comment Data
+    // ********************************************
+    // eslint-disable-next-line
+    if (this.state.commentData == null || this.state.commentData == undefined) {
+      comments = this.state.commentData;
+    } else {
+      this.state.commentData.map(x =>
+        x.likes.filter(t => (t.user === currentUserId ? (commentLiked = x._id) : (commentLiked = null)))
+      );
+      comments = this.state.commentData.map(x => (
+        <CommentFeeds
+          key={x._id}
+          id={x._id}
+          name={x.name}
+          commentDate={x.date}
+          comment={x.comment}
+          likeNumber={x.likes.length}
+          commentLiked={commentLiked}
+          deleteComment={this.deleteComment}
+          post_id={this.state._id}
+        />
+      ));
     }
 
     const editDeleteBtns = (
@@ -131,106 +200,123 @@ class ClientContentCalendar extends Component {
         <Button onClick={this.onDeleteClick} className="btn btn-danger">
           Delete Post Content
         </Button>
+
+        <Button onClick={this.onCommentClick} className="btn btn-warning ml-3">
+          Comment
+        </Button>
       </ModalFooter>
     );
 
     return (
-      <div className="ContentCalendar animated fadeIn">
+      <div className="ContentCalendar col-sm-10 offset-sm-1 animated fadeIn">
         {// eslint-disable-next-line
         userAcess == true ? (
           <Calendar
             selectable
             defaultDate={new Date(dateString)} // Current Month
-            views={['month', 'agenda']}
+            views={['month']}
             defaultView="month"
             events={PostDate} // Feed in Redux Props
-            style={{ height: '91vh' }}
+            style={{ height: '85vh' }}
             onSelectEvent={event => this.toggle(event)} // Work on Modal Open
           />
         ) : (
           userAcess
         )}
 
-        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} size="lg">
+        <Modal
+          isOpen={this.state.modal}
+          toggle={this.toggle}
+          className={this.state.commentOpen ? 'modal-comment-click' : ''}
+          size="lg"
+        >
           <ModalHeader toggle={this.toggle}>
-            Date Going Live: {moment(this.state.start).format('ddd MMM Do')}
+            <b>Date Going Live:</b> {moment(this.state.start).format('MMM Do YY, h:mm A')}
           </ModalHeader>
-          <ModalBody id="social-render">
-            <div className="accordion" id="accordionParent">
-              <AccordianCards
-                hidOrShow={fb ? '' : 'hide'}
-                target={'facebookDesktop'}
-                cardName={'Facebook Desktop'}
-                componentName={
-                  <FacebookDesktop
-                    className="mb-5"
-                    clientInitials={this.state.clientInitials}
-                    clientName={this.state.title}
-                    contentCopy={this.state.contentCopy}
-                    imgLink={this.state.imgLink}
-                    date={moment(this.state.start).format('MMM Do')}
-                  />
-                }
-              />
-              <AccordianCards
-                hidOrShow={fb ? '' : 'hide'}
-                target={'facebookMobile'}
-                cardName={'Facebook Mobile'}
-                componentName={
-                  <FacebookMobile
-                    clientInitials={this.state.clientInitials}
-                    clientName={this.state.title}
-                    contentCopy={this.state.contentCopy}
-                    imgLink={this.state.imgLink}
-                    date={moment(this.state.dateGoingLive).format('MMM Do')}
-                  />
-                }
-              />
-              <AccordianCards
-                hidOrShow={ig ? '' : 'hide'}
-                target={'instagram'}
-                cardName={'Instagram'}
-                componentName={
-                  <Instagram
-                    clientInitials={this.state.clientInitials}
-                    clientName={this.state.title}
-                    contentCopy={this.state.contentInstagramCopy}
-                    imgLink={
-                      this.state.imgLinkInstagram ? this.state.imgLinkInstagram : this.state.imgLink
-                    }
-                  />
-                }
-              />
-              <AccordianCards
-                hidOrShow={tw ? '' : 'hide'}
-                target={'twitter'}
-                cardName={'Twitter Desktop'}
-                componentName={
-                  <TwitterDesktop
-                    className="mb-5"
-                    clientInitials={this.state.clientInitials}
-                    clientName={this.state.title}
-                    contentCopy={this.state.contentTwitterCopy}
-                    imgLink={this.state.imgLink}
-                    twtHandle={this.state.twtHandle}
-                  />
-                }
-              />
-              <AccordianCards
-                hidOrShow={ln ? '' : 'hide'}
-                target={'linkedin'}
-                cardName={'Linkedin'}
-                componentName={
-                  <LinkedInDesktop
-                    lnFollowers="1,000"
-                    className="mb-5"
-                    clientInitials={this.state.clientInitials}
-                    clientName={this.state.title}
-                    contentCopy={this.state.contentLinkedInCopy}
-                    imgLink={this.state.imgLink}
-                  />
-                }
-              />
+          <ModalBody className="row" id="social-render">
+            <div className={!this.state.commentOpen ? 'col-sm-12' : 'col-md-6'}>
+              <div className="accordion" id="accordionParent">
+                <AccordianCards
+                  hidOrShow={fb ? '' : 'hide'}
+                  target={'facebookDesktop'}
+                  cardName={'Facebook Desktop'}
+                  componentName={
+                    <FacebookDesktop
+                      className="mb-5"
+                      clientInitials={this.state.clientInitials}
+                      clientName={this.state.title}
+                      contentCopy={this.state.contentCopy}
+                      imgLink={this.state.imgLink}
+                      date={moment(this.state.start).format('MMM Do')}
+                    />
+                  }
+                />
+                <AccordianCards
+                  hidOrShow={fb ? '' : 'hide'}
+                  target={'facebookMobile'}
+                  cardName={'Facebook Mobile'}
+                  componentName={
+                    <FacebookMobile
+                      clientInitials={this.state.clientInitials}
+                      clientName={this.state.title}
+                      contentCopy={this.state.contentCopy}
+                      imgLink={this.state.imgLink}
+                      date={moment(this.state.dateGoingLive).format('MMM Do')}
+                    />
+                  }
+                />
+                <AccordianCards
+                  hidOrShow={ig ? '' : 'hide'}
+                  target={'instagram'}
+                  cardName={'Instagram'}
+                  componentName={
+                    <Instagram
+                      clientInitials={this.state.clientInitials}
+                      clientName={this.state.title}
+                      contentCopy={this.state.contentInstagramCopy}
+                      imgLink={
+                        this.state.imgLinkInstagram ? this.state.imgLinkInstagram : this.state.imgLink
+                      }
+                    />
+                  }
+                />
+                <AccordianCards
+                  hidOrShow={tw ? '' : 'hide'}
+                  target={'twitter'}
+                  cardName={'Twitter Desktop'}
+                  componentName={
+                    <TwitterDesktop
+                      className="mb-5"
+                      clientInitials={this.state.clientInitials}
+                      clientName={this.state.title}
+                      contentCopy={this.state.contentTwitterCopy}
+                      imgLink={this.state.imgLink}
+                      twtHandle={this.state.twtHandle}
+                    />
+                  }
+                />
+                <AccordianCards
+                  hidOrShow={ln ? '' : 'hide'}
+                  target={'linkedin'}
+                  cardName={'Linkedin'}
+                  componentName={
+                    <LinkedInDesktop
+                      lnFollowers="1,000"
+                      className="mb-5"
+                      clientInitials={this.state.clientInitials}
+                      clientName={this.state.title}
+                      contentCopy={this.state.contentLinkedInCopy}
+                      imgLink={this.state.imgLink}
+                    />
+                  }
+                />
+              </div>
+            </div>
+            <div
+              className={!this.state.commentOpen ? 'hide ' : 'commentSection col-md-6 animated fadeInUp'}
+            >
+              <div className="commentFeed">{comments}</div>
+              <CommentForm social_id={this.state._id} comments={this.state.commentData} />
             </div>
           </ModalBody>
           {user.role !== 'client' ? editDeleteBtns : ''}
@@ -242,6 +328,7 @@ class ClientContentCalendar extends Component {
 
 ClientContentCalendar.propTypes = {
   getByClientName: PropTypes.func.isRequired,
+  deleteComment: PropTypes.func.isRequired,
   deleteContent: PropTypes.func.isRequired, // from client actions
   socialRenderContent: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired
@@ -249,10 +336,11 @@ ClientContentCalendar.propTypes = {
 
 const mapStateToProps = state => ({
   socialRenderContent: state.socialRenderContent, // Feed state to root reducer
-  auth: state.auth // Comes from the root reducer
+  auth: state.auth, // Comes from the root reducer
+  getAllUsers: PropTypes.func.isRequired
 });
 
 export default connect(
   mapStateToProps,
-  { getByClientName, deleteContent }
+  { getByClientName, deleteContent, getAllUsers, deleteComment }
 )(ClientContentCalendar);

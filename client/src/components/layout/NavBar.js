@@ -43,7 +43,7 @@ class NavBar extends Component {
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="/social-render">
-            <i className="fa fa-calendar-plus-o text-primary" style={{ fontSize: '1.2rem' }} />
+            <i className="fa fa-columns text-primary" style={{ fontSize: '1.2rem' }} />
             Create Content
           </Link>
         </li>

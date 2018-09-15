@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { updateClientContent, getContentbyClient } from '../../actions/socialRenderActions';
 import FacebookDesktop from './Facebook/FacebookDesktop';
 import FacebookMobile from './Facebook/FacebookMobile';
 import Instagram from './Instagram/Instagram';
@@ -9,12 +10,10 @@ import LinkedIn from './LinkedIn/LinkedIn';
 import AccordianCards from './Layout/AccordianCards';
 import InputGroup from './Layout/InputGroup';
 import TextArea from './Layout/TextArea';
-import 'react-dates/initialize';
 import moment from 'moment';
-import { SingleDatePicker } from 'react-dates';
-import 'react-dates/lib/css/_datepicker.css';
+import DateTimePicker from 'react-datetime';
+import WOW from 'wowjs';
 import isEmpty from '../../validation/is-empty';
-import { updateClientContent, getContentbyClient } from '../../actions/socialRenderActions';
 
 class EditSocialRenderComponent extends Component {
   constructor(props) {
@@ -40,6 +39,9 @@ class EditSocialRenderComponent extends Component {
   componentDidMount() {
     if (this.props.match.params.id) {
       this.props.getContentbyClient(this.props.match.params.id);
+      new WOW.WOW({
+        live: false
+      }).init();
     }
   }
 
@@ -129,7 +131,26 @@ class EditSocialRenderComponent extends Component {
           <div className="row">
             <div id="left-panel" className="col-md-6">
               <form onSubmit={this.handleSubmit}>
+                <div
+                  className="input-group my-3 wow animated fadeInLeft datePickerDiv"
+                  data-wow-duration="1.5s"
+                >
+                  <div className="input-group-prepend">
+                    <span className="input-group-text" id="inputGroup-sizing-default">
+                      <i className="fa fa-clock-o text-primary pl-0 " aria-hidden="true" />
+                      Update date
+                    </span>
+                  </div>
+                  <DateTimePicker
+                    className="form-control"
+                    value={this.state.dateGoingLive}
+                    inputProps={{ placeholder: 'Pick a date' }}
+                    onChange={dateGoingLive => this.setState({ dateGoingLive })}
+                  />
+                </div>
                 <InputGroup
+                  duration="1.5s"
+                  animation="fadeInLeft"
                   label={'Dropbox Image Share Link'}
                   name={'imgLink'}
                   icon={'dropbox'}
@@ -138,6 +159,9 @@ class EditSocialRenderComponent extends Component {
                   placeholder="Img link or Dropbox share link here"
                 />
                 <InputGroup
+                  duration="1.5s"
+                  delay=".1s"
+                  animation="fadeInLeft"
                   label={'Instagram Share Link'}
                   name={'imgLinkInstagram'}
                   icon={'instagram'}
@@ -145,7 +169,11 @@ class EditSocialRenderComponent extends Component {
                   value={this.state.imgLinkInstagram}
                   placeholder="Instagram img link or Dropbox share link here"
                 />
-                <div className="input-group my-3">
+                <div
+                  className="input-group my-3 wow animated fadeInLeft selectClient"
+                  data-wow-duration="1.5s"
+                  data-wow-delay=".2s"
+                >
                   <div className="input-group-prepend">
                     <span className="input-group-text">Client Name and Initials</span>
                   </div>
@@ -163,39 +191,44 @@ class EditSocialRenderComponent extends Component {
                   />
                 </div>
                 <TextArea
+                  duration="1.5s"
+                  delay=".3s"
+                  animation="fadeInLeft"
                   name="contentCopy"
                   value={this.state.contentCopy}
                   onChange={this.handleChange}
                 />
                 <TextArea
+                  duration="1.5s"
+                  delay=".4s"
+                  animation="fadeInLeft"
                   name="contentInstagramCopy"
                   channel="Instagram"
                   value={this.state.contentInstagramCopy}
                   onChange={this.handleChange}
                 />
                 <TextArea
+                  duration="1.5s"
+                  delay=".5s"
+                  animation="fadeInLeft"
                   name="contentTwitterCopy"
                   channel="Twitter"
                   value={this.state.contentTwitterCopy}
                   onChange={this.handleChange}
                 />
                 <TextArea
+                  duration="1.5s"
+                  delay=".6s"
+                  animation="fadeInLeft"
                   name="contentLinkedInCopy"
                   channel="Linkedin"
                   value={this.state.contentLinkedInCopy}
                   onChange={this.handleChange}
                 />
-                <SingleDatePicker
-                  id={moment(this.state.dateGoingLive).format('L')}
-                  date={this.state.dateGoingLive}
-                  hideKeyboardShortcutsPanel={true}
-                  block={true}
-                  focused={this.state.focused}
-                  onDateChange={dateGoingLive => this.setState({ dateGoingLive })}
-                  onFocusChange={({ focused }) => this.setState({ focused })}
-                />
                 <button
-                  className="btn btn-lg btn-outline-primary btn-block mt-5 w-100 mx-auto"
+                  className="btn btn-lg btn-outline-primary btn-block mt-5 w-100 mx-auto wow animated fadeInLeft"
+                  data-wow-duration="1.5s"
+                  data-wow-delay=".8s"
                   type="submit"
                 >
                   Update and Go to Content Calendar
