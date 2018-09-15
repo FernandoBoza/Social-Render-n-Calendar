@@ -15,6 +15,7 @@ import ClientInputGroup from './Layout/ClientInputGroup';
 import TextArea from './Layout/TextArea';
 import 'react-dates/initialize';
 import moment from 'moment';
+import DateTimePicker from 'react-datetime';
 import { SingleDatePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 import WOW from 'wowjs';
@@ -187,6 +188,7 @@ class SocialRenderComponent extends Component {
                   value={this.state.contentLinkedInCopy}
                   onChange={this.handleChange}
                 />
+                <DateTimePicker />
                 <div
                   className="wow animated fadeInLeft datePickerDiv"
                   data-wow-duration="1.5s"
