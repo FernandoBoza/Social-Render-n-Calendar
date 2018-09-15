@@ -68,12 +68,6 @@ class ContentCalendar extends Component {
     });
   };
 
-  handleChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  };
-
   deleteComment = (post_id, comment_id) => {
     this.props.deleteComment(post_id, comment_id);
   };
@@ -188,9 +182,7 @@ class ContentCalendar extends Component {
           views={['month']}
           defaultView="month"
           events={PostDate} // Feed in Redux Props
-          style={{
-            height: '85vh'
-          }}
+          style={{ height: '85vh' }}
           onSelectEvent={event => this.toggle(event)} // Work on Modal Open
         />
 
