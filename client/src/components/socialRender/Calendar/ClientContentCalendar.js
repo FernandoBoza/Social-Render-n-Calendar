@@ -119,6 +119,7 @@ class ClientContentCalendar extends Component {
     } else {
       if (
         socialRenderContent.clientName !== user.clientRoleAccess &&
+        user.role !== 'client' &&
         user.role !== 'admin' &&
         user.role !== 'user'
       ) {
