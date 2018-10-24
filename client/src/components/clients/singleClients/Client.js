@@ -7,6 +7,7 @@ import { getAClient } from '../../../actions/clientActions';
 import NumInputField from '../../common/NumInputField';
 import isEmpty from '../../../validation/is-empty';
 import ReactTooltip from 'react-tooltip';
+import CreateEditFieldsNew from '../Layout/ClientProfileEditFields5';
 
 export class Client extends Component {
   constructor(props) {
@@ -82,7 +83,6 @@ export class Client extends Component {
   render() {
     const { client, loading } = this.props.clients;
     const { user, isAuthenticated } = this.props.auth;
-
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const today = new Date();
     let clientContent;
@@ -558,7 +558,15 @@ export class Client extends Component {
               {client.name} <span className="lead">{today.toLocaleDateString('en-US', options)}</span>
             </h1>
             <div className="row">
-              {createEditFields_5('Page Followers', 'pageFollowers', 'pgf', 'show')}
+              {/* <CreateEditFieldsNew
+                client={client}
+                categoryFullName="Page Followers"
+                categoryName="pageFollowers"
+                categoryAbbrv="pgf"
+                // onChange={this.toggleShowBtn}
+                onChange={() => this.toggleShowBtn()}
+              /> */}
+              {createEditFields_5('Page Followers', 'pageFollowers', 'pgf')}
               {createEditFields_5('Impressions', 'impressions', 'imp')}
               {createEditFields_5('Reach', 'reach', 'reach')}
               {createEditFields_5('Engagement', 'engagement', 'eng')}

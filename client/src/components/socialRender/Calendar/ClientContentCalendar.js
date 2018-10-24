@@ -117,13 +117,27 @@ class ClientContentCalendar extends Component {
     if (socialRenderContent == null || loading) {
       PostDate = [];
     } else {
-      if (
-        socialRenderContent.clientName !== user.clientRoleAccess &&
-        user.role !== 'admin' &&
-        user.role !== 'user'
-      ) {
-        userAcess = <h1>Sorry You're Not Allowed Here</h1>;
-      } else {
+      if (user.role == 'admin' || user.role == 'user') {
+        userAcess = true;
+        if (socialRenderContent.length > 0) {
+          PostDate = socialRenderContent.map(x => ({
+            start: x.dateGoingLive,
+            end: x.dateGoingLive,
+            title: x.clientName,
+            twtHandle: x.clientName !== undefined ? x.clientName.replace(/ /g, '') : x.clientName,
+            clientInitials: x.clientInitials,
+            contentCopy: x.contentCopy,
+            contentTwitterCopy: x.contentTwitterCopy,
+            contentInstagramCopy: x.contentInstagramCopy,
+            contentLinkedInCopy: x.contentLinkedInCopy,
+            imgLink: x.imgLink,
+            imgLinkInstagram: x.imgLinkInstagram,
+            _id: x._id,
+            commentData: x.comments
+          }));
+        }
+      } else if (socialRenderContent.clientName == user.clientRoleAccess) {
+        console.log(socialRenderContent.clientName == user.clientRoleAccess);
         userAcess = true;
         if (socialRenderContent.length > 0) {
           PostDate = socialRenderContent.map(x => ({
@@ -142,7 +156,9 @@ class ClientContentCalendar extends Component {
             commentData: x.comments
           }));
         } else {
-          PostDate = [];
+          userAcess = false;
+          console.log(userAcess);
+          userAcess = <h1>Sorry You're Not Allowed Here</h1>;
         }
       }
     }

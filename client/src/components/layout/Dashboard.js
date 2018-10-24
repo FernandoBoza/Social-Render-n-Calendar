@@ -64,7 +64,7 @@ class Dashboard extends Component {
             <b>Create Content</b>
           </Link>
         </div>
-        <div>
+        {/* <div>
           <Link
             to="/content-calendar"
             className="btn btn-info mt-4 w-50 wow animated fadeInUp"
@@ -74,7 +74,7 @@ class Dashboard extends Component {
             <i className="fa fa-calendar mr-2" style={{ fontSize: '1.2rem' }} />
             <b>Content Calendar</b>
           </Link>
-        </div>
+        </div> */}
       </div>
     );
 
