@@ -16,16 +16,16 @@ class NavBar extends Component {
     const { isAuthenticated, user } = this.props.auth;
     let manageRole;
     // eslint-disable-next-line
-    if (user.role == 'admin') {
-      manageRole = (
-        <li className="nav-item">
-          <Link className="nav-link" to="/users/manage">
-            <i className="fa fa-users text-primary" style={{ fontSize: '1.2rem' }} />
-            Manage Users
-          </Link>
-        </li>
-      );
-    }
+    // if (user.role == 'admin') {
+    //   manageRole = (
+    //     <li className="nav-item">
+    //       <Link className="nav-link" to="/users/manage">
+    //         <i className="fa fa-users text-primary" style={{ fontSize: '1.2rem' }} />
+    //         Manage Users
+    //       </Link>
+    //     </li>
+    //   );
+    // }
 
     const authLinks = (
       <ul className="navbar-nav mr-auto ml-5">
@@ -43,16 +43,16 @@ class NavBar extends Component {
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="/social-render">
-            <i className="fa fa-calendar-plus-o text-primary" style={{ fontSize: '1.2rem' }} />
+            <i className="fa fa-columns text-primary" style={{ fontSize: '1.2rem' }} />
             Create Content
           </Link>
         </li>
-        <li className="nav-item">
+        {/* <li className="nav-item">
           <Link className="nav-link" to="/content-calendar">
             <i className="fa fa-calendar text-primary" style={{ fontSize: '1.2rem' }} />
             Content Calendar
           </Link>
-        </li>
+        </li> */}
 
         {manageRole}
 
