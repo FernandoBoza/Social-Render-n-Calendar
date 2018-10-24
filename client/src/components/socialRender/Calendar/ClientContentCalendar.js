@@ -117,6 +117,7 @@ class ClientContentCalendar extends Component {
     if (socialRenderContent == null || loading) {
       PostDate = [];
     } else {
+      // eslint-disable-next-line
       if (user.role == 'admin' || user.role == 'user') {
         userAcess = true;
         if (socialRenderContent.length > 0) {
@@ -135,8 +136,9 @@ class ClientContentCalendar extends Component {
             _id: x._id,
             commentData: x.comments
           }));
-        }
+        } // eslint-disable-next-line
       } else if (socialRenderContent.clientName == user.clientRoleAccess) {
+        // eslint-disable-next-line
         console.log(socialRenderContent.clientName == user.clientRoleAccess);
         userAcess = true;
         if (socialRenderContent.length > 0) {

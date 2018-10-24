@@ -7,7 +7,7 @@ import { getAClient } from '../../../actions/clientActions';
 import NumInputField from '../../common/NumInputField';
 import isEmpty from '../../../validation/is-empty';
 import ReactTooltip from 'react-tooltip';
-import CreateEditFieldsNew from '../Layout/ClientProfileEditFields5';
+// import CreateEditFieldsNew from '../Layout/ClientProfileEditFields5';
 
 export class Client extends Component {
   constructor(props) {
